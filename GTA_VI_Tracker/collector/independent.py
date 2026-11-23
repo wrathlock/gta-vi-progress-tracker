@@ -38,10 +38,10 @@ def profile(author,cache):
  cache[author]=result
  return result
 def collect():
- findings=[];errors=[];cache={};seen=set();queries=['gta 6 emulator','leonida xbox2windows','gta 6 files working']
+ findings=[];errors=[];cache={};seen=set();queries=['gta 6 emulator','leonida xbox2windows']
  for sub in SUBS:
   for query in queries:
-   url='https://www.reddit.com/r/'+sub+'/search.json?'+urllib.parse.urlencode({'q':query,'restrict_sr':'on','sort':'new','t':'month','limit':12})
+   url='https://www.reddit.com/r/'+sub+'/search.json?'+urllib.parse.urlencode({'q':query,'restrict_sr':'on','sort':'new','t':'month','limit':5})
    data,err=get(url)
    if err:errors.append({'source':'r/'+sub,'error':err});continue
    posts=(data or {}).get('data',{}).get('children',[])
