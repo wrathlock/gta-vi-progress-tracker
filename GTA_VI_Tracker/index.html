@@ -1768,4 +1768,21 @@ body.leonida-theme .leonida-feature-art:nth-child(2){background-image:linear-gra
  if(document.getElementById('rumors-feed-root'))load();
  setInterval(()=>{if(document.getElementById('rumors-feed-root'))load()},300000);
 })();
-</script></body></html>
+</script><script id="csrin-indexed-fallback-note">
+(function(){
+ const priorSection=section;
+ section=function(){
+   const html=priorSection();
+   if(current!=='Sources'&&current!=='Live research status')return html;
+   const source=(typeof LIVE!=='undefined'&&Array.isArray(LIVE?.source_results))?LIVE.source_results.find(x=>x.name==='CS.RIN.RU'):null;
+   const indexed=source?.indexed_discovery;
+   const items=Array.isArray(indexed?.items)?indexed.items:[];
+   const direct=source?.status==='reachable'?'Direct forum access successful':'Direct forum access not confirmed';
+   const feed='https://news.google.com/rss/search?q='+encodeURIComponent('site:cs.rin.ru/forum/ ("GTA VI" OR "GTA 6" OR "Cyberleek" OR "GTA6") when:30d')+'&hl=en-US&gl=US&ceid=US:en';
+   const url=indexed?.feed_url||feed;
+   const note='<div class="card" aria-label="CS.RIN.RU indexed discovery"><h3>CS.RIN.RU · Google-indexed fallback</h3><p><strong>'+esc(direct)+'</strong> · '+esc(indexed?.status==='available'?'Google News search checked':'Indexed search not yet available')+'</p><p class="desc">Google-indexed search results are used when the forum restricts direct access. This is discovery only: results may be missing or delayed and do not confirm site availability, original post dates, or the accuracy of claims.</p><p class="desc">Last indexed check: '+esc(indexed?.checked_at_utc||'Awaiting next collector run')+' · '+items.length+' relevant indexed results</p>'+(items.length?items.slice(0,8).map(x=>'<div class="item"><strong>'+esc(x.title||'Indexed result')+'</strong><p class="desc">'+esc(x.published||'Publication date not supplied')+' · Google-indexed, unverified</p>'+(String(x.url||'').startsWith('https://')?'<a href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">Open indexed result</a>':'')+'</div>').join(''):'<p class="desc">No relevant indexed results recorded; this does not establish that the forum has no discussions.</p>')+'<p><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">Google News indexed search</a></p></div>';
+   return note+html;
+ };
+})();
+</script>
+</body></html>
