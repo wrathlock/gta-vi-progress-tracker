@@ -42,8 +42,9 @@ jobs:
           data=json.loads(p.read_text(encoding='utf-8'))
           assert data['status'] in ('partial_collection','collection_failed')
           assert data.get('last_attempt_utc')
-          assert len(data['source_results']) == 20, 'Expected 20 source health records'
+          assert data['listed_sources'] > 0 and len(data['source_results']) == data['listed_sources'], 'Configured source count mismatch'
           assert data['validation']['source_count_matches_expected']
+          assert data['listed_sources'] == data['original_sources']
           assert data['validation']['all_source_records_timestamped']
           assert data['validation']['all_events_have_source_urls']
           assert data['substantively_reviewed_sources'] == 0
