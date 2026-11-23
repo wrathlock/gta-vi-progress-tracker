@@ -1,0 +1,31 @@
+/* Firefox-safe optional live adapter. Original V2.7 stays functional offline. */
+let LIVE=null, LIVE_ERROR=null, livePlatform='All', liveType='All';
+const liveEsc=x=>String(x??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const liveLink=u=>(/^https:\/\/(github\.com|api\.github\.com)\//.test(u||''))?`<a href="${liveEsc(u)}" target="_blank" rel="noopener noreferrer">Source</a>`:'No source link';
+function liveBadge(s){return `<span class="pill">${liveEsc(s)}</span>`;}
+function localTime(s){if(!s)return 'Never recorded';const t=new Date(s);return isNaN(t.getTime())?'Unknown':t.toLocaleString()+' ('+liveEsc(s)+')';}
+function liveTable(rows){return `<div class="tablewrap"><table>${rows.join('')}</table></div>`;}
+function liveHealth(){
+  if(!LIVE)return `<div class="empty">No live JSON loaded. ${liveEsc(LIVE_ERROR||'This may be an offline file or a collector that has not run.')}</div><p class="desc">The V2.7 baseline is still available in all other sections. To enable scheduled updates, publish the included workflow to GitHub Pages.</p>`;
+  const rs=LIVE.source_results||[], misses=rs.filter(x=>x.status==='unavailable');
+  return `<div class="cols"><div class="card"><small>Last successful metadata collection</small><div class="heading">${localTime(LIVE.last_successful_scan_utc)}</div></div><div class="card"><small>Latest attempted collection</small><div class="heading">${localTime(LIVE.last_attempt_utc)}</div></div><div class="card"><small>Source reachability / GitHub metadata</small><div class="value">${liveEsc(LIVE.reachable_sources??'?')} / ${liveEsc(LIVE.original_sources??'21')}</div></div><div class="card"><small>Unavailable / collection errors</small><div class="value">${liveEsc(LIVE.unavailable_sources??'?')} / ${liveEsc(LIVE.last_error_count??'?')}</div></div></div>
+  <div class="card"><h3>Scope of this run</h3><p class="desc">${liveEsc(LIVE.collector_scope)}</p><p class="warn">Last complete 21-source CONTENT scan: not recorded. Non-GitHub checks do not inspect claims or establish truth.</p></div>
+  <div class="card"><h3>21 source health records</h3>${liveTable(['<tr><th>Source</th><th>Status</th><th>Checked</th><th>Scope / errors</th></tr>',...rs.map(x=>`<tr><td>${liveEsc(x.name)}</td><td>${liveBadge(x.status)}</td><td>${liveEsc(x.checked_at_utc)}</td><td>${liveEsc(x.method)}${x.error?'<br><span class="warn">'+liveEsc(x.error)+'</span>':''}${x.activity_error?'<br><span class="warn">'+liveEsc(x.activity_error)+'</span>':''}</td></tr>`)])}</div>`;
+}
+function filteredEvents(){return (LIVE?.events||[]).filter(e=>(livePlatform==='All'||e.platform===livePlatform)&&(liveType==='All'||e.type===liveType));}
+function liveFeed(){if(!LIVE)return liveHealth();
+ return `<div class="card"><h3>Public development activity · unverified technical significance</h3><p class="desc">Commit messages and releases are project records (C1); they are not gameplay, C2 developer tests, C3 reproduction, or a confirmed GTA VI executable.</p><div class="filters"><select onchange="livePlatform=this.value;render()">${['All','Xbox','PS5','Research','Unknown'].map(x=>`<option ${x===livePlatform?'selected':''}>${x}</option>`)}</select><select onchange="liveType=this.value;render()">${['All','commit','release','issue','PR'].map(x=>`<option ${x===liveType?'selected':''}>${x}</option>`)}</select></div>${filteredEvents().length?filteredEvents().slice(0,100).map(e=>`<div class="item"><div class="row"><b>${liveEsc(e.project)}</b><span class="tag">${liveEsc(e.type)} · ${liveEsc(e.evidence)}</span></div><p>${liveEsc(e.title)}</p><div class="desc">${liveEsc(e.date)} · ${liveEsc(e.classification)} · ${liveLink(e.url)}</div></div>`).join(''):'<div class="empty">No matching collected records.</div>'}</div>`;
+}
+function liveChanges(){if(!LIVE)return liveHealth();return `<div class="card"><h3>What changed since stored scan</h3><p class="desc">Newly observed GitHub records only; missing records are not regressions and these are not breakthrough confirmations.</p>${LIVE.changes?.length?LIVE.changes.slice(0,60).map(x=>`<div class="item"><b>${liveEsc(x.event?.project)}:</b> ${liveEsc(x.event?.title)} ${liveLink(x.event?.url)}<div class="desc">${liveEsc(x.note)}</div></div>`).join(''):'<div class="empty">No changes recorded, or no previous successful scan to compare against.</div>'}</div>`;}
+function liveAnalytics(){if(!LIVE)return liveHealth();return `<div class="card"><h3>Collected GitHub activity records</h3><p class="desc">Recent samples only. These are not full-interval commit counts or verified GTA VI execution results.</p>${liveTable(['<tr><th>Project</th><th>Last push</th><th>Commit sample</th><th>PR sample</th><th>Merged in sample</th></tr>',...(LIVE.github_analytics||[]).map(x=>`<tr><td>${liveEsc(x.project)}</td><td>${liveEsc(x.last_push_utc)}</td><td>${liveEsc(x.collected_commit_records)}</td><td>${liveEsc(x.sampled_prs)}</td><td>${liveEsc(x.sampled_merged_prs)}</td></tr>`)])}</div>`;}
+const originalSection=section;
+section=function(){
+  if(current==='Live research status')return liveHealth();
+  if(current==='Unified activity feed')return liveFeed();
+  if(current==='What changed')return liveChanges();
+  if(current==='GitHub analytics')return liveAnalytics();
+  if(current==='Overview')return originalSection()+`<div class="card"><div class="row"><b>Hosted source collector</b>${liveBadge(LIVE?LIVE.status:'Not connected')}</div><p class="desc">${LIVE?'Last real collection: '+localTime(LIVE.last_attempt_utc):'No collected live JSON is available. Historical research baseline remains intact.'}</p><div class="actions"><button onclick="go('Live research status')">Source health</button><button onclick="go('Unified activity feed')">Public activity feed</button></div></div>`;
+  return originalSection();
+};
+async function loadLive(){try{const response=await fetch('data/live.json?cache='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('HTTP '+response.status);const obj=await response.json();if(!obj||!Array.isArray(obj.source_results))throw Error('Collection not yet available');LIVE=obj;LIVE_ERROR=null;}catch(e){LIVE_ERROR=e.message;LIVE=null;}render();}
+loadLive();setInterval(loadLive,5*60*1000);

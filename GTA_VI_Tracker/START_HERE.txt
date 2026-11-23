@@ -1,0 +1,8 @@
+GitHub user: wrathlock
+1. Create PUBLIC repo https://github.com/new named gta-vi-signal-tracker
+2. Upload ZIP CONTENTS to repo main branch (keep .github/workflows/live.yml).
+3. Settings > Pages > Source: GitHub Actions
+4. Actions > GTA VI public research collector + Firefox dashboard > Run workflow
+5. Open https://wrathlock.github.io/gta-vi-signal-tracker/ in Firefox.
+
+GitHub connection is active in ChatGPT, but its tools cannot create a new repo, and no existing repo was visible.
