@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Curated X/Twitter source watchlist, not a claim that posts are being automatically collected",
+  "collection_status": "not_configured",
+  "collection_method": "none",
+  "verification_policy": "Posts are discovery signals; only original evidence and independent reproducibility can verify GTA VI playability milestones",
+  "sources": [
+    {
+      "handle": "RockstarGames",
+      "url": "https://x.com/RockstarGames",
+      "tier": "official",
+      "focus": "Official announcements"
+    },
+    {
+      "handle": "RockstarSupport",
+      "url": "https://x.com/RockstarSupport",
+      "tier": "official_support",
+      "focus": "Support notices; confirm account provenance before relying on a post"
+    },
+    {
+      "handle": "RockstarINTEL",
+      "url": "https://x.com/RockstarINTEL",
+      "tier": "established_reporting",
+      "focus": "Rockstar news and reports"
+    },
+    {
+      "handle": "GTAonlineNews",
+      "url": "https://x.com/GTAonlineNews",
+      "tier": "established_reporting",
+      "focus": "RockstarINTEL-associated GTA news"
+    },
+    {
+      "handle": "GTABase",
+      "url": "https://x.com/GTABase",
+      "tier": "established_reporting",
+      "focus": "GTA research and references"
+    },
+    {
+      "handle": "videotech",
+      "url": "https://x.com/videotech",
+      "tier": "community_research",
+      "focus": "Rockstar observations"
+    },
+    {
+      "handle": "TexFunz2",
+      "url": "https://x.com/TexFunz2",
+      "tier": "technical_research",
+      "focus": "Datamining and technical reports"
+    },
+    {
+      "handle": "_Tom_Henderson_",
+      "url": "https://x.com/_Tom_Henderson_",
+      "tier": "industry_reporting",
+      "focus": "Games-industry reporting"
+    },
+    {
+      "handle": "GTAVI_Countdown",
+      "url": "https://x.com/GTAVI_Countdown",
+      "tier": "unofficial_aggregator",
+      "focus": "Community discovery, rumors require source tracing"
+    }
+  ]
+}
