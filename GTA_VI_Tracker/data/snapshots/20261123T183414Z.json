@@ -1,0 +1,1493 @@
+{
+  "collected_at_utc": "2026-11-23T18:34:14Z",
+  "source_results": [
+    {
+      "name": "Cyberleek",
+      "url": "https://wayfinder.ar.io/?q=Cyberleek",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "reachability_only",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "reachable",
+      "last_public_activity_utc": null,
+      "error": null,
+      "http_status": 200,
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "Cyberleek.cloud Incident Desk",
+      "url": "https://cyberleek.cloud/",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "reachability_only",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "reachable",
+      "last_public_activity_utc": null,
+      "error": null,
+      "http_status": 200,
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "Leonida",
+      "url": "https://github.com/ItsNotRexed/Leonida",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "github_api_repo_metadata_and_recent_activity",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "ok",
+      "last_public_activity_utc": "2026-11-23T18:32:05Z",
+      "error": null,
+      "default_branch": "main",
+      "github_stars": 27106,
+      "content_screening": {
+        "status": "screened",
+        "document": "README",
+        "url": "https://github.com/ItsNotRexed/Leonida/blob/main/README.md",
+        "characters_examined": 26155,
+        "topic_terms_found": [
+          "gta6",
+          "executable",
+          "emulat",
+          "shader",
+          "xbox"
+        ],
+        "scope": "automated README text screening only; not manual verification"
+      },
+      "content_reviewed_at_utc": "2026-11-23T18:34:14Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "Xbox2Windows",
+      "url": "https://github.com/R0Y00/Xbox2Windows",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "github_api_repo_metadata_and_recent_activity",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "ok",
+      "last_public_activity_utc": "2026-11-23T18:33:29Z",
+      "error": null,
+      "default_branch": "main",
+      "github_stars": 1452,
+      "content_screening": {
+        "status": "screened",
+        "document": "README",
+        "url": "https://github.com/R0Y00/Xbox2Windows/blob/main/README.md",
+        "characters_examined": 49270,
+        "topic_terms_found": [
+          "executable",
+          "shader",
+          "xbox"
+        ],
+        "scope": "automated README text screening only; not manual verification"
+      },
+      "content_reviewed_at_utc": "2026-11-23T18:34:14Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "XCL",
+      "url": "https://github.com/ivall/xcl",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "github_api_repo_metadata_and_recent_activity",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "ok",
+      "last_public_activity_utc": "2026-11-23T18:11:15Z",
+      "error": null,
+      "default_branch": "main",
+      "github_stars": 664,
+      "content_screening": {
+        "status": "screened",
+        "document": "README",
+        "url": "https://github.com/ivall/xcl/blob/main/README.md",
+        "characters_examined": 12500,
+        "topic_terms_found": [
+          "emulat",
+          "shader",
+          "xbox",
+          "ps5"
+        ],
+        "scope": "automated README text screening only; not manual verification"
+      },
+      "content_reviewed_at_utc": "2026-11-23T18:34:14Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "ScarlettX",
+      "url": "https://github.com/Freminet/ScarlettX",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "github_api_repo_metadata_and_recent_activity",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "ok",
+      "last_public_activity_utc": "2026-11-22T10:38:07Z",
+      "error": null,
+      "default_branch": "main",
+      "github_stars": 206,
+      "content_screening": {
+        "status": "screened",
+        "document": "README",
+        "url": "https://github.com/Freminet/ScarlettX/blob/main/README.md",
+        "characters_examined": 17263,
+        "topic_terms_found": [
+          "executable",
+          "emulat",
+          "shader",
+          "xbox"
+        ],
+        "scope": "automated README text screening only; not manual verification"
+      },
+      "content_reviewed_at_utc": "2026-11-23T18:34:14Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "AnyXboxX",
+      "url": "https://github.com/LooperSalty/AnyXboxX",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "github_api_repo_metadata_and_recent_activity",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "ok",
+      "last_public_activity_utc": "2026-11-23T17:47:28Z",
+      "error": null,
+      "default_branch": "main",
+      "github_stars": 53,
+      "content_screening": {
+        "status": "screened",
+        "document": "README",
+        "url": "https://github.com/LooperSalty/AnyXboxX/blob/main/README.md",
+        "characters_examined": 19112,
+        "topic_terms_found": [
+          "gta6",
+          "executable",
+          "emulat",
+          "shader",
+          "xbox"
+        ],
+        "scope": "automated README text screening only; not manual verification"
+      },
+      "content_reviewed_at_utc": "2026-11-23T18:34:14Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "Xbox Emulator / TomBox",
+      "url": "https://github.com/drycheetah84/TomBox",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "github_api_repo_metadata_and_recent_activity",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "ok",
+      "last_public_activity_utc": "2026-11-22T22:42:07Z",
+      "error": null,
+      "default_branch": "master",
+      "github_stars": 90,
+      "content_screening": {
+        "status": "screened",
+        "document": "README",
+        "url": "https://github.com/drycheetah84/TomBox/blob/master/README.md",
+        "characters_examined": 12829,
+        "topic_terms_found": [
+          "executable",
+          "emulat",
+          "shader",
+          "xbox"
+        ],
+        "scope": "automated README text screening only; not manual verification"
+      },
+      "content_reviewed_at_utc": "2026-11-23T18:34:14Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "GTAForums",
+      "url": "https://gtaforums.com/",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "reachability_only",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "unavailable",
+      "last_public_activity_utc": null,
+      "error": "HTTP 403",
+      "http_status": 403,
+      "site_health": "restricted",
+      "health_note": "Automated access was denied or rate-limited; site may still be online"
+    },
+    {
+      "name": "CS.RIN.RU",
+      "url": "https://cs.rin.ru/forum/",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "direct_reachability_plus_google_indexed_discovery",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "unavailable",
+      "last_public_activity_utc": null,
+      "error": "HTTP 401",
+      "http_status": 401,
+      "indexed_discovery": {
+        "provider": "Google News RSS indexed search",
+        "feed_url": "https://news.google.com/rss/search?q=site%3Acs.rin.ru/forum/%20%28%22GTA%20VI%22%20OR%20%22GTA%206%22%20OR%20%22Cyberleek%22%20OR%20%22GTA6%22%29%20when%3A30d&hl=en-US&gl=US&ceid=US:en",
+        "checked_at_utc": "2026-11-23T18:34:14Z",
+        "status": "available",
+        "result_count": 0,
+        "items": [],
+        "note": "Search index only; may be delayed, incomplete or empty. Does not establish forum availability or verify claims.",
+        "error": null
+      },
+      "access_note": "Direct forum check did not succeed; Google-indexed discovery is a separate fallback, not a direct forum check.",
+      "site_health": "restricted",
+      "health_note": "Automated access was denied or rate-limited; site may still be online"
+    },
+    {
+      "name": "Video Games Chronicle",
+      "url": "https://www.videogameschronicle.com/",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "reachability_only",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "reachable",
+      "last_public_activity_utc": null,
+      "error": null,
+      "http_status": 200,
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "VideoCardz",
+      "url": "https://videocardz.com/",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "reachability_only",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "reachable",
+      "last_public_activity_utc": null,
+      "error": null,
+      "http_status": 200,
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "Digital Foundry",
+      "url": "https://www.digitalfoundry.net/",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "reachability_only",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "reachable",
+      "last_public_activity_utc": null,
+      "error": null,
+      "http_status": 200,
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "GTA VI Dump & PC-Port Tracker",
+      "url": "https://github.com/pagiii/gta6-tracker",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "github_api_repo_metadata_and_recent_activity",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "ok",
+      "last_public_activity_utc": "2026-11-22T15:58:08Z",
+      "error": null,
+      "default_branch": "main",
+      "github_stars": 8,
+      "content_screening": {
+        "status": "screened",
+        "document": "README",
+        "url": "https://github.com/pagiii/gta6-tracker/blob/main/README.md",
+        "characters_examined": 10926,
+        "topic_terms_found": [
+          "gta vi",
+          "gta 6",
+          "gta6",
+          "executable",
+          "emulat",
+          "reverse engineer",
+          "pc port",
+          "xbox",
+          "ps5"
+        ],
+        "scope": "automated README text screening only; not manual verification"
+      },
+      "content_reviewed_at_utc": "2026-11-23T18:34:14Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "GTA VI Reverse Engineering Index",
+      "url": "https://github.com/Ahmet-Dedeler/awesome-gta6-reverse-engineering",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "github_api_repo_metadata_and_recent_activity",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "ok",
+      "last_public_activity_utc": "2026-11-23T16:56:11Z",
+      "error": null,
+      "default_branch": "main",
+      "github_stars": 345,
+      "content_screening": {
+        "status": "screened",
+        "document": "README",
+        "url": "https://github.com/Ahmet-Dedeler/awesome-gta6-reverse-engineering/blob/main/README.md",
+        "characters_examined": 54075,
+        "topic_terms_found": [
+          "gta vi",
+          "gta 6",
+          "gta6",
+          "executable",
+          "emulat",
+          "shader",
+          "reverse engineer",
+          "pc port",
+          "xbox",
+          "ps5"
+        ],
+        "scope": "automated README text screening only; not manual verification"
+      },
+      "content_reviewed_at_utc": "2026-11-23T18:34:14Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "GTA 6 PC Tracker",
+      "url": "https://github.com/alan-r-henry/gta6-pc-tracker",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "github_api_repo_metadata_and_recent_activity",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "ok",
+      "last_public_activity_utc": "2026-11-23T13:28:09Z",
+      "error": null,
+      "default_branch": "main",
+      "github_stars": 0,
+      "content_screening": {
+        "status": "screened",
+        "document": "README",
+        "url": "https://github.com/alan-r-henry/gta6-pc-tracker/blob/main/README.md",
+        "characters_examined": 2579,
+        "topic_terms_found": [
+          "gta 6",
+          "gta6",
+          "emulat",
+          "ps5"
+        ],
+        "scope": "automated README text screening only; not manual verification"
+      },
+      "content_reviewed_at_utc": "2026-11-23T18:34:14Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "FollowTheLeek",
+      "url": "https://github.com/deepwoodssec/FollowTheLeek",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "github_api_repo_metadata_and_recent_activity",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "ok",
+      "last_public_activity_utc": "2026-09-03T03:25:14Z",
+      "error": null,
+      "default_branch": "main",
+      "github_stars": 4,
+      "content_screening": {
+        "status": "screened",
+        "document": "README",
+        "url": "https://github.com/deepwoodssec/FollowTheLeek/blob/main/README.md",
+        "characters_examined": 13877,
+        "topic_terms_found": [
+          "gta vi",
+          "gta6"
+        ],
+        "scope": "automated README text screening only; not manual verification"
+      },
+      "content_reviewed_at_utc": "2026-11-23T18:34:14Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "AnyPS5",
+      "url": "https://github.com/boykopovar/AnyPS5",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "github_api_repo_metadata_and_recent_activity",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "ok",
+      "last_public_activity_utc": "2026-11-23T18:32:26Z",
+      "error": null,
+      "default_branch": "main",
+      "github_stars": 60881,
+      "content_screening": {
+        "status": "screened",
+        "document": "README",
+        "url": "https://github.com/boykopovar/AnyPS5/blob/main/README.md",
+        "characters_examined": 3859,
+        "topic_terms_found": [
+          "executable",
+          "emulat",
+          "shader",
+          "playstation",
+          "ps5"
+        ],
+        "scope": "automated README text screening only; not manual verification"
+      },
+      "content_reviewed_at_utc": "2026-11-23T18:34:14Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "KytyPS5",
+      "url": "https://github.com/KytyPS5/KytyPS5",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "github_api_repo_metadata_and_recent_activity",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "ok",
+      "last_public_activity_utc": "2026-11-23T18:28:52Z",
+      "error": null,
+      "default_branch": "main",
+      "github_stars": 12593,
+      "content_screening": {
+        "status": "screened",
+        "document": "README",
+        "url": "https://github.com/KytyPS5/KytyPS5/blob/main/README.md",
+        "characters_examined": 19934,
+        "topic_terms_found": [
+          "executable",
+          "emulat",
+          "shader",
+          "reverse engineer",
+          "xbox",
+          "playstation",
+          "ps5"
+        ],
+        "scope": "automated README text screening only; not manual verification"
+      },
+      "content_reviewed_at_utc": "2026-11-23T18:34:14Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    },
+    {
+      "name": "SharpEmu",
+      "url": "https://github.com/sharpemu/sharpemu",
+      "checked_at_utc": "2026-11-23T18:34:14Z",
+      "method": "github_api_repo_metadata_and_recent_activity",
+      "substantive_content_review": false,
+      "independent_verification": false,
+      "status": "ok",
+      "last_public_activity_utc": "2026-11-23T15:27:12Z",
+      "error": null,
+      "default_branch": "main",
+      "github_stars": 6708,
+      "content_screening": {
+        "status": "screened",
+        "document": "README",
+        "url": "https://github.com/sharpemu/sharpemu/blob/main/README.md",
+        "characters_examined": 7340,
+        "topic_terms_found": [
+          "emulat",
+          "reverse engineer",
+          "playstation",
+          "ps5"
+        ],
+        "scope": "automated README text screening only; not manual verification"
+      },
+      "content_reviewed_at_utc": "2026-11-23T18:34:14Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
+    }
+  ],
+  "github_analytics": [
+    {
+      "project": "Leonida",
+      "url": "https://github.com/ItsNotRexed/Leonida",
+      "last_push_utc": "2026-11-23T18:32:05Z",
+      "total_stars": 27106,
+      "total_forks": 2449,
+      "open_issues_count": 3724,
+      "collected_commit_records": 5,
+      "collected_release_records": 0,
+      "sampled_merged_prs": 1,
+      "sampled_prs": 8,
+      "note": "Partial recent samples, not full-period analytics or game-specific verification"
+    },
+    {
+      "project": "Xbox2Windows",
+      "url": "https://github.com/R0Y00/Xbox2Windows",
+      "last_push_utc": "2026-11-23T18:33:29Z",
+      "total_stars": 1452,
+      "total_forks": 147,
+      "open_issues_count": 71,
+      "collected_commit_records": 5,
+      "collected_release_records": 1,
+      "sampled_merged_prs": 8,
+      "sampled_prs": 8,
+      "note": "Partial recent samples, not full-period analytics or game-specific verification"
+    },
+    {
+      "project": "XCL",
+      "url": "https://github.com/ivall/xcl",
+      "last_push_utc": "2026-11-23T18:11:15Z",
+      "total_stars": 664,
+      "total_forks": 51,
+      "open_issues_count": 42,
+      "collected_commit_records": 5,
+      "collected_release_records": 0,
+      "sampled_merged_prs": 2,
+      "sampled_prs": 8,
+      "note": "Partial recent samples, not full-period analytics or game-specific verification"
+    },
+    {
+      "project": "ScarlettX",
+      "url": "https://github.com/Freminet/ScarlettX",
+      "last_push_utc": "2026-11-22T10:38:07Z",
+      "total_stars": 206,
+      "total_forks": 24,
+      "open_issues_count": 29,
+      "collected_commit_records": 5,
+      "collected_release_records": 0,
+      "sampled_merged_prs": 8,
+      "sampled_prs": 8,
+      "note": "Partial recent samples, not full-period analytics or game-specific verification"
+    },
+    {
+      "project": "AnyXboxX",
+      "url": "https://github.com/LooperSalty/AnyXboxX",
+      "last_push_utc": "2026-11-23T17:47:28Z",
+      "total_stars": 53,
+      "total_forks": 2,
+      "open_issues_count": 15,
+      "collected_commit_records": 5,
+      "collected_release_records": 0,
+      "sampled_merged_prs": 8,
+      "sampled_prs": 8,
+      "note": "Partial recent samples, not full-period analytics or game-specific verification"
+    },
+    {
+      "project": "Xbox Emulator / TomBox",
+      "url": "https://github.com/drycheetah84/TomBox",
+      "last_push_utc": "2026-11-22T22:42:07Z",
+      "total_stars": 90,
+      "total_forks": 12,
+      "open_issues_count": 3,
+      "collected_commit_records": 5,
+      "collected_release_records": 0,
+      "sampled_merged_prs": 4,
+      "sampled_prs": 4,
+      "note": "Partial recent samples, not full-period analytics or game-specific verification"
+    },
+    {
+      "project": "GTA VI Dump & PC-Port Tracker",
+      "url": "https://github.com/pagiii/gta6-tracker",
+      "last_push_utc": "2026-11-22T15:58:08Z",
+      "total_stars": 8,
+      "total_forks": 1,
+      "open_issues_count": 0,
+      "collected_commit_records": 5,
+      "collected_release_records": 0,
+      "sampled_merged_prs": 0,
+      "sampled_prs": 0,
+      "note": "Partial recent samples, not full-period analytics or game-specific verification"
+    },
+    {
+      "project": "GTA VI Reverse Engineering Index",
+      "url": "https://github.com/Ahmet-Dedeler/awesome-gta6-reverse-engineering",
+      "last_push_utc": "2026-11-23T16:56:11Z",
+      "total_stars": 345,
+      "total_forks": 13,
+      "open_issues_count": 1,
+      "collected_commit_records": 5,
+      "collected_release_records": 0,
+      "sampled_merged_prs": 2,
+      "sampled_prs": 8,
+      "note": "Partial recent samples, not full-period analytics or game-specific verification"
+    },
+    {
+      "project": "GTA 6 PC Tracker",
+      "url": "https://github.com/alan-r-henry/gta6-pc-tracker",
+      "last_push_utc": "2026-11-23T13:28:09Z",
+      "total_stars": 0,
+      "total_forks": 0,
+      "open_issues_count": 1,
+      "collected_commit_records": 5,
+      "collected_release_records": 0,
+      "sampled_merged_prs": 0,
+      "sampled_prs": 1,
+      "note": "Partial recent samples, not full-period analytics or game-specific verification"
+    },
+    {
+      "project": "FollowTheLeek",
+      "url": "https://github.com/deepwoodssec/FollowTheLeek",
+      "last_push_utc": "2026-09-03T03:25:14Z",
+      "total_stars": 4,
+      "total_forks": 0,
+      "open_issues_count": 1,
+      "collected_commit_records": 5,
+      "collected_release_records": 0,
+      "sampled_merged_prs": 0,
+      "sampled_prs": 0,
+      "note": "Partial recent samples, not full-period analytics or game-specific verification"
+    },
+    {
+      "project": "AnyPS5",
+      "url": "https://github.com/boykopovar/AnyPS5",
+      "last_push_utc": "2026-11-23T18:32:26Z",
+      "total_stars": 60881,
+      "total_forks": 5913,
+      "open_issues_count": 2900,
+      "collected_commit_records": 5,
+      "collected_release_records": 4,
+      "sampled_merged_prs": 7,
+      "sampled_prs": 8,
+      "note": "Partial recent samples, not full-period analytics or game-specific verification"
+    },
+    {
+      "project": "KytyPS5",
+      "url": "https://github.com/KytyPS5/KytyPS5",
+      "last_push_utc": "2026-11-23T18:28:52Z",
+      "total_stars": 12593,
+      "total_forks": 1575,
+      "open_issues_count": 1027,
+      "collected_commit_records": 5,
+      "collected_release_records": 4,
+      "sampled_merged_prs": 3,
+      "sampled_prs": 8,
+      "note": "Partial recent samples, not full-period analytics or game-specific verification"
+    },
+    {
+      "project": "SharpEmu",
+      "url": "https://github.com/sharpemu/sharpemu",
+      "last_push_utc": "2026-11-23T15:27:12Z",
+      "total_stars": 6708,
+      "total_forks": 606,
+      "open_issues_count": 203,
+      "collected_commit_records": 5,
+      "collected_release_records": 4,
+      "sampled_merged_prs": 3,
+      "sampled_prs": 8,
+      "note": "Partial recent samples, not full-period analytics or game-specific verification"
+    }
+  ],
+  "event_ids": [
+    "ItsNotRexed/Leonida:issue:8344",
+    "R0Y00/Xbox2Windows:issue:938",
+    "ItsNotRexed/Leonida:pr:8095",
+    "boykopovar/AnyPS5:pr:19445",
+    "ItsNotRexed/Leonida:pr:7983",
+    "ItsNotRexed/Leonida:pr:7920",
+    "ItsNotRexed/Leonida:pr:7948",
+    "ItsNotRexed/Leonida:pr:6789",
+    "ItsNotRexed/Leonida:commit:6dda0630bd6fc0514baadb94fb98e36bd7d64c0b",
+    "ItsNotRexed/Leonida:pr:8214",
+    "boykopovar/AnyPS5:pr:26314",
+    "boykopovar/AnyPS5:commit:4ed833d9792c7bd967f4b6c8ba9c020a330cb315",
+    "ItsNotRexed/Leonida:pr:7844",
+    "ItsNotRexed/Leonida:pr:8198",
+    "ItsNotRexed/Leonida:commit:1599683cafa5d046c5e2bc91b5f3d8ad2b9caa5f",
+    "boykopovar/AnyPS5:pr:26310",
+    "boykopovar/AnyPS5:commit:20ed53a7f14ecd3f426b08abf09f386415a7b9c1",
+    "R0Y00/Xbox2Windows:issue:870",
+    "boykopovar/AnyPS5:pr:26308",
+    "boykopovar/AnyPS5:commit:1e1106083f18d92fda2f7b42d2e11c1d821a2375",
+    "R0Y00/Xbox2Windows:pr:931",
+    "R0Y00/Xbox2Windows:commit:0f0c3eb1f50f227ddc154ab7e081839628ff89b3",
+    "ItsNotRexed/Leonida:commit:23060e0877d608a9f3273b89797dc802cfa2face",
+    "boykopovar/AnyPS5:pr:26281",
+    "boykopovar/AnyPS5:commit:899e913da3a6efd498d6a7cb526163f1a934e49f",
+    "boykopovar/AnyPS5:commit:f3847134baa0349e59953a16cfe67b11c202ce52",
+    "boykopovar/AnyPS5:pr:26322",
+    "R0Y00/Xbox2Windows:pr:945",
+    "R0Y00/Xbox2Windows:commit:b3de0f4a0e912380c80a796abd8055188b426785",
+    "ItsNotRexed/Leonida:commit:47428cc2251a700ac70b8ed927eb8f7e1b053511",
+    "KytyPS5/KytyPS5:commit:7d0c350e2bf0d5e8d2c00e4569733daaeda97f8d",
+    "ivall/xcl:issue:159",
+    "ItsNotRexed/Leonida:commit:67d8773905e9709595c574f58c2a49d2b5efe53c",
+    "R0Y00/Xbox2Windows:pr:407",
+    "R0Y00/Xbox2Windows:commit:810acb0537c2d1094aa1d44f6d3ee10a0a41ccee",
+    "R0Y00/Xbox2Windows:pr:933",
+    "R0Y00/Xbox2Windows:commit:71273b44341d0da1f02a3612539e0c5548fa7bb0",
+    "R0Y00/Xbox2Windows:commit:e943cca2e09d5f994625e3234fb81cb749c3cae2",
+    "R0Y00/Xbox2Windows:pr:914",
+    "R0Y00/Xbox2Windows:pr:935",
+    "R0Y00/Xbox2Windows:pr:925",
+    "boykopovar/AnyPS5:pr:26033",
+    "boykopovar/AnyPS5:pr:26032",
+    "ivall/xcl:commit:956a476bf738a098f39df4f4c8acef682e43030f",
+    "R0Y00/Xbox2Windows:pr:934",
+    "KytyPS5/KytyPS5:release:455794931",
+    "KytyPS5/KytyPS5:issue:947",
+    "deepwoodssec/FollowTheLeek:issue:1",
+    "LooperSalty/AnyXboxX:pr:107",
+    "LooperSalty/AnyXboxX:commit:427562fbcbd359a92096952727347da311cb9f67",
+    "ivall/xcl:commit:db5dc26cba45278948dca2549b15ae53b9435d89",
+    "KytyPS5/KytyPS5:pr:2510",
+    "KytyPS5/KytyPS5:commit:cc817b663f9d9b66b8edf2e263f657e2779a53f5",
+    "LooperSalty/AnyXboxX:commit:186905f1215497046bf76f461acdf504ead4dd5c",
+    "LooperSalty/AnyXboxX:commit:7928c8a9271f6e4134d4ec3b100cf945f8b9c2cb",
+    "LooperSalty/AnyXboxX:commit:526ba12d38eba0e45aff3f1e77fe41a949ca35ab",
+    "LooperSalty/AnyXboxX:commit:8f5501f82e6065b88b95ae51e01ff64cff0eb28a",
+    "Ahmet-Dedeler/awesome-gta6-reverse-engineering:commit:fa51a4a421b804775e2f817e8f9697415382816b",
+    "ivall/xcl:pr:153",
+    "LooperSalty/AnyXboxX:pr:106",
+    "ivall/xcl:commit:66e8e974601791dee66bb60adfbeb4852ba88a25",
+    "LooperSalty/AnyXboxX:pr:105",
+    "ivall/xcl:commit:9add7213c6b38752c0982eadd3bae3d90522473e",
+    "LooperSalty/AnyXboxX:pr:104",
+    "LooperSalty/AnyXboxX:pr:103",
+    "KytyPS5/KytyPS5:release:455616238",
+    "sharpemu/sharpemu:commit:96fa5d10dc504a09619b26f1cc51d4b71621532e",
+    "sharpemu/sharpemu:commit:6ded0bc9cae3cee7bac99d4ee94cfb9a62c1daa1",
+    "sharpemu/sharpemu:commit:42660b6c2badf86d0f0d54db2edcf733632d2f35",
+    "sharpemu/sharpemu:commit:ad6cec39eec503982343088f807bd9ad5e9d2343",
+    "sharpemu/sharpemu:commit:062289e7a68a2a0c4e2c556d49ff2bbd6c8c8c49",
+    "ivall/xcl:pr:33",
+    "KytyPS5/KytyPS5:release:455595842",
+    "KytyPS5/KytyPS5:commit:578f2d43fe5d018617afaad94b1c90a07f6d9acc",
+    "ivall/xcl:pr:117",
+    "KytyPS5/KytyPS5:release:455559355",
+    "ivall/xcl:pr:133",
+    "ivall/xcl:commit:484dd5799077a5297e58027f4a67a2c5e1c6b14b",
+    "sharpemu/sharpemu:pr:1172",
+    "KytyPS5/KytyPS5:commit:bd4a9e72852ef0d5e99aed531493763a0bb8a6b8",
+    "KytyPS5/KytyPS5:commit:dd219a629033c7561e395054a1a48aeea5753207",
+    "KytyPS5/KytyPS5:pr:2523",
+    "ivall/xcl:pr:119",
+    "ivall/xcl:pr:125",
+    "ivall/xcl:pr:130",
+    "ivall/xcl:pr:126",
+    "KytyPS5/KytyPS5:pr:2528",
+    "LooperSalty/AnyXboxX:pr:101",
+    "Ahmet-Dedeler/awesome-gta6-reverse-engineering:pr:10",
+    "Ahmet-Dedeler/awesome-gta6-reverse-engineering:pr:9",
+    "Ahmet-Dedeler/awesome-gta6-reverse-engineering:commit:4e6c1f7c7cb9181e74719ac7a8a0569e56b07400",
+    "LooperSalty/AnyXboxX:pr:100",
+    "LooperSalty/AnyXboxX:pr:99",
+    "sharpemu/sharpemu:pr:1170",
+    "sharpemu/sharpemu:pr:1169",
+    "sharpemu/sharpemu:pr:1159",
+    "sharpemu/sharpemu:pr:1171",
+    "KytyPS5/KytyPS5:pr:2226",
+    "Ahmet-Dedeler/awesome-gta6-reverse-engineering:commit:3936443151d5726293f5462909cfbb6aa8da5b87",
+    "drycheetah84/TomBox:pr:3",
+    "drycheetah84/TomBox:commit:4f66ea98423e02e1cbb1d6d068e55e3a98d408fd",
+    "Ahmet-Dedeler/awesome-gta6-reverse-engineering:commit:b74606450e7a9ec339ddf8156287808b9fffd3ce",
+    "Ahmet-Dedeler/awesome-gta6-reverse-engineering:commit:96b807027986c1e332e953667205487f39b508da",
+    "Ahmet-Dedeler/awesome-gta6-reverse-engineering:pr:8",
+    "Ahmet-Dedeler/awesome-gta6-reverse-engineering:pr:6",
+    "Ahmet-Dedeler/awesome-gta6-reverse-engineering:pr:7",
+    "Ahmet-Dedeler/awesome-gta6-reverse-engineering:pr:2",
+    "drycheetah84/TomBox:commit:4c5bff9ee23c07e8604a6ed18ded2203948f8594",
+    "drycheetah84/TomBox:issue:5",
+    "pagiii/gta6-tracker:commit:41901598bb4df5c6d4b8cb626d12ea51e8f9b2f1",
+    "pagiii/gta6-tracker:commit:21dc354a216ea41517a665dff17468e8bc8d0d95",
+    "pagiii/gta6-tracker:commit:17f6ee09adc925a4d45ff7c9df3135934f161e83",
+    "pagiii/gta6-tracker:commit:11089acd3418096b791303f6f192667d9f28d27f",
+    "pagiii/gta6-tracker:commit:ead013b4d5ab19fdb6a13466be3085e3f7043574",
+    "alan-r-henry/gta6-pc-tracker:commit:eed5db5b89b269e2cf3ea20773aa8f6ed8e6f60f",
+    "KytyPS5/KytyPS5:pr:2518",
+    "Ahmet-Dedeler/awesome-gta6-reverse-engineering:pr:5",
+    "KytyPS5/KytyPS5:pr:2517",
+    "Ahmet-Dedeler/awesome-gta6-reverse-engineering:pr:4",
+    "KytyPS5/KytyPS5:pr:2462",
+    "KytyPS5/KytyPS5:pr:2498",
+    "Freminet/ScarlettX:pr:3",
+    "Freminet/ScarlettX:commit:01c642cf62a6d9978f535e2c438c488ebcb4cd39",
+    "Freminet/ScarlettX:commit:7cfc38cb9ea0fdf1fd271da4af0dcfddb814f3ca",
+    "Freminet/ScarlettX:pr:5",
+    "Freminet/ScarlettX:pr:4",
+    "Freminet/ScarlettX:commit:0ea46efc1db3c68e586e9dd400c68dcd5e89e0b4",
+    "Freminet/ScarlettX:commit:8e825a8be406a66cc1ef6846d1d59b7021defac1",
+    "Freminet/ScarlettX:commit:3ef3178f4231d0ce50d9b2050cf1b98d4db9e1c5",
+    "Freminet/ScarlettX:pr:47",
+    "Freminet/ScarlettX:pr:34",
+    "Freminet/ScarlettX:pr:33",
+    "Freminet/ScarlettX:pr:21",
+    "Freminet/ScarlettX:pr:20",
+    "drycheetah84/TomBox:commit:fae89a9fc5be4ed2ce3cb1eef1709174eb3029ba",
+    "drycheetah84/TomBox:commit:6b6e23866bb4d5135c3d25975c164bfb28cbe947",
+    "drycheetah84/TomBox:commit:9a39de888bbdecef1cae84171464dad34176b994",
+    "sharpemu/sharpemu:issue:1168",
+    "sharpemu/sharpemu:issue:1167",
+    "drycheetah84/TomBox:pr:6",
+    "drycheetah84/TomBox:pr:2",
+    "drycheetah84/TomBox:pr:4",
+    "alan-r-henry/gta6-pc-tracker:commit:5577768307066f1e810818e52329d4c1e7df04f3",
+    "drycheetah84/TomBox:issue:1",
+    "sharpemu/sharpemu:pr:1165",
+    "sharpemu/sharpemu:pr:1100",
+    "sharpemu/sharpemu:pr:1096",
+    "R0Y00/Xbox2Windows:release:453168296",
+    "alan-r-henry/gta6-pc-tracker:commit:6490793c5ee5c4450f7c5d744ed3e37b929841a1",
+    "alan-r-henry/gta6-pc-tracker:commit:c082e81a74096799725a10592a69159ce2da9f20",
+    "alan-r-henry/gta6-pc-tracker:commit:922907ba379716a36f26dc9bc92ba9ee077913d8",
+    "boykopovar/AnyPS5:release:441840820",
+    "alan-r-henry/gta6-pc-tracker:pr:1",
+    "alan-r-henry/gta6-pc-tracker:issue:2",
+    "sharpemu/sharpemu:release:430265770",
+    "boykopovar/AnyPS5:release:429572202",
+    "boykopovar/AnyPS5:release:418225927",
+    "sharpemu/sharpemu:release:416766831",
+    "boykopovar/AnyPS5:release:412515460",
+    "sharpemu/sharpemu:release:407327641",
+    "sharpemu/sharpemu:release:402279832",
+    "deepwoodssec/FollowTheLeek:commit:b586282d7b2eda4661684184baff21830235a073",
+    "deepwoodssec/FollowTheLeek:commit:3dc1367e316e26961930bc3f6fa0f39c8385dab4",
+    "deepwoodssec/FollowTheLeek:commit:aa47e9454ffe48edcc8683d8d798aae0d439ac60",
+    "deepwoodssec/FollowTheLeek:commit:228a05b852f826e0bde6da2b2ac44bfaa4132631",
+    "deepwoodssec/FollowTheLeek:commit:f70e1533012b498c4d4de2fa80cb53851e150253"
+  ],
+  "changes": [
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:commit:6dda0630bd6fc0514baadb94fb98e36bd7d64c0b",
+        "type": "commit",
+        "project": "Leonida",
+        "platform": "Xbox",
+        "date": "2026-11-23T18:33:00Z",
+        "title": "make_game: --mesh-compute on by itself on Intel's Windows Vulkan driver, whose mesh draws crash (BUILD-2202) (#6789)",
+        "url": "https://github.com/ItsNotRexed/Leonida/commit/6dda0630bd6fc0514baadb94fb98e36bd7d64c0b",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:commit:1599683cafa5d046c5e2bc91b5f3d8ad2b9caa5f",
+        "type": "commit",
+        "project": "Leonida",
+        "platform": "Xbox",
+        "date": "2026-11-23T18:32:05Z",
+        "title": "d3d12: reset predication in ClearState and align SetPredication / AtomicCopyBuffer validation (#6815)",
+        "url": "https://github.com/ItsNotRexed/Leonida/commit/1599683cafa5d046c5e2bc91b5f3d8ad2b9caa5f",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:commit:23060e0877d608a9f3273b89797dc802cfa2face",
+        "type": "commit",
+        "project": "Leonida",
+        "platform": "Xbox",
+        "date": "2026-11-23T18:29:34Z",
+        "title": "runtime: xg_xs.dll shim, XGCreateTextureComputer and XGSuggestSwizzleMode as traced E_NOTIMPL (RT-489) (#6891)",
+        "url": "https://github.com/ItsNotRexed/Leonida/commit/23060e0877d608a9f3273b89797dc802cfa2face",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:commit:47428cc2251a700ac70b8ed927eb8f7e1b053511",
+        "type": "commit",
+        "project": "Leonida",
+        "platform": "Xbox",
+        "date": "2026-11-23T18:27:18Z",
+        "title": "exe_checklist: collect // VERIFY notes and refuse an unusable --root/--out (CLAIM 7100960043) (#5875)",
+        "url": "https://github.com/ItsNotRexed/Leonida/commit/47428cc2251a700ac70b8ed927eb8f7e1b053511",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:commit:67d8773905e9709595c574f58c2a49d2b5efe53c",
+        "type": "commit",
+        "project": "Leonida",
+        "platform": "Xbox",
+        "date": "2026-11-23T18:26:03Z",
+        "title": "timecycle_pairs: protect directory inputs from report replacement (#6576)",
+        "url": "https://github.com/ItsNotRexed/Leonida/commit/67d8773905e9709595c574f58c2a49d2b5efe53c",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:issue:8344",
+        "type": "issue",
+        "project": "Leonida",
+        "platform": "Xbox",
+        "date": "2026-11-23T18:34:14Z",
+        "title": "Coordinating who works on what (51)",
+        "url": "https://github.com/ItsNotRexed/Leonida/issues/8344",
+        "evidence": "C1",
+        "classification": "issue discussion, not independently verified"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:8095",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:33:56Z",
+        "title": "xmem: map and unmap contiguous physical pages in runs (RT-671)",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/8095",
+        "evidence": "C1",
+        "classification": "recent PR record"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:7983",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:33:06Z",
+        "title": "gbuffer_census, navmesh_tile_obj: guard stdout with errors='replace'",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/7983",
+        "evidence": "C1",
+        "classification": "recent PR record"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:7920",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:33:06Z",
+        "title": "test_viewer_streaming: pass AbortController into the camera-speed sandbox",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/7920",
+        "evidence": "C1",
+        "classification": "recent PR record"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:7948",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:33:05Z",
+        "title": "test_user_sgpr_census: mock the report-path helpers the guard now calls",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/7948",
+        "evidence": "C1",
+        "classification": "recent PR record"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:6789",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:33:01Z",
+        "title": "make_game: --mesh-compute on by itself on Intel's Windows Vulkan driver, whose mesh draws crash (BUILD-2202)",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/6789",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:8214",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:32:27Z",
+        "title": "vulkan_present: insert TRANSFER-to-HOST barrier after capture copy (D3D-819)",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/8214",
+        "evidence": "C1",
+        "classification": "recent PR record"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:7844",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:32:20Z",
+        "title": "skinned_glb: own_parent_name reads a non-object ancestor guardedly (BUILD-2683)",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/7844",
+        "evidence": "C1",
+        "classification": "recent PR record"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:8198",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:32:12Z",
+        "title": "presenter: make the capture copy's writes visible to host reads (D3D-819)",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/8198",
+        "evidence": "C1",
+        "classification": "recent PR record"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:commit:0f0c3eb1f50f227ddc154ab7e081839628ff89b3",
+        "type": "commit",
+        "project": "Xbox2Windows",
+        "platform": "Xbox",
+        "date": "2026-11-23T18:31:11Z",
+        "title": "Merge pull request #931 from triggered02/shader/exp-mask-ordinary",
+        "url": "https://github.com/R0Y00/Xbox2Windows/commit/0f0c3eb1f50f227ddc154ab7e081839628ff89b3",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:commit:b3de0f4a0e912380c80a796abd8055188b426785",
+        "type": "commit",
+        "project": "Xbox2Windows",
+        "platform": "Xbox",
+        "date": "2026-11-23T18:27:21Z",
+        "title": "Merge pull request #945 from R0Y00/codex/xmem-placeholder-reservations",
+        "url": "https://github.com/R0Y00/Xbox2Windows/commit/b3de0f4a0e912380c80a796abd8055188b426785",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:commit:810acb0537c2d1094aa1d44f6d3ee10a0a41ccee",
+        "type": "commit",
+        "project": "Xbox2Windows",
+        "platform": "Xbox",
+        "date": "2026-11-23T18:23:32Z",
+        "title": "Merge pull request #407 from evilclanker9000/ag/cpu-lower-avx-scalar-fp",
+        "url": "https://github.com/R0Y00/Xbox2Windows/commit/810acb0537c2d1094aa1d44f6d3ee10a0a41ccee",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:commit:71273b44341d0da1f02a3612539e0c5548fa7bb0",
+        "type": "commit",
+        "project": "Xbox2Windows",
+        "platform": "Xbox",
+        "date": "2026-11-23T18:23:11Z",
+        "title": "Merge pull request #933 from legacy-code-archaeologist/cpu/switch-leave",
+        "url": "https://github.com/R0Y00/Xbox2Windows/commit/71273b44341d0da1f02a3612539e0c5548fa7bb0",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:commit:e943cca2e09d5f994625e3234fb81cb749c3cae2",
+        "type": "commit",
+        "project": "Xbox2Windows",
+        "platform": "Xbox",
+        "date": "2026-11-23T18:22:22Z",
+        "title": "Merge pull request #914 from triggered02/cpu/load-config-callback",
+        "url": "https://github.com/R0Y00/Xbox2Windows/commit/e943cca2e09d5f994625e3234fb81cb749c3cae2",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:issue:938",
+        "type": "issue",
+        "project": "Xbox2Windows",
+        "platform": "Xbox",
+        "date": "2026-11-23T18:34:04Z",
+        "title": "tooling: disasm_rdna2 misspells or leaves unnamed several gfx1013 instructions, so the shader scan misreports them",
+        "url": "https://github.com/R0Y00/Xbox2Windows/issues/938",
+        "evidence": "C1",
+        "classification": "issue discussion, not independently verified"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:pr:931",
+        "type": "PR",
+        "project": "Xbox2Windows",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:31:12Z",
+        "title": "pixel_aot: support partial uncompressed export masks on the ordinary path",
+        "url": "https://github.com/R0Y00/Xbox2Windows/pull/931",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:pr:945",
+        "type": "PR",
+        "project": "Xbox2Windows",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:27:22Z",
+        "title": "runtime: reserve XMem address space as mappable placeholders",
+        "url": "https://github.com/R0Y00/Xbox2Windows/pull/945",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:pr:407",
+        "type": "PR",
+        "project": "Xbox2Windows",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:23:33Z",
+        "title": "cpu: lower VEX AVX scalar FP, half-register moves, vinsertps/vextractps, and vcomis*",
+        "url": "https://github.com/R0Y00/Xbox2Windows/pull/407",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:pr:933",
+        "type": "PR",
+        "project": "Xbox2Windows",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:23:12Z",
+        "title": "cpu: accept LEAVE on a proven RBP anchor in cpu_switch_aot",
+        "url": "https://github.com/R0Y00/Xbox2Windows/pull/933",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:pr:914",
+        "type": "PR",
+        "project": "Xbox2Windows",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:22:22Z",
+        "title": "cpu: reproduce load-config dispatch callback behavior",
+        "url": "https://github.com/R0Y00/Xbox2Windows/pull/914",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:pr:935",
+        "type": "PR",
+        "project": "Xbox2Windows",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:19:57Z",
+        "title": "runtime: define the memory-transfer contract for startup",
+        "url": "https://github.com/R0Y00/Xbox2Windows/pull/935",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:pr:925",
+        "type": "PR",
+        "project": "Xbox2Windows",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:17:51Z",
+        "title": "shader: lower wide private LDS transfers",
+        "url": "https://github.com/R0Y00/Xbox2Windows/pull/925",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ivall/xcl:commit:956a476bf738a098f39df4f4c8acef682e43030f",
+        "type": "commit",
+        "project": "XCL",
+        "platform": "Xbox",
+        "date": "2026-11-23T18:11:12Z",
+        "title": "Retail game reaches 30 fps: frame events sharing a deadline, ExecuteCommandListsX, big pipelines in the background",
+        "url": "https://github.com/ivall/xcl/commit/956a476bf738a098f39df4f4c8acef682e43030f",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "boykopovar/AnyPS5:commit:4ed833d9792c7bd967f4b6c8ba9c020a330cb315",
+        "type": "commit",
+        "project": "AnyPS5",
+        "platform": "PS5",
+        "date": "2026-11-23T18:32:25Z",
+        "title": "Merge pull request #26314 from Fernando-Laydner/fix/timeline-utf8-output",
+        "url": "https://github.com/boykopovar/AnyPS5/commit/4ed833d9792c7bd967f4b6c8ba9c020a330cb315",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "boykopovar/AnyPS5:commit:20ed53a7f14ecd3f426b08abf09f386415a7b9c1",
+        "type": "commit",
+        "project": "AnyPS5",
+        "platform": "PS5",
+        "date": "2026-11-23T18:32:00Z",
+        "title": "Merge pull request #26310 from Fernando-Laydner/fix/compile-db-output-type",
+        "url": "https://github.com/boykopovar/AnyPS5/commit/20ed53a7f14ecd3f426b08abf09f386415a7b9c1",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "boykopovar/AnyPS5:commit:1e1106083f18d92fda2f7b42d2e11c1d821a2375",
+        "type": "commit",
+        "project": "AnyPS5",
+        "platform": "PS5",
+        "date": "2026-11-23T18:31:38Z",
+        "title": "Merge pull request #26308 from PolkadotDom/feat/annotate-unwind-call-targets",
+        "url": "https://github.com/boykopovar/AnyPS5/commit/1e1106083f18d92fda2f7b42d2e11c1d821a2375",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "boykopovar/AnyPS5:commit:899e913da3a6efd498d6a7cb526163f1a934e49f",
+        "type": "commit",
+        "project": "AnyPS5",
+        "platform": "PS5",
+        "date": "2026-11-23T18:28:35Z",
+        "title": "Merge pull request #26281 from marick-py/fix/audit-ninja-configurations",
+        "url": "https://github.com/boykopovar/AnyPS5/commit/899e913da3a6efd498d6a7cb526163f1a934e49f",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "boykopovar/AnyPS5:commit:f3847134baa0349e59953a16cfe67b11c202ce52",
+        "type": "commit",
+        "project": "AnyPS5",
+        "platform": "PS5",
+        "date": "2026-11-23T18:28:13Z",
+        "title": "fix(agc): bind large vertex inputs in place instead of copying them (#19445)",
+        "url": "https://github.com/boykopovar/AnyPS5/commit/f3847134baa0349e59953a16cfe67b11c202ce52",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "boykopovar/AnyPS5:pr:19445",
+        "type": "PR",
+        "project": "AnyPS5",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:33:10Z",
+        "title": "fix(agc): bind large vertex inputs in place instead of copying them",
+        "url": "https://github.com/boykopovar/AnyPS5/pull/19445",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "boykopovar/AnyPS5:pr:26314",
+        "type": "PR",
+        "project": "AnyPS5",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:32:27Z",
+        "title": "fix(tools): render unpaired surrogates in timeline reports",
+        "url": "https://github.com/boykopovar/AnyPS5/pull/26314",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "boykopovar/AnyPS5:pr:26310",
+        "type": "PR",
+        "project": "AnyPS5",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:32:02Z",
+        "title": "fix(tools): validate optional compilation inventory output paths",
+        "url": "https://github.com/boykopovar/AnyPS5/pull/26310",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "boykopovar/AnyPS5:pr:26308",
+        "type": "PR",
+        "project": "AnyPS5",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:31:39Z",
+        "title": "feat(tools): label calls into indexed unwind ranges in disassembly",
+        "url": "https://github.com/boykopovar/AnyPS5/pull/26308",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "boykopovar/AnyPS5:pr:26281",
+        "type": "PR",
+        "project": "AnyPS5",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:28:36Z",
+        "title": "fix(tools): audit every Ninja build configuration",
+        "url": "https://github.com/boykopovar/AnyPS5/pull/26281",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "boykopovar/AnyPS5:pr:26322",
+        "type": "PR",
+        "project": "AnyPS5",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:27:47Z",
+        "title": "test(libSceJsc): cover unidentified inventory stubs",
+        "url": "https://github.com/boykopovar/AnyPS5/pull/26322",
+        "evidence": "C1",
+        "classification": "recent PR record"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "boykopovar/AnyPS5:pr:26033",
+        "type": "PR",
+        "project": "AnyPS5",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:16:01Z",
+        "title": "docs(debt): state the console texts of sce::Xml::Util::strResult",
+        "url": "https://github.com/boykopovar/AnyPS5/pull/26033",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "boykopovar/AnyPS5:pr:26032",
+        "type": "PR",
+        "project": "AnyPS5",
+        "platform": "Unknown",
+        "date": "2026-11-23T18:15:40Z",
+        "title": "test(tools): patch the pathlib summary write and replace seams",
+        "url": "https://github.com/boykopovar/AnyPS5/pull/26032",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "KytyPS5/KytyPS5:commit:7d0c350e2bf0d5e8d2c00e4569733daaeda97f8d",
+        "type": "commit",
+        "project": "KytyPS5",
+        "platform": "PS5",
+        "date": "2026-11-23T18:26:55Z",
+        "title": "videoout: accept any register clear color on DCC display buffers",
+        "url": "https://github.com/KytyPS5/KytyPS5/commit/7d0c350e2bf0d5e8d2c00e4569733daaeda97f8d",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    }
+  ]
+}
