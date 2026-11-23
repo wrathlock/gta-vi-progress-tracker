@@ -1229,4 +1229,83 @@ window.renderIndependentVerification=function(){return '<article class="card"><h
  section=function(){if(current==='Development Activity')return developmentActivityView();if(current==='Latest Changes')return latestChangesView();return previousSection()};
  render();
 })();
+</script>
+<style id="community-discussion-style">
+.community-shell{border:1px solid #be4c9b;border-radius:16px;background:linear-gradient(125deg,#261d35,#351e40 65%,#241b35);padding:20px;margin:14px 0;box-shadow:0 0 22px #dc46a02b}
+.community-shell h3{margin:0 0 8px;font-size:22px;color:#ffe8f7}
+.community-intro{color:#d5c4dd;font-size:13px;line-height:1.6;max-width:860px}
+.community-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.community-badge{border:1px solid #6fd6c5;background:#163f42;color:#a7fff1;border-radius:24px;padding:5px 10px;font-size:11px;font-weight:700}
+.community-categories{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.community-categories button{border-radius:25px!important;border:1px solid #96558b!important;background:#3b2946!important;padding:9px 14px!important}
+.community-categories button.active{background:linear-gradient(90deg,#a93481,#753c9d)!important;border-color:#f6a2d4!important}
+.community-thread{border:1px solid #61456a;border-radius:12px;padding:14px;min-height:160px;background:#191525}
+.community-thread .utterances{max-width:100%;margin:0}
+.community-help{font-size:12px;color:#c4b3ce;line-height:1.6;margin:12px 0}
+.community-help a{color:#8ceff0}
+.community-inline{margin-top:18px}
+.community-inline-toggle{display:inline-flex;align-items:center;gap:8px;background:#703367!important;border:1px solid #e36cbb!important}
+.community-rules{border-top:1px solid #64466c;margin-top:16px;padding-top:12px;color:#d7c5dc;font-size:12px;line-height:1.65}
+@media(max-width:600px){.community-shell{padding:13px}.community-thread{padding:8px}.community-shell h3{font-size:19px}}
+</style>
+<script id="community-discussion-script">
+(function(){
+ const repo='wrathlock/gta-vi-progress-tracker';
+ const topics=['General','Game Files','Executable','PS5','Xbox','Development Activity','Evidence & Confidence'];
+ const pages={'PS5':'PS5','Xbox':'Xbox','Development Activity':'Development Activity','Game Files':'Game Files','Executable':'Executable','Evidence & Confidence':'Evidence & Confidence','Sources':'General','Cyberleek Editorial':'General','Breakthroughs':'Development Activity'};
+ let chosen='General',inlineOpen='';
+ const originalTitle=document.title;
+ const originalHeader=header;
+ header=function(){
+   originalHeader();
+   const nav=document.getElementById('nav');
+   if(!nav||nav.querySelector('[data-tab="Community Discussion"]'))return;
+   const group=document.createElement('div');group.className='nav-group community-nav-group';
+   group.innerHTML='<div class="nav-group-title">Community <span class="nav-count">1</span></div><button class="nav-item'+(current==='Community Discussion'?' active':'')+'" type="button" data-tab="Community Discussion">Community Discussion</button>';
+   const btn=group.querySelector('button');btn.addEventListener('click',()=>{go('Community Discussion');document.body.classList.remove('nav-open')});
+   nav.appendChild(group);
+ };
+ if(!sections.includes('Community Discussion'))sections.push('Community Discussion');
+ function rules(){return '<div class="community-rules"><strong>Community rules:</strong> Respect other members. No harassment, threats, hate, repetitive spam, malicious downloads or executable-sharing links. Do not post personal information. Unsupported leak claims must be described as unverified. Automated rules filter common abuse; complex cases still require human review. Community posts never change research confidence or verified milestones.</div>'}
+ function topicsMarkup(){return '<div class="community-categories">'+topics.map(t=>'<button type="button" class="'+(chosen===t?'active':'')+'" data-community-topic="'+esc(t)+'">'+esc(t)+'</button>').join('')+'</div>'}
+ function threadMarkup(topic,main){
+   return '<div class="community-shell'+(main?'':' community-inline')+'"><div class="community-top"><div><h3>'+(main?'Community Discussion':esc(topic)+' discussion')+'</h3><p class="community-intro">GitHub-authenticated discussion with threaded replies, reactions, reporting and moderation. These comments are opinions and questions, not verified research evidence.</p></div><span class="community-badge">◆ Community moderated</span></div>'+(main?topicsMarkup():'')+'<div class="community-thread" id="community-widget"></div><p class="community-help">Sign in with GitHub to post or reply. Comments are hosted in this repository’s GitHub Issues. <a href="https://github.com/'+repo+'/issues?q=is%3Aissue+GTA+VI+Discussion" target="_blank" rel="noopener noreferrer">View discussions and report abuse on GitHub</a>. The discussion widget requires the <a href="https://github.com/apps/utterances" target="_blank" rel="noopener noreferrer">utterances GitHub App</a> to be installed with Issues access.</p>'+rules()+'</div>';
+ }
+ function loadThread(topic){
+   const target=document.getElementById('community-widget');if(!target)return;
+   target.replaceChildren();
+   document.title='GTA VI Discussion | '+topic;
+   const script=document.createElement('script');
+   script.src='https://utteranc.es/client.js';
+   script.setAttribute('repo',repo);
+   script.setAttribute('issue-term','title');
+   script.setAttribute('theme','github-dark');
+   script.setAttribute('crossorigin','anonymous');
+   script.async=true;
+   target.appendChild(script);
+ }
+ const previousSection=section;
+ section=function(){if(current==='Community Discussion')return threadMarkup(chosen,true);return previousSection()};
+ const previousRender=render;
+ render=function(){
+   previousRender();
+   const target=document.getElementById('content');
+   if(current==='Community Discussion'){
+     target.querySelectorAll('[data-community-topic]').forEach(btn=>btn.addEventListener('click',()=>{chosen=btn.dataset.communityTopic;render()}));
+     loadThread(chosen);return;
+   }
+   document.title=originalTitle;
+   const topic=pages[current];
+   if(!topic||!target)return;
+   const wrap=document.createElement('div');
+   wrap.className='community-inline';
+   if(inlineOpen===current){wrap.innerHTML=threadMarkup(topic,false);target.appendChild(wrap);loadThread(topic)}
+   else{
+     wrap.innerHTML='<button type="button" class="community-inline-toggle">💬 Discuss '+esc(topic)+' research</button><p class="community-help">Open the topic-specific community thread. Discussion does not affect verification status.</p>';
+     target.appendChild(wrap);
+     wrap.querySelector('button').addEventListener('click',()=>{inlineOpen=current;render()});
+   }
+ };
+ header();render();
+})();
 </script></body></html>
