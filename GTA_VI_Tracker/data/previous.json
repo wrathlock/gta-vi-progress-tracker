@@ -1,8 +1,8 @@
 {
   "schema_version": "2.9-live-1",
   "status": "partial_collection",
-  "last_attempt_utc": "2026-11-23T04:49:20Z",
-  "last_successful_scan_utc": "2026-11-23T04:49:20Z",
+  "last_attempt_utc": "2026-11-23T05:58:58Z",
+  "last_successful_scan_utc": "2026-11-23T05:58:58Z",
   "last_complete_21_source_content_scan_utc": null,
   "last_substantive_content_scan_utc": null,
   "original_sources": 21,
@@ -20,27 +20,29 @@
     {
       "name": "Cyberleek",
       "url": "https://wayfinder.ar.io/?q=Cyberleek",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
       "status": "reachable",
       "last_public_activity_utc": null,
       "error": null,
-      "http_status": 200
+      "http_status": 200,
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "Leonida",
       "url": "https://github.com/ItsNotRexed/Leonida",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
       "status": "ok",
-      "last_public_activity_utc": "2026-11-23T04:14:28Z",
+      "last_public_activity_utc": "2026-11-23T05:56:46Z",
       "error": null,
       "default_branch": "main",
-      "github_stars": 16378,
+      "github_stars": 16683,
       "content_screening": {
         "status": "screened",
         "document": "README",
@@ -55,20 +57,22 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T04:49:20Z"
+      "content_reviewed_at_utc": "2026-11-23T05:58:58Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "Xbox2Windows",
       "url": "https://github.com/R0Y00/Xbox2Windows",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
       "status": "ok",
-      "last_public_activity_utc": "2026-11-23T04:37:58Z",
+      "last_public_activity_utc": "2026-11-23T05:49:01Z",
       "error": null,
       "default_branch": "main",
-      "github_stars": 1340,
+      "github_stars": 1348,
       "content_screening": {
         "status": "screened",
         "document": "README",
@@ -81,12 +85,14 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T04:49:20Z"
+      "content_reviewed_at_utc": "2026-11-23T05:58:58Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "XCL",
       "url": "https://github.com/ivall/xcl",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -94,7 +100,7 @@
       "last_public_activity_utc": "2026-11-22T22:40:50Z",
       "error": null,
       "default_branch": "main",
-      "github_stars": 338,
+      "github_stars": 342,
       "content_screening": {
         "status": "screened",
         "document": "README",
@@ -108,12 +114,14 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T04:49:20Z"
+      "content_reviewed_at_utc": "2026-11-23T05:58:58Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "ScarlettX",
       "url": "https://github.com/Freminet/ScarlettX",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -121,7 +129,7 @@
       "last_public_activity_utc": "2026-11-22T10:38:07Z",
       "error": null,
       "default_branch": "main",
-      "github_stars": 174,
+      "github_stars": 175,
       "content_screening": {
         "status": "screened",
         "document": "README",
@@ -135,12 +143,14 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T04:49:20Z"
+      "content_reviewed_at_utc": "2026-11-23T05:58:58Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "AnyXboxX",
       "url": "https://github.com/LooperSalty/AnyXboxX",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -162,12 +172,14 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T04:49:20Z"
+      "content_reviewed_at_utc": "2026-11-23T05:58:58Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "Xbox Emulator / TomBox",
       "url": "https://github.com/drycheetah84/TomBox",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -189,120 +201,140 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T04:49:20Z"
+      "content_reviewed_at_utc": "2026-11-23T05:58:58Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "r/Piracy",
       "url": "https://www.reddit.com/r/Piracy/",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
       "status": "unavailable",
       "last_public_activity_utc": null,
       "error": "HTTP 403",
-      "http_status": 403
+      "http_status": 403,
+      "site_health": "restricted",
+      "health_note": "Automated access was denied or rate-limited; site may still be online"
     },
     {
       "name": "r/emulation",
       "url": "https://www.reddit.com/r/emulation/",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
       "status": "unavailable",
       "last_public_activity_utc": null,
       "error": "HTTP 403",
-      "http_status": 403
+      "http_status": 403,
+      "site_health": "restricted",
+      "health_note": "Automated access was denied or rate-limited; site may still be online"
     },
     {
       "name": "r/CrackWatch",
       "url": "https://www.reddit.com/r/CrackWatch/",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
       "status": "unavailable",
       "last_public_activity_utc": null,
       "error": "HTTP 403",
-      "http_status": 403
+      "http_status": 403,
+      "site_health": "restricted",
+      "health_note": "Automated access was denied or rate-limited; site may still be online"
     },
     {
       "name": "r/GamingLeaksAndRumours",
       "url": "https://www.reddit.com/r/GamingLeaksAndRumours/",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
       "status": "unavailable",
       "last_public_activity_utc": null,
       "error": "HTTP 403",
-      "http_status": 403
+      "http_status": 403,
+      "site_health": "restricted",
+      "health_note": "Automated access was denied or rate-limited; site may still be online"
     },
     {
       "name": "GTAForums",
       "url": "https://gtaforums.com/",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
       "status": "reachable",
       "last_public_activity_utc": null,
       "error": null,
-      "http_status": 200
+      "http_status": 200,
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "CS.RIN.RU",
       "url": "https://cs.rin.ru/forum/",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
       "status": "unavailable",
       "last_public_activity_utc": null,
       "error": "HTTP 401",
-      "http_status": 401
+      "http_status": 401,
+      "site_health": "restricted",
+      "health_note": "Automated access was denied or rate-limited; site may still be online"
     },
     {
       "name": "Video Games Chronicle",
       "url": "https://www.videogameschronicle.com/",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
       "status": "reachable",
       "last_public_activity_utc": null,
       "error": null,
-      "http_status": 200
+      "http_status": 200,
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "VideoCardz",
       "url": "https://videocardz.com/",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
       "status": "reachable",
       "last_public_activity_utc": null,
       "error": null,
-      "http_status": 200
+      "http_status": 200,
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "Digital Foundry",
       "url": "https://www.digitalfoundry.net/",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
       "status": "reachable",
       "last_public_activity_utc": null,
       "error": null,
-      "http_status": 200
+      "http_status": 200,
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "GTA VI Dump & PC-Port Tracker",
       "url": "https://github.com/pagiii/gta6-tracker",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -329,12 +361,14 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T04:49:20Z"
+      "content_reviewed_at_utc": "2026-11-23T05:58:58Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "GTA VI Reverse Engineering Index",
       "url": "https://github.com/Ahmet-Dedeler/awesome-gta6-reverse-engineering",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -342,7 +376,7 @@
       "last_public_activity_utc": "2026-11-23T01:25:59Z",
       "error": null,
       "default_branch": "main",
-      "github_stars": 235,
+      "github_stars": 240,
       "content_screening": {
         "status": "screened",
         "document": "README",
@@ -362,12 +396,14 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T04:49:20Z"
+      "content_reviewed_at_utc": "2026-11-23T05:58:58Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "GTA 6 PC Tracker",
       "url": "https://github.com/alan-r-henry/gta6-pc-tracker",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -389,24 +425,28 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T04:49:20Z"
+      "content_reviewed_at_utc": "2026-11-23T05:58:58Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "r/GTA6",
       "url": "https://www.reddit.com/r/GTA6/",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
       "status": "unavailable",
       "last_public_activity_utc": null,
       "error": "HTTP 403",
-      "http_status": 403
+      "http_status": 403,
+      "site_health": "restricted",
+      "health_note": "Automated access was denied or rate-limited; site may still be online"
     },
     {
       "name": "FollowTheLeek",
       "url": "https://github.com/deepwoodssec/FollowTheLeek",
-      "checked_at_utc": "2026-11-23T04:49:20Z",
+      "checked_at_utc": "2026-11-23T05:58:58Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -426,338 +466,351 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T04:49:20Z"
+      "content_reviewed_at_utc": "2026-11-23T05:58:58Z",
+      "site_health": "online",
+      "health_note": "Responded successfully to the automated check"
     }
   ],
   "events": [
     {
-      "id": "ItsNotRexed/Leonida:pr:4466",
-      "type": "PR",
-      "project": "Leonida",
-      "platform": "Unknown",
-      "date": "2026-11-23T04:49:15Z",
-      "title": "rdna2spirv: register the buffer-format table constants before the dump",
-      "url": "https://github.com/ItsNotRexed/Leonida/pull/4466",
-      "evidence": "C1",
-      "classification": "recent PR record"
-    },
-    {
-      "id": "ItsNotRexed/Leonida:issue:4683",
+      "id": "ItsNotRexed/Leonida:issue:166",
       "type": "issue",
       "project": "Leonida",
       "platform": "Xbox",
-      "date": "2026-11-23T04:49:08Z",
-      "title": "Coordinating who works on what (25)",
-      "url": "https://github.com/ItsNotRexed/Leonida/issues/4683",
+      "date": "2026-11-23T05:58:39Z",
+      "title": "GPU test results (one comment per GPU and driver)",
+      "url": "https://github.com/ItsNotRexed/Leonida/issues/166",
       "evidence": "C1",
       "classification": "issue discussion, not independently verified"
     },
     {
-      "id": "R0Y00/Xbox2Windows:issue:794",
+      "id": "ItsNotRexed/Leonida:issue:4816",
       "type": "issue",
-      "project": "Xbox2Windows",
+      "project": "Leonida",
       "platform": "Xbox",
-      "date": "2026-11-23T04:44:26Z",
-      "title": "pixel_aot: lower the 64-bit integer compares v_cmp_*_{i64,u64}",
-      "url": "https://github.com/R0Y00/Xbox2Windows/issues/794",
+      "date": "2026-11-23T05:58:38Z",
+      "title": "Coordinating who works on what (26)",
+      "url": "https://github.com/ItsNotRexed/Leonida/issues/4816",
       "evidence": "C1",
       "classification": "issue discussion, not independently verified"
     },
     {
-      "id": "ItsNotRexed/Leonida:pr:4681",
+      "id": "ItsNotRexed/Leonida:commit:64b45d07ac15dc9a9f9a8b036eb71aa6dfa7a64e",
+      "type": "commit",
+      "project": "Leonida",
+      "platform": "Xbox",
+      "date": "2026-11-23T05:56:45Z",
+      "title": "Runtime: offline XDisplayImpl (HDR off, LEONIDA_HDR=1 on) and XUserDeviceImpl",
+      "url": "https://github.com/ItsNotRexed/Leonida/commit/64b45d07ac15dc9a9f9a8b036eb71aa6dfa7a64e",
+      "evidence": "C1",
+      "review_status": "not_independently_reviewed",
+      "classification": "repository activity, not verified breakthrough"
+    },
+    {
+      "id": "ItsNotRexed/Leonida:pr:4715",
       "type": "PR",
       "project": "Leonida",
       "platform": "Unknown",
-      "date": "2026-11-23T04:40:44Z",
-      "title": "Defer destruction of released Vulkan fence semaphores",
-      "url": "https://github.com/ItsNotRexed/Leonida/pull/4681",
+      "date": "2026-11-23T05:55:00Z",
+      "title": "vk_subgroup_info: report driverName and driverInfo",
+      "url": "https://github.com/ItsNotRexed/Leonida/pull/4715",
       "evidence": "C1",
       "classification": "recent PR record"
     },
     {
-      "id": "ItsNotRexed/Leonida:pr:4087",
+      "id": "ItsNotRexed/Leonida:commit:ec34b54fe137c9a52e89c07273e52ad702488185",
+      "type": "commit",
+      "project": "Leonida",
+      "platform": "Xbox",
+      "date": "2026-11-23T05:52:45Z",
+      "title": "Runtime: offline XGameEventImpl, XGameUiImpl, XGameStreamingImpl",
+      "url": "https://github.com/ItsNotRexed/Leonida/commit/ec34b54fe137c9a52e89c07273e52ad702488185",
+      "evidence": "C1",
+      "review_status": "not_independently_reviewed",
+      "classification": "repository activity, not verified breakthrough"
+    },
+    {
+      "id": "R0Y00/Xbox2Windows:pr:628",
+      "type": "PR",
+      "project": "Xbox2Windows",
+      "platform": "Unknown",
+      "date": "2026-11-23T05:49:02Z",
+      "title": "cpu: lower CMPXCHG8B and CMPXCHG16B without LOCK",
+      "url": "https://github.com/R0Y00/Xbox2Windows/pull/628",
+      "evidence": "C1",
+      "classification": "recent PR record (merged)"
+    },
+    {
+      "id": "R0Y00/Xbox2Windows:commit:d99866587df39ea1bf40f192f0907c87a6939ead",
+      "type": "commit",
+      "project": "Xbox2Windows",
+      "platform": "Xbox",
+      "date": "2026-11-23T05:49:01Z",
+      "title": "Merge pull request #628 from danielradosa/cpu/cmpxchg8b-16b",
+      "url": "https://github.com/R0Y00/Xbox2Windows/commit/d99866587df39ea1bf40f192f0907c87a6939ead",
+      "evidence": "C1",
+      "review_status": "not_independently_reviewed",
+      "classification": "repository activity, not verified breakthrough"
+    },
+    {
+      "id": "ItsNotRexed/Leonida:commit:af70fc7833a1caf44c5c31ca6d123014ddc1b549",
+      "type": "commit",
+      "project": "Leonida",
+      "platform": "Xbox",
+      "date": "2026-11-23T05:46:53Z",
+      "title": "gdk_runtime_calls: count every xgameruntime*.cpp shim as the runtime (XUser, XGameSave, XStore were reported NOT served)",
+      "url": "https://github.com/ItsNotRexed/Leonida/commit/af70fc7833a1caf44c5c31ca6d123014ddc1b549",
+      "evidence": "C1",
+      "review_status": "not_independently_reviewed",
+      "classification": "repository activity, not verified breakthrough"
+    },
+    {
+      "id": "ItsNotRexed/Leonida:pr:3666",
       "type": "PR",
       "project": "Leonida",
       "platform": "Unknown",
-      "date": "2026-11-23T04:38:17Z",
-      "title": "image_fuzz: reject a --work that is a file before the fuzz starts",
-      "url": "https://github.com/ItsNotRexed/Leonida/pull/4087",
+      "date": "2026-11-23T05:46:26Z",
+      "title": "tools: ps_helper_probe.py measures helper lanes at a triangle edge on RDNA2 (SHADER-681)",
+      "url": "https://github.com/ItsNotRexed/Leonida/pull/3666",
       "evidence": "C1",
       "classification": "recent PR record"
     },
     {
-      "id": "R0Y00/Xbox2Windows:issue:768",
+      "id": "ItsNotRexed/Leonida:commit:594f3485ee77db15b4ff1d9f747c4cc288db7138",
+      "type": "commit",
+      "project": "Leonida",
+      "platform": "Xbox",
+      "date": "2026-11-23T05:45:20Z",
+      "title": "Runtime: offline XStoreImpl (the game license, package licenses, empty queries)",
+      "url": "https://github.com/ItsNotRexed/Leonida/commit/594f3485ee77db15b4ff1d9f747c4cc288db7138",
+      "evidence": "C1",
+      "review_status": "not_independently_reviewed",
+      "classification": "repository activity, not verified breakthrough"
+    },
+    {
+      "id": "ItsNotRexed/Leonida:pr:4680",
+      "type": "PR",
+      "project": "Leonida",
+      "platform": "Unknown",
+      "date": "2026-11-23T05:42:42Z",
+      "title": "meshlet_page: a directory it cannot list is an error, not a silent skip",
+      "url": "https://github.com/ItsNotRexed/Leonida/pull/4680",
+      "evidence": "C1",
+      "classification": "recent PR record"
+    },
+    {
+      "id": "R0Y00/Xbox2Windows:issue:775",
       "type": "issue",
       "project": "Xbox2Windows",
       "platform": "Xbox",
-      "date": "2026-11-23T04:32:56Z",
-      "title": "Isolate WARP readback differences in a source-built subgroup compaction dispatch",
-      "url": "https://github.com/R0Y00/Xbox2Windows/issues/768",
+      "date": "2026-11-23T05:41:31Z",
+      "title": "Isolate DXC compile time in a source-built mixed-sampler compute shader",
+      "url": "https://github.com/R0Y00/Xbox2Windows/issues/775",
       "evidence": "C1",
       "classification": "issue discussion, not independently verified"
     },
     {
-      "id": "R0Y00/Xbox2Windows:pr:791",
-      "type": "PR",
-      "project": "Xbox2Windows",
-      "platform": "Unknown",
-      "date": "2026-11-23T04:30:20Z",
-      "title": "shader: add a source-built subgroup compaction bridge fixture",
-      "url": "https://github.com/R0Y00/Xbox2Windows/pull/791",
-      "evidence": "C1",
-      "classification": "recent PR record (merged)"
-    },
-    {
-      "id": "R0Y00/Xbox2Windows:commit:333562f7067975f30bedec81e85a23c588798139",
-      "type": "commit",
-      "project": "Xbox2Windows",
-      "platform": "Xbox",
-      "date": "2026-11-23T04:30:19Z",
-      "title": "Merge pull request #791 from FZNull/shader/spirv-compaction-fixture",
-      "url": "https://github.com/R0Y00/Xbox2Windows/commit/333562f7067975f30bedec81e85a23c588798139",
-      "evidence": "C1",
-      "review_status": "not_independently_reviewed",
-      "classification": "repository activity, not verified breakthrough"
-    },
-    {
-      "id": "R0Y00/Xbox2Windows:pr:618",
-      "type": "PR",
-      "project": "Xbox2Windows",
-      "platform": "Unknown",
-      "date": "2026-11-23T04:28:49Z",
-      "title": "shader: lower scalar first-bit scans in pixel_aot",
-      "url": "https://github.com/R0Y00/Xbox2Windows/pull/618",
-      "evidence": "C1",
-      "classification": "recent PR record (merged)"
-    },
-    {
-      "id": "R0Y00/Xbox2Windows:commit:7b55455794ddd4a985f93f9ab1702b69852e18fa",
-      "type": "commit",
-      "project": "Xbox2Windows",
-      "platform": "Xbox",
-      "date": "2026-11-23T04:28:48Z",
-      "title": "Merge pull request #618 from descent81/shader/scalar-first-bit",
-      "url": "https://github.com/R0Y00/Xbox2Windows/commit/7b55455794ddd4a985f93f9ab1702b69852e18fa",
-      "evidence": "C1",
-      "review_status": "not_independently_reviewed",
-      "classification": "repository activity, not verified breakthrough"
-    },
-    {
-      "id": "R0Y00/Xbox2Windows:pr:790",
-      "type": "PR",
-      "project": "Xbox2Windows",
-      "platform": "Unknown",
-      "date": "2026-11-23T04:27:35Z",
-      "title": "cpu: lower SSE4.2 packed string compare instructions",
-      "url": "https://github.com/R0Y00/Xbox2Windows/pull/790",
-      "evidence": "C1",
-      "classification": "recent PR record (merged)"
-    },
-    {
-      "id": "R0Y00/Xbox2Windows:commit:aa34b183f68fb7fce3234c266a5bc2a87f7a4426",
-      "type": "commit",
-      "project": "Xbox2Windows",
-      "platform": "Xbox",
-      "date": "2026-11-23T04:27:34Z",
-      "title": "Merge pull request #790 from Ammmae0x/cpu/sse42-pcmpstr",
-      "url": "https://github.com/R0Y00/Xbox2Windows/commit/aa34b183f68fb7fce3234c266a5bc2a87f7a4426",
-      "evidence": "C1",
-      "review_status": "not_independently_reviewed",
-      "classification": "repository activity, not verified breakthrough"
-    },
-    {
-      "id": "R0Y00/Xbox2Windows:commit:04da1f4fd352bb84fc295c0286317d0ed4cd3448",
-      "type": "commit",
-      "project": "Xbox2Windows",
-      "platform": "Xbox",
-      "date": "2026-11-23T04:27:25Z",
-      "title": "Merge pull request #792 from legacy-code-archaeologist/audio/awc-big-endian",
-      "url": "https://github.com/R0Y00/Xbox2Windows/commit/04da1f4fd352bb84fc295c0286317d0ed4cd3448",
-      "evidence": "C1",
-      "review_status": "not_independently_reviewed",
-      "classification": "repository activity, not verified breakthrough"
-    },
-    {
-      "id": "R0Y00/Xbox2Windows:pr:792",
-      "type": "PR",
-      "project": "Xbox2Windows",
-      "platform": "Unknown",
-      "date": "2026-11-23T04:27:25Z",
-      "title": "tooling: read big-endian TADA AWC banks",
-      "url": "https://github.com/R0Y00/Xbox2Windows/pull/792",
-      "evidence": "C1",
-      "classification": "recent PR record (merged)"
-    },
-    {
-      "id": "ItsNotRexed/Leonida:pr:2362",
+      "id": "ItsNotRexed/Leonida:pr:4773",
       "type": "PR",
       "project": "Leonida",
       "platform": "Unknown",
-      "date": "2026-11-23T04:27:00Z",
-      "title": "fix(shader): preserve channels across partial color exports (SHADER-422)",
-      "url": "https://github.com/ItsNotRexed/Leonida/pull/2362",
-      "evidence": "C1",
-      "classification": "recent PR record (merged)"
-    },
-    {
-      "id": "ItsNotRexed/Leonida:pr:4700",
-      "type": "PR",
-      "project": "Leonida",
-      "platform": "Unknown",
-      "date": "2026-11-23T04:25:10Z",
-      "title": "d3d12_vulkan_device_test: compare the VIDEO_ENCODE allocator only on a host with a video device (WARP host)",
-      "url": "https://github.com/ItsNotRexed/Leonida/pull/4700",
+      "date": "2026-11-23T05:40:40Z",
+      "title": "find_hash_lookup: hash names as latin-1, the pinned joaat rule (test_joaat_agreement fails on main)",
+      "url": "https://github.com/ItsNotRexed/Leonida/pull/4773",
       "evidence": "C1",
       "classification": "recent PR record"
     },
     {
-      "id": "ItsNotRexed/Leonida:pr:2471",
+      "id": "ItsNotRexed/Leonida:pr:4360",
       "type": "PR",
       "project": "Leonida",
       "platform": "Unknown",
-      "date": "2026-11-23T04:24:28Z",
-      "title": "Runtime: recording a draw allocates nothing (D3D-289)",
-      "url": "https://github.com/ItsNotRexed/Leonida/pull/2471",
+      "date": "2026-11-23T05:40:21Z",
+      "title": "BUILD-1247: Report character census output write errors",
+      "url": "https://github.com/ItsNotRexed/Leonida/pull/4360",
       "evidence": "C1",
       "classification": "recent PR record"
     },
     {
-      "id": "ItsNotRexed/Leonida:pr:4692",
+      "id": "ItsNotRexed/Leonida:pr:3948",
       "type": "PR",
       "project": "Leonida",
       "platform": "Unknown",
-      "date": "2026-11-23T04:19:28Z",
-      "title": "d3d12: a held CPU fence signal releases the queue waiting on it",
-      "url": "https://github.com/ItsNotRexed/Leonida/pull/4692",
+      "date": "2026-11-23T05:40:11Z",
+      "title": "rdna2spirv: reject a modified class mask and a non-EXEC v_cmpx destination (TEST-853)",
+      "url": "https://github.com/ItsNotRexed/Leonida/pull/3948",
       "evidence": "C1",
       "classification": "recent PR record"
     },
     {
-      "id": "R0Y00/Xbox2Windows:pr:788",
-      "type": "PR",
-      "project": "Xbox2Windows",
-      "platform": "Unknown",
-      "date": "2026-11-23T04:18:47Z",
-      "title": "shader: copy compute buffer reads from a caller-bound source to the store",
-      "url": "https://github.com/R0Y00/Xbox2Windows/pull/788",
-      "evidence": "C1",
-      "classification": "recent PR record (merged)"
-    },
-    {
-      "id": "R0Y00/Xbox2Windows:commit:b5e2c5c2a7bc0a6e44ec477b3a58a108bfd93175",
-      "type": "commit",
-      "project": "Xbox2Windows",
-      "platform": "Xbox",
-      "date": "2026-11-23T04:18:46Z",
-      "title": "Merge pull request #788 from roansystemlabs/compute/vector-reads",
-      "url": "https://github.com/R0Y00/Xbox2Windows/commit/b5e2c5c2a7bc0a6e44ec477b3a58a108bfd93175",
-      "evidence": "C1",
-      "review_status": "not_independently_reviewed",
-      "classification": "repository activity, not verified breakthrough"
-    },
-    {
-      "id": "ItsNotRexed/Leonida:pr:4660",
+      "id": "ItsNotRexed/Leonida:pr:4218",
       "type": "PR",
       "project": "Leonida",
       "platform": "Unknown",
-      "date": "2026-11-23T04:18:38Z",
-      "title": "fix: allow --wave 32 and --wave 64 in crosslane_fuzz.py (BUILD-1338)",
-      "url": "https://github.com/ItsNotRexed/Leonida/pull/4660",
+      "date": "2026-11-23T05:39:59Z",
+      "title": "Tests: run the batch file by path, not by bare name",
+      "url": "https://github.com/ItsNotRexed/Leonida/pull/4218",
       "evidence": "C1",
       "classification": "recent PR record"
     },
     {
-      "id": "R0Y00/Xbox2Windows:pr:785",
+      "id": "ItsNotRexed/Leonida:commit:de6713524633c63045583321291e6bad647dadf3",
+      "type": "commit",
+      "project": "Leonida",
+      "platform": "Xbox",
+      "date": "2026-11-23T05:38:01Z",
+      "title": "Runtime: offline XGameSaveImpl (save provider, containers, blobs, updates)",
+      "url": "https://github.com/ItsNotRexed/Leonida/commit/de6713524633c63045583321291e6bad647dadf3",
+      "evidence": "C1",
+      "review_status": "not_independently_reviewed",
+      "classification": "repository activity, not verified breakthrough"
+    },
+    {
+      "id": "R0Y00/Xbox2Windows:pr:799",
       "type": "PR",
       "project": "Xbox2Windows",
       "platform": "Unknown",
-      "date": "2026-11-23T04:18:33Z",
-      "title": "cpu: bind two ordinary import slots in one jump-table translation",
-      "url": "https://github.com/R0Y00/Xbox2Windows/pull/785",
+      "date": "2026-11-23T05:37:24Z",
+      "title": "Create the EXE shadow device through the Xbox shim",
+      "url": "https://github.com/R0Y00/Xbox2Windows/pull/799",
       "evidence": "C1",
       "classification": "recent PR record (merged)"
     },
     {
-      "id": "ItsNotRexed/Leonida:commit:98fa503f8a19c3ed65df1f4f2f0e4571aa42c4f7",
+      "id": "R0Y00/Xbox2Windows:commit:7d463b35ae7e8ec6bbae7d7754805e797a9017bc",
       "type": "commit",
-      "project": "Leonida",
+      "project": "Xbox2Windows",
       "platform": "Xbox",
-      "date": "2026-11-23T04:14:27Z",
-      "title": "Mods: first-person view, the base (camera section, view-mode getter hook)",
-      "url": "https://github.com/ItsNotRexed/Leonida/commit/98fa503f8a19c3ed65df1f4f2f0e4571aa42c4f7",
+      "date": "2026-11-23T05:37:23Z",
+      "title": "Create the EXE shadow device through the Xbox shim (#799)",
+      "url": "https://github.com/R0Y00/Xbox2Windows/commit/7d463b35ae7e8ec6bbae7d7754805e797a9017bc",
       "evidence": "C1",
       "review_status": "not_independently_reviewed",
       "classification": "repository activity, not verified breakthrough"
     },
     {
-      "id": "R0Y00/Xbox2Windows:pr:698",
+      "id": "ItsNotRexed/Leonida:pr:2957",
       "type": "PR",
-      "project": "Xbox2Windows",
+      "project": "Leonida",
       "platform": "Unknown",
-      "date": "2026-11-23T04:12:51Z",
-      "title": "pe: serve implicit TLS data templates through a carrier DLL",
-      "url": "https://github.com/R0Y00/Xbox2Windows/pull/698",
+      "date": "2026-11-23T05:34:53Z",
+      "title": "gta6rt: GAME: and the overlay are absolute, so a bare image name has a game folder",
+      "url": "https://github.com/ItsNotRexed/Leonida/pull/2957",
       "evidence": "C1",
       "classification": "recent PR record (merged)"
     },
     {
-      "id": "R0Y00/Xbox2Windows:pr:782",
+      "id": "R0Y00/Xbox2Windows:pr:540",
       "type": "PR",
       "project": "Xbox2Windows",
       "platform": "Unknown",
-      "date": "2026-11-23T04:04:24Z",
-      "title": "docs: record four GPU hardware runs from #1",
-      "url": "https://github.com/R0Y00/Xbox2Windows/pull/782",
+      "date": "2026-11-23T05:33:55Z",
+      "title": "shader: lower gfx1013 v_cvt_u32_f32_e64 and v_cvt_i32_f32_e64 in pixel_aot",
+      "url": "https://github.com/R0Y00/Xbox2Windows/pull/540",
       "evidence": "C1",
       "classification": "recent PR record (merged)"
     },
     {
-      "id": "ItsNotRexed/Leonida:commit:0db7fed551c4d48d7b97a9c4d609fc11d17ae19c",
+      "id": "R0Y00/Xbox2Windows:commit:65c6b007c39ef3363ca0418e6729001d4abfd469",
       "type": "commit",
-      "project": "Leonida",
+      "project": "Xbox2Windows",
       "platform": "Xbox",
-      "date": "2026-11-23T04:04:16Z",
-      "title": "Merge pull request #4657 from ddm-j",
-      "url": "https://github.com/ItsNotRexed/Leonida/commit/0db7fed551c4d48d7b97a9c4d609fc11d17ae19c",
+      "date": "2026-11-23T05:33:54Z",
+      "title": "Merge pull request #540 from alexander-src/shader/cvt-f32-to-int-pixel-aot",
+      "url": "https://github.com/R0Y00/Xbox2Windows/commit/65c6b007c39ef3363ca0418e6729001d4abfd469",
       "evidence": "C1",
       "review_status": "not_independently_reviewed",
       "classification": "repository activity, not verified breakthrough"
     },
     {
-      "id": "ItsNotRexed/Leonida:commit:3eb4410b8de7a6d28cb81557e7bca6de864fda56",
+      "id": "R0Y00/Xbox2Windows:commit:40ec7cdbc7548bc906db43759aaa7049b60aec88",
       "type": "commit",
-      "project": "Leonida",
+      "project": "Xbox2Windows",
       "platform": "Xbox",
-      "date": "2026-11-23T03:56:15Z",
-      "title": "tools/find_hash_lookup.py: rank the archetype-lookup candidates for the mod hook",
-      "url": "https://github.com/ItsNotRexed/Leonida/commit/3eb4410b8de7a6d28cb81557e7bca6de864fda56",
+      "date": "2026-11-23T05:32:46Z",
+      "title": "Preserve wide CMPXCHG writes on compare mismatch",
+      "url": "https://github.com/R0Y00/Xbox2Windows/commit/40ec7cdbc7548bc906db43759aaa7049b60aec88",
       "evidence": "C1",
       "review_status": "not_independently_reviewed",
       "classification": "repository activity, not verified breakthrough"
     },
     {
-      "id": "ItsNotRexed/Leonida:commit:9e6444fadb93c9b800ed403f91fcfee1a88d3560",
+      "id": "R0Y00/Xbox2Windows:pr:621",
+      "type": "PR",
+      "project": "Xbox2Windows",
+      "platform": "Unknown",
+      "date": "2026-11-23T05:26:59Z",
+      "title": "disasm_rdna2: decode 64-bit DS local data share instructions",
+      "url": "https://github.com/R0Y00/Xbox2Windows/pull/621",
+      "evidence": "C1",
+      "classification": "recent PR record (merged)"
+    },
+    {
+      "id": "R0Y00/Xbox2Windows:commit:a0554e515d351a471bfa23a5ea3cfda4ecfe0ca3",
       "type": "commit",
-      "project": "Leonida",
+      "project": "Xbox2Windows",
       "platform": "Xbox",
-      "date": "2026-11-23T03:53:19Z",
-      "title": "Mods: the archetype hook, --archetype-lookup RVA[,ARG]",
-      "url": "https://github.com/ItsNotRexed/Leonida/commit/9e6444fadb93c9b800ed403f91fcfee1a88d3560",
+      "date": "2026-11-23T05:26:58Z",
+      "title": "Merge pull request #621 from Neoplayer/disasm/ds-instructions",
+      "url": "https://github.com/R0Y00/Xbox2Windows/commit/a0554e515d351a471bfa23a5ea3cfda4ecfe0ca3",
       "evidence": "C1",
       "review_status": "not_independently_reviewed",
       "classification": "repository activity, not verified breakthrough"
     },
     {
-      "id": "ItsNotRexed/Leonida:commit:2d3369a4c82e6f36c5190c4c534d3df600e135ec",
-      "type": "commit",
-      "project": "Leonida",
-      "platform": "Xbox",
-      "date": "2026-11-23T03:41:03Z",
-      "title": "Merge remote-tracking branch 'origin/main'",
-      "url": "https://github.com/ItsNotRexed/Leonida/commit/2d3369a4c82e6f36c5190c4c534d3df600e135ec",
+      "id": "R0Y00/Xbox2Windows:pr:796",
+      "type": "PR",
+      "project": "Xbox2Windows",
+      "platform": "Unknown",
+      "date": "2026-11-23T05:18:03Z",
+      "title": "shader: accept s_version as a no-op marker in pixel_aot",
+      "url": "https://github.com/R0Y00/Xbox2Windows/pull/796",
       "evidence": "C1",
-      "review_status": "not_independently_reviewed",
-      "classification": "repository activity, not verified breakthrough"
+      "classification": "recent PR record (merged)"
+    },
+    {
+      "id": "R0Y00/Xbox2Windows:pr:797",
+      "type": "PR",
+      "project": "Xbox2Windows",
+      "platform": "Unknown",
+      "date": "2026-11-23T05:17:05Z",
+      "title": "Compare two translated shadow frames from the EXE entry",
+      "url": "https://github.com/R0Y00/Xbox2Windows/pull/797",
+      "evidence": "C1",
+      "classification": "recent PR record (merged)"
+    },
+    {
+      "id": "ivall/xcl:issue:42",
+      "type": "issue",
+      "project": "XCL",
+      "platform": "Xbox",
+      "date": "2026-11-23T05:03:35Z",
+      "title": "GPU test results: NVIDIA RTX 3080 (wave32) and AMD RDNA2 iGPU (no mesh shaders)",
+      "url": "https://github.com/ivall/xcl/issues/42",
+      "evidence": "C1",
+      "classification": "issue discussion, not independently verified"
+    },
+    {
+      "id": "R0Y00/Xbox2Windows:pr:715",
+      "type": "PR",
+      "project": "Xbox2Windows",
+      "platform": "Unknown",
+      "date": "2026-11-23T05:01:47Z",
+      "title": "shader: lower 64-bit scalar bitset forms",
+      "url": "https://github.com/R0Y00/Xbox2Windows/pull/715",
+      "evidence": "C1",
+      "classification": "recent PR record (merged)"
+    },
+    {
+      "id": "R0Y00/Xbox2Windows:pr:781",
+      "type": "PR",
+      "project": "Xbox2Windows",
+      "platform": "Unknown",
+      "date": "2026-11-23T05:01:42Z",
+      "title": "shader: lower v_mac_legacy_f32 in pixel_aot",
+      "url": "https://github.com/R0Y00/Xbox2Windows/pull/781",
+      "evidence": "C1",
+      "classification": "recent PR record (merged)"
     },
     {
       "id": "ivall/xcl:pr:35",
@@ -1695,28 +1748,93 @@
     {
       "kind": "new_public_record",
       "event": {
-        "id": "ItsNotRexed/Leonida:pr:4087",
-        "type": "PR",
+        "id": "ItsNotRexed/Leonida:commit:64b45d07ac15dc9a9f9a8b036eb71aa6dfa7a64e",
+        "type": "commit",
         "project": "Leonida",
-        "platform": "Unknown",
-        "date": "2026-11-23T04:38:17Z",
-        "title": "image_fuzz: reject a --work that is a file before the fuzz starts",
-        "url": "https://github.com/ItsNotRexed/Leonida/pull/4087",
+        "platform": "Xbox",
+        "date": "2026-11-23T05:56:45Z",
+        "title": "Runtime: offline XDisplayImpl (HDR off, LEONIDA_HDR=1 on) and XUserDeviceImpl",
+        "url": "https://github.com/ItsNotRexed/Leonida/commit/64b45d07ac15dc9a9f9a8b036eb71aa6dfa7a64e",
         "evidence": "C1",
-        "classification": "recent PR record"
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
       },
       "note": "Newly observed public record, not verified technical progress"
     },
     {
       "kind": "new_public_record",
       "event": {
-        "id": "R0Y00/Xbox2Windows:issue:794",
-        "type": "issue",
-        "project": "Xbox2Windows",
+        "id": "ItsNotRexed/Leonida:commit:ec34b54fe137c9a52e89c07273e52ad702488185",
+        "type": "commit",
+        "project": "Leonida",
         "platform": "Xbox",
-        "date": "2026-11-23T04:44:26Z",
-        "title": "pixel_aot: lower the 64-bit integer compares v_cmp_*_{i64,u64}",
-        "url": "https://github.com/R0Y00/Xbox2Windows/issues/794",
+        "date": "2026-11-23T05:52:45Z",
+        "title": "Runtime: offline XGameEventImpl, XGameUiImpl, XGameStreamingImpl",
+        "url": "https://github.com/ItsNotRexed/Leonida/commit/ec34b54fe137c9a52e89c07273e52ad702488185",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:commit:af70fc7833a1caf44c5c31ca6d123014ddc1b549",
+        "type": "commit",
+        "project": "Leonida",
+        "platform": "Xbox",
+        "date": "2026-11-23T05:46:53Z",
+        "title": "gdk_runtime_calls: count every xgameruntime*.cpp shim as the runtime (XUser, XGameSave, XStore were reported NOT served)",
+        "url": "https://github.com/ItsNotRexed/Leonida/commit/af70fc7833a1caf44c5c31ca6d123014ddc1b549",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:commit:594f3485ee77db15b4ff1d9f747c4cc288db7138",
+        "type": "commit",
+        "project": "Leonida",
+        "platform": "Xbox",
+        "date": "2026-11-23T05:45:20Z",
+        "title": "Runtime: offline XStoreImpl (the game license, package licenses, empty queries)",
+        "url": "https://github.com/ItsNotRexed/Leonida/commit/594f3485ee77db15b4ff1d9f747c4cc288db7138",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:commit:de6713524633c63045583321291e6bad647dadf3",
+        "type": "commit",
+        "project": "Leonida",
+        "platform": "Xbox",
+        "date": "2026-11-23T05:38:01Z",
+        "title": "Runtime: offline XGameSaveImpl (save provider, containers, blobs, updates)",
+        "url": "https://github.com/ItsNotRexed/Leonida/commit/de6713524633c63045583321291e6bad647dadf3",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:issue:166",
+        "type": "issue",
+        "project": "Leonida",
+        "platform": "Xbox",
+        "date": "2026-11-23T05:58:39Z",
+        "title": "GPU test results (one comment per GPU and driver)",
+        "url": "https://github.com/ItsNotRexed/Leonida/issues/166",
         "evidence": "C1",
         "classification": "issue discussion, not independently verified"
       },
@@ -1725,13 +1843,363 @@
     {
       "kind": "new_public_record",
       "event": {
-        "id": "R0Y00/Xbox2Windows:issue:768",
+        "id": "ItsNotRexed/Leonida:issue:4816",
+        "type": "issue",
+        "project": "Leonida",
+        "platform": "Xbox",
+        "date": "2026-11-23T05:58:38Z",
+        "title": "Coordinating who works on what (26)",
+        "url": "https://github.com/ItsNotRexed/Leonida/issues/4816",
+        "evidence": "C1",
+        "classification": "issue discussion, not independently verified"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:4715",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:55:00Z",
+        "title": "vk_subgroup_info: report driverName and driverInfo",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/4715",
+        "evidence": "C1",
+        "classification": "recent PR record"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:3666",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:46:26Z",
+        "title": "tools: ps_helper_probe.py measures helper lanes at a triangle edge on RDNA2 (SHADER-681)",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/3666",
+        "evidence": "C1",
+        "classification": "recent PR record"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:4680",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:42:42Z",
+        "title": "meshlet_page: a directory it cannot list is an error, not a silent skip",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/4680",
+        "evidence": "C1",
+        "classification": "recent PR record"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:4773",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:40:40Z",
+        "title": "find_hash_lookup: hash names as latin-1, the pinned joaat rule (test_joaat_agreement fails on main)",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/4773",
+        "evidence": "C1",
+        "classification": "recent PR record"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:4360",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:40:21Z",
+        "title": "BUILD-1247: Report character census output write errors",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/4360",
+        "evidence": "C1",
+        "classification": "recent PR record"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:3948",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:40:11Z",
+        "title": "rdna2spirv: reject a modified class mask and a non-EXEC v_cmpx destination (TEST-853)",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/3948",
+        "evidence": "C1",
+        "classification": "recent PR record"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:4218",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:39:59Z",
+        "title": "Tests: run the batch file by path, not by bare name",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/4218",
+        "evidence": "C1",
+        "classification": "recent PR record"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ItsNotRexed/Leonida:pr:2957",
+        "type": "PR",
+        "project": "Leonida",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:34:53Z",
+        "title": "gta6rt: GAME: and the overlay are absolute, so a bare image name has a game folder",
+        "url": "https://github.com/ItsNotRexed/Leonida/pull/2957",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:commit:d99866587df39ea1bf40f192f0907c87a6939ead",
+        "type": "commit",
+        "project": "Xbox2Windows",
+        "platform": "Xbox",
+        "date": "2026-11-23T05:49:01Z",
+        "title": "Merge pull request #628 from danielradosa/cpu/cmpxchg8b-16b",
+        "url": "https://github.com/R0Y00/Xbox2Windows/commit/d99866587df39ea1bf40f192f0907c87a6939ead",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:commit:7d463b35ae7e8ec6bbae7d7754805e797a9017bc",
+        "type": "commit",
+        "project": "Xbox2Windows",
+        "platform": "Xbox",
+        "date": "2026-11-23T05:37:23Z",
+        "title": "Create the EXE shadow device through the Xbox shim (#799)",
+        "url": "https://github.com/R0Y00/Xbox2Windows/commit/7d463b35ae7e8ec6bbae7d7754805e797a9017bc",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:commit:65c6b007c39ef3363ca0418e6729001d4abfd469",
+        "type": "commit",
+        "project": "Xbox2Windows",
+        "platform": "Xbox",
+        "date": "2026-11-23T05:33:54Z",
+        "title": "Merge pull request #540 from alexander-src/shader/cvt-f32-to-int-pixel-aot",
+        "url": "https://github.com/R0Y00/Xbox2Windows/commit/65c6b007c39ef3363ca0418e6729001d4abfd469",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:commit:40ec7cdbc7548bc906db43759aaa7049b60aec88",
+        "type": "commit",
+        "project": "Xbox2Windows",
+        "platform": "Xbox",
+        "date": "2026-11-23T05:32:46Z",
+        "title": "Preserve wide CMPXCHG writes on compare mismatch",
+        "url": "https://github.com/R0Y00/Xbox2Windows/commit/40ec7cdbc7548bc906db43759aaa7049b60aec88",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:commit:a0554e515d351a471bfa23a5ea3cfda4ecfe0ca3",
+        "type": "commit",
+        "project": "Xbox2Windows",
+        "platform": "Xbox",
+        "date": "2026-11-23T05:26:58Z",
+        "title": "Merge pull request #621 from Neoplayer/disasm/ds-instructions",
+        "url": "https://github.com/R0Y00/Xbox2Windows/commit/a0554e515d351a471bfa23a5ea3cfda4ecfe0ca3",
+        "evidence": "C1",
+        "review_status": "not_independently_reviewed",
+        "classification": "repository activity, not verified breakthrough"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:issue:775",
         "type": "issue",
         "project": "Xbox2Windows",
         "platform": "Xbox",
-        "date": "2026-11-23T04:32:56Z",
-        "title": "Isolate WARP readback differences in a source-built subgroup compaction dispatch",
-        "url": "https://github.com/R0Y00/Xbox2Windows/issues/768",
+        "date": "2026-11-23T05:41:31Z",
+        "title": "Isolate DXC compile time in a source-built mixed-sampler compute shader",
+        "url": "https://github.com/R0Y00/Xbox2Windows/issues/775",
+        "evidence": "C1",
+        "classification": "issue discussion, not independently verified"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:pr:628",
+        "type": "PR",
+        "project": "Xbox2Windows",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:49:02Z",
+        "title": "cpu: lower CMPXCHG8B and CMPXCHG16B without LOCK",
+        "url": "https://github.com/R0Y00/Xbox2Windows/pull/628",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:pr:799",
+        "type": "PR",
+        "project": "Xbox2Windows",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:37:24Z",
+        "title": "Create the EXE shadow device through the Xbox shim",
+        "url": "https://github.com/R0Y00/Xbox2Windows/pull/799",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:pr:540",
+        "type": "PR",
+        "project": "Xbox2Windows",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:33:55Z",
+        "title": "shader: lower gfx1013 v_cvt_u32_f32_e64 and v_cvt_i32_f32_e64 in pixel_aot",
+        "url": "https://github.com/R0Y00/Xbox2Windows/pull/540",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:pr:621",
+        "type": "PR",
+        "project": "Xbox2Windows",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:26:59Z",
+        "title": "disasm_rdna2: decode 64-bit DS local data share instructions",
+        "url": "https://github.com/R0Y00/Xbox2Windows/pull/621",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:pr:796",
+        "type": "PR",
+        "project": "Xbox2Windows",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:18:03Z",
+        "title": "shader: accept s_version as a no-op marker in pixel_aot",
+        "url": "https://github.com/R0Y00/Xbox2Windows/pull/796",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:pr:797",
+        "type": "PR",
+        "project": "Xbox2Windows",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:17:05Z",
+        "title": "Compare two translated shadow frames from the EXE entry",
+        "url": "https://github.com/R0Y00/Xbox2Windows/pull/797",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:pr:715",
+        "type": "PR",
+        "project": "Xbox2Windows",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:01:47Z",
+        "title": "shader: lower 64-bit scalar bitset forms",
+        "url": "https://github.com/R0Y00/Xbox2Windows/pull/715",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "R0Y00/Xbox2Windows:pr:781",
+        "type": "PR",
+        "project": "Xbox2Windows",
+        "platform": "Unknown",
+        "date": "2026-11-23T05:01:42Z",
+        "title": "shader: lower v_mac_legacy_f32 in pixel_aot",
+        "url": "https://github.com/R0Y00/Xbox2Windows/pull/781",
+        "evidence": "C1",
+        "classification": "recent PR record (merged)"
+      },
+      "note": "Newly observed public record, not verified technical progress"
+    },
+    {
+      "kind": "new_public_record",
+      "event": {
+        "id": "ivall/xcl:issue:42",
+        "type": "issue",
+        "project": "XCL",
+        "platform": "Xbox",
+        "date": "2026-11-23T05:03:35Z",
+        "title": "GPU test results: NVIDIA RTX 3080 (wave32) and AMD RDNA2 iGPU (no mesh shaders)",
+        "url": "https://github.com/ivall/xcl/issues/42",
         "evidence": "C1",
         "classification": "issue discussion, not independently verified"
       },
@@ -1742,10 +2210,10 @@
     {
       "project": "Leonida",
       "url": "https://github.com/ItsNotRexed/Leonida",
-      "last_push_utc": "2026-11-23T04:14:28Z",
-      "total_stars": 16378,
-      "total_forks": 1377,
-      "open_issues_count": 1468,
+      "last_push_utc": "2026-11-23T05:56:46Z",
+      "total_stars": 16683,
+      "total_forks": 1417,
+      "open_issues_count": 1564,
       "collected_commit_records": 5,
       "collected_release_records": 0,
       "sampled_merged_prs": 1,
@@ -1755,10 +2223,10 @@
     {
       "project": "Xbox2Windows",
       "url": "https://github.com/R0Y00/Xbox2Windows",
-      "last_push_utc": "2026-11-23T04:37:58Z",
-      "total_stars": 1340,
+      "last_push_utc": "2026-11-23T05:49:01Z",
+      "total_stars": 1348,
       "total_forks": 131,
-      "open_issues_count": 84,
+      "open_issues_count": 82,
       "collected_commit_records": 5,
       "collected_release_records": 1,
       "sampled_merged_prs": 8,
@@ -1769,7 +2237,7 @@
       "project": "XCL",
       "url": "https://github.com/ivall/xcl",
       "last_push_utc": "2026-11-22T22:40:50Z",
-      "total_stars": 338,
+      "total_stars": 342,
       "total_forks": 21,
       "open_issues_count": 42,
       "collected_commit_records": 5,
@@ -1782,7 +2250,7 @@
       "project": "ScarlettX",
       "url": "https://github.com/Freminet/ScarlettX",
       "last_push_utc": "2026-11-22T10:38:07Z",
-      "total_stars": 174,
+      "total_stars": 175,
       "total_forks": 18,
       "open_issues_count": 28,
       "collected_commit_records": 5,
@@ -1834,9 +2302,9 @@
       "project": "GTA VI Reverse Engineering Index",
       "url": "https://github.com/Ahmet-Dedeler/awesome-gta6-reverse-engineering",
       "last_push_utc": "2026-11-23T01:25:59Z",
-      "total_stars": 235,
-      "total_forks": 8,
-      "open_issues_count": 1,
+      "total_stars": 240,
+      "total_forks": 9,
+      "open_issues_count": 2,
       "collected_commit_records": 5,
       "collected_release_records": 0,
       "sampled_merged_prs": 4,
