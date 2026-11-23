@@ -149,7 +149,16 @@ report={
 'source_results':results,'events':events[:180],'changes':changes[:100], 'github_analytics':analytic,
 'gameplay_verification':'Not assessed by this automatic collector; preserve independent C4/C5 evidence requirements',
 'earlier_baseline_date':'2026-11-22','app_version':'2.9','collector_version':'2.9-audit-1','comparison_scope':'New or changed metadata in recent GitHub samples only; no source-content evidence diff, no verified blocker resolution or regression','validation':{'source_count_matches_expected':len(results)==len(SOURCES),'all_source_records_timestamped':all(r.get('checked_at_utc')==NOW for r in results),'all_events_have_source_urls':all(bool(e.get('url')) for e in events),'no_content_review_claimed':True,'screening_count_matches_records':screened==sum(r.get('content_screening',{}).get('status')=='screened' for r in results)}}
+# Collect third-party Reddit claims separately from source-health and verified milestones.
+try:
+    from independent import collect as collect_independent
+    independent_report=collect_independent()
+except Exception as exc:
+    independent_report={'collected_at_utc':NOW,'status':'unavailable','findings':[],'counts':{'findings':0,'community_corroboration':0,'accounts_screened':0,'verified_gta_vi_tests':0},'errors':[{'source':'collector','error':type(exc).__name__+': '+str(exc)[:150]}]}
+report['independent_findings']=independent_report['counts']
+report['independent_monitor_status']=independent_report['status']
 DATA.mkdir(exist_ok=True)
+(DATA/'independent.json').write_text(json.dumps(independent_report,indent=2,ensure_ascii=False),encoding='utf-8')
 (DATA/'snapshots').mkdir(parents=True,exist_ok=True)
 (DATA/'previous.json').write_text(json.dumps(old,indent=2,ensure_ascii=False),encoding='utf-8')
 (DATA/'live.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
