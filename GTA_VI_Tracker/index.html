@@ -725,6 +725,41 @@ render();
 
 .playable-timeline-foot{border-top:1px solid #344759;padding-top:11px;font-size:.72rem;color:#aabbd0}
 </style>
+<style id="cyberleek-editorial-style">
+.cyber-editorial-notice{border-left:4px solid #e6ad55;background:rgba(230,173,85,.08);padding:13px 16px;border-radius:8px;margin:14px 0;line-height:1.6}
+.cyber-editorial-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:16px 0}
+.cyber-editorial-grid .card{margin:0}
+.cyber-editorial-kicker{font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+.cyber-editorial-note{font-size:.85rem;opacity:.82;line-height:1.6}
+</style>
+<script id="cyberleek-editorial-section">
+(function(){
+const sectionName='Cyberleek Editorial';
+if(!sections.includes(sectionName))sections.push(sectionName);
+const sourcesGroup=groups.find(g=>g[0]==='Sources & development');
+if(sourcesGroup&&!sourcesGroup[1].includes(sectionName))sourcesGroup[1].splice(1,0,sectionName);
+function editorialPage(){
+ const source=typeof LIVE!=='undefined'&&LIVE&&Array.isArray(LIVE.source_results)?LIVE.source_results.find(r=>r.name==='Cyberleek.cloud Incident Desk'):null;
+ const check=source&&source.checked_at_utc?trackerDate(source.checked_at_utc):'Not yet recorded';
+ const status=source?esc(source.status||'Unknown'):'No published collector result yet';
+ return '<div class="cyber-editorial-notice"><strong>Independent editorial coverage — NOT the Cyberleek leaker.</strong> Cyberleek.cloud is listed here as a separate reporting website. Its articles, analysis, and interpretations must not be attributed to the person or group using the Cyberleek name to make leak claims. A report about a claimed release does not authenticate the game files.</div>'+
+ '<div class="cyber-editorial-grid">'+
+ '<article class="card"><div class="cyber-editorial-kicker">Claimant / primary claim channel</div><h3>Cyberleek (AR.IO)</h3><p>Reported original claims and archive references. Identity and authenticity are not independently established.</p>'+link('Visit Cyberleek AR.IO','https://wayfinder.ar.io/?q=Cyberleek')+'</article>'+
+ '<article class="card"><div class="cyber-editorial-kicker">Separate editorial website</div><h3>Cyberleek.cloud</h3><p>Editorial reporting, incident summaries and analysis. <strong>Not the leaker and not an official confirmation channel.</strong></p>'+link('Visit Cyberleek.cloud','https://cyberleek.cloud/')+'</article></div>'+
+ '<article class="card"><h3>Editorial reporting and analysis</h3><p class="cyber-editorial-note">The links below are credited to Cyberleek.cloud as editorial coverage. Article claims are not presented as independent technical verification.</p>'+
+ '<div class="item"><b>Latest editorial coverage</b><div class="cyber-editorial-note">Current reporting, claimed Xbox build details, executable status and outstanding questions.</div>'+link('Cyberleek.cloud — Latest','https://cyberleek.cloud/cyberleek-latest/')+'</div>'+
+ '<div class="item"><b>GTA VI coverage</b><div class="cyber-editorial-note">Editorial coverage of reported Cyberleek-related GTA VI developments.</div>'+link('Cyberleek.cloud — GTA VI','https://cyberleek.cloud/cyberleek-gta-6/')+'</div>'+
+ '<div class="item"><b>Leak analysis archive</b><div class="cyber-editorial-note">Historical editorial commentary and assessments, distinct from original leak evidence.</div>'+link('Cyberleek.cloud — Analysis','https://cyberleek.cloud/leak-analysis/')+'</div></article>'+
+ '<article class="card"><h3>Collection and evidence status</h3><p>Cyberleek.cloud source check: <strong>'+status+'</strong> · Last recorded check: '+esc(check)+'</p><p class="cyber-editorial-note">Current automated collection checks site reachability only. Article text, updates, timestamps and external citations are not yet automatically extracted. No editorial claim is promoted to a verified playability milestone without independent technical evidence.</p></article>';
+}
+const priorRender=render;
+render=function(){
+ if(current!==sectionName){priorRender();return;}
+ document.getElementById('content').innerHTML='<h2>'+esc(sectionName)+'</h2>'+editorialPage();
+};
+header();
+})();
+</script>
 <script id="playability-timeline-script">
 (function(){
 const milestones=[
