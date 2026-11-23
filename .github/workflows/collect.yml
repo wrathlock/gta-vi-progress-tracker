@@ -7,8 +7,6 @@ on:
       - '.github/workflows/collect.yml'
       - 'GTA_VI_Tracker/collector/independent.py'
       - 'GTA_VI_Tracker/collector/collect.py'
-      - 'GTA_VI_Tracker/independent.js'
-      - 'GTA_VI_Tracker/index.html'
   schedule:
     - cron: "23 * * * *"
   workflow_dispatch:
@@ -47,7 +45,7 @@ jobs:
           data=json.loads(p.read_text(encoding='utf-8'))
           assert data['status'] in ('partial_collection','collection_failed')
           assert data.get('last_attempt_utc')
-          assert len(data['source_results']) == 21, 'Expected 21 source health records'
+          assert len(data['source_results']) == 22, 'Expected 22 source health records'
           assert data['validation']['source_count_matches_expected']
           assert data['validation']['all_source_records_timestamped']
           assert data['validation']['all_events_have_source_urls']
