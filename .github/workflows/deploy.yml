@@ -34,6 +34,9 @@ jobs:
         with:
           path: GTA_VI_Tracker
 
+      - name: Wait for Pages artifact registration
+        run: sleep 20
+
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
