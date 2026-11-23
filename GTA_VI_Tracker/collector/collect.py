@@ -3,7 +3,7 @@
 Only repo metadata and Github events are collected; non-GitHub sources are HEAD/GET reachability checked.
 No keyword match is classified as GTA VI game execution, and this script never sends alerts.
 """
-import json, os, urllib.request, urllib.error, pathlib, datetime, re, time, hashlib
+import json, os, urllib.request, urllib.error, pathlib, datetime, re, time, hashlib, base64
 from collections import Counter
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 DATA=ROOT/'data'
@@ -54,7 +54,7 @@ def read_json(path,default):
     except Exception:return default
 
 old=read_json(DATA/'live.json',{})
-results=[]; events=[]; analytic=[]; successes=0
+results=[]; events=[]; analytic=[]; successes=0; screened=0
 # The collector does not review full source contents or independently test claims.
 PLATFORMS={'Leonida':'Xbox','Xbox2Windows':'Xbox','XCL':'Xbox','ScarlettX':'Xbox','AnyXboxX':'Xbox','Xbox Emulator / TomBox':'Xbox'}
 def project_platform(name):
@@ -74,6 +74,21 @@ for name,url in SOURCES.items():
             record['error']=err
         else:
             successes+=1;record['status']='ok';record['last_public_activity_utc']=info.get('pushed_at');record['default_branch']=info.get('default_branch');record['github_stars']=info.get('stargazers_count')
+            # Inspect actual repository README text, not just repository metadata.
+            # This is automated source-content screening, NOT independent claim verification.
+            readme,readme_err=api('repos/'+repo+'/readme')
+            if isinstance(readme,dict) and readme.get('encoding')=='base64' and readme.get('content'):
+                try:
+                    body=base64.b64decode(readme['content']).decode('utf-8',errors='replace')
+                    terms=('gta vi','gta 6','gta6','executable','emulat','shader','reverse engineer','pc port','xbox','playstation','ps5')
+                    hits=[term for term in terms if term in body.lower()]
+                    record['content_screening']={'status':'screened','document':'README','url':readme.get('html_url') or url,'characters_examined':len(body),'topic_terms_found':hits,'scope':'automated README text screening only; not manual verification'}
+                    record['content_reviewed_at_utc']=NOW
+                    screened+=1
+                except Exception as exc:
+                    record['content_screening']={'status':'failed','error':type(exc).__name__}
+            else:
+                record['content_screening']={'status':'unavailable','error':readme_err or 'README content unavailable'}
             commits,cerr=api('repos/'+repo+'/commits?per_page=5')
             releases,rerr=api('repos/'+repo+'/releases?per_page=4')
             issues,ierr=api('repos/'+repo+'/issues?state=all&per_page=8&sort=updated&direction=desc')
@@ -128,12 +143,12 @@ report={
 'schema_version':'2.9-live-1','status':'partial_collection' if successes else 'collection_failed',
 'last_attempt_utc':NOW,'last_successful_scan_utc':NOW if successes else old.get('last_successful_scan_utc'),
 'last_complete_21_source_content_scan_utc':None,'last_substantive_content_scan_utc':None,
-'original_sources':len(SOURCES),'listed_sources':len(SOURCES),'contacted_sources':sum(r['status']!='unavailable' for r in results),'reachable_sources':successes,'substantively_reviewed_sources':0,'independently_verified_sources':0,'coverage_method':'Repository metadata and recent activity for GitHub; HTTP reachability only for other sources','unavailable_sources':sum(r['status']=='unavailable' for r in results),
+'original_sources':len(SOURCES),'listed_sources':len(SOURCES),'contacted_sources':sum(r['status']!='unavailable' for r in results),'reachable_sources':successes,'substantively_reviewed_sources':0,'automated_content_screened_sources':screened,'independently_verified_sources':0,'coverage_method':'GitHub repository metadata and automated README text screening; HTTP reachability only for other sources','unavailable_sources':sum(r['status']=='unavailable' for r in results),
 'last_error_count':sum(bool(r.get('error')) or bool(r.get('activity_error')) for r in results),
-'collector_scope':'GitHub repository metadata, recent public commits/releases/issues/PRs, and HTTP reachability for non-GitHub sources. No executable downloads, no full page-content analysis, no Reddit keyword search, and no independent technical test reproduction.',
+'collector_scope':'GitHub repository metadata, recent public commits/releases/issues/PRs, and HTTP reachability for non-GitHub sources. Automated GitHub README screening only, not full website content review. No executable downloads, no Reddit keyword search, and no independent technical test reproduction.',
 'source_results':results,'events':events[:180],'changes':changes[:100], 'github_analytics':analytic,
 'gameplay_verification':'Not assessed by this automatic collector; preserve independent C4/C5 evidence requirements',
-'earlier_baseline_date':'2026-11-22','app_version':'2.9','collector_version':'2.9-audit-1','comparison_scope':'New or changed metadata in recent GitHub samples only; no source-content evidence diff, no verified blocker resolution or regression','validation':{'source_count_matches_expected':len(results)==len(SOURCES),'all_source_records_timestamped':all(r.get('checked_at_utc')==NOW for r in results),'all_events_have_source_urls':all(bool(e.get('url')) for e in events),'no_content_review_claimed':True}}
+'earlier_baseline_date':'2026-11-22','app_version':'2.9','collector_version':'2.9-audit-1','comparison_scope':'New or changed metadata in recent GitHub samples only; no source-content evidence diff, no verified blocker resolution or regression','validation':{'source_count_matches_expected':len(results)==len(SOURCES),'all_source_records_timestamped':all(r.get('checked_at_utc')==NOW for r in results),'all_events_have_source_urls':all(bool(e.get('url')) for e in events),'no_content_review_claimed':True,'screening_count_matches_records':screened==sum(r.get('content_screening',{}).get('status')=='screened' for r in results)}}
 DATA.mkdir(exist_ok=True)
 (DATA/'snapshots').mkdir(parents=True,exist_ok=True)
 (DATA/'previous.json').write_text(json.dumps(old,indent=2,ensure_ascii=False),encoding='utf-8')
