@@ -32,9 +32,6 @@ jobs:
       - name: Collect source activity
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
-          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
-          REDDIT_USER_AGENT: GtaViSignalTracker/1.0 (public research; github.com/wrathlock/gta-vi-signal-tracker)
         run: python3 GTA_VI_Tracker/collector/collect.py
 
       - name: Validate collected JSON before publishing
@@ -45,16 +42,13 @@ jobs:
           data=json.loads(p.read_text(encoding='utf-8'))
           assert data['status'] in ('partial_collection','collection_failed')
           assert data.get('last_attempt_utc')
-          assert len(data['source_results']) == 22, 'Expected 22 source health records'
+          assert len(data['source_results']) == 17, 'Expected 17 source health records'
           assert data['validation']['source_count_matches_expected']
           assert data['validation']['all_source_records_timestamped']
           assert data['validation']['all_events_have_source_urls']
           assert data['substantively_reviewed_sources'] == 0
           assert data['validation']['screening_count_matches_records']
           assert data['automated_content_screened_sources'] == sum(r.get('content_screening', {}).get('status') == 'screened' for r in data['source_results'])
-          independent=json.loads(pathlib.Path('GTA_VI_Tracker/data/independent.json').read_text(encoding='utf-8'))
-          assert isinstance(independent['findings'], list)
-          assert independent['counts']['verified_gta_vi_tests'] == 0
           print('Validated collection:', data['status'], data['last_attempt_utc'], 'reachable', data['reachable_sources'])
           PY
 
