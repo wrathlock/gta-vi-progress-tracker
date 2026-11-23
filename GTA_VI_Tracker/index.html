@@ -244,7 +244,7 @@ window.trackerTimeZone=function(){return Intl.DateTimeFormat().resolvedOptions()
 const groups=[
 ['Live status',['Overview','Live research status','Latest Changes','Development Activity','Alerts','Get Notifications']],
 ['Playability & progress',['Gameplay Proof & Reproducibility','Xbox','PS5','Performance & Hardware','Interactive milestone ladders','Project Comparison & Compatibility']],
-['Evidence & verification',['Independent Verification','Evidence & Confidence','Cross-checks','Provenance','Scams']],
+['Evidence & verification',['Evidence & Confidence','Cross-checks','Provenance','Scams']],
 ['Technical research',['Breakthroughs','Technical Blockers & Dependencies']],
 ['Sources & development',['Sources','Cyberleek Editorial','Discovery','GitHub analytics','Trackers','Fork analysis']],
 ['History & archive',['Timeline','History','Archive','Preservation']]
@@ -924,7 +924,7 @@ const groups={
  'Project Comparison & Compatibility':{old:['Project comparison matrix','Compare','Compatibility'],views:[['comparison','Project comparison'],['compatibility','Compatibility context']]},
  'Gameplay Proof & Reproducibility':{old:['Gameplay proof','Reproducibility'],views:[['proof','Gameplay proof'],['reproduction','Reproducibility checklist']]},
  'Performance & Hardware':{old:['Verified performance','Hardware'],views:[['performance','Verified performance'],['hardware','Hardware requirements']]},
- 'Evidence & Confidence':{old:['Evidence','Evidence confidence'],views:[['records','Evidence records'],['confidence','Confidence analysis']]},
+ 'Evidence & Confidence':{old:['Evidence','Evidence confidence','Independent Verification'],views:[['records','Evidence records'],['confidence','Confidence analysis'],['independent','Independent Verification']]},
  'Archive':{old:['Snapshot explorer','Regressions'],views:[['archive','Collection archive'],['snapshots','Snapshot comparison']]}
 };
 const aliases={GitHub:'GitHub analytics',Momentum:'GitHub analytics'};
@@ -954,8 +954,8 @@ function viewMarkup(name){
   description='No verified GTA VI PC benchmark or validated hardware requirement is available.';
   body=active==='performance'?card('<p class="desc">No independently verified GTA VI PC FPS, frame-time, resolution, or VRAM benchmark is established. No performance values are inferred.</p>','Verified performance'):card('<p class="desc">No tested GTA VI PC minimum or recommended CPU, GPU, RAM, VRAM or driver requirement is established by this tracker. Hardware information from unrelated games or emulator component tests is not a GTA VI requirement.</p>','Hardware requirements');
  }else if(name==='Evidence & Confidence'){
-  description='Both views use the same evidence-record dataset, without presenting it twice.';
-  body=active==='records'?evidenceDatabase():confidenceDashboard();
+  description='Evidence records, confidence analysis, and third-party verification findings are organized in one section. Community claims do not establish technical verification.';
+  body=active==='records'?evidenceDatabase():active==='confidence'?confidenceDashboard():(window.renderIndependentVerification?window.renderIndependentVerification():card('<p class="desc">Independent verification findings are loading.</p>','Independent Verification'));
  }else if(name==='Archive'){
   description='Historical collector runs and imported snapshot comparisons are separate views; neither establishes verified gameplay.';
   body=active==='archive'?originalTab('Archive'):card(diff(),'Historical snapshot comparison');
@@ -964,7 +964,7 @@ function viewMarkup(name){
 }
 section=function(){return groups[current]&&current!=='Archive'?viewMarkup(current):current==='Archive'?viewMarkup('Archive'):previousSection()};
 const oldGo=go;
-go=function(target){oldGo(aliases[target]||target)};
+go=function(target){if(target==='Independent Verification'){window.setConsolidatedView('Evidence & Confidence','independent');oldGo('Evidence & Confidence');return;}oldGo(aliases[target]||target)};
 header();render();
 })();
 </script>
