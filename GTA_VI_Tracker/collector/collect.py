@@ -123,7 +123,7 @@ def collect_rumors(previous):
       ('Reddit · GamingLeaksAndRumours (indexed)','https://news.google.com/rss/search?q=site%3Areddit.com%2Fr%2FGamingLeaksAndRumours%2F%20%22GTA%206%22%20when%3A7d&hl=en-US&gl=US&ceid=US:en'),
       ('Reddit · GTA6 (indexed)','https://news.google.com/rss/search?q=site%3Areddit.com%2Fr%2FGTA6%2F%20%28PC%20OR%20leak%20OR%20executable%29%20when%3A7d&hl=en-US&gl=US&ceid=US:en'),
       ('GTA VI · recent reporting','https://news.google.com/rss/search?q=%22GTA%206%22%20%28Cyberleek%20OR%20executable%20OR%20recompilation%20OR%20emulator%29%20when%3A7d&hl=en-US&gl=US&ceid=US:en'),
-      ('X-mentioned reporting · indexed','https://news.google.com/rss/search?q=%22GTA%206%22%20%28Twitter%20OR%20%22X%20post%22%29%20when%3A7d&hl=en-US&gl=US&ceid=US:en')
+      ('X-mentioned reporting · indexed','https://news.google.com/rss/search?q=%22GTA%206%22%20%28Cyberleek%20OR%20executable%20OR%20emulator%20OR%20recompilation%20OR%20%22PC%20port%22%29%20%28Twitter%20OR%20%22X%20post%22%29%20when%3A7d&hl=en-US&gl=US&ceid=US:en')
     ]
     from email.utils import parsedate_to_datetime
     cutoff=datetime.datetime.now(datetime.timezone.utc)-datetime.timedelta(days=7)
@@ -136,7 +136,15 @@ def collect_rumors(previous):
     prior=[x for x in (previous.get('rumors') or {}).get('items',[]) if isinstance(x,dict) and pub_date(x)>=cutoff]
     items={x.get('url'):x for x in prior if x.get('url')}
     checks=[]
-    relevant=re.compile(r'(?i)\b(?:gta\s*(?:6|vi)|grand theft auto\s*(?:6|vi)|cyberleek|leonida|xbox2windows|recompil(?:e|ation))\b')
+    # Restrict the feed to PC execution, executable/game-file releases, and named technical projects.
+    # A GTA VI mention alone is not enough: it also needs a technical or project-specific signal.
+    relevant=re.compile(r'(?i)(?:gta\\s*(?:6|vi)|grand theft auto\\s*(?:6|vi)|cyberleek|leonida|xbox2windows|scarlettx|anyxboxx|anyps5|kytyps5|sharpemu|tombox|followtheleek|\\bxcl\\b)')
+    technical=re.compile(r'(?i)(?:\\bexe\\b|executable|game\\s*files?|game\\s*build|xbox\\s*build|crack(?:ed|ing)?|piracy|leak(?:ed|er)?|dump(?:ed|ing)?|recompil(?:e|ation|er)|emulat(?:or|ion|ing)|unofficial\\s*(?:pc\\s*)?port|pc\\s*(?:port|build|version|playab)|boot(?:ed|ing)?|runtime|compatibility\\s*layer|reverse\\s*engineer|modder|github|source\\s*code|developer|project|cyberleek|leonida|xbox2windows|scarlettx|anyxboxx|anyps5|kytyps5|sharpemu|tombox|followtheleek|\\bxcl\\b)')
+    spoiler=re.compile(r'(?i)(?:spoiler|storyline|plot\\s*(?:leak|detail|twist)|mission\\s*(?:leak|detail)|easter\\s*egg|character\\s*(?:reveal|detail)|map\\s*(?:leak|detail)|trailer|gameplay\\s*(?:clip|footage|leak)|screenshots?|graphics\\s*comparison)')
+    def in_scope(title):
+        return bool(relevant.search(title) and technical.search(title) and not spoiler.search(title))
+    prior=[x for x in prior if in_scope(str(x.get('title','')))]
+    items={x.get('url'):x for x in prior if x.get('url')}
     for name,url in feeds:
         status,raw,error=fetch(url)
         count=0
@@ -152,7 +160,7 @@ def collect_rumors(previous):
                     link=node.find('{http://www.w3.org/2005/Atom}link')
                     href=(link.get('href') if link is not None else None) or value('link')
                     published=value('{http://www.w3.org/2005/Atom}published') or value('pubDate')
-                    if not title or not href or not relevant.search(title):continue
+                    if not title or not href or not in_scope(title):continue
                     if pub_date({'published':published})<cutoff:continue
                     parsed=urllib.parse.urlsplit(href)
                     if parsed.scheme!='https' or parsed.hostname not in ('www.reddit.com','reddit.com','news.google.com'):continue
@@ -163,7 +171,7 @@ def collect_rumors(previous):
         else:checks.append({'source':name,'status':'unavailable','error':error or 'HTTP '+str(status)})
     # Preserve prior findings if an RSS source is blocked; do not imply it was freshly checked.
     entries=sorted(items.values(),key=pub_date,reverse=True)[:100]
-    return {'checked_at_utc':NOW,'method':'Public indexed news RSS including Reddit discussions; no social APIs','sources':checks,'items':entries,'note':'Seven-day indexed headlines, newest publication first. Reddit items are indexed mentions, not direct Reddit API results. X mentions are third-party reports, not authenticated X posts. Indexing may be incomplete or delayed.'}
+    return {'checked_at_utc':NOW,'method':'Public indexed news RSS including Reddit discussions; no social APIs','sources':checks,'items':entries,'note':'Seven-day PC execution, executable-release and emulator-project headlines only; gameplay spoilers excluded. Newest publication first. Reddit items are indexed mentions, not direct Reddit API results. X mentions are third-party reports, not authenticated X posts. Indexing may be incomplete or delayed.'}
 
 # Evidence leads only. Matching public text never authenticates a leaked binary.
 PROJECT_USAGE_NAMES=('Leonida','Xbox2Windows','XCL','ScarlettX','AnyXboxX','Xbox Emulator / TomBox','FollowTheLeek')
