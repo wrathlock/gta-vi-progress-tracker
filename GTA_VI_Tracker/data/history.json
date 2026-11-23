@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "collected_at_utc": "2026-11-23T04:08:08Z",
+    "successful_sources": 15,
+    "failed_sources": 6,
+    "errors": 6,
+    "github_event_records": 110,
+    "repository_sample_count": 10
+  }
+]

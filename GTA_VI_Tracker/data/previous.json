@@ -1,1 +1,11 @@
-{}
+{
+  "status": "never_collected",
+  "last_successful_scan_utc": null,
+  "last_attempt_utc": null,
+  "last_complete_21_source_content_scan_utc": null,
+  "source_results": [],
+  "events": [],
+  "changes": [],
+  "github_analytics": [],
+  "collector_scope": "GitHub repository metadata/activity plus reachability checks only; other websites are not substantively scraped or keyword-searched."
+}
