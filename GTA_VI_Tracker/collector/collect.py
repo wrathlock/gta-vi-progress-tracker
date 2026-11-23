@@ -165,6 +165,25 @@ def collect_rumors(previous):
     entries=sorted(items.values(),key=pub_date,reverse=True)[:100]
     return {'checked_at_utc':NOW,'method':'Public indexed news RSS including Reddit discussions; no social APIs','sources':checks,'items':entries,'note':'Seven-day indexed headlines, newest publication first. Reddit items are indexed mentions, not direct Reddit API results. X mentions are third-party reports, not authenticated X posts. Indexing may be incomplete or delayed.'}
 
+# Evidence leads only. Matching public text never authenticates a leaked binary.
+PROJECT_USAGE_NAMES=('Leonida','Xbox2Windows','XCL','ScarlettX','AnyXboxX','Xbox Emulator / TomBox','FollowTheLeek')
+PROJECT_USAGE_PATTERN=re.compile(r'(?i)(?:gta\\s*(?:vi|6)|gta6|cyberleek|leaked\\s+(?:xbox\\s+)?(?:build|game)).{0,160}(?:\\bexe\\b|executable|binary)|(?:\\bexe\\b|executable|binary).{0,160}(?:gta\\s*(?:vi|6)|gta6|cyberleek)')
+PROJECT_USAGE_ACTION=re.compile(r'(?i)\\b(?:tested?|testing|integrat(?:ed|ing|ion)|loaded?|loading|parsed?|parsing|executed?|executing|boot(?:ed|ing)?|launched?|launching|running|ran|mapped?|mapping|import(?:ed|ing)|analy[sz](?:ed|ing))\\b')
+PROJECT_USAGE_ACK=re.compile(r'(?i)\\b(?:received?|obtained?|available|released?|published|announced?|acknowledged?|examining|reviewing)\\b')
+project_usage_leads=[]
+def usage_lead(project,url,title,body,kind,when=None):
+    if project not in PROJECT_USAGE_NAMES:return
+    # Evaluate a short context rather than unrelated keywords anywhere in a README.
+    parts=re.split(r'(?<=[.!?\\n])\\s+',str(body or ''))
+    for part in parts[:250]:
+        if len(part)>750:continue
+        if not PROJECT_USAGE_PATTERN.search(part):continue
+        level='integration_claim' if PROJECT_USAGE_ACTION.search(part) else 'acknowledgment' if PROJECT_USAGE_ACK.search(part) else 'mention'
+        project_usage_leads.append({'project':project,'url':url,'title':str(title)[:180],'excerpt':part.strip()[:320],
+           'evidence_level':level,'source_type':kind,'published_at_utc':when,'checked_at_utc':NOW,
+           'independently_authenticated':False,'execution_independently_reproduced':False})
+        break
+
 old=read_json(DATA/'live.json',{})
 results=[]; events=[]; analytic=[]; successes=0; screened=0
 # The collector does not review full source contents or independently test claims.
@@ -196,6 +215,7 @@ for name,url in SOURCES.items():
                     hits=[term for term in terms if term in body.lower()]
                     record['content_screening']={'status':'screened','document':'README','url':readme.get('html_url') or url,'characters_examined':len(body),'topic_terms_found':hits,'scope':'automated README text screening only; not manual verification'}
                     record['content_reviewed_at_utc']=NOW
+                    usage_lead(name,readme.get('html_url') or url,'Repository README',body,'README',info.get('pushed_at'))
                     screened+=1
                 except Exception as exc:
                     record['content_screening']={'status':'failed','error':type(exc).__name__}
@@ -235,6 +255,10 @@ for name,url in SOURCES.items():
         if status is not None and 200<=status<400:
             record['status']='reachable';successes+=1
         else:record['error']=err or 'HTTP '+str(status)
+    if m and name in PROJECT_USAGE_NAMES:
+        for ev in events:
+            if ev.get('project')!=name:continue
+            usage_lead(name,ev.get('url'),ev.get('title'),ev.get('title'),'public_'+str(ev.get('type','activity')),ev.get('date'))
     # HTTP access and GitHub repository visibility are distinct from site uptime.
     code=record.get('http_status')
     error_text=str(record.get('error') or '')
@@ -281,6 +305,10 @@ report={
 'last_error_count':sum(bool(r.get('error')) or bool(r.get('activity_error')) for r in results),
 'collector_scope':'GitHub repository metadata, recent public commits/releases/issues/PRs, and HTTP reachability for non-GitHub sources. Automated GitHub README screening only, not full website content review. No executable downloads or independent technical test reproduction. Reddit RSS post headlines and indexed news headlines are collected as unverified rumors; no Reddit comments or direct X feed are collected.',
 'exe_watch':announcement_watch(old),'rumors':collect_rumors(old),
+'project_exe_usage':{'checked_at_utc':NOW,'method':'automated contextual screening of public GitHub README and recent commit/release/issue/PR titles; no binary downloads or code execution',
+ 'monitored_projects':list(PROJECT_USAGE_NAMES),'leads':sorted({(x['project'],x['url'],x['excerpt']):x for x in project_usage_leads}.values(),key=lambda x:x.get('published_at_utc') or '',reverse=True)[:50],
+ 'independently_authenticated':False,'execution_independently_reproduced':False,
+ 'note':'Contextual matches are leads only. Source code diffs, logs, binary provenance and independent reproduction are not checked.'},
 'source_results':results,'events':events[:180],'changes':changes[:100], 'github_analytics':analytic,
 'gameplay_verification':'Not assessed by this automatic collector; preserve independent C4/C5 evidence requirements',
 'earlier_baseline_date':'2026-11-22','app_version':'2.9','collector_version':'2.9-audit-1','comparison_scope':'New or changed metadata in recent GitHub samples only; no source-content evidence diff, no verified blocker resolution or regression','validation':{'source_count_matches_expected':len(results)==len(SOURCES),'all_source_records_timestamped':all(r.get('checked_at_utc')==NOW for r in results),'all_events_have_source_urls':all(bool(e.get('url')) for e in events),'no_content_review_claimed':True,'screening_count_matches_records':screened==sum(r.get('content_screening',{}).get('status')=='screened' for r in results)}}
