@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
   "purpose": "GTA VI leak claims, Xbox Series emulation, static recompilation and reverse engineering research only; no official Rockstar or general GTA news accounts",
-  "collection_status": "not_configured",
-  "collection_method": "none",
+  "collection_status": "public_search_links_only",
+  "collection_method": "manual_public_x_search_links; no automated replies or quote-post collection",
   "verification_policy": "Do not equate leak claims, social consensus or source-built test programs with authenticated GTA VI executable, boot, or gameplay. Do not assume project owners have X accounts without attribution.",
   "sources": [
     {
@@ -77,5 +77,26 @@
       "x_identity_status": "not_verified",
       "focus": "Xbox emulator experiments"
     }
-  ]
+  ],
+  "access_policy": "free_only_no_signup_no_api_keys",
+  "comment_collection_status": "not_available_without_reliable_public_access",
+  "searches": [
+    {
+      "label": "GTA VI executable and boot rumors",
+      "url": "https://x.com/search?q=GTA%206%20(exe%20OR%20executable%20OR%20boot)%20&src=typed_query&f=live"
+    },
+    {
+      "label": "Cyberleek claims",
+      "url": "https://x.com/search?q=Cyberleek&src=typed_query&f=live"
+    },
+    {
+      "label": "Leonida and Xbox2Windows",
+      "url": "https://x.com/search?q=Leonida%20OR%20Xbox2Windows&src=typed_query&f=live"
+    },
+    {
+      "label": "ScarlettX XCL AnyXboxX",
+      "url": "https://x.com/search?q=ScarlettX%20OR%20AnyXboxX%20OR%20XCL&src=typed_query&f=live"
+    }
+  ],
+  "note": "X may require login to view search results. These are links, not proof of automated access, source coverage, comment retrieval or evidence verification."
 }
