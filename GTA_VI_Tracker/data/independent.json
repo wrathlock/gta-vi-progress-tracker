@@ -1,0 +1,54 @@
+{
+  "collected_at_utc": "2026-11-23T04:49:43Z",
+  "status": "partial",
+  "scope": "Public Reddit search/comment samples; public account-history heuristic; no binaries or private data; not proof of human identity or technical verification",
+  "findings": [],
+  "counts": {
+    "findings": 0,
+    "community_corroboration": 0,
+    "accounts_screened": 0,
+    "verified_gta_vi_tests": 0
+  },
+  "errors": [
+    {
+      "source": "r/emulation",
+      "error": "HTTPError: HTTP Error 403: Blocked"
+    },
+    {
+      "source": "r/emulation",
+      "error": "HTTPError: HTTP Error 403: Blocked"
+    },
+    {
+      "source": "r/GTA6",
+      "error": "HTTPError: HTTP Error 403: Blocked"
+    },
+    {
+      "source": "r/GTA6",
+      "error": "HTTPError: HTTP Error 403: Blocked"
+    },
+    {
+      "source": "r/GamingLeaksAndRumours",
+      "error": "HTTPError: HTTP Error 403: Blocked"
+    },
+    {
+      "source": "r/GamingLeaksAndRumours",
+      "error": "HTTPError: HTTP Error 403: Blocked"
+    },
+    {
+      "source": "r/CrackWatch",
+      "error": "HTTPError: HTTP Error 403: Blocked"
+    },
+    {
+      "source": "r/CrackWatch",
+      "error": "HTTPError: HTTP Error 403: Blocked"
+    },
+    {
+      "source": "r/Piracy",
+      "error": "HTTPError: HTTP Error 403: Blocked"
+    },
+    {
+      "source": "r/Piracy",
+      "error": "HTTPError: HTTP Error 403: Blocked"
+    }
+  ]
+}
