@@ -1221,22 +1221,19 @@ window.renderIndependentVerification=function(){return '<article class="card"><h
  }
  function latestChangesView(){
   const d=liveData();
-  if(!d)return card('<p class="desc">The latest collected comparison is unavailable. Open Live research status to inspect the collection connection.</p><button onclick="go(\'Live research status\')">Collection health</button>','Latest Changes — awaiting collection');
+  if(!d)return card('<p class="desc">No validated collector snapshot is available. Open Live research status for the reason.</p><button onclick="go(\'Live research status\')">Collection health</button>','Latest Changes — unavailable');
   const raw=d.changes||[];
-  const statusChanges=raw.filter(c=>c.kind!=='new_public_record');
   const discovered=raw.filter(c=>c.kind==='new_public_record'&&c.event);
-  const grouped={};
-  for(const c of discovered){
-   const e=c.event,k=e.project||'Other';
-   if(!grouped[k])grouped[k]={total:0,types:{},items:[]};
-   grouped[k].total++;grouped[k].types[e.type||'record']=(grouped[k].types[e.type||'record']||0)+1;
-   grouped[k].items.push(e);
-  }
-  const groups=Object.entries(grouped).sort((a,b)=>b[1].total-a[1].total);
-  const summaries=groups.map(([name,g])=>'<div class="item"><div class="row"><b>'+clean(name)+'</b>'+tag(g.total+' newly observed')+'</div><p class="desc">'+Object.entries(g.types).map(([type,count])=>count+' '+clean(type)).join(' · ')+'</p>'+g.items.slice(0,2).map(e=>'<div class="desc">'+clean(e.title)+' '+(e.url?link('Source',e.url):'')+'</div>').join('')+'</div>').join('');
-  const status=statusChanges.map(c=>'<div class="item"><b>'+clean(c.kind||'Status update')+'</b><p class="desc">'+clean(c.note||c.description||'Collection status changed')+'</p>'+(c.url?link('Source',c.url):'')+'</div>').join('');
-  return card('<p class="desc">Changes detected between stored collector snapshots, summarized by project. New commits and discussions indicate public activity, not confirmed GTA VI progress. See Development Activity for the full records.</p><div class="item"><b>Latest scan:</b> '+clean(d.last_attempt_utc||'Not recorded')+' · <b>New public records:</b> '+discovered.length+' · <b>Other recorded changes:</b> '+statusChanges.length+'</div>'+(status||'')+(summaries||none('No newly observed records or status changes were captured in this comparison. This does not mean development stopped.'))+'<div class="actions"><button onclick="go(\'Development Activity\')">Browse all development activity</button><button onclick="go(\'Live research status\')">Collection health</button></div>','Latest Changes — since previous scan');
+  const statusChanges=raw.filter(c=>c.kind!=='new_public_record');
+  const groups={};
+  for(const c of discovered){const e=c.event,k=e.project||'Other';if(!groups[k])groups[k]={count:0,types:{},items:[]};groups[k].count++;groups[k].types[e.type||'record']=(groups[k].types[e.type||'record']||0)+1;groups[k].items.push(e)}
+  const groupRows=Object.entries(groups).sort((a,b)=>b[1].count-a[1].count).map(([name,g])=>'<div class="item"><div class="row"><b>'+clean(name)+'</b>'+tag(g.count+' records first observed')+'</div><p class="desc">'+Object.entries(g.types).map(([type,count])=>count+' '+clean(type)).join(' · ')+'</p>'+g.items.slice(0,3).map(e=>'<div class="desc">'+clean(e.title||'Public record')+' '+(e.url?link('Source',e.url):'')+'</div>').join('')+'</div>').join('');
+  const otherRows=statusChanges.map(c=>'<div class="item"><b>'+clean(c.kind||'Collector status')+'</b><p class="desc">'+clean(c.note||c.description||'Collector comparison event')+'</p>'+(c.url?link('Source',c.url):'')+'</div>').join('');
+  const age=Date.now()-Date.parse(d.last_attempt_utc||'');
+  const stale=Number.isFinite(age)&&age>2*60*60*1000;
+  return card('<p class="desc"><b>Metadata comparison only.</b> Newly observed means first recorded by this tracker, not newly published or verified GTA VI progress. No substantive source-content comparison or independent playability verification is implied.</p><div class="item"><b>Collection:</b> '+clean(date(d.last_attempt_utc))+' · '+(stale?'<span class="warn">Stale: more than 2 hours old</span>':'Recent collector snapshot')+' · <b>Newly observed records:</b> '+discovered.length+' · <b>Other comparison events:</b> '+statusChanges.length+'</div>'+(otherRows?'<h3>Collector and source-status changes</h3>'+otherRows:'')+(groupRows?'<h3>Newly observed public repository records</h3>'+groupRows:none('No new public records were observed in this comparison.'))+'<div class="actions"><button onclick="go(\'Development Activity\')">Browse development activity</button><button onclick="go(\'Live research status\')">Collection health</button></div>','Latest Changes — collector snapshot comparison');
  }
+
  section=function(){if(current==='Development Activity')return developmentActivityView();if(current==='Latest Changes')return latestChangesView();return previousSection()};
  render();
 })();
@@ -1554,4 +1551,11 @@ body.leonida-theme header .gta-progress-eyebrow{font-size:8px!important;letter-s
 body.leonida-theme header h1{font-size:17px!important}
 body.leonida-theme header .gta-progress-subtitle{font-size:9px!important}
 }
+</style><style id="gta-theme-cleanup-v8">
+/* Final consolidated visual rules: keep the selected artwork and use one predictable layout. */
+body.leonida-theme header{height:190px!important;min-height:190px!important;max-height:190px!important;background-image:linear-gradient(90deg,#10091fe8 0%,#130a20bc 25%,#1a0c2066 52%,#170a1922 100%),url("https://i.gadgets360cdn.com/large/Screenshot_2023-12-05_100800_1701770347008.png")!important;background-size:100% 100%,cover!important;background-position:center,center 43%!important;background-repeat:no-repeat!important}
+body.leonida-theme header:before{display:none!important;content:none!important}
+body.leonida-theme .leonida-feature-art:nth-child(2){background-image:linear-gradient(90deg,#1b0d25d9 0%,#2e123d55 65%,#130b1a55),url("https://www.rockstargames.com/VI/_next/static/media/VINTAGE_VICE_CITY_PACK_01.05zaof7o1uz.3.jpg?akim=1&imdensity=1&imwidth=1920")!important;background-position:center 32%!important;background-size:cover!important}
+@media(max-width:900px){body.leonida-theme header{height:158px!important;min-height:158px!important;max-height:158px!important;background-position:center,56% 44%!important}}
+@media(max-width:600px){body.leonida-theme header{height:140px!important;min-height:140px!important;max-height:140px!important;background-position:center,60% center!important}}
 </style></body></html>
