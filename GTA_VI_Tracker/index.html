@@ -221,7 +221,7 @@ const groups=[
 ['Dashboard',['Overview','Live research status','Unified activity feed','What changed','Notification center']],
 ['Platforms',['Xbox','PS5','Projects','Interactive milestone ladders','Project comparison matrix','Compatibility','Executable','Gameplay proof','Verified performance','Hardware']],
 ['Technical research',['GitHub','GitHub analytics','RAGE 9','Dependencies','Technical dependency map','Blockers','Bottlenecks','Momentum','Breakthroughs','Reproducibility']],
-['Evidence & sources',['Evidence','Evidence confidence','Cross-checks','Scams','Trackers','Sources','Discovery','Fork analysis','Provenance']],
+['Evidence & sources',['Independent Verification','Evidence','Evidence confidence','Cross-checks','Scams','Trackers','Sources','Discovery','Fork analysis','Provenance']],
 ['History & alerts',['History','Timeline','Archive','Regressions','Preservation','Alerts','Alert tiers','Compare']],
 ['Other',[]]
 ];
@@ -664,4 +664,4 @@ render();
   let saved='research';try{saved=localStorage.getItem(storageKey)||'research'}catch(e){}
   setTheme(saved);
 })();
-</script></body></html>
+</script><script src="independent.js" defer></script></body></html>
