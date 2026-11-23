@@ -233,11 +233,33 @@ v=v.replace(/No GTA VI Boots\s*\/\s*GTA VI Playable/g,'No verified GTA VI boot o
 if(v!==node.nodeValue)node.nodeValue=v;
 }
 }
+let evidencePlatform='All', evidenceQuery='', confidencePlatform='All';
+function evidenceRecords(){
+const historical=(db.activity_events||[]).map(e=>({title:e.title,platform:e.platform,grade:e.grade||'C0',date:e.date,detail:e.note,source:e.source,origin:'Historical event'}));
+const metrics=(db.reported_metrics||[]).map(m=>({title:m.project+' — '+m.metric.replaceAll('_',' '),platform:'Xbox',grade:'C2',date:'',detail:Number(m.value).toLocaleString()+(m.denominator?' of '+Number(m.denominator).toLocaleString():'')+' · Historical developer-reported component metric; not independently verified GTA VI compatibility',source:m.source,origin:'Historical component report'}));
+const live=(typeof LIVE!=='undefined'&&LIVE&&Array.isArray(LIVE.events)?LIVE.events:[]).map(e=>({title:e.project+': '+e.title,platform:e.platform||'Unknown',grade:e.evidence||'C1',date:e.date||'',detail:e.classification||'Public development record; technical significance unverified',source:e.url,origin:'Collected public record'}));
+return [...historical,...metrics,...live];
+}
+function evidenceSelect(name,selected,callback,opts){
+return '<select aria-label="'+name+'" onchange="'+callback+'(this.value)">'+opts.map(x=>'<option value="'+esc(x)+'"'+(selected===x?' selected':'')+'>'+esc(x)+'</option>').join('')+'</select>';
+}
+function evidenceDatabase(){
+const records=evidenceRecords().filter(e=>(evidencePlatform==='All'||e.platform===evidencePlatform)&&[e.title,e.detail,e.origin].join(' ').toLowerCase().includes(evidenceQuery.toLowerCase()));
+return '<div class="card"><h3>Evidence records</h3><p class="desc">Historical reports, claims, and collected public development records. A developer-reported test does not prove GTA VI boots or runs.</p><div class="filters">'+evidenceSelect('Platform',evidencePlatform,'setEvidencePlatform',['All','Xbox','PS5','Unknown'])+'<input aria-label="Search evidence" placeholder="Search projects and findings" value="'+esc(evidenceQuery)+'" oninput="setEvidenceQuery(this.value)"></div><div class="desc">'+records.length+' matching records · '+evidenceRecords().length+' total (including historical metrics)</div>'+ (records.length?records.slice(0,150).map(e=>'<div class="item"><div class="row"><strong>'+esc(e.title)+'</strong><span class="tag">'+esc(labels[e.grade]||e.grade)+'</span></div><div class="desc">'+esc(e.platform)+' · '+esc(e.origin)+(e.date?' · '+esc(e.date):' · Date not recorded')+'</div><p class="desc">'+esc(e.detail||'No details recorded')+'</p>'+(e.source&&/^https?:\/\//.test(e.source)?'<a target="_blank" rel="noopener noreferrer" href="'+esc(e.source)+'">Original source</a>':'<span class="desc">No source URL recorded</span>')+'</div>').join(''):'<div class="empty">No matching evidence records. Clear filters to see available history.</div>')+'</div>';
+}
+function confidenceDashboard(){
+const rows=evidenceRecords().filter(e=>confidencePlatform==='All'||e.platform===confidencePlatform);
+const count=k=>rows.filter(e=>e.grade===k).length;
+return '<div class="card"><h3>Evidence verification overview</h3><p class="desc">Counts describe recorded claims and artifacts, not progress toward GTA VI playability. These categories are not percentages of completion. Collected GitHub records are public records, not independent technical validation.</p><div class="filters">'+evidenceSelect('Platform',confidencePlatform,'setConfidencePlatform',['All','Xbox','PS5','Unknown'])+'</div><div class="row"><strong>'+rows.length+' evidence records</strong><span class="tag">Recorded, not necessarily verified</span></div>'+Object.entries(labels).map(([key,name])=>'<div class="item"><div class="row"><strong>'+esc(name)+'</strong><span class="tag">'+count(key)+' records</span></div><div class="bars"><i style="width:'+(rows.length?(count(key)/rows.length*100):0).toFixed(2)+'%"></i></div><p class="desc">'+esc((descriptions.find(d=>d[0]===name)||[])[1]||'')+'</p></div>').join('')+'<p class="warn">No independently verified GTA VI PC boot or playable gameplay is established by these records.</p></div><div class="card"><h3>What would increase confidence?</h3><div class="item"><strong>Developer result → Independently tested</strong><p class="desc">A separate tester reproduces the same component behavior using a documented build, inputs, logs and environment.</p></div><div class="item"><strong>Independent component test → GTA VI boots</strong><p class="desc">Authenticated game build, executable provenance, reproducible startup logs and independent confirmation on PC.</p></div><div class="item"><strong>GTA VI boots → GTA VI playable</strong><p class="desc">Independently reproduced controllable gameplay, recorded configuration and sufficient capture/log evidence.</p></div></div>';
+}
+window.setEvidencePlatform=v=>{evidencePlatform=v;render()};
+window.setEvidenceQuery=v=>{evidenceQuery=v;render();const input=document.querySelector('input[aria-label="Search evidence"]');if(input){input.focus();input.setSelectionRange(v.length,v.length)}};
+window.setConfidencePlatform=v=>{confidencePlatform=v;render()};
 const oldRender=render;
 render=function(){
 oldRender();
-if(current==='Evidence confidence'||current==='Evidence'){
-document.getElementById('content').innerHTML='<h2>Evidence explained</h2><article class="card"><p class="desc">These are descriptive evidence categories, not completion percentages. A public record or developer test does not prove GTA VI works on PC.</p>'+descriptions.map(([name,desc])=>'<div class="item"><strong>'+esc(name)+'</strong><p class="desc">'+esc(desc)+'</p></div>').join('')+'</article>';
+if(current==='Evidence'||current==='Evidence confidence'){
+document.getElementById('content').innerHTML='<h2>'+esc(current)+'</h2>'+(current==='Evidence'?evidenceDatabase():confidenceDashboard());
 }
 translate(document.getElementById('content'));
 translate(document.getElementById('stats'));
