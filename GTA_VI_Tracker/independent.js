@@ -4,6 +4,7 @@ let data=null,error=null,view='findings',filter='all',selected=null;
 const escapeText=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const badge=s=>'<span class="pill">'+escapeText(s.replace(/_/g,' '))+'</span>';
 const box=(title,body)=>'<div class="card"><h3>'+escapeText(title)+'</h3>'+body+'</div>';
+window.renderIndependentVerification=()=>display();
 function display(){
  if(error)return box('Independent Verification','<p class="desc">Monitoring data unavailable: '+escapeText(error)+'</p>');
  if(!data)return box('Independent Verification','<p class="desc">Loading published independent findings…</p>');
@@ -54,7 +55,7 @@ document.addEventListener('change',e=>{if(e.target.id==='independent-risk-filter
 async function refresh(){
  try{const r=await fetch('data/independent.json?cache='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);const d=await r.json();if(!Array.isArray(d.findings))throw Error('Invalid data format');data=d;error=null}
  catch(e){error=e.message}
- if(current==='Independent Verification')render();
+ if(current==='Independent Verification'||current==='Evidence & Confidence')render();
 }
 refresh();setInterval(refresh,5*60*1000);
 })();
