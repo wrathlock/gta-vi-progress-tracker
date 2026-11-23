@@ -228,7 +228,13 @@ const xbox=['Leonida','Xbox2Windows','XCL','ScarlettX','AnyXboxX','Xbox Emulator
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const link=(name,url)=>`<a href="${esc(url||urls[name]||'#')}" target="_blank" rel="noopener noreferrer">${esc(name)} ↗</a>`;const card=(body,title='')=>`<article class="card">${title?`<h3>${esc(title)}</h3>`:''}${body}</article>`;const tag=(x)=>`<span class="tag">${esc(x)}</span>`;const none=msg=>`<div class="empty">${esc(msg)}</div>`;const btn=(label,action)=>`<button onclick="${action}">${esc(label)}</button>`;const state=s=>s==='unknown'||s==null?'Not collected':s;const fmt=v=>v===null||v===undefined?'Not collected':esc(v);
 function metric(n){let m=db.reported_metrics.find(m=>m.project===n);return m?`${m.value.toLocaleString()}${m.denominator?' / '+m.denominator.toLocaleString():''} ${m.metric.replaceAll('_',' ')}`:'No comparable component metric';}
 function header(){document.getElementById('stats').innerHTML=[['GTA VI PC playability','Prerequisites in Progress'],['Execution stage','Pre-Execution'],['Listed sources',String((db.sources||[]).length)]].map(([k,v])=>`<div class="card stat"><small>${k}</small><div class="value ${v==='Prerequisites in Progress'||v==='Pre-Execution'?'warn':'good'}">${v}</div></div>`).join('');document.getElementById('nav').innerHTML=sections.map(s=>`<button class="${s===current?'active':''}" onclick="go('${s.replaceAll("'","\\'")}')">${esc(s)}</button>`).join('')}
-function go(s){current=s;header();render();window.scrollTo({top:0,behavior:'instant'})}function setPlatform(s){platform=s;render()}function setEvidence(s){evidence=s;render()}function setSearch(s){search=s;render()}function setSourceSearch(s){sourceSearch=s;render()}
+function go(s){
+ if(!sections.includes(s))return;
+ const changed=current!==s;
+ current=s;header();render();
+ if(changed){const url=new URL(window.location.href);url.hash='tab='+encodeURIComponent(s);history.pushState({gtaTab:s},'',url.pathname+url.search+url.hash)}
+ window.scrollTo({top:0,behavior:'instant'});
+}function setPlatform(s){platform=s;render()}function setEvidence(s){evidence=s;render()}function setSearch(s){search=s;render()}function setSourceSearch(s){sourceSearch=s;render()}
 function stages(){return platform==='Xbox'?[['Authenticated executable','No independently authenticated GTA VI executable','Verified game binary and provenance'],['CPU / OS runtime','Synthetic PE mapping and CPU research','Game-specific imports, memory and initialization'],['Shader and GPU integration','Reported shader translations and controlled tests','Correct resources, pipelines, synchronization and presentation'],['GTA VI first boot','Not independently reproduced','Repeatable game-specific startup with logs'],['Menu and gameplay','Not independently reproduced','Controllable game session and independent replication']]:[['Usable authenticated game image','No independently verified usable GTA VI image','Authentic image compatible with emulator'],['System services / loader','Generic function coverage reported','Game-specific imports, threading, memory and services'],['Graphics integration','Generic emulator graphics research','Game-specific graphics initialization and rendering'],['GTA VI first boot','No reproduced startup','Repeatable game-specific startup and logs'],['Menu and gameplay','Not independently reproduced','Independent menu and controllable gameplay reproduction']];}
 function stageHTML(){return stages().map(([name,obs,req],i)=>`<div class="step"><b>${i+1}. ${esc(name)}</b> ${tag(i<3?'Prerequisite / research':'Not verified')}<div class="desc">Observed: ${esc(obs)}<br>To advance: ${esc(req)}</div></div>`).join('')}
 function history(){
@@ -1632,6 +1638,26 @@ body.leonida-theme .leonida-feature-art:nth-child(2){background-image:linear-gra
  }
  const onMedia=()=>{bar.hidden=!mobile.matches;refreshActive();updateParallax()};
  mobile.addEventListener('change',onMedia);reduce.addEventListener('change',onMedia);onMedia();
+})();
+</script>
+<script id="gta-browser-history-v1">
+(function(){
+ function tabFromLocation(){
+  const match=location.hash.match(/^#tab=(.*)$/);
+  if(!match)return null;
+  try{const name=decodeURIComponent(match[1]);return sections.includes(name)?name:null}catch(e){return null}
+ }
+ const initial=tabFromLocation();
+ if(initial&&initial!==current){current=initial;header();render()}
+ history.replaceState({gtaTab:current},'',location.href);
+ window.addEventListener('popstate',()=>{
+  const tab=tabFromLocation()||(history.state&&history.state.gtaTab);
+  if(tab&&sections.includes(tab)&&tab!==current){current=tab;header();render();window.scrollTo({top:0,behavior:'instant'})}
+ });
+ window.addEventListener('hashchange',()=>{
+  const tab=tabFromLocation();
+  if(tab&&tab!==current){current=tab;header();render()}
+ });
 })();
 </script>
 </body></html>
