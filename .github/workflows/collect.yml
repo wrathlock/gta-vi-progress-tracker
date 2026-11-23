@@ -45,6 +45,8 @@ jobs:
           assert data['validation']['all_source_records_timestamped']
           assert data['validation']['all_events_have_source_urls']
           assert data['substantively_reviewed_sources'] == 0
+          assert data['validation']['screening_count_matches_records']
+          assert data['automated_content_screened_sources'] == sum(r.get('content_screening', {}).get('status') == 'screened' for r in data['source_results'])
           print('Validated collection:', data['status'], data['last_attempt_utc'], 'reachable', data['reachable_sources'])
           PY
 
