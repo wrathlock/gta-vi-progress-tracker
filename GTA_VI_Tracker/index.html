@@ -238,7 +238,7 @@ const groups=[
 ['Live status',['Overview','Live research status','Latest Changes','Development Activity','Alerts','Get Notifications']],
 ['Playability & progress',['Gameplay proof','Executable','Xbox','PS5','Verified performance','Interactive milestone ladders','Project comparison matrix','Compatibility']],
 ['Evidence & verification',['Independent Verification','Evidence confidence','Cross-checks','Evidence','Reproducibility','Provenance','Scams']],
-['Technical research',['Breakthroughs','Blockers','Bottlenecks','Technical dependency map','Dependencies','RAGE 9','Hardware','Momentum']],
+['Technical research',['Breakthroughs','Technical Blockers & Dependencies','RAGE 9','Hardware','Momentum']],
 ['Sources & development',['Sources','Discovery','GitHub','GitHub analytics','Trackers','Fork analysis']],
 ['History & archive',['Timeline','History','Regressions','Compare','Archive','Preservation','Snapshot explorer']]
 ];
@@ -731,6 +731,82 @@ render=function(){
  if(race)race.insertAdjacentHTML('beforebegin',timeline());
 };
 render();
+})();
+</script>
+<style id="technical-consolidation-style">
+.tech-consolidated .tech-tabs{display:flex;gap:7px;overflow-x:auto;padding:4px 0 13px;scrollbar-width:thin}
+.tech-consolidated .tech-tabs button{flex:none}
+.tech-consolidated .tech-intro{color:var(--muted,#aabbd0);font-size:.88rem;margin:7px 0 13px}
+.tech-consolidated .tech-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tech-consolidated .tech-panel{background:rgba(104,139,167,.08);border:1px solid rgba(133,162,186,.23);padding:14px;border-radius:10px}
+.tech-consolidated .tech-panel h4{margin:0 0 7px}
+.tech-consolidated .tech-panel p{margin:6px 0;color:var(--muted,#aabbd0);font-size:.86rem}
+.tech-consolidated .tech-flow{display:flex;align-items:center;flex-direction:column;gap:6px}
+.tech-consolidated .tech-flow .tech-panel{width:min(100%,490px)}
+.tech-consolidated .tech-flow-arrow{color:var(--teal,#6edbd0)}
+@media(max-width:620px){.tech-consolidated .tech-grid{grid-template-columns:1fr}}
+</style>
+<script id="technical-consolidation-script">
+(function(){
+const name='Technical Blockers & Dependencies';
+const aliases=['Blockers','Bottlenecks','Technical dependency map','Dependencies'];
+for(const a of aliases){let i=sections.indexOf(a);if(i>=0)sections.splice(i,1)}
+if(!sections.includes(name)){const i=sections.indexOf('Breakthroughs');sections.splice(i>=0?i+1:sections.length,0,name)}
+let view='overview';
+const views=[['overview','Overview'],['blockers','Blockers'],['bottlenecks','Bottlenecks'],['map','Dependency Map'],['projects','Projects']];
+window.setTechView=function(next){if(views.some(v=>v[0]===next)){view=next;render()}};
+const previousSection=section;
+function techCard(title,body){return '<div class="tech-panel"><h4>'+esc(title)+'</h4>'+body+'</div>'}
+function techText(t){return '<p>'+esc(t)+'</p>'}
+function technical(){
+ const xbox=platform==='Xbox';
+ const prerequisites=stages();
+ const blockers=xbox?[
+ ['Authentic GTA VI executable','No independently authenticated executable is established.'],
+ ['GTA VI startup','Repeatable game-specific startup and supporting logs have not been independently reproduced.'],
+ ['Graphics and gameplay proof','GTA VI graphics, main menu and controllable gameplay are not independently reproduced.']
+ ]:[
+ ['Authentic usable game image','No independently verified usable GTA VI image is established.'],
+ ['GTA VI startup','Repeatable game-specific startup and supporting logs have not been independently reproduced.'],
+ ['Graphics and gameplay proof','GTA VI graphics, main menu and controllable gameplay are not independently reproduced.']
+ ];
+ const areas=xbox?[
+ ['CPU / OS runtime','Synthetic PE mapping and CPU research is reported; game-specific imports, memory and initialization need validation.'],
+ ['Shader and GPU integration','Reported shader translations and controlled tests do not establish correct GTA VI resources, pipelines, synchronization or presentation.']
+ ]:[
+ ['System services / loader','Generic function coverage is reported; game-specific imports, threading, memory and services need validation.'],
+ ['Graphics integration','Generic emulator graphics research does not establish GTA VI graphics initialization or rendering.']
+ ];
+ const projectRows=xbox?['Leonida','Xbox2Windows','ScarlettX','XCL']:['PS5 emulator research'];
+ const metrics=(db.reported_metrics||[]);
+ let content='';
+ if(view==='overview'){
+  content=techCard('GTA VI PC verification status','<span class="warn">No independently verified GTA VI PC boot or gameplay</span>'+techText('Platform component research is not a game-specific compatibility result.'))+
+  '<div class="tech-grid">'+[
+   ['Blockers','Missing game-specific evidence','blockers'],
+   ['Bottlenecks','Technical validation areas; not ranked by measured performance','bottlenecks'],
+   ['Dependency Map','Prerequisite sequence and required next evidence','map'],
+   ['Projects','Source-specific historical research, where recorded','projects']
+  ].map(([title,description,id])=>techCard(title,techText(description)+'<button onclick="setTechView(\''+id+'\')">View details</button>')).join('')+'</div>';
+ }else if(view==='blockers'){
+  content='<p class="tech-intro">Unresolved game-specific evidence requirements. These are not claims that a specific software defect has been diagnosed.</p><div class="tech-grid">'+blockers.map(([a,b])=>techCard(a,'<span class="warn">Unverified</span>'+techText(b))).join('')+'</div>';
+ }else if(view==='bottlenecks'){
+  content='<p class="tech-intro">Potential technical constraints requiring game-specific testing. No measured GTA VI performance bottleneck or severity ranking is established.</p><div class="tech-grid">'+areas.map(([a,b])=>techCard(a,techText(b))).join('')+'</div>';
+ }else if(view==='map'){
+  content='<p class="tech-intro">Conceptual technical prerequisite order from the existing '+esc(platform)+' research chain; no verified completion is implied.</p><div class="tech-flow">'+prerequisites.map(([a,observed,required],i)=>techCard((i+1)+'. '+a,techText('Observed: '+observed)+techText('To advance: '+required))+(i<prerequisites.length-1?'<span class="tech-flow-arrow" aria-hidden="true">↓</span>':'')).join('')+'</div>';
+ }else{
+  content='<p class="tech-intro">Historical project records and source links. Counts describe reported component tests, not GTA VI game readiness.</p><div class="tech-grid">'+projectRows.map(p=>{
+   const rows=metrics.filter(m=>m.project===p);
+   const details=rows.length?rows.map(m=>techText((m.metric||'Reported metric')+': '+m.value+(m.denominator?' / '+m.denominator:'')+' · historical, not independently reproduced')+(m.source?'<a href="'+esc(m.source)+'" target="_blank" rel="noopener noreferrer">Original source</a>':'')).join(''):techText('No distinct project-level metric is recorded in this snapshot.');
+   return techCard(p,details);
+  }).join('')+'</div>';
+ }
+ return '<div class="tech-consolidated card"><div class="row"><h3>Technical Blockers & Dependencies</h3><span class="tag">Research · not game verified</span></div><div class="actions"><button onclick="setPlatform(\'Xbox\')">Xbox'+(xbox?' ✓':'')+'</button><button onclick="setPlatform(\'PS5\')">PS5'+(!xbox?' ✓':'')+'</button></div><nav class="tech-tabs" aria-label="Technical research views">'+views.map(([id,label])=>'<button class="'+(view===id?'active':'')+'" onclick="setTechView(\''+id+'\')" aria-current="'+(view===id?'page':'false')+'">'+label+'</button>').join('')+'</nav>'+content+'</div>';
+}
+section=function(){return current===name?technical():previousSection()};
+const previousGo=go;
+go=function(target){if(aliases.includes(target))target=name;previousGo(target)};
+header();render();
 })();
 </script>
 </body></html>
