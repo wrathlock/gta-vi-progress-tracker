@@ -1,0 +1,17 @@
+{
+  "name": "GTA VI Progress Tracker",
+  "short_name": "VI Tracker",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#100b1d",
+  "theme_color": "#24132e",
+  "icons": [
+    {
+      "src": "assets/vi-bookmark-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
