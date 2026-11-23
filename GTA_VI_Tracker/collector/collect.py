@@ -174,7 +174,7 @@ project_usage_leads=[]
 def usage_lead(project,url,title,body,kind,when=None):
     if project not in PROJECT_USAGE_NAMES:return
     # Evaluate a short context rather than unrelated keywords anywhere in a README.
-    parts=re.split(r'(?<=[.!?\\n])\\s+',str(body or ''))
+    parts=re.split(r'(?<=[.!?\n])\s+',str(body or ''))
     for part in parts[:250]:
         if len(part)>750:continue
         if not PROJECT_USAGE_PATTERN.search(part):continue
