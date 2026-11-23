@@ -6,6 +6,9 @@ on:
     paths:
       - '.github/workflows/collect.yml'
       - 'GTA_VI_Tracker/collector/independent.py'
+      - 'GTA_VI_Tracker/collector/collect.py'
+      - 'GTA_VI_Tracker/independent.js'
+      - 'GTA_VI_Tracker/index.html'
   schedule:
     - cron: "23 * * * *"
   workflow_dispatch:
@@ -31,6 +34,9 @@ jobs:
       - name: Collect source activity
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          REDDIT_USER_AGENT: GtaViSignalTracker/1.0 (public research; github.com/wrathlock/gta-vi-signal-tracker)
         run: python3 GTA_VI_Tracker/collector/collect.py
 
       - name: Validate collected JSON before publishing
