@@ -25,7 +25,10 @@ SOURCES={
 'GTA VI Dump & PC-Port Tracker':'https://github.com/pagiii/gta6-tracker',
 'GTA VI Reverse Engineering Index':'https://github.com/Ahmet-Dedeler/awesome-gta6-reverse-engineering',
 'GTA 6 PC Tracker':'https://github.com/alan-r-henry/gta6-pc-tracker',
-'FollowTheLeek':'https://github.com/deepwoodssec/FollowTheLeek'
+'FollowTheLeek':'https://github.com/deepwoodssec/FollowTheLeek',
+'AnyPS5':'https://github.com/boykopovar/AnyPS5',
+'KytyPS5':'https://github.com/KytyPS5/KytyPS5',
+'SharpEmu':'https://github.com/sharpemu/sharpemu'
 }
 TOKEN=os.getenv('GITHUB_TOKEN','').strip()
 
@@ -52,7 +55,7 @@ def read_json(path,default):
 old=read_json(DATA/'live.json',{})
 results=[]; events=[]; analytic=[]; successes=0; screened=0
 # The collector does not review full source contents or independently test claims.
-PLATFORMS={'Leonida':'Xbox','Xbox2Windows':'Xbox','XCL':'Xbox','ScarlettX':'Xbox','AnyXboxX':'Xbox','Xbox Emulator / TomBox':'Xbox'}
+PLATFORMS={'Leonida':'Xbox','Xbox2Windows':'Xbox','XCL':'Xbox','ScarlettX':'Xbox','AnyXboxX':'Xbox','Xbox Emulator / TomBox':'Xbox','AnyPS5':'PS5','KytyPS5':'PS5','SharpEmu':'PS5'}
 def project_platform(name):
     return PLATFORMS.get(name,'Research')
 def evidence_identity(e):
