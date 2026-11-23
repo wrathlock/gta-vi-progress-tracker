@@ -96,11 +96,20 @@ def collect_rumors(previous):
     import xml.etree.ElementTree as ET
     from html import unescape
     feeds=[
-      ('Reddit · GamingLeaksAndRumours','https://www.reddit.com/r/GamingLeaksAndRumours/search.rss?q=%22GTA%206%22%20OR%20%22GTA%20VI%22&restrict_sr=1&sort=new&t=week'),
-      ('Reddit · GTA6','https://www.reddit.com/r/GTA6/search.rss?q=PC%20OR%20leak%20OR%20executable&restrict_sr=1&sort=new&t=week'),
-      ('X-linked reports · news index','https://news.google.com/rss/search?q=%22GTA%206%22%20%28%22Twitter%22%20OR%20%22X%20post%22%29%20%28leak%20OR%20PC%20OR%20executable%29&hl=en-US&gl=US&ceid=US:en')
+      ('Reddit · GamingLeaksAndRumours (indexed)','https://news.google.com/rss/search?q=site%3Areddit.com%2Fr%2FGamingLeaksAndRumours%2F%20%22GTA%206%22%20when%3A7d&hl=en-US&gl=US&ceid=US:en'),
+      ('Reddit · GTA6 (indexed)','https://news.google.com/rss/search?q=site%3Areddit.com%2Fr%2FGTA6%2F%20%28PC%20OR%20leak%20OR%20executable%29%20when%3A7d&hl=en-US&gl=US&ceid=US:en'),
+      ('GTA VI · recent reporting','https://news.google.com/rss/search?q=%22GTA%206%22%20%28Cyberleek%20OR%20executable%20OR%20recompilation%20OR%20emulator%29%20when%3A7d&hl=en-US&gl=US&ceid=US:en'),
+      ('X-mentioned reporting · indexed','https://news.google.com/rss/search?q=%22GTA%206%22%20%28Twitter%20OR%20%22X%20post%22%29%20when%3A7d&hl=en-US&gl=US&ceid=US:en')
     ]
-    prior=[x for x in (previous.get('rumors') or {}).get('items',[]) if isinstance(x,dict)]
+    from email.utils import parsedate_to_datetime
+    cutoff=datetime.datetime.now(datetime.timezone.utc)-datetime.timedelta(days=7)
+    def pub_date(item):
+        try:
+            stamp=item.get('published') or item.get('first_seen_utc') or ''
+            dt=parsedate_to_datetime(stamp) if ',' in stamp else datetime.datetime.fromisoformat(stamp.replace('Z','+00:00'))
+            return dt.astimezone(datetime.timezone.utc)
+        except Exception:return datetime.datetime(1970,1,1,tzinfo=datetime.timezone.utc)
+    prior=[x for x in (previous.get('rumors') or {}).get('items',[]) if isinstance(x,dict) and pub_date(x)>=cutoff]
     items={x.get('url'):x for x in prior if x.get('url')}
     checks=[]
     relevant=re.compile(r'(?i)\b(?:gta\s*(?:6|vi)|grand theft auto\s*(?:6|vi)|cyberleek|leonida|xbox2windows|recompil(?:e|ation))\b')
@@ -119,7 +128,8 @@ def collect_rumors(previous):
                     link=node.find('{http://www.w3.org/2005/Atom}link')
                     href=(link.get('href') if link is not None else None) or value('link')
                     published=value('{http://www.w3.org/2005/Atom}published') or value('pubDate')
-                    if not title or not href or (not relevant.search(title) and name!='Reddit · GTA6'):continue
+                    if not title or not href or not relevant.search(title):continue
+                    if pub_date({'published':published})<cutoff:continue
                     parsed=urllib.parse.urlsplit(href)
                     if parsed.scheme!='https' or parsed.hostname not in ('www.reddit.com','reddit.com','news.google.com'):continue
                     if href not in items:items[href]={'title':re.sub(r'\s+',' ',title)[:220],'url':href,'source':name,'published':published[:90],'first_seen_utc':NOW,'classification':'Unverified community discussion / third-party reporting','verification':'Not independently verified'}
@@ -128,8 +138,8 @@ def collect_rumors(previous):
             except Exception as exc:checks.append({'source':name,'status':'parse_failed','error':type(exc).__name__})
         else:checks.append({'source':name,'status':'unavailable','error':error or 'HTTP '+str(status)})
     # Preserve prior findings if an RSS source is blocked; do not imply it was freshly checked.
-    entries=sorted(items.values(),key=lambda x:x.get('first_seen_utc',''),reverse=True)[:100]
-    return {'checked_at_utc':NOW,'method':'Public Reddit Atom and indexed news RSS, no social APIs','sources':checks,'items':entries,'note':'Unverified headlines only. X entries are third-party indexed reports, not direct X verification. Feeds may be blocked, incomplete, delayed or unavailable.'}
+    entries=sorted(items.values(),key=pub_date,reverse=True)[:100]
+    return {'checked_at_utc':NOW,'method':'Public indexed news RSS including Reddit discussions; no social APIs','sources':checks,'items':entries,'note':'Seven-day indexed headlines, newest publication first. Reddit items are indexed mentions, not direct Reddit API results. X mentions are third-party reports, not authenticated X posts. Indexing may be incomplete or delayed.'}
 
 old=read_json(DATA/'live.json',{})
 results=[]; events=[]; analytic=[]; successes=0; screened=0
