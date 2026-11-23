@@ -624,6 +624,8 @@ header();render();
 })();
 </script>
 <style id="exe-watch-home-style">
+.exe-watch-milestones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:12px 0}.exe-watch-stage{border:1px solid var(--edge);border-radius:8px;padding:11px;display:flex;flex-direction:column;gap:7px}.exe-watch-stage span{font-size:.82rem}.exe-watch-leads{margin:12px 0;padding:10px;border:1px solid var(--edge);border-radius:8px}@media(max-width:650px){.exe-watch-milestones{grid-template-columns:1fr}}
+
 .exe-watch-home{border:1px solid #45677a;border-left:3px solid var(--teal);background:linear-gradient(110deg,#15283c,#112033);border-radius:11px;padding:15px 17px;margin-bottom:13px}.exe-watch-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.exe-watch-home h3{font-size:1.04rem;margin:0}.exe-watch-state{font-size:.8rem;color:var(--amber);background:#26364a;border-radius:16px;padding:5px 10px}.exe-watch-home p{color:var(--muted);margin:8px 0 12px;line-height:1.5}.exe-watch-steps{display:flex;gap:8px;flex-wrap:wrap}.exe-watch-steps span{border:1px solid var(--edge);border-radius:7px;padding:6px 9px;color:var(--muted);font-size:.79rem}.exe-watch-steps span:first-child{border-color:#496d6b;color:var(--teal)}.exe-watch-foot{display:flex;align-items:center;gap:15px;flex-wrap:wrap;margin-top:11px}.exe-watch-foot a{color:var(--teal);font-size:.86rem}.exe-watch-foot small{font-size:.78rem}@media(max-width:600px){.exe-watch-home{padding:12px}.exe-watch-steps span{font-size:.75rem}}
 </style>
 <script id="exe-watch-home-script">
@@ -631,8 +633,16 @@ header();render();
 const originalRender=render;
 function exeWatchCard(){
 const live=(typeof LIVE!=='undefined'&&LIVE&&LIVE.status!=='never_collected')?LIVE:null;
-const scan=live&&live.last_successful_scan_utc?'Last partial metadata scan: '+String(live.last_successful_scan_utc).replace('T',' ').slice(0,19)+' UTC':'No successful live scan recorded';
-return '<section class="exe-watch-home" aria-label="GTA VI executable release watch"><div class="exe-watch-top"><h3>GTA VI executable · release watch</h3><span class="exe-watch-state">No authenticated public EXE verified</span></div><p>The release or authentication of a genuine GTA VI executable is the key milestone being watched. Claims, download links, hashes and archive listings are not proof of a usable game binary.</p><div class="exe-watch-steps"><span>1 · Public release claim</span><span>2 · Authenticity and provenance</span><span>3 · Independent binary verification</span><span>4 · PC boot testing</span></div><div class="exe-watch-foot"><a href="https://wayfinder.ar.io/?q=Cyberleek" target="_blank" rel="noopener noreferrer">Cyberleek archive search</a><a href="https://github.com/deepwoodssec/FollowTheLeek" target="_blank" rel="noopener noreferrer">Source cross-checks</a><a href="#" onclick="go(&quot;Executable&quot;);return false">Verification criteria</a><small>'+esc(scan)+' · 2 external monitoring reminders configured; execution status not verified here</small></div></section>';
+const w=live?.exe_watch;
+const scan=w?.checked_at_utc?'Last announcement check: '+String(w.checked_at_utc).replace('T',' ').slice(0,19)+' UTC':'Announcement screening not yet published';
+const sources=w?.sources||[];
+const checked=sources.filter(x=>x.status==='screened').length;
+const announcement=!!w?.release_announcement_detected;
+const auth=!!w?.executable_independently_authenticated;
+const boot=!!w?.execution_independently_reproduced;
+const status=(v,yes,no)=>'<div class="exe-watch-stage"><strong>'+esc(yes)+'</strong><span class="'+(v?'good':'warn')+'">'+(v?'Detected / recorded':esc(no))+'</span></div>';
+const leads=(w?.release_announcement_sources||[]).map(x=>'<div class="item"><strong>'+esc(x.name)+'</strong><p class="desc">'+esc(x.excerpt||'New matching text')+'</p><small>Unverified announcement lead; not a confirmed executable</small></div>').join('');
+return '<section class="exe-watch-home" aria-label="GTA VI executable release watch"><div class="exe-watch-top"><h3>GTA VI executable · release watch</h3><span class="exe-watch-state">'+(boot?'Execution independently reproduced':auth?'Executable independently authenticated':announcement?'New announcement lead detected':'No authenticated public EXE verified')+'</span></div><p>Three distinct milestones: a new source announcement, independent executable authentication, and independent boot reproduction. A source mention or download link alone does not prove the game is usable.</p><div class="exe-watch-milestones">'+status(announcement,'1 · Release announcement detected',w?'No new matching announcement':'Monitoring not yet active')+status(auth,'2 · Executable independently authenticated','Not independently verified')+status(boot,'3 · Execution independently reproduced','Not independently reproduced')+'</div>'+(leads?'<div class="exe-watch-leads"><h4>New source-text leads (unverified)</h4>'+leads+'</div>':'')+'<p class="desc">'+esc(scan)+' · '+checked+'/'+sources.length+' sources text-screened. HTML screening can miss dynamic archive listings; no executable files are downloaded or executed.</p><div class="exe-watch-foot"><a href="https://wayfinder.ar.io/?q=Cyberleek" target="_blank" rel="noopener noreferrer">Cyberleek archive search</a><a href="https://github.com/deepwoodssec/FollowTheLeek" target="_blank" rel="noopener noreferrer">Source cross-checks</a><a href="#" onclick="go(&quot;Executable&quot;);return false">Verification criteria</a></div></section>';
 }
 render=function(){
 originalRender();
