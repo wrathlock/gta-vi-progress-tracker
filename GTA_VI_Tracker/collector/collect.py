@@ -439,3 +439,5 @@ rss='<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>
 (DATA.parent/'feed.xml').write_text(rss,encoding='utf-8')
 
 print('Collection finished',NOW,'source successes',successes,'unavailable',report['unavailable_sources'],'events',len(events))
+
+# Manual refresh request: 2026-11-23 (rumors and public source feeds)
