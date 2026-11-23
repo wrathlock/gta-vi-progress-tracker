@@ -1580,4 +1580,54 @@ body.leonida-theme header:before{display:none!important;content:none!important}
 body.leonida-theme .leonida-feature-art:nth-child(2){background-image:linear-gradient(90deg,#1b0d25d9 0%,#2e123d55 65%,#130b1a55),url("https://www.rockstargames.com/VI/_next/static/media/VINTAGE_VICE_CITY_PACK_01.05zaof7o1uz.3.jpg?akim=1&imdensity=1&imwidth=1920")!important;background-position:center 32%!important;background-size:cover!important}
 @media(max-width:900px){body.leonida-theme header{height:158px!important;min-height:158px!important;max-height:158px!important;background-position:center,56% 44%!important}}
 @media(max-width:600px){body.leonida-theme header{height:140px!important;min-height:140px!important;max-height:140px!important;background-position:center,60% center!important}}
-</style></body></html>
+</style><style id="mobile-visual-goodies-v1">
+/* Mobile-only enhancements. Desktop layout remains untouched. */
+@media(max-width:700px) and (pointer:coarse){
+ body{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+ body > header{background-position:center, var(--mobile-hero-position,60%) var(--mobile-hero-y,50%)!important;transition:none}
+ .mobile-bottom-nav{position:fixed;z-index:1200;bottom:calc(9px + env(safe-area-inset-bottom,0px));left:12px;right:12px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;padding:7px;border:1px solid rgba(255,133,200,.48);border-radius:21px;background:rgba(18,13,37,.91);box-shadow:0 10px 34px #050610b8,0 0 23px #ff60af22;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+ .mobile-bottom-nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:49px;padding:5px 1px;border:0;border-radius:13px;background:transparent;color:#d5c7e5;font:600 10px system-ui,sans-serif;letter-spacing:.1px}
+ .mobile-bottom-nav button .mobile-nav-icon{font-size:20px;line-height:1.1}
+ .mobile-bottom-nav button.active{background:linear-gradient(155deg,#ff61b33b,#7c63ff29);color:#fff;box-shadow:inset 0 0 0 1px #ff89cc61}
+ .mobile-touch-ripple{position:fixed;z-index:2000;width:14px;height:14px;pointer-events:none;border:2px solid #ff8bd5;border-radius:50%;box-shadow:0 0 15px #ff54b3,0 0 27px #a45bff;transform:translate(-50%,-50%) scale(.3);animation:mobile-ripple .55s ease-out forwards}
+ @keyframes mobile-ripple{to{opacity:0;transform:translate(-50%,-50%) scale(5)}}
+ .mobile-status-flash{animation:mobile-status-glow 1.2s ease-out}
+ @keyframes mobile-status-glow{0%{box-shadow:0 0 0 1px #ff91d7,0 0 22px #ff5aa788}100%{box-shadow:none}}
+}
+@media(min-width:701px), (pointer:fine){.mobile-bottom-nav,.mobile-touch-ripple{display:none!important}}
+@media(prefers-reduced-motion:reduce){
+ .mobile-touch-ripple{display:none!important}
+ .mobile-status-flash{animation:none!important}
+ body > header{transition:none!important}
+}
+</style>
+<script id="mobile-visual-goodies-v1">
+(function(){
+ const mobile=window.matchMedia('(max-width:700px) and (pointer:coarse)');
+ const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+ const tabs=[['Overview','⌂','Home'],['Alerts','◉','Alerts'],['Evidence & Confidence','◇','Evidence'],['Scams','⚠','Scams']];
+ const bar=document.createElement('nav');bar.className='mobile-bottom-nav';bar.setAttribute('aria-label','Mobile quick navigation');
+ for(const [tab,symbol,label] of tabs){const button=document.createElement('button');button.type='button';button.dataset.tab=tab;button.innerHTML='<span class="mobile-nav-icon" aria-hidden="true">'+symbol+'</span><span>'+label+'</span>';button.addEventListener('click',()=>{if(typeof go==='function')go(tab)});bar.appendChild(button)}
+ const more=document.createElement('button');more.type='button';more.innerHTML='<span class="mobile-nav-icon" aria-hidden="true">☰</span><span>More</span>';more.setAttribute('aria-label','Open all dashboard sections');more.addEventListener('click',()=>{const toggle=document.getElementById('navToggle');if(toggle)toggle.click()});bar.appendChild(more);
+ document.body.appendChild(bar);
+ const refreshActive=()=>{if(!mobile.matches)return;const active=typeof current==='string'?current:'';bar.querySelectorAll('button[data-tab]').forEach(b=>{const yes=b.dataset.tab===active;b.classList.toggle('active',yes);if(yes)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')})};
+ // Observe the existing section navigation instead of replacing the site's render functions.
+ const content=document.getElementById('content');
+ if(content){new MutationObserver(refreshActive).observe(content,{childList:true});refreshActive()}
+ document.addEventListener('pointerdown',e=>{if(!mobile.matches||reduce.matches||e.pointerType==='mouse')return;const ripple=document.createElement('span');ripple.className='mobile-touch-ripple';ripple.style.left=e.clientX+'px';ripple.style.top=e.clientY+'px';document.body.appendChild(ripple);ripple.addEventListener('animationend',()=>ripple.remove(),{once:true});setTimeout(()=>ripple.remove(),750)},{passive:true});
+ // A small scroll-based shift of existing header artwork; no layout changes.
+ let scheduled=false;
+ function updateParallax(){scheduled=false;if(!mobile.matches||reduce.matches){document.body.style.removeProperty('--mobile-hero-y');return}const offset=Math.min(window.scrollY||0,220);document.body.style.setProperty('--mobile-hero-y',(50+offset*.055)+'%')}
+ window.addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(updateParallax)}},{passive:true});
+ const stats=document.getElementById('stats');
+ if(stats){
+  let last='';
+  const snapshot=()=>Array.from(stats.querySelectorAll('.stat')).map(x=>x.textContent.trim()).join('|');
+  last=snapshot();
+  new MutationObserver(()=>{const next=snapshot();if(next===last)return;const prior=last.split('|');last=next;if(!mobile.matches||reduce.matches)return;stats.querySelectorAll('.stat').forEach((card,i)=>{if(prior[i]===card.textContent.trim())return;card.classList.remove('mobile-status-flash');void card.offsetWidth;card.classList.add('mobile-status-flash');card.addEventListener('animationend',()=>card.classList.remove('mobile-status-flash'),{once:true})})}).observe(stats,{childList:true,subtree:true,characterData:true});
+ }
+ const onMedia=()=>{bar.hidden=!mobile.matches;refreshActive();updateParallax()};
+ mobile.addEventListener('change',onMedia);reduce.addEventListener('change',onMedia);onMedia();
+})();
+</script>
+</body></html>
