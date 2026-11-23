@@ -3,7 +3,7 @@
 Only repo metadata and Github events are collected; non-GitHub sources are HEAD/GET reachability checked.
 No keyword match is classified as GTA VI game execution, and this script never sends alerts.
 """
-import json, os, urllib.request, urllib.error, pathlib, datetime, re, time
+import json, os, urllib.request, urllib.error, pathlib, datetime, re, time, hashlib
 from collections import Counter
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 DATA=ROOT/'data'
@@ -34,7 +34,7 @@ SOURCES={
 TOKEN=os.getenv('GITHUB_TOKEN','').strip()
 
 def fetch(url, api=False, head=False):
-    headers={'User-Agent':'GTA-VI-Signal-Tracker/2.7 (public-metadata-only)', 'Accept':'application/vnd.github+json' if api else 'text/html,application/json;q=0.8,*/*;q=0.5'}
+    headers={'User-Agent':'GTA-VI-Signal-Tracker/2.9 (public-metadata-only)', 'Accept':'application/vnd.github+json' if api else 'text/html,application/json;q=0.8,*/*;q=0.5'}
     if api and TOKEN:headers['Authorization']='Bearer '+TOKEN
     req=urllib.request.Request(url,headers=headers,method='HEAD' if head else 'GET')
     try:
@@ -55,9 +55,18 @@ def read_json(path,default):
 
 old=read_json(DATA/'live.json',{})
 results=[]; events=[]; analytic=[]; successes=0
+# The collector does not review full source contents or independently test claims.
+PLATFORMS={'Leonida':'Xbox','Xbox2Windows':'Xbox','XCL':'Xbox','ScarlettX':'Xbox','AnyXboxX':'Xbox','Xbox Emulator / TomBox':'Xbox'}
+def project_platform(name):
+    return PLATFORMS.get(name,'Research')
+def evidence_identity(e):
+    return str(e.get('id') or e.get('url') or '')
+def evidence_fingerprint(e):
+    return hashlib.sha256(json.dumps({'type':e.get('type'),'title':e.get('title'),'classification':e.get('classification'),'evidence':e.get('evidence'),'platform':e.get('platform')},sort_keys=True,ensure_ascii=False).encode()).hexdigest()
+
 for name,url in SOURCES.items():
     m=re.fullmatch(r'https://github\.com/([^/]+)/([^/?#]+)/?',url)
-    record={'name':name,'url':url,'checked_at_utc':NOW,'method':'github_api_repo_metadata_and_recent_activity' if m else 'reachability_only','status':'unavailable','last_public_activity_utc':None,'error':None}
+    record={'name':name,'url':url,'checked_at_utc':NOW,'method':'github_api_repo_metadata_and_recent_activity' if m else 'reachability_only','substantive_content_review':False,'independent_verification':False,'status':'unavailable','last_public_activity_utc':None,'error':None}
     if m:
         repo=m.group(1)+'/'+m.group(2)
         info,err=api('repos/'+repo)
@@ -76,7 +85,7 @@ for name,url in SOURCES.items():
                     sha=it.get('sha','')
                     if not sha:continue
                     c=it.get('commit') or {}; when=((c.get('committer') or {}).get('date') or (c.get('author') or {}).get('date'))
-                    events.append({'id':repo+':commit:'+sha,'type':'commit','project':name,'platform':'PS5' if name=='GTA 6 PC Tracker' else 'Xbox' if name in ['Leonida','Xbox2Windows','XCL','ScarlettX','AnyXboxX','Xbox Emulator / TomBox'] else 'Research','date':when,'title':(c.get('message') or '').split('\n',1)[0][:220],'url':it.get('html_url'),'evidence':'C1','classification':'repository activity, not verified breakthrough'})
+                    events.append({'id':repo+':commit:'+sha,'type':'commit','project':name,'platform':project_platform(name),'date':when,'title':(c.get('message') or '').split('\n',1)[0][:220],'url':it.get('html_url'),'evidence':'C1','review_status':'not_independently_reviewed','classification':'repository activity, not verified breakthrough'})
             if isinstance(releases,list):
                 for it in releases:
                     if not it.get('id'):continue
@@ -84,7 +93,7 @@ for name,url in SOURCES.items():
             if isinstance(issues,list):
                 for it in issues:
                     if it.get('pull_request'):continue
-                    events.append({'id':repo+':issue:'+str(it['number']),'type':'issue','project':name,'platform':'Unknown','date':it.get('updated_at'),'title':str(it.get('title',''))[:220],'url':it.get('html_url'),'evidence':'C1','classification':'issue discussion, not independently verified'})
+                    events.append({'id':repo+':issue:'+str(it['number']),'type':'issue','project':name,'platform':project_platform(name),'date':it.get('updated_at'),'title':str(it.get('title',''))[:220],'url':it.get('html_url'),'evidence':'C1','classification':'issue discussion, not independently verified'})
             merged=0
             if isinstance(pulls,list):
                 for it in pulls:
@@ -102,21 +111,30 @@ for name,url in SOURCES.items():
     results.append(record)
 
 # Latest fetched metadata is NOT a general-source contents scan.
-latest={e['id']:e for e in events}
-previous_ids={e['id'] for e in old.get('events',[]) if isinstance(e,dict) and e.get('id')}
-changes=[{'kind':'new_public_record','event':e,'note':'New since previously stored collection; not a verified technical breakthrough'} for e in latest.values() if e['id'] not in previous_ids] if old.get('last_successful_scan_utc') else []
+latest={evidence_identity(e):e for e in events}
+previous={evidence_identity(e):e for e in old.get('events',[]) if isinstance(e,dict) and evidence_identity(e)}
+has_prior=bool(old.get('last_successful_scan_utc'))
+changes=[]
+if has_prior:
+    for key,e in latest.items():
+        if key not in previous:
+            changes.append({'kind':'new_public_record','event':e,'note':'Newly observed public record, not verified technical progress'})
+        elif evidence_fingerprint(e)!=evidence_fingerprint(previous[key]):
+            changes.append({'kind':'record_metadata_changed','event':e,'previous':previous[key],'note':'Stored record metadata changed; technical significance not assessed'})
+# Missing records from limited recent samples are NOT regressions or deletions.
+# Historical source evidence is retained separately and never inferred from commit messages.
 events.sort(key=lambda x:x.get('date') or '',reverse=True)
 report={
-'schema_version':'2.7-live-1','status':'partial_collection' if successes else 'collection_failed',
+'schema_version':'2.9-live-1','status':'partial_collection' if successes else 'collection_failed',
 'last_attempt_utc':NOW,'last_successful_scan_utc':NOW if successes else old.get('last_successful_scan_utc'),
-'last_complete_21_source_content_scan_utc':None,
-'original_sources':len(SOURCES),'reachable_sources':successes,'unavailable_sources':sum(r['status']=='unavailable' for r in results),
+'last_complete_21_source_content_scan_utc':None,'last_substantive_content_scan_utc':None,
+'original_sources':len(SOURCES),'listed_sources':len(SOURCES),'contacted_sources':sum(r['status']!='unavailable' for r in results),'reachable_sources':successes,'substantively_reviewed_sources':0,'independently_verified_sources':0,'coverage_method':'Repository metadata and recent activity for GitHub; HTTP reachability only for other sources','unavailable_sources':sum(r['status']=='unavailable' for r in results),
 'last_error_count':sum(bool(r.get('error')) or bool(r.get('activity_error')) for r in results),
 'collector_scope':'GitHub repository metadata, recent public commits/releases/issues/PRs, and HTTP reachability for non-GitHub sources. No executable downloads, no full page-content analysis, no Reddit keyword search, and no independent technical test reproduction.',
 'source_results':results,'events':events[:180],'changes':changes[:100], 'github_analytics':analytic,
 'gameplay_verification':'Not assessed by this automatic collector; preserve independent C4/C5 evidence requirements',
-'earlier_baseline_date':'2026-11-22'}
-DATA.mkdir(exist_ok=True)
+'earlier_baseline_date':'2026-11-22','app_version':'2.9','collector_version':'2.9-audit-1','comparison_scope':'New or changed metadata in recent GitHub samples only; no source-content evidence diff, no verified blocker resolution or regression','validation':{'source_count_matches_expected':len(results)==len(SOURCES),'all_source_records_timestamped':all(r.get('checked_at_utc')==NOW for r in results),'all_events_have_source_urls':all(bool(e.get('url')) for e in events),'no_content_review_claimed':True}}
+DATA.mkdir(exist_ok=True)\n(DATA/'snapshots').mkdir(parents=True,exist_ok=True)
 (DATA/'previous.json').write_text(json.dumps(old,indent=2,ensure_ascii=False),encoding='utf-8')
 (DATA/'live.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
 history=read_json(DATA/'history.json',[])
