@@ -1308,4 +1308,57 @@ window.renderIndependentVerification=function(){return '<article class="card"><h
  };
  header();render();
 })();
-</script></body></html>
+</script><style id="gta-compact-legible-hero-v3">
+/* Compact cinematic GTA theme header: image visible on right, text centered in left panel. */
+body.leonida-theme header{
+ height:158px!important;min-height:158px!important;max-height:158px!important;
+ padding:12px 22px 12px calc(var(--sidebar-width) + 20px)!important;
+ display:flex!important;align-items:center!important;overflow:hidden!important;
+ background-image:linear-gradient(90deg,#160d27 0%,#160d27f2 24%,#1a1029c9 43%,#21122a22 68%),url("assets/leonida-sunset.svg")!important;
+ background-color:#25152f!important;background-size:100% 100%,auto 100%!important;
+ background-position:center,right center!important;background-repeat:no-repeat!important;
+ border-bottom:2px solid #f16db7!important;
+}
+body.leonida-theme header .top{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;gap:12px!important}
+body.leonida-theme header .gta-progress-brand{
+ display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;
+ text-align:center!important;gap:3px!important;
+ width:min(100%,510px)!important;max-width:510px!important;min-width:0!important;
+ height:auto!important;min-height:0!important;margin:0!important;padding:8px 16px!important;
+ border:0!important;border-radius:9px!important;background:#150c22a8!important;
+ box-shadow:none!important;
+}
+body.leonida-theme header .leonida-image-logo{display:none!important}
+body.leonida-theme header .gta-progress-eyebrow{
+ display:block!important;grid-column:auto!important;grid-row:auto!important;
+ font-size:11px!important;line-height:1.25!important;letter-spacing:1.5px!important;
+ color:#ffc7e6!important;text-shadow:0 1px 4px #08050d!important;margin:0!important;
+}
+body.leonida-theme header h1{
+ display:block!important;grid-column:auto!important;grid-row:auto!important;
+ font-size:clamp(18px,1.9vw,27px)!important;line-height:1.15!important;
+ letter-spacing:-.3px!important;white-space:normal!important;
+ margin:0!important;text-shadow:0 2px 7px #090511!important;
+}
+body.leonida-theme header h1 .gta-progress-vi,
+body.leonida-theme header h1 .gta-progress-name{display:inline!important;font-size:1em!important;letter-spacing:inherit!important}
+body.leonida-theme header .gta-progress-subtitle{
+ display:block!important;grid-column:auto!important;grid-row:auto!important;
+ font-size:11px!important;line-height:1.35!important;letter-spacing:0!important;
+ margin:3px 0 0!important;color:#f3deee!important;text-shadow:0 1px 5px #08050d!important;
+}
+body.leonida-theme header .pill{flex-shrink:0!important}
+@media(max-width:900px){
+ body.leonida-theme header{height:140px!important;min-height:140px!important;max-height:140px!important;padding:10px 12px 10px 60px!important;background-size:100% 100%,auto 100%!important}
+ body.leonida-theme header .gta-progress-brand{max-width:400px!important;padding:8px!important}
+ body.leonida-theme header h1{font-size:21px!important}
+}
+@media(max-width:600px){
+ body.leonida-theme header{height:112px!important;min-height:112px!important;max-height:112px!important;background-size:100% 100%,auto 100%!important}
+ body.leonida-theme header .gta-progress-brand{max-width:calc(100% - 5px)!important;padding:5px!important}
+ body.leonida-theme header .gta-progress-eyebrow{font-size:9px!important;letter-spacing:.5px!important}
+ body.leonida-theme header h1{font-size:16px!important}
+ body.leonida-theme header .gta-progress-subtitle{font-size:9px!important}
+ body.leonida-theme header .pill{display:none!important}
+}
+</style></body></html>
