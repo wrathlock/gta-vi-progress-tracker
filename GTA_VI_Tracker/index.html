@@ -1712,24 +1712,29 @@ body.leonida-theme .leonida-feature-art:nth-child(2){background-image:linear-gra
  mobile.addEventListener('change',onMedia);reduce.addEventListener('change',onMedia);onMedia();
 })();
 </script>
-<script id="gta-browser-history-v1">
+<script id="gta-browser-history-v2">
 (function(){
- function tabFromLocation(){
-  const match=location.hash.match(/^#tab=(.*)$/);
-  if(!match)return null;
-  try{const name=decodeURIComponent(match[1]);return sections.includes(name)?name:null}catch(e){return null}
- }
- const initial=tabFromLocation();
- if(initial&&initial!==current){current=initial;header();render()}
- history.replaceState({gtaTab:current},'',location.href);
- window.addEventListener('popstate',()=>{
-  const tab=tabFromLocation()||(history.state&&history.state.gtaTab);
-  if(tab&&sections.includes(tab)&&tab!==current){current=tab;header();render();window.scrollTo({top:0,behavior:'instant'})}
- });
- window.addEventListener('hashchange',()=>{
-  const tab=tabFromLocation();
-  if(tab&&tab!==current){current=tab;header();render()}
- });
+ const key='gta-vi-tracker-navigation-v2';
+ function read(){try{return JSON.parse(sessionStorage.getItem(key)||'{}')}catch(e){return {}}}
+ function save(){try{sessionStorage.setItem(key,JSON.stringify({tab:current,project:typeof selectedProject==='string'?selectedProject:null,platform:platform,scrollY:window.scrollY}))}catch(e){}}
+ function fromHash(){const m=location.hash.match(/^#tab=(.*)$/);if(!m)return null;try{const t=decodeURIComponent(m[1]);return sections.includes(t)?t:null}catch(e){return null}}
+ const saved=read(),tab=fromHash()||(sections.includes(saved.tab)?saved.tab:null);
+ if(saved.project&&typeof allProjects!=='undefined'&&allProjects.includes(saved.project))selectedProject=saved.project;
+ if(saved.platform==='Xbox'||saved.platform==='PS5')platform=saved.platform;
+ if(tab&&tab!==current){current=tab;header();render()}
+ if(tab&&!fromHash()){const url=new URL(location.href);url.hash='tab='+encodeURIComponent(tab);history.replaceState({gtaTab:tab},'',url.pathname+url.search+url.hash)}
+ else history.replaceState({gtaTab:current},'',location.href);
+ const originalGo=window.go||go;
+ window.go=function(tab){originalGo(tab);save()};
+ const originalSelect=window.selectProject;
+ if(typeof originalSelect==='function')window.selectProject=function(name){originalSelect(name);save()};
+ const originalPlatform=window.setPlatform||setPlatform;
+ window.setPlatform=function(name){originalPlatform(name);save()};
+ window.addEventListener('popstate',()=>{const tab=fromHash()||(history.state&&history.state.gtaTab);if(tab&&sections.includes(tab)&&tab!==current){current=tab;header();render();window.scrollTo({top:0,behavior:'instant'})}save()});
+ window.addEventListener('hashchange',()=>{const tab=fromHash();if(tab&&tab!==current){current=tab;header();render()}save()});
+ window.addEventListener('pagehide',save);
+ window.addEventListener('scroll',()=>{try{const data=read();data.scrollY=window.scrollY;sessionStorage.setItem(key,JSON.stringify(data))}catch(e){}},{passive:true});
+ save();
 })();
 </script>
 <style id="rumors-panel-style">
