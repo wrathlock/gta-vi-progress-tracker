@@ -17,10 +17,6 @@ SOURCES={
 'ScarlettX':'https://github.com/Freminet/ScarlettX',
 'AnyXboxX':'https://github.com/LooperSalty/AnyXboxX',
 'Xbox Emulator / TomBox':'https://github.com/drycheetah84/TomBox',
-'r/Piracy':'https://www.reddit.com/r/Piracy/',
-'r/emulation':'https://www.reddit.com/r/emulation/',
-'r/CrackWatch':'https://www.reddit.com/r/CrackWatch/',
-'r/GamingLeaksAndRumours':'https://www.reddit.com/r/GamingLeaksAndRumours/',
 'GTAForums':'https://gtaforums.com/',
 'CS.RIN.RU':'https://cs.rin.ru/forum/',
 'Video Games Chronicle':'https://www.videogameschronicle.com/',
@@ -29,7 +25,6 @@ SOURCES={
 'GTA VI Dump & PC-Port Tracker':'https://github.com/pagiii/gta6-tracker',
 'GTA VI Reverse Engineering Index':'https://github.com/Ahmet-Dedeler/awesome-gta6-reverse-engineering',
 'GTA 6 PC Tracker':'https://github.com/alan-r-henry/gta6-pc-tracker',
-'r/GTA6':'https://www.reddit.com/r/GTA6/',
 'FollowTheLeek':'https://github.com/deepwoodssec/FollowTheLeek'
 }
 TOKEN=os.getenv('GITHUB_TOKEN','').strip()
@@ -168,18 +163,11 @@ report={
 'last_complete_21_source_content_scan_utc':None,'last_substantive_content_scan_utc':None,
 'original_sources':len(SOURCES),'listed_sources':len(SOURCES),'contacted_sources':sum(r['status']!='unavailable' for r in results),'reachable_sources':successes,'substantively_reviewed_sources':0,'automated_content_screened_sources':screened,'independently_verified_sources':0,'coverage_method':'GitHub repository metadata and automated README text screening; HTTP reachability only for other sources','unavailable_sources':sum(r['status']=='unavailable' for r in results),
 'last_error_count':sum(bool(r.get('error')) or bool(r.get('activity_error')) for r in results),
-'collector_scope':'GitHub repository metadata, recent public commits/releases/issues/PRs, and HTTP reachability for non-GitHub sources. Automated GitHub README screening only, not full website content review. No executable downloads or independent technical test reproduction. Reddit claim discovery and comment sampling are separate, may be blocked, and are not independently verified.',
+'collector_scope':'GitHub repository metadata, recent public commits/releases/issues/PRs, and HTTP reachability for non-GitHub sources. Automated GitHub README screening only, not full website content review. No executable downloads or independent technical test reproduction. No Reddit comment-based data is collected.',
 'source_results':results,'events':events[:180],'changes':changes[:100], 'github_analytics':analytic,
 'gameplay_verification':'Not assessed by this automatic collector; preserve independent C4/C5 evidence requirements',
 'earlier_baseline_date':'2026-11-22','app_version':'2.9','collector_version':'2.9-audit-1','comparison_scope':'New or changed metadata in recent GitHub samples only; no source-content evidence diff, no verified blocker resolution or regression','validation':{'source_count_matches_expected':len(results)==len(SOURCES),'all_source_records_timestamped':all(r.get('checked_at_utc')==NOW for r in results),'all_events_have_source_urls':all(bool(e.get('url')) for e in events),'no_content_review_claimed':True,'screening_count_matches_records':screened==sum(r.get('content_screening',{}).get('status')=='screened' for r in results)}}
-# Collect third-party Reddit claims separately from source-health and verified milestones.
-try:
-    from independent import collect as collect_independent
-    independent_report=collect_independent()
-except Exception as exc:
-    independent_report={'collected_at_utc':NOW,'status':'unavailable','findings':[],'counts':{'findings':0,'community_corroboration':0,'accounts_screened':0,'verified_gta_vi_tests':0},'errors':[{'source':'collector','error':type(exc).__name__+': '+str(exc)[:150]}]}
-report['independent_findings']=independent_report['counts']
-report['independent_monitor_status']=independent_report['status']
+# Comment-derived community claims and account screening are not collected.
 DATA.mkdir(exist_ok=True)
 (DATA/'independent.json').write_text(json.dumps(independent_report,indent=2,ensure_ascii=False),encoding='utf-8')
 (DATA/'snapshots').mkdir(parents=True,exist_ok=True)
