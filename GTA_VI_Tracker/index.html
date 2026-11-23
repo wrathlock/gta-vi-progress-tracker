@@ -278,7 +278,7 @@ const urls={'Cyberleek':'https://wayfinder.ar.io/?q=Cyberleek','Cyberleek.cloud 
 const xbox=['Leonida','Xbox2Windows','XCL','ScarlettX','AnyXboxX','Xbox Emulator / TomBox'],ps5=['AnyPS5','KytyPS5','SharpEmu'];const metrics=db.reported_metrics;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const safeExternalUrl=(value)=>{try{const u=new URL(String(value||''));return (u.protocol==='https:'||u.protocol==='http:')?u.href:null}catch(e){return null}};const link=(name,url)=>{const safe=safeExternalUrl(url||urls[name]);return safe?`<a href="${esc(safe)}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">${esc(name)} ↗</a>`:`<span class="desc" title="External link unavailable or unsafe">${esc(name)} — link unavailable</span>`};const card=(body,title='')=>`<article class="card">${title?`<h3>${esc(title)}</h3>`:''}${body}</article>`;const tag=(x)=>`<span class="tag">${esc(x)}</span>`;const none=msg=>`<div class="empty">${esc(msg)}</div>`;const btn=(label,action)=>`<button onclick="${action}">${esc(label)}</button>`;const state=s=>s==='unknown'||s==null?'Not collected':s;const fmt=v=>v===null||v===undefined?'Not collected':esc(v);
 function metric(n){let m=db.reported_metrics.find(m=>m.project===n);return m?`${m.value.toLocaleString()}${m.denominator?' / '+m.denominator.toLocaleString():''} ${m.metric.replaceAll('_',' ')}`:'No comparable component metric';}
-function header(){document.getElementById('stats').innerHTML=[['GTA VI PC playability',(()=>{const records=Array.isArray(window.GTA_VI_VERIFIED_MILESTONES)?window.GTA_VI_VERIFIED_MILESTONES:[];const has=key=>records.some(r=>r?.game==='GTA VI'&&r?.milestone===key&&r?.status==='independently_verified'&&/^https:\/\//.test(String(r?.source_url||''))&&r?.verified_at_utc);return has('stable_gameplay')||has('playable')?'Playable · Independently Tested':has('gameplay')?'Gameplay Demonstrated':has('main_menu')?'Main Menu Reached':has('graphics')?'Graphics Demonstrated':has('boot')?'Boot Demonstrated':'Not Yet Playable'})()],['Execution stage',(typeof LIVE!=='undefined'&&LIVE?.exe_watch?.execution_independently_reproduced)?'Execution Confirmed':(typeof LIVE!=='undefined'&&LIVE?.exe_watch?.executable_independently_authenticated)?'Executable Authenticated':(typeof LIVE!=='undefined'&&LIVE?.exe_watch?.release_announcement_detected)?'EXE Release Reported':'Awaiting EXE Release'],['Listed sources',String((db.sources||[]).length)]].map(([k,v])=>`<div class="card stat"><small>${k}</small><div class="value ${v==='Not Yet Playable'||v==='Awaiting EXE Release'||v==='EXE Release Reported'?'warn':'good'}">${v}</div></div>`).join('');document.getElementById('nav').innerHTML=sections.map(s=>`<button class="${s===current?'active':''}" onclick="go('${s.replaceAll("'","\\'")}')">${esc(s)}</button>`).join('')}
+function header(){document.getElementById('stats').innerHTML=[['GTA VI PC playability',(()=>{const records=Array.isArray(window.GTA_VI_VERIFIED_MILESTONES)?window.GTA_VI_VERIFIED_MILESTONES:[];const has=key=>records.some(r=>r?.game==='GTA VI'&&r?.milestone===key&&r?.status==='independently_verified'&&/^https:\/\//.test(String(r?.source_url||''))&&r?.verified_at_utc);return has('stable_gameplay')||has('playable')?'Playable · Independently Tested':has('gameplay')?'Gameplay Demonstrated':has('main_menu')?'Main Menu Reached':has('graphics')?'Graphics Demonstrated':has('boot')?'Boot Demonstrated':'Not Yet Playable'})()],['Execution stage',(typeof LIVE!=='undefined'&&LIVE?.exe_watch?.execution_independently_reproduced)?'Execution Confirmed':(typeof LIVE!=='undefined'&&LIVE?.exe_watch?.executable_independently_authenticated)?'Executable Authenticated':(typeof LIVE!=='undefined'&&LIVE?.exe_watch?.release_announcement_detected)?'EXE Release Reported':'Awaiting EXE Release'],['Listed sources',String((db.sources||[]).length)]].map(([k,v])=>`<div class="card stat"><small>${k}</small><div class="value ${v==='Not Yet Playable'||v==='Awaiting EXE Release'||v==='EXE Release Reported'?'warn':'good'}">${v}</div></div>`).join('');if(!document.querySelector('#nav .nav-brand'))document.getElementById('nav').innerHTML=sections.map(s=>`<button class="${s===current?'active':''}" onclick="go('${s.replaceAll("'","\\'")}')">${esc(s)}</button>`).join('')}
 function goToActivityFeed(){go('Development Activity');window.scrollTo(0,0);requestAnimationFrame(()=>window.scrollTo(0,0))}
 function go(s){
  if(!sections.includes(s))return;
@@ -398,24 +398,20 @@ overlay.addEventListener('click',close);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 // Navigate on pointerdown before reactive header redraws replace the clicked button.
 // A click fallback handles keyboard and assistive technology activation.
-let pointerNavigation=false;
-function navigateTab(e){
+nav.addEventListener('click',e=>{
  const button=e.target.closest('button.nav-item[data-tab]');
  if(!button||!nav.contains(button))return;
- const tab=button.dataset.tab;
- if(!sections.includes(tab))return;
- if(e.type==='click'&&pointerNavigation){pointerNavigation=false;e.preventDefault();return}
- if(e.type==='pointerdown'&&e.button!==0)return;
- if(e.type==='pointerdown')pointerNavigation=true;
  e.preventDefault();
- go(tab);
- close();
-}
-document.addEventListener('pointerdown',navigateTab,true);
-document.addEventListener('click',navigateTab,true);
+ const tab=button.dataset.tab;
+ if(sections.includes(tab)){go(tab);close()}
+});
 const oldHeader=header;
 header=function(){
 oldHeader();
+if(nav.querySelector('.nav-brand')){
+ nav.querySelectorAll('button.nav-item[data-tab]').forEach(b=>{b.classList.toggle('active',b.dataset.tab===current);b.setAttribute('aria-current',b.dataset.tab===current?'page':'false')});
+ return;
+}
 const all=new Set(sections),used=new Set();
 let markup='<div class="nav-brand">GTA VI · RESEARCH NAVIGATION</div><input class="nav-search" type="search" id="navSearch" placeholder="Search all tabs..." aria-label="Search dashboard tabs">';
 for(const [group,items] of groups){const valid=items.filter(s=>all.has(s));valid.forEach(s=>used.add(s));if(!valid.length)continue;markup+='<div class="nav-group"><div class="nav-group-title">'+group+' <span class="nav-count">'+valid.length+'</span></div>'+valid.map(s=>'<button class="nav-item '+(s===current?'active':'')+'" data-tab="'+esc(s)+'" type="button">'+esc(s)+'</button>').join('')+'</div>'}
