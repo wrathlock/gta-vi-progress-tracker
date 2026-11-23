@@ -550,13 +550,24 @@ render();
 <script id="platform-race-script">
 (function(){
 const oldRender=render;
+// Shared game-package evidence state for the platform comparison and Overview timeline.
+// A publicly reported package is not the same as independently authenticated game files.
+function gamePackageEvidence(){
+ const records=Array.isArray(window.GTA_VI_VERIFIED_MILESTONES)?window.GTA_VI_VERIFIED_MILESTONES:[];
+ const verified=records.find(r=>r&&r.milestone==='game_files'&&r.game==='GTA VI'&&r.status==='independently_verified'&&/^https:\/\//.test(String(r.source_url||''))&&r.verified_at_utc)||null;
+ return {status:verified?'verified':'reported',verified,
+  xboxLabel:verified?'Independently verified':'Reported; not authenticated',
+  xboxDescription:verified?'Independently authenticated GTA VI game-file record; see source and verification date':'Public reporting describes a purported Xbox GTA VI build 1.0.2.1 without the main executable; game-file authenticity remains unverified',
+  ps5Label:'Not authenticated',
+  ps5Description:'No independently authenticated GTA VI PS5 game image recorded'};
+}
 function raceView(){
 const metrics=db.reported_metrics||[];
 const metric=name=>metrics.find(m=>m.project===name);
 const leonida=metric('Leonida'),x2w=metric('Xbox2Windows'),scarlett=metric('ScarlettX');
 const mtxt=m=>m?Number(m.value).toLocaleString('en-US')+(m.denominator?' / '+Number(m.denominator).toLocaleString('en-US'):''):'Not recorded';
 const rows=[
-['Game package','Claimed, not authenticated','Cyberleek claims an Xbox build 1.0.2.1 without main EXE','Not authenticated','No GTA VI PS5 image independently documented'],
+['Game package',gamePackageEvidence().xboxLabel,gamePackageEvidence().xboxDescription,gamePackageEvidence().ps5Label,gamePackageEvidence().ps5Description],
 ['Executable released','Not verified','Promised for Nov 23; no authenticated EXE recorded','Not verified','No authenticated game image recorded'],
 ['GTA VI CPU / system runtime','Generic tests only','Leonida loader/shims tested with a stand-in program, NOT GTA VI CPU execution','Generic tests only','Other-game emulator tests; GTA VI CPU / system execution NOT demonstrated'],
 ['GTA VI graphics / shaders','Unverified for GTA VI','Reported project component metrics: Leonida '+mtxt(leonida)+' shader translations; Xbox2Windows '+mtxt(x2w)+' pixel-shader tests. GTA VI shader origin, rendering and execution NOT independently verified','Unverified for GTA VI','Generic PS5 graphics research only; no GTA VI-specific shader execution or rendering verified'],
@@ -708,6 +719,7 @@ const milestones=[
 function verifiedRecord(key){
  // Require an explicit independent-verification record for this specific GTA VI milestone.
  // Generic repository metadata, downloaded files and historical platform scores never qualify.
+ if(key==='game_files')return gamePackageEvidence().verified;
  const records=Array.isArray(window.GTA_VI_VERIFIED_MILESTONES)?window.GTA_VI_VERIFIED_MILESTONES:[];
  return records.find(r=>r&&r.milestone===key&&r.game==='GTA VI'&&r.status==='independently_verified'&&r.source_url&&r.verified_at_utc)||null;
 }
@@ -718,7 +730,7 @@ function timeline(){
  '<div class="playable-timeline-head"><h3>PLAYABILITY TIMELINE</h3><span class="pt-count">'+verified+' / 7 verified</span></div>'+
  '<p class="pt-sub">GTA VI-specific milestones · Independent evidence required</p>'+
  '<div class="playable-timeline-scroll" tabindex="0" aria-label="Scroll horizontally to view seven playability milestones"><div class="playable-timeline-track">'+
- milestones.map(([name,key],i)=>{const record=verifiedRecord(key);return '<div class="playable-timeline-step'+(record?' pt-verified':'')+'"><span class="playable-timeline-number">'+String(i+1).padStart(2,'0')+'</span><span class="playable-timeline-node" aria-hidden="true">'+(record?'✓':'○')+'</span><span class="playable-timeline-name">'+name+'</span><span class="playable-timeline-status">'+(record?'Verified · '+trackerDate(record.verified_at_utc):'Unverified')+'</span></div>'}).join('')+
+ milestones.map(([name,key],i)=>{const record=verifiedRecord(key);return '<div class="playable-timeline-step'+(record?' pt-verified':'')+'"><span class="playable-timeline-number">'+String(i+1).padStart(2,'0')+'</span><span class="playable-timeline-node" aria-hidden="true">'+(record?'✓':'○')+'</span><span class="playable-timeline-name">'+name+'</span><span class="playable-timeline-status">'+(record?'Verified · '+trackerDate(record.verified_at_utc):key==='game_files'?'Reported · not authenticated':'Unverified')+'</span></div>'}).join('')+
  '</div></div><div class="playable-timeline-foot"><span>Last collector attempt: '+last+'</span><span>Source record dates are not verification dates</span></div></section>';
 }
 const previousRender=render;
