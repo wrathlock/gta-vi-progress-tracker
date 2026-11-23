@@ -1310,7 +1310,7 @@ window.renderIndependentVerification=function(){return '<article class="card"><h
    if(!topic||!target)return;
    const wrap=document.createElement('div');
    wrap.className='community-inline';
-   if(inlineOpen===current){wrap.innerHTML=threadMarkup(topic,false);target.appendChild(wrap);loadThread(topic)}
+   if(inlineOpen===current){wrap.innerHTML='<div class="community-close-row"><button type="button" class="community-inline-close" aria-label="Close '+esc(topic)+' discussion">✕ Close discussion</button></div>'+threadMarkup(topic,false);target.appendChild(wrap);wrap.querySelector('.community-inline-close').addEventListener('click',()=>{inlineOpen='';render()});loadThread(topic)}
    else{
      wrap.innerHTML='<button type="button" class="community-inline-toggle">💬 Discuss '+esc(topic)+' research</button><p class="community-help">Open the topic-specific community thread. Discussion does not affect verification status.</p>';
      target.appendChild(wrap);
@@ -1430,4 +1430,4 @@ body.leonida-theme header .gta-progress-subtitle{font-size:9px!important}
 body.leonida-theme header .pill{display:none!important}
 }
 @media(max-width:390px){body.leonida-theme header .gta-progress-brand{grid-template-columns:66px minmax(0,1fr)!important;column-gap:6px!important}body.leonida-theme header .leonida-image-logo{width:66px!important;height:74px!important}body.leonida-theme header h1{font-size:14px!important}}
-</style></body></html>
+</style><style id="community-collapse-v1">.community-close-row{display:flex;justify-content:flex-end;margin:0 0 8px}.community-inline-close{background:#3b2443!important;border:1px solid #e36cbb!important;color:#ffe5f5!important;font-size:12px!important;padding:8px 12px!important}.community-inline-close:hover{background:#71365f!important}.community-inline .community-shell{margin-top:0}</style></body></html>
