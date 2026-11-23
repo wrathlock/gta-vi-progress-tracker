@@ -791,6 +791,34 @@ render=function(){
  }
 };
 render();
+// Deferred scripts and asynchronous data refreshes can replace Overview content.
+// Keep the horizontal milestone tracker mounted after those updates.
+let mounting=false;
+function ensureTimeline(){
+ if(mounting||current!=='Overview')return;
+ const content=document.getElementById('content');
+ if(!content||content.querySelector('.playable-timeline'))return;
+ mounting=true;
+ try{
+  const html=timeline();
+  const race=content.querySelector('.platform-race');
+  if(race)race.insertAdjacentHTML('beforebegin',html);
+  else{
+   const heading=content.querySelector('h2');
+   if(heading)heading.insertAdjacentHTML('afterend',html);
+   else content.insertAdjacentHTML('afterbegin',html);
+  }
+ }catch(error){console.error('Playability timeline mount failed:',error)}
+ finally{mounting=false}
+}
+const overviewRoot=document.getElementById('content');
+if(overviewRoot){
+ const observer=new MutationObserver(()=>ensureTimeline());
+ observer.observe(overviewRoot,{childList:true,subtree:false});
+ document.addEventListener('DOMContentLoaded',ensureTimeline,{once:true});
+ window.addEventListener('load',ensureTimeline,{once:true});
+ ensureTimeline();
+}
 })();
 </script>
 <style id="technical-consolidation-style">
