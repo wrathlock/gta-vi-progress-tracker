@@ -225,4 +225,24 @@ const oldHeader=header;
 header=function(){oldHeader();translate(document.getElementById('stats'))};
 header();render();
 })();
+</script>
+<style id="public-notifications-style">
+.notify-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.notify-choices label{display:flex;gap:8px;align-items:center;background:#172b40;border:1px solid #39516a;padding:12px;border-radius:9px}.notify-choices input{width:auto}.notify-instructions{padding:14px;border:1px solid #45637d;border-radius:10px;margin:12px 0}@media(max-width:600px){.notify-choices{grid-template-columns:1fr}}
+</style>
+<script id="public-notifications-script">
+(function(){
+if(!sections.includes('Get Notifications'))sections.splice(Math.max(0,sections.indexOf('Notification center')+1),0,'Get Notifications');
+const oldSection=section;
+section=function(){
+if(current!=='Get Notifications')return oldSection();
+return '<div class="research-hero"><h3>Get GTA VI research notifications</h3><p>Follow public development activity from the GTA VI Signal Tracker. No ChatGPT account required.</p><p class="research-note">The RSS feed contains collected public records, not independently verified gameplay announcements. It updates only after a successful collector run.</p></div>'+
+'<div class="research-grid"><div class="card"><h3>Subscribe to the RSS feed</h3><p>Use any RSS reader to receive new source activity as it is published.</p><p><a href="feed.xml" target="_blank" rel="noopener">Open public RSS feed</a></p><div class="actions"><button onclick="navigator.clipboard.writeText(new URL(\'feed.xml\',location.href).href).then(()=>alert(\'RSS link copied\')).catch(()=>alert(\'Copy this link: \'+new URL(\'feed.xml\',location.href).href))">Copy RSS feed URL</button></div><p class="research-note">Feed readers decide how often to check for new items and whether to send notifications.</p></div>'+
+'<div class="card"><h3>Follow repository updates</h3><p>GitHub users can watch the public repository for repository notifications.</p><p><a href="https://github.com/wrathlock/gta-vi-signal-tracker" target="_blank" rel="noopener">Open tracker repository</a></p><p class="research-note">On GitHub, select Watch and choose your preferred notification level. This watches repository activity, not custom GTA VI verification alerts.</p></div></div>'+
+'<div class="card"><h3>Notification topics</h3><p class="research-note">These are topics covered by the tracker. Topic-specific email or browser-push subscriptions are not active yet; this page does not collect email addresses.</p><div class="notify-choices">'+['Xbox emulator development','PS5 emulator development','Public executable claims','Independent GTA VI boot verification','Independent GTA VI gameplay verification','Major technical changes'].map(x=>'<div class="notify-instructions">'+esc(x)+'</div>').join('')+'</div></div>'+
+'<div class="card"><h3>What is actually verified?</h3><p>Public project records and developer reports do not prove that GTA VI runs on PC. Verified boot or gameplay requires independent reproduction. The feed does not automatically validate claims.</p></div>';
+};
+const oldHeader=header;
+header=function(){oldHeader();const nav=document.getElementById('nav');if(!nav.querySelector('[data-tab="Get Notifications"]')){const group=[...nav.querySelectorAll('.nav-group')].find(g=>g.textContent.includes('Notification center'));if(group){const b=document.createElement('button');b.type='button';b.className='nav-item'+(current==='Get Notifications'?' active':'');b.dataset.tab='Get Notifications';b.textContent='Get Notifications';b.addEventListener('click',()=>{go('Get Notifications');document.body.classList.remove('nav-open')});group.appendChild(b)}}};
+header();render();
+})();
 </script></body></html>
