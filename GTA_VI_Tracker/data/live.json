@@ -1,8 +1,8 @@
 {
   "schema_version": "2.9-live-1",
   "status": "partial_collection",
-  "last_attempt_utc": "2026-11-23T06:29:44Z",
-  "last_successful_scan_utc": "2026-11-23T06:29:44Z",
+  "last_attempt_utc": "2026-11-23T06:31:16Z",
+  "last_successful_scan_utc": "2026-11-23T06:31:16Z",
   "last_complete_21_source_content_scan_utc": null,
   "last_substantive_content_scan_utc": null,
   "original_sources": 21,
@@ -20,7 +20,7 @@
     {
       "name": "Cyberleek",
       "url": "https://wayfinder.ar.io/?q=Cyberleek",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -34,7 +34,7 @@
     {
       "name": "Leonida",
       "url": "https://github.com/ItsNotRexed/Leonida",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -42,7 +42,7 @@
       "last_public_activity_utc": "2026-11-23T06:20:06Z",
       "error": null,
       "default_branch": "main",
-      "github_stars": 16858,
+      "github_stars": 16867,
       "content_screening": {
         "status": "screened",
         "document": "README",
@@ -57,14 +57,14 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T06:29:44Z",
+      "content_reviewed_at_utc": "2026-11-23T06:31:16Z",
       "site_health": "online",
       "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "Xbox2Windows",
       "url": "https://github.com/R0Y00/Xbox2Windows",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -85,14 +85,14 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T06:29:44Z",
+      "content_reviewed_at_utc": "2026-11-23T06:31:16Z",
       "site_health": "online",
       "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "XCL",
       "url": "https://github.com/ivall/xcl",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -114,14 +114,14 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T06:29:44Z",
+      "content_reviewed_at_utc": "2026-11-23T06:31:16Z",
       "site_health": "online",
       "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "ScarlettX",
       "url": "https://github.com/Freminet/ScarlettX",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -129,7 +129,7 @@
       "last_public_activity_utc": "2026-11-22T10:38:07Z",
       "error": null,
       "default_branch": "main",
-      "github_stars": 176,
+      "github_stars": 178,
       "content_screening": {
         "status": "screened",
         "document": "README",
@@ -143,14 +143,14 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T06:29:44Z",
+      "content_reviewed_at_utc": "2026-11-23T06:31:16Z",
       "site_health": "online",
       "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "AnyXboxX",
       "url": "https://github.com/LooperSalty/AnyXboxX",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -172,14 +172,14 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T06:29:44Z",
+      "content_reviewed_at_utc": "2026-11-23T06:31:16Z",
       "site_health": "online",
       "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "Xbox Emulator / TomBox",
       "url": "https://github.com/drycheetah84/TomBox",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -201,14 +201,14 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T06:29:44Z",
+      "content_reviewed_at_utc": "2026-11-23T06:31:16Z",
       "site_health": "online",
       "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "r/Piracy",
       "url": "https://www.reddit.com/r/Piracy/",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -222,7 +222,7 @@
     {
       "name": "r/emulation",
       "url": "https://www.reddit.com/r/emulation/",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -236,7 +236,7 @@
     {
       "name": "r/CrackWatch",
       "url": "https://www.reddit.com/r/CrackWatch/",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -250,7 +250,7 @@
     {
       "name": "r/GamingLeaksAndRumours",
       "url": "https://www.reddit.com/r/GamingLeaksAndRumours/",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -264,7 +264,7 @@
     {
       "name": "GTAForums",
       "url": "https://gtaforums.com/",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -278,7 +278,7 @@
     {
       "name": "CS.RIN.RU",
       "url": "https://cs.rin.ru/forum/",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -292,7 +292,7 @@
     {
       "name": "Video Games Chronicle",
       "url": "https://www.videogameschronicle.com/",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -306,7 +306,7 @@
     {
       "name": "VideoCardz",
       "url": "https://videocardz.com/",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -320,7 +320,7 @@
     {
       "name": "Digital Foundry",
       "url": "https://www.digitalfoundry.net/",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -334,7 +334,7 @@
     {
       "name": "GTA VI Dump & PC-Port Tracker",
       "url": "https://github.com/pagiii/gta6-tracker",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -361,14 +361,14 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T06:29:44Z",
+      "content_reviewed_at_utc": "2026-11-23T06:31:16Z",
       "site_health": "online",
       "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "GTA VI Reverse Engineering Index",
       "url": "https://github.com/Ahmet-Dedeler/awesome-gta6-reverse-engineering",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -396,14 +396,14 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T06:29:44Z",
+      "content_reviewed_at_utc": "2026-11-23T06:31:16Z",
       "site_health": "online",
       "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "GTA 6 PC Tracker",
       "url": "https://github.com/alan-r-henry/gta6-pc-tracker",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -425,14 +425,14 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T06:29:44Z",
+      "content_reviewed_at_utc": "2026-11-23T06:31:16Z",
       "site_health": "online",
       "health_note": "Responded successfully to the automated check"
     },
     {
       "name": "r/GTA6",
       "url": "https://www.reddit.com/r/GTA6/",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "reachability_only",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -446,7 +446,7 @@
     {
       "name": "FollowTheLeek",
       "url": "https://github.com/deepwoodssec/FollowTheLeek",
-      "checked_at_utc": "2026-11-23T06:29:44Z",
+      "checked_at_utc": "2026-11-23T06:31:16Z",
       "method": "github_api_repo_metadata_and_recent_activity",
       "substantive_content_review": false,
       "independent_verification": false,
@@ -466,7 +466,7 @@
         ],
         "scope": "automated README text screening only; not manual verification"
       },
-      "content_reviewed_at_utc": "2026-11-23T06:29:44Z",
+      "content_reviewed_at_utc": "2026-11-23T06:31:16Z",
       "site_health": "online",
       "health_note": "Responded successfully to the automated check"
     }
@@ -477,20 +477,20 @@
       "type": "issue",
       "project": "Leonida",
       "platform": "Xbox",
-      "date": "2026-11-23T06:29:46Z",
+      "date": "2026-11-23T06:31:09Z",
       "title": "Coordinating who works on what (26)",
       "url": "https://github.com/ItsNotRexed/Leonida/issues/4816",
       "evidence": "C1",
       "classification": "issue discussion, not independently verified"
     },
     {
-      "id": "ItsNotRexed/Leonida:issue:4683",
+      "id": "R0Y00/Xbox2Windows:issue:448",
       "type": "issue",
-      "project": "Leonida",
+      "project": "Xbox2Windows",
       "platform": "Xbox",
-      "date": "2026-11-23T06:29:22Z",
-      "title": "Coordinating who works on what (25) (moved to #4816)",
-      "url": "https://github.com/ItsNotRexed/Leonida/issues/4683",
+      "date": "2026-11-23T06:29:50Z",
+      "title": "tests: pixel_aot draws spend most of their time creating a D3D12 device per case",
+      "url": "https://github.com/R0Y00/Xbox2Windows/issues/448",
       "evidence": "C1",
       "classification": "issue discussion, not independently verified"
     },
@@ -550,17 +550,6 @@
       "evidence": "C1",
       "review_status": "not_independently_reviewed",
       "classification": "repository activity, not verified breakthrough"
-    },
-    {
-      "id": "R0Y00/Xbox2Windows:issue:448",
-      "type": "issue",
-      "project": "Xbox2Windows",
-      "platform": "Xbox",
-      "date": "2026-11-23T06:19:17Z",
-      "title": "tests: pixel_aot draws spend most of their time creating a D3D12 device per case",
-      "url": "https://github.com/R0Y00/Xbox2Windows/issues/448",
-      "evidence": "C1",
-      "classification": "issue discussion, not independently verified"
     },
     {
       "id": "R0Y00/Xbox2Windows:pr:799",
@@ -1755,76 +1744,13 @@
       "classification": "repository activity, not verified breakthrough"
     }
   ],
-  "changes": [
-    {
-      "kind": "new_public_record",
-      "event": {
-        "id": "ItsNotRexed/Leonida:issue:4683",
-        "type": "issue",
-        "project": "Leonida",
-        "platform": "Xbox",
-        "date": "2026-11-23T06:29:22Z",
-        "title": "Coordinating who works on what (25) (moved to #4816)",
-        "url": "https://github.com/ItsNotRexed/Leonida/issues/4683",
-        "evidence": "C1",
-        "classification": "issue discussion, not independently verified"
-      },
-      "note": "Newly observed public record, not verified technical progress"
-    },
-    {
-      "kind": "new_public_record",
-      "event": {
-        "id": "R0Y00/Xbox2Windows:commit:ab5d3a51ce3472f37d478bd8f622343ef1904164",
-        "type": "commit",
-        "project": "Xbox2Windows",
-        "platform": "Xbox",
-        "date": "2026-11-23T06:29:03Z",
-        "title": "Merge pull request #804 from R0Y00/codex/spirv-minlod",
-        "url": "https://github.com/R0Y00/Xbox2Windows/commit/ab5d3a51ce3472f37d478bd8f622343ef1904164",
-        "evidence": "C1",
-        "review_status": "not_independently_reviewed",
-        "classification": "repository activity, not verified breakthrough"
-      },
-      "note": "Newly observed public record, not verified technical progress"
-    },
-    {
-      "kind": "new_public_record",
-      "event": {
-        "id": "R0Y00/Xbox2Windows:commit:747b21a729a87da8a8b38536aaf1f358f0748d2b",
-        "type": "commit",
-        "project": "Xbox2Windows",
-        "platform": "Xbox",
-        "date": "2026-11-23T06:07:31Z",
-        "title": "shader: preserve SPIR-V minimum sample LOD in HLSL",
-        "url": "https://github.com/R0Y00/Xbox2Windows/commit/747b21a729a87da8a8b38536aaf1f358f0748d2b",
-        "evidence": "C1",
-        "review_status": "not_independently_reviewed",
-        "classification": "repository activity, not verified breakthrough"
-      },
-      "note": "Newly observed public record, not verified technical progress"
-    },
-    {
-      "kind": "new_public_record",
-      "event": {
-        "id": "R0Y00/Xbox2Windows:pr:804",
-        "type": "PR",
-        "project": "Xbox2Windows",
-        "platform": "Unknown",
-        "date": "2026-11-23T06:29:03Z",
-        "title": "shader: preserve SPIR-V minimum sample LOD in HLSL",
-        "url": "https://github.com/R0Y00/Xbox2Windows/pull/804",
-        "evidence": "C1",
-        "classification": "recent PR record (merged)"
-      },
-      "note": "Newly observed public record, not verified technical progress"
-    }
-  ],
+  "changes": [],
   "github_analytics": [
     {
       "project": "Leonida",
       "url": "https://github.com/ItsNotRexed/Leonida",
       "last_push_utc": "2026-11-23T06:20:06Z",
-      "total_stars": 16858,
+      "total_stars": 16867,
       "total_forks": 1430,
       "open_issues_count": 1615,
       "collected_commit_records": 5,
@@ -1863,7 +1789,7 @@
       "project": "ScarlettX",
       "url": "https://github.com/Freminet/ScarlettX",
       "last_push_utc": "2026-11-22T10:38:07Z",
-      "total_stars": 176,
+      "total_stars": 178,
       "total_forks": 19,
       "open_issues_count": 28,
       "collected_commit_records": 5,
