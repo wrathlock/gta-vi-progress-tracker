@@ -747,7 +747,12 @@ render=function(){
  const content=document.getElementById('content');if(!content)return;
  content.querySelectorAll('.playable-timeline').forEach(n=>n.remove());
  const race=content.querySelector('.platform-race');
- if(race)race.insertAdjacentHTML('beforebegin',timeline());
+ if(race){race.insertAdjacentHTML('beforebegin',timeline());}
+ else{
+  const heading=content.querySelector('h2');
+  if(heading)heading.insertAdjacentHTML('afterend',timeline());
+  else content.insertAdjacentHTML('afterbegin',timeline());
+ }
 };
 render();
 })();
