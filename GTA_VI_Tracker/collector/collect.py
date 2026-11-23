@@ -124,4 +124,21 @@ history.append({'collected_at_utc':NOW,'successful_sources':successes,'failed_so
 (DATA/'history.json').write_text(json.dumps(history[-1200:],indent=2),encoding='utf-8')
 filename=NOW.replace(':','').replace('-','')+'.json'
 (DATA/'snapshots'/filename).write_text(json.dumps({'collected_at_utc':NOW,'source_results':results,'github_analytics':analytic,'event_ids':[x['id'] for x in events],'changes':changes},indent=2,ensure_ascii=False),encoding='utf-8')
+
+# Public RSS notifications: project activity records only; no claim of verified gameplay.
+from xml.sax.saxutils import escape as xml_escape
+from email.utils import format_datetime
+from datetime import datetime, timezone
+def rss_item(e):
+    title=xml_escape(str(e.get('project','Project')+': '+e.get('title','Update')))
+    url=xml_escape(str(e.get('url') or 'https://wrathlock.github.io/gta-vi-signal-tracker/'), {'"':'&quot;'})
+    uid=xml_escape(str(e.get('id') or e.get('url') or e.get('title','')))
+    description=xml_escape('Public development record; not independently verified GTA VI compatibility. '+str(e.get('classification','')))
+    date=e.get('date') or NOW
+    try: pub=format_datetime(datetime.fromisoformat(date.replace('Z','+00:00')).astimezone(timezone.utc))
+    except (ValueError,TypeError): pub=format_datetime(datetime.now(timezone.utc))
+    return '<item><title>'+title+'</title><link>'+url+'</link><guid isPermaLink="false">'+uid+'</guid><pubDate>'+pub+'</pubDate><description>'+description+'</description></item>'
+rss='<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>GTA VI Signal Tracker - Public Development Activity</title><link>https://wrathlock.github.io/gta-vi-signal-tracker/</link><description>Public development records and source links; not independently verified GTA VI gameplay.</description><lastBuildDate>'+format_datetime(datetime.now(timezone.utc))+'</lastBuildDate>'+''.join(rss_item(e) for e in events[:80])+'</channel></rss>'
+(DATA.parent/'feed.xml').write_text(rss,encoding='utf-8')
+
 print('Collection finished',NOW,'source successes',successes,'unavailable',report['unavailable_sources'],'events',len(events))
