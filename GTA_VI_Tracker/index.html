@@ -473,7 +473,7 @@ const cards=stats.querySelectorAll('.stat');
 if(cards.length>=4){
 const live=typeof LIVE!=='undefined'&&LIVE&&LIVE.last_attempt_utc;
 cards[2].querySelector('small').textContent='Original source directory';
-cards[2].querySelector('.value').textContent='21 listed · '+(live?String(LIVE.automated_content_screened_sources??0)+' README-screened':'screening pending');
+cards[2].querySelector('.value').textContent=live?String(LIVE.listed_sources??21)+' listed':'21 listed';
 cards[3].querySelector('small').textContent='GTA VI Monitoring Alerts';
 cards[3].querySelector('.value').textContent='2 configured';
 cards[3].title='EXE Release Watch (hourly, around :16) and PC Playability Watch (hourly, around :07). These are ChatGPT monitoring tasks, separate from the GitHub collector. Execution status is not verified by this website.';
