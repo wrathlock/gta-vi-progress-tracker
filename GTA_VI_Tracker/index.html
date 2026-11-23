@@ -32,7 +32,7 @@ const urls={'Cyberleek':'https://wayfinder.ar.io/?q=Cyberleek','Leonida':'https:
 const xbox=['Leonida','Xbox2Windows','XCL','ScarlettX','AnyXboxX','Xbox Emulator / TomBox'],ps5=['AnyPS5','KytyPS5','SharpEmu'];const metrics=db.reported_metrics;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const link=(name,url)=>`<a href="${esc(url||urls[name]||'#')}" target="_blank" rel="noopener noreferrer">${esc(name)} ↗</a>`;const card=(body,title='')=>`<article class="card">${title?`<h3>${esc(title)}</h3>`:''}${body}</article>`;const tag=(x)=>`<span class="tag">${esc(x)}</span>`;const none=msg=>`<div class="empty">${esc(msg)}</div>`;const btn=(label,action)=>`<button onclick="${action}">${esc(label)}</button>`;const state=s=>s==='unknown'||s==null?'Not collected':s;const fmt=v=>v===null||v===undefined?'Not collected':esc(v);
 function metric(n){let m=db.reported_metrics.find(m=>m.project===n);return m?`${m.value.toLocaleString()}${m.denominator?' / '+m.denominator.toLocaleString():''} ${m.metric.replaceAll('_',' ')}`:'No comparable component metric';}
-function header(){document.getElementById('stats').innerHTML=[['GTA VI PC gameplay','Not verified'],['EXE released','No — not verified'],['Listed sources','21 configured'],['External watches','2 configured (status unverified)']].map(([k,v])=>`<div class="card stat"><small>${k}</small><div class="value ${v==='Not verified'?'warn':'good'}">${v}</div></div>`).join('');document.getElementById('nav').innerHTML=sections.map(s=>`<button class="${s===current?'active':''}" onclick="go('${s.replaceAll("'","\\'")}')">${esc(s)}</button>`).join('')}
+function header(){document.getElementById('stats').innerHTML=[['GTA VI PC gameplay','Not verified'],['EXE released','No — not verified'],['Listed sources','21 configured'],['GTA VI Monitoring Alerts','2 configured']].map(([k,v])=>`<div class="card stat"><small>${k}</small><div class="value ${v==='Not verified'?'warn':'good'}">${v}</div></div>`).join('');document.getElementById('nav').innerHTML=sections.map(s=>`<button class="${s===current?'active':''}" onclick="go('${s.replaceAll("'","\\'")}')">${esc(s)}</button>`).join('')}
 function go(s){current=s;header();render();window.scrollTo({top:0,behavior:'instant'})}function setPlatform(s){platform=s;render()}function setEvidence(s){evidence=s;render()}function setSearch(s){search=s;render()}function setSourceSearch(s){sourceSearch=s;render()}
 function stages(){return platform==='Xbox'?[['Authenticated executable','No independently authenticated GTA VI executable','Verified game binary and provenance'],['CPU / OS runtime','Synthetic PE mapping and CPU research','Game-specific imports, memory and initialization'],['Shader and GPU integration','Reported shader translations and controlled tests','Correct resources, pipelines, synchronization and presentation'],['GTA VI first boot','Not independently reproduced','Repeatable game-specific startup with logs'],['Menu and gameplay','Not independently reproduced','Controllable game session and independent replication']]:[['Usable authenticated game image','No independently verified usable GTA VI image','Authentic image compatible with emulator'],['System services / loader','Generic function coverage reported','Game-specific imports, threading, memory and services'],['Graphics integration','Generic emulator graphics research','Game-specific graphics initialization and rendering'],['GTA VI first boot','No reproduced startup','Repeatable game-specific startup and logs'],['Menu and gameplay','Not independently reproduced','Independent menu and controllable gameplay reproduction']];}
 function stageHTML(){return stages().map(([name,obs,req],i)=>`<div class="step"><b>${i+1}. ${esc(name)}</b> ${tag(i<3?'Prerequisite / research':'Not verified')}<div class="desc">Observed: ${esc(obs)}<br>To advance: ${esc(req)}</div></div>`).join('')}
@@ -367,8 +367,9 @@ if(cards.length>=4){
 const live=typeof LIVE!=='undefined'&&LIVE&&LIVE.last_attempt_utc;
 cards[2].querySelector('small').textContent='Original source directory';
 cards[2].querySelector('.value').textContent='21 listed · '+(live?String(LIVE.substantively_reviewed_sources??0)+' content-reviewed':'content review unknown');
-cards[3].querySelector('small').textContent='External hourly watches';
-cards[3].querySelector('.value').textContent='2 configured · status not checked here';
+cards[3].querySelector('small').textContent='GTA VI Monitoring Alerts';
+cards[3].querySelector('.value').textContent='2 configured';
+cards[3].title='EXE Release Watch (hourly, around :16) and PC Playability Watch (hourly, around :07). These are ChatGPT monitoring tasks, separate from the GitHub collector. Execution status is not verified by this website.';
 }
 };
 const originalSection=section;
@@ -394,7 +395,7 @@ const originalRender=render;
 function exeWatchCard(){
 const live=(typeof LIVE!=='undefined'&&LIVE&&LIVE.status!=='never_collected')?LIVE:null;
 const scan=live&&live.last_successful_scan_utc?'Last partial metadata scan: '+String(live.last_successful_scan_utc).replace('T',' ').slice(0,19)+' UTC':'No successful live scan recorded';
-return '<section class="exe-watch-home" aria-label="GTA VI executable release watch"><div class="exe-watch-top"><h3>GTA VI executable · release watch</h3><span class="exe-watch-state">No authenticated public EXE verified</span></div><p>The release or authentication of a genuine GTA VI executable is the key milestone being watched. Claims, download links, hashes and archive listings are not proof of a usable game binary.</p><div class="exe-watch-steps"><span>1 · Public release claim</span><span>2 · Authenticity and provenance</span><span>3 · Independent binary verification</span><span>4 · PC boot testing</span></div><div class="exe-watch-foot"><a href="https://wayfinder.ar.io/?q=Cyberleek" target="_blank" rel="noopener noreferrer">Cyberleek archive search</a><a href="https://github.com/deepwoodssec/FollowTheLeek" target="_blank" rel="noopener noreferrer">Source cross-checks</a><a href="#" onclick="go('Executable');return false">Verification criteria</a><small>'+esc(scan)+' · External hourly watches configured; status not checked here</small></div></section>';
+return '<section class="exe-watch-home" aria-label="GTA VI executable release watch"><div class="exe-watch-top"><h3>GTA VI executable · release watch</h3><span class="exe-watch-state">No authenticated public EXE verified</span></div><p>The release or authentication of a genuine GTA VI executable is the key milestone being watched. Claims, download links, hashes and archive listings are not proof of a usable game binary.</p><div class="exe-watch-steps"><span>1 · Public release claim</span><span>2 · Authenticity and provenance</span><span>3 · Independent binary verification</span><span>4 · PC boot testing</span></div><div class="exe-watch-foot"><a href="https://wayfinder.ar.io/?q=Cyberleek" target="_blank" rel="noopener noreferrer">Cyberleek archive search</a><a href="https://github.com/deepwoodssec/FollowTheLeek" target="_blank" rel="noopener noreferrer">Source cross-checks</a><a href="#" onclick="go('Executable');return false">Verification criteria</a><small>'+esc(scan)+' · 2 ChatGPT monitoring alerts configured; execution status not verified here</small></div></section>';
 }
 render=function(){
 originalRender();
@@ -465,5 +466,32 @@ header=function(){
  else value.title='Authenticated executable with independent supporting evidence';
 };
 header();
+})();
+</script>
+<style id="monitor-alerts-info-style">
+.monitor-alerts-info{margin:10px 0 16px;padding:14px 16px;border:1px solid var(--edge);border-radius:10px;background:var(--panel)}
+.monitor-alerts-info .monitor-alerts-title{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:10px}
+.monitor-alerts-info .monitor-alert-row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid var(--edge)}
+.monitor-alerts-info .monitor-alert-row small{display:block;margin-top:3px}
+.monitor-alerts-info .monitor-alert-note{font-size:12px;color:var(--muted);line-height:1.55;margin:10px 0 0}
+@media(max-width:520px){.monitor-alerts-info .monitor-alert-row{display:block}}
+</style>
+<script id="monitor-alerts-info-script">
+(function(){
+const priorRender=render;
+render=function(){
+ priorRender();
+ if(current!=='Overview'&&current!=='Notification center')return;
+ const target=document.getElementById('content');if(!target)return;
+ const existing=target.querySelector('.monitor-alerts-info');if(existing)existing.remove();
+ const block='<section class="monitor-alerts-info" aria-label="GTA VI Monitoring Alerts"><div class="monitor-alerts-title"><strong>GTA VI Monitoring Alerts</strong><span class="pill">2 configured</span></div><div class="monitor-alert-row"><div><strong>EXE Release Watch</strong><small>Cyberleek announcements, executable authenticity and recompilation developments</small></div><small>Hourly · around :16</small></div><div class="monitor-alert-row"><div><strong>PC Playability Watch</strong><small>Working PC builds, emulator breakthroughs and independently verified gameplay</small></div><small>Hourly · around :07</small></div><p class="monitor-alert-note">These are two existing ChatGPT monitoring tasks, separate from the website’s GitHub source collector. Their execution status is not checked by this dashboard. Configured does not mean a release or breakthrough has been verified.</p></section>';
+ if(current==='Overview'){
+ const stats=document.getElementById('stats');const card=[...(stats?.querySelectorAll('.stat')||[])].find(x=>x.querySelector('small')?.textContent==='GTA VI Monitoring Alerts');
+ if(card){card.setAttribute('role','button');card.setAttribute('tabindex','0');card.title='Open the two monitoring alerts';card.onclick=()=>go('Notification center');card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go('Notification center');}};}
+ return;
+ }
+ const heading=target.querySelector('h2');if(heading)heading.insertAdjacentHTML('afterend',block);
+};
+render();
 })();
 </script></body></html>
