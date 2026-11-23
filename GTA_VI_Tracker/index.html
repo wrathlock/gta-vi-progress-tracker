@@ -726,7 +726,7 @@ const milestones=[
 function verifiedRecord(key){
  // Require an explicit independent-verification record for this specific GTA VI milestone.
  // Generic repository metadata, downloaded files and historical platform scores never qualify.
- if(key==='game_files')return gamePackageEvidence().verified;
+ if(key==='game_files'){const records=Array.isArray(window.GTA_VI_VERIFIED_MILESTONES)?window.GTA_VI_VERIFIED_MILESTONES:[];return records.find(r=>r&&r.milestone==='game_files'&&r.game==='GTA VI'&&r.status==='independently_verified'&&/^https:\/\//.test(String(r.source_url||''))&&r.verified_at_utc)||null;}
  const records=Array.isArray(window.GTA_VI_VERIFIED_MILESTONES)?window.GTA_VI_VERIFIED_MILESTONES:[];
  return records.find(r=>r&&r.milestone===key&&r.game==='GTA VI'&&r.status==='independently_verified'&&r.source_url&&r.verified_at_utc)||null;
 }
