@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - '.github/workflows/collect.yml'
+      - 'GTA_VI_Tracker/collector/independent.py'
   schedule:
     - cron: "23 * * * *"
   workflow_dispatch:
@@ -47,6 +48,9 @@ jobs:
           assert data['substantively_reviewed_sources'] == 0
           assert data['validation']['screening_count_matches_records']
           assert data['automated_content_screened_sources'] == sum(r.get('content_screening', {}).get('status') == 'screened' for r in data['source_results'])
+          independent=json.loads(pathlib.Path('GTA_VI_Tracker/data/independent.json').read_text(encoding='utf-8'))
+          assert isinstance(independent['findings'], list)
+          assert independent['counts']['verified_gta_vi_tests'] == 0
           print('Validated collection:', data['status'], data['last_attempt_utc'], 'reachable', data['reachable_sources'])
           PY
 
