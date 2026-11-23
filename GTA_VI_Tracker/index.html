@@ -288,4 +288,67 @@ const oldHeader=header;
 header=function(){oldHeader();const nav=document.getElementById('nav');if(!nav.querySelector('[data-tab="Get Notifications"]')){const group=[...nav.querySelectorAll('.nav-group')].find(g=>g.textContent.includes('Notification center'));if(group){const b=document.createElement('button');b.type='button';b.className='nav-item'+(current==='Get Notifications'?' active':'');b.dataset.tab='Get Notifications';b.textContent='Get Notifications';b.addEventListener('click',()=>{go('Get Notifications');document.body.classList.remove('nav-open')});group.appendChild(b)}}};
 header();render();
 })();
-</script></body></html>
+</script>
+<style id="investigation-research-style">
+.inv-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.inv-kpi{border:1px solid var(--edge);background:#101e31;border-radius:10px;padding:12px}.inv-kpi b{display:block;font-size:1.25rem;color:var(--teal)}.inv-case{border:1px solid var(--edge);border-radius:10px;padding:14px;margin:10px 0;background:#102035}.inv-case h3{margin:0 0 8px}.inv-case .desc{margin:8px 0}.inv-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}.inv-links a{font-size:.88rem}.inv-timeline{border-left:2px solid var(--edge);margin-left:8px;padding-left:16px}.inv-timeline .item{margin-bottom:9px}.inv-status{font-size:.8rem;color:var(--amber)}@media(max-width:700px){.inv-grid{grid-template-columns:1fr}}
+</style>
+<script id="investigation-research-script">
+(function(){
+const root='https://github.com/deepwoodssec/FollowTheLeek';
+const refs={
+overview:root,integrity:root+'/blob/main/EVIDENCE.md',
+crypto:root+'/tree/main/real/crypto',
+cross:root+'/tree/main/real/crypto/evidence/operation/crosscheck',
+infra:root+'/tree/main/real/infrastructure',
+operator:root+'/tree/main/real/operator',
+copycat:root+'/tree/main/copycat',
+posting:root+'/blob/main/copycat/posting-pattern/telegram-post-times.txt',
+bitquery:'https://bitquery.io/investigations/cyberleek-gta6-leak-coin',
+bitquery2:'https://bitquery.io/investigations/cyberleek-deployer-funding-trace',
+forum:'https://gtaforums.com/topic/994376-spoilers-gta-vi-leaks-analysis-thread-part-ii/page/314/#comment-1072766077'
+};
+const investigations=[
+{id:'operation',title:'CyberLeek leak-branded token and funding operation',category:'Financial operation',status:'Investigator-documented',date:'2026-08-13 to 2026-08-27',summary:'FollowTheLeek traces the token setup through a six-hop funding chain originating at a KuCoin processing wallet. It documents liquidity locking, a 270M-token burn, and a reported 2,705 SOL fee/cash-out sequence.',observed:'On-chain transactions and dated infrastructure records are cited by the investigation.',uncertain:'A specific real-world operator identity is not established here. The source describes an identity lead, not a confirmed named person.',links:[['Investigation',refs.overview],['Crypto evidence',refs.crypto],['Evidence manifest',refs.integrity]]},
+{id:'copycat',title:'CyberLeek-branded persona and separate token',category:'Impersonation / attribution',status:'Relationship unproven',date:'2026-08-25',summary:'FollowTheLeek distinguishes cyberleeks.fun and @cyberleeksreal from the cyber-leek.com money operation. It reports a separate pump.fun token and different domain registrar.',observed:'Separate domain, token, and posting records are documented.',uncertain:'No on-chain link between the persona and the money operation is established. Shared branding does not prove shared control or fraud by a named person.',links:[['Investigation',refs.overview],['Infrastructure records',refs.infra],['Persona evidence',refs.copycat]]},
+{id:'site',title:'CyberLeek infrastructure and staged launch',category:'Website / infrastructure',status:'Investigator-documented',date:'2026-08-22 to 2026-08-24',summary:'The investigation records cyber-leek.com domain registration on August 22, followed by first observed TLS/archive evidence on August 24. The precise initial go-live time is not independently established.',observed:'RDAP/WHOIS, certificate transparency, and archive observations.',uncertain:'Registration time does not prove when the site first served content.',links:[['Infrastructure evidence',refs.infra],['Investigation timeline',refs.overview]]}
+];
+const checks=[
+{id:'funding',title:'KuCoin funding chain',platform:'Financial',outcome:'Reproduced by investigator',grade:'Investigator reproduction',claim:'A six-hop on-chain funding path originates from a KuCoin processing wallet.',support:'FollowTheLeek reports reproducing a funding trace originally published by GTAForums user Vice Cit.',limit:'This does not publicly identify the account holder or establish criminal liability.',links:[['FollowTheLeek',refs.crypto],['Original GTAForums research',refs.forum],['Evidence manifest',refs.integrity]]},
+{id:'bots',title:'Early token buyers and insider-tip allegation',platform:'Financial',outcome:'Insider inference not supported',grade:'Contradiction documented',claim:'Four wallets bought during the early launch window, potentially suggesting insider coordination.',support:'FollowTheLeek says its full on-chain pull reproduced Bitquery findings that these were automated sniper bots, not wallets tracing to the deployer.',limit:'Early purchases alone do not demonstrate insider knowledge.',links:[['FollowTheLeek cross-check',refs.cross],['Bitquery investigation',refs.bitquery]]},
+{id:'cashout',title:'2,705 SOL fee and cash-out movements',platform:'Financial',outcome:'Reproduced by investigator',grade:'Investigator reproduction',claim:'Funds moved after fees were claimed on August 27.',support:'FollowTheLeek reports a roughly 51% KuCoin / 49% CCE.Cash split, reproduced against the on-chain record.',limit:'A traced transfer does not independently identify a person.',links:[['FollowTheLeek cross-check',refs.cross],['GTAForums original research',refs.forum]]},
+{id:'attribution',title:'Money operation vs. @cyberleeksreal',platform:'Attribution',outcome:'Unresolved',grade:'No proven linkage',claim:'The persona and token operator are the same actor.',support:'The source records distinct domains, token infrastructure and public persona activity.',limit:'FollowTheLeek reports no on-chain transaction linking the tracks; neither common branding nor timing proves identity.',links:[['Operation vs. copycat',refs.overview],['Persona investigation',refs.copycat]]},
+{id:'serial',title:'Serial-launcher and timezone interpretations',platform:'Attribution',outcome:'Disputed on recheck',grade:'Contradiction documented',claim:'Behavior patterns reveal a serial token launcher or Central European operator timezone.',support:'FollowTheLeek credits Bitquery for original research but says these interpretations did not hold up on its independent re-pull.',limit:'No location or identity attribution should be presented as established.',links:[['FollowTheLeek operator analysis',refs.operator],['Bitquery funding trace',refs.bitquery2]]},
+{id:'integrity',title:'Evidence preservation and timestamps',platform:'Integrity',outcome:'Documented method',grade:'Source-documented',claim:'Investigation artifacts are reproducible and preserved with integrity checks.',support:'FollowTheLeek documents SHA-256 artifact hashes, UTC capture times, third-party archives, and a crypto evidence manifest.',limit:'The tracker links to the source manifest; it has not independently recomputed all hashes.',links:[['Evidence manifest',refs.integrity],['Investigation',refs.overview]]}
+];
+const timeline=[
+['2026-08-13','Money','KuCoin processing wallet funds the chain'],
+['2026-08-15','Money','Token minted; liquidity locked'],
+['2026-08-18','Money','Leak clips circulate; early bot purchases documented'],
+['2026-08-22','Money','cyber-leek.com registered; 270M tokens burned'],
+['2026-08-24','Money','First observed TLS/archive evidence of site'],
+['2026-08-25','Persona','Separate persona token and cyberleeks.fun registration'],
+['2026-08-27','Money','Fees claimed and funds transferred']
+];
+let scamFilter='All',scamSearch='',checkFilter='All',checkSearch='';
+const anchor=(label,url)=>'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(label)+'</a>';
+const links=items=>'<div class="inv-links">'+items.map(([label,url])=>anchor(label,url)).join('')+'</div>';
+const filterHTML=(label,options,value,callback)=>'<select aria-label="'+esc(label)+'" onchange="'+callback+'(this.value)">'+options.map(x=>'<option value="'+esc(x)+'"'+(value===x?' selected':'')+'>'+esc(x)+'</option>').join('')+'</select>';
+const searchHTML=(label,value,callback)=>'<input aria-label="'+esc(label)+'" placeholder="Search investigations" value="'+esc(value)+'" oninput="'+callback+'(this.value)">';
+function scamsPage(){
+const rows=investigations.filter(x=>(scamFilter==='All'||x.category===scamFilter)&&[x.title,x.summary,x.status].join(' ').toLowerCase().includes(scamSearch.toLowerCase()));
+return '<div class="card"><h3>Scam and impersonation investigations</h3><p class="desc">Documented research and suspicious indicators, not an automatic verdict of criminal wrongdoing. Initial cases are sourced from Deep Woods Security / FollowTheLeek; this is a curated historical baseline, not a live scam scan.</p><div class="inv-grid"><div class="inv-kpi"><b>'+investigations.length+'</b>Curated investigation topics</div><div class="inv-kpi"><b>0</b>New cases independently investigated by this tracker</div></div><div class="filters">'+filterHTML('Investigation category',['All',...new Set(investigations.map(x=>x.category))],scamFilter,'setScamCategory')+searchHTML('Search scam investigations',scamSearch,'setScamSearch')+'</div>'+(rows.length?rows.map(x=>'<article class="inv-case"><div class="row"><h3>'+esc(x.title)+'</h3><span class="tag">'+esc(x.status)+'</span></div><small>'+esc(x.category)+' · '+esc(x.date)+'</small><p>'+esc(x.summary)+'</p><div class="desc"><strong>Documented:</strong> '+esc(x.observed)+'</div><div class="desc"><strong>Not established:</strong> '+esc(x.uncertain)+'</div>'+links(x.links)+'</article>').join(''):'<div class="empty">No matching investigations.</div>')+'</div><div class="card"><h3>Documented CyberLeek timeline</h3><div class="inv-timeline">'+timeline.map(([date,track,detail])=>'<div class="item"><strong>'+esc(date)+'</strong> · '+esc(track)+'<div class="desc">'+esc(detail)+'</div></div>').join('')+'</div>'+anchor('Full source timeline',refs.overview)+'</div><div class="card"><h3>Other fake-download reports</h3><p class="desc">Reports of malicious GTA VI installers and lookalike sites require direct security-source verification before individual cases are added. No malware verdict is assigned from a domain name alone.</p><p class="warn">Do not run alleged leaked executables or download untrusted installers to test authenticity.</p></div>';
+}
+function checksPage(){
+const rows=checks.filter(x=>(checkFilter==='All'||x.outcome===checkFilter)&&[x.title,x.claim,x.support,x.limit].join(' ').toLowerCase().includes(checkSearch.toLowerCase()));
+return '<div class="card"><h3>Cross-check investigation records</h3><p class="desc">Each claim is separated into the original proposition, documented support, investigator assessment, and remaining limits. “Reproduced by investigator” means FollowTheLeek reports a recheck; this dashboard has not independently executed the forensic analysis.</p><div class="inv-grid"><div class="inv-kpi"><b>'+checks.length+'</b>Curated cross-check records</div><div class="inv-kpi"><b>'+checks.filter(x=>x.outcome==='Unresolved').length+'</b>Explicitly unresolved attribution checks</div></div><div class="filters">'+filterHTML('Verification outcome',['All',...new Set(checks.map(x=>x.outcome))],checkFilter,'setCheckOutcome')+searchHTML('Search cross-check records',checkSearch,'setCheckSearch')+'</div>'+(rows.length?rows.map(x=>'<article class="inv-case"><div class="row"><h3>'+esc(x.title)+'</h3><span class="tag">'+esc(x.outcome)+'</span></div><small>'+esc(x.platform)+' · '+esc(x.grade)+'</small><p><strong>Claim:</strong> '+esc(x.claim)+'</p><div class="desc"><strong>Evidence / corroboration:</strong> '+esc(x.support)+'</div><div class="desc"><strong>Limits / contradictions:</strong> '+esc(x.limit)+'</div>'+links(x.links)+'</article>').join(''):'<div class="empty">No matching cross-check records.</div>')+'</div><div class="card"><h3>Verification checklist for future executable claims</h3>'+['Primary source and original URL','Dated artifact, hashes and chain of custody','Independent reproduction with logs','Contradictory reporting and provenance','Impersonation, malware and payment indicators'].map(x=>'<div class="item">'+esc(x)+'</div>').join('')+'<p class="desc">These are required review steps, not checks completed for an unknown GTA VI executable. No authenticated GTA VI PC executable, boot, or gameplay has been independently verified by this dashboard.</p></div>';
+}
+window.setScamCategory=v=>{scamFilter=v;render()};
+window.setScamSearch=v=>{scamSearch=v;render();const e=document.querySelector('input[aria-label="Search scam investigations"]');if(e){e.focus();e.setSelectionRange(v.length,v.length)}};
+window.setCheckOutcome=v=>{checkFilter=v;render()};
+window.setCheckSearch=v=>{checkSearch=v;render();const e=document.querySelector('input[aria-label="Search cross-check records"]');if(e){e.focus();e.setSelectionRange(v.length,v.length)}};
+const previousSection=section;
+section=function(){if(current==='Scams')return scamsPage();if(current==='Cross-checks')return checksPage();return previousSection()};
+render();
+})();
+</script>
+</body></html>
