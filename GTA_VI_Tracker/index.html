@@ -864,4 +864,51 @@ go=function(target){oldGo(aliases[target]||target)};
 header();render();
 })();
 </script>
+<style id="breakthroughs-live-style">
+.bt-dashboard .bt-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}
+.bt-dashboard .bt-stat{border:1px solid var(--edge,#39516a);border-radius:9px;padding:13px;background:rgba(120,156,186,.07)}
+.bt-dashboard .bt-stat strong{font-size:1.65rem;display:block}
+.bt-dashboard .bt-stat small{display:block;opacity:.8}
+.bt-dashboard .bt-row{border:1px solid var(--edge,#39516a);border-radius:9px;padding:13px;margin:9px 0}
+.bt-dashboard .bt-row p{margin:7px 0}
+.bt-dashboard .bt-meta{font-size:.83rem;opacity:.83}
+.bt-dashboard .bt-filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.bt-dashboard .bt-filters select{min-width:155px;max-width:100%}
+@media(max-width:570px){.bt-dashboard .bt-stats{grid-template-columns:1fr}}
+</style>
+<script id="breakthroughs-live-script">
+(function(){
+let category='all',platformFilter='all',criteriaOpen=false;
+window.setBreakthroughCategory=function(v){category=v;render()};
+window.setBreakthroughPlatform=function(v){platformFilter=v;render()};
+window.toggleBreakthroughCriteria=function(){criteriaOpen=!criteriaOpen;render()};
+const previousSection=section;
+function breakthroughPage(){
+ const live=typeof LIVE!=='undefined'&&LIVE&&Array.isArray(LIVE.source_results)?LIVE:null;
+ const verified=live&&Array.isArray(live.independent_findings)?live.independent_findings.filter(x=>x&&x.independently_verified===true&&x.game_specific===true&&x.source_url&&x.verified_at_utc):[];
+ // Metadata-only collector events cannot establish completed milestones.
+ const eventRows=live&&Array.isArray(live.events)?live.events:[];
+ const seen=new Set();
+ const candidates=eventRows.filter(e=>{
+  if(!e||e.type!=='PR'||!/^https:\/\/github\.com\/[^/]+\/[^/]+\/pull\/\d+$/.test(String(e.url||'')))return false;
+  if(!/\b(shader|spirv|rdna|gpu|graphics|renderer|emulat|cpu|instruction|runtime|loader|vulkan|directx|memory|compiler|aot|kernel|hle|translation)\b/i.test(String(e.title||'')))return false;
+  if(seen.has(e.url))return false;seen.add(e.url);return true;
+ }).sort((a,b)=>String(b.date||'').localeCompare(String(a.date||''))).slice(0,30);
+ const filtered=candidates.filter(e=>(platformFilter==='all'||e.platform===platformFilter));
+ const fmt=x=>typeof trackerDate==='function'?trackerDate(x,'full'):String(x||'Not recorded');
+ const link=x=>/^https:\/\/github\.com\/[^/]+\/[^/]+\/pull\/\d+$/.test(String(x||''))?'<a href="'+esc(x)+'" target="_blank" rel="noopener noreferrer">Original pull request</a>':'Original link unavailable';
+ const choices=(opts,selected,fn)=>'<select onchange="'+fn+'(this.value)">'+opts.map(([v,label])=>'<option value="'+esc(v)+'"'+(selected===v?' selected':'')+'>'+esc(label)+'</option>').join('')+'</select>';
+ const stamp=live?'Last collector attempt: '+fmt(live.last_attempt_utc):'Collector unavailable; last successful collection cannot be confirmed';
+ const warning='<p class="desc">This is a metadata-based candidate queue, not an automated determination of technical progress. Titles and PR creation do not prove code merged, passed tests, or work with GTA VI. All displayed candidates require substantive review.</p>';
+ const milestone=verified.length?'<p class="desc">The collector contains '+verified.length+' records marked independently verified; check original evidence and reproduction details before treating them as established.</p>':'<div class="item"><b>No independently verified GTA VI breakthroughs recorded.</b><p class="desc">Authenticated executable, game-specific boot, graphics, menu, and controllable gameplay remain unverified in the published collector data.</p></div>';
+ const rows=filtered.length?filtered.map(e=>'<div class="bt-row"><div class="row"><b>'+esc(e.title||'Untitled technical record')+'</b>'+tag('Unreviewed · C1')+'</div><p class="bt-meta">'+esc(e.project||'Project not recorded')+' · '+esc(e.platform||'Platform unknown')+' · '+esc(fmt(e.date))+'</p><p class="desc">Observed public pull-request record; technical significance and game-specific relevance have not been independently assessed.</p>'+link(e.url)+'</div>').join(''):'<p class="desc">No technical pull-request candidates match the current filter. This does not mean there has been no development.</p>';
+ return '<div class="bt-dashboard"><div class="card"><div class="row"><h3>Breakthrough verification</h3>'+tag('No verified game milestone')+'</div><div class="bt-stats"><div class="bt-stat"><strong>0</strong><small>Independently verified GTA VI PC breakthroughs in this tracker</small></div><div class="bt-stat"><strong>0</strong><small>Verified GTA VI PC boot tests</small></div><div class="bt-stat"><strong>0</strong><small>Verified GTA VI PC gameplay tests</small></div></div><p class="bt-meta">'+esc(stamp)+'</p><p class="desc">Collector scope: '+esc(live?.collector_scope||'Not available')+'</p>'+milestone+'</div>'+
+ '<div class="card"><h3>Technical research candidates</h3>'+warning+'<div class="bt-filters">'+choices([['all','All candidate types'],['component','Technical PR candidates'],['verified','Verified GTA VI milestones']],category,'setBreakthroughCategory')+choices([['all','All platforms'],['Xbox','Xbox'],['PS5','PS5'],['Unknown','Unknown']],platformFilter,'setBreakthroughPlatform')+'</div>'+
+ (category==='verified'?'<p class="desc">No independently verified GTA VI milestone records qualify for this view.</p>':category==='all'||category==='component'?rows:'')+'</div>'+
+ '<div class="card"><button onclick="toggleBreakthroughCriteria()" aria-expanded="'+criteriaOpen+'">What qualifies as a breakthrough? '+(criteriaOpen?'−':'+')+'</button>'+(criteriaOpen?'<p class="desc">Technical research candidates require a dated original source, attributable technical artifact, and substantive review. A verified GTA VI milestone additionally requires authentic game-specific evidence and independent reproduction where applicable. Public PR titles, repository activity, and collector reachability are insufficient.</p>':'')+'</div></div>';
+}
+section=function(){return current==='Breakthroughs'?breakthroughPage():previousSection()};
+render();
+})();
+</script>
 </body></html>
