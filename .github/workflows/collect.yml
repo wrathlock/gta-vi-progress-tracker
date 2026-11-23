@@ -52,5 +52,19 @@ jobs:
           git add GTA_VI_Tracker/data/ GTA_VI_Tracker/feed.xml
           if ! git diff --cached --quiet; then
             git commit -m "Update GTA VI live research data"
-            for attempt in 1 2 3; do\n              git push && break\n              if [ "$attempt" -eq 3 ]; then exit 1; fi\n              git pull --rebase origin main\n              sleep 3\n            done
+            for attempt in 1 2 3; do
+              if git push origin HEAD:main; then
+                echo "Published live research data"
+                break
+              fi
+              if [ "$attempt" -eq 3 ]; then
+                echo "Unable to push live research data" >&2
+                exit 1
+              fi
+              git fetch origin main
+              git rebase origin/main
+              sleep 3
+            done
+          else
+            echo "No collected data changes to publish"
           fi
