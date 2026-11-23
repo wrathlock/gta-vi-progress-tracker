@@ -452,6 +452,26 @@ const priorHeader=header;header=function(){priorHeader();const b=document.queryS
 header();render();
 })();
 </script>
+<style id="overview-hidden-note-style">
+#overview-hidden-note{display:block;width:max-content;max-width:100%;margin:14px 0 4px auto;font-size:9px;line-height:1.2;color:transparent;user-select:text;-webkit-user-select:text;cursor:text}
+#overview-hidden-note::selection{color:#111;background:#b8f5e4}
+</style>
+<script id="overview-hidden-note-script">
+(function(){
+ const priorRender=render;
+ render=function(){
+  priorRender();
+  if(current!=='Overview')return;
+  const root=document.getElementById('content');
+  if(!root||root.querySelector('#overview-hidden-note'))return;
+  const note=document.createElement('span');
+  note.id='overview-hidden-note';
+  note.textContent='Ian sucks as a foreman';
+  root.appendChild(note);
+ };
+ render();
+})();
+</script>
 <style id="collapsible-nav-style">
 #nav .nav-group-title{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;border-radius:8px;user-select:none}
 #nav .nav-group-title:hover{background:#1d354c}
