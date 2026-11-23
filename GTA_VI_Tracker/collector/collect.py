@@ -52,6 +52,43 @@ def read_json(path,default):
     try:return json.loads(path.read_text(encoding='utf-8'))
     except Exception:return default
 
+# Read-only announcement detection. Never fetch binary links or follow download destinations.
+# A first successful scan establishes a baseline, not a new release announcement.
+def announcement_watch(previous):
+    targets=[('Cyberleek archive search','https://wayfinder.ar.io/?q=Cyberleek'),
+             ('Cyberleek.cloud editorial','https://cyberleek.cloud/')]
+    prior={x.get('source'):x for x in (previous.get('exe_watch') or {}).get('sources',[]) if isinstance(x,dict)}
+    found=[]
+    for name,url in targets:
+        item={'source':name,'url':url,'checked_at_utc':NOW,'status':'unavailable','content_changed':False,'announcement_detected':False,'announcement_excerpt':None}
+        status,raw,error=fetch(url)
+        if status==200 and raw:
+            try:
+                from html import unescape
+                body=unescape(raw.decode('utf-8',errors='replace'))
+                body=re.sub(r'(?is)<(script|style|svg|noscript)\\b[^>]*>.*?</\\1>',' ',body)
+                body=re.sub(r'(?s)<[^>]+>',' ',body)
+                body=re.sub(r'\\s+',' ',body).strip()
+                # Do not treat a search box, page title, or existing rumor as a newly published EXE.
+                lines=re.split(r'(?<=[.!?])\\s+|\\s{2,}',body)
+                pattern=re.compile(r'(?i)(?:gta\\s*(?:vi|6)|grand theft auto\\s*(?:vi|6)|cyberleek).{0,140}(?:\\bexe\\b|executable|binary|release|download|launcher)|(?:\\bexe\\b|executable|binary).{0,140}(?:gta\\s*(?:vi|6)|cyberleek)')
+                matches=[x[:300] for x in lines if pattern.search(x)][:15]
+                digest=hashlib.sha256(json.dumps(matches,ensure_ascii=False).encode()).hexdigest()
+                old_item=prior.get(name) or {}
+                old_digest=old_item.get('matching_text_hash')
+                item.update(status='screened',method='visible_html_keyword_screen',matching_text_hash=digest,matching_passages=len(matches),content_changed=bool(old_digest and old_digest!=digest),note='Keyword evidence only; page text may omit JavaScript-rendered archive listings')
+                if old_digest and old_digest!=digest and matches:
+                    item['announcement_detected']=True
+                    item['announcement_excerpt']=matches[0]
+            except Exception as exc:item.update(status='screening_failed',error=type(exc).__name__)
+        else:item.update(status='unavailable',error=error or 'HTTP '+str(status))
+        found.append(item)
+    detections=[x for x in found if x['announcement_detected']]
+    return {'checked_at_utc':NOW,'sources':found,'release_announcement_detected':bool(detections),
+            'release_announcement_sources':[{'name':x['source'],'url':x['url'],'excerpt':x['announcement_excerpt']} for x in detections],
+            'executable_independently_authenticated':False,'execution_independently_reproduced':False,
+            'verification_note':'No automatic binary authentication or execution tests; source text changes are unverified leads, not proof.'}
+
 old=read_json(DATA/'live.json',{})
 results=[]; events=[]; analytic=[]; successes=0; screened=0
 # The collector does not review full source contents or independently test claims.
@@ -167,6 +204,7 @@ report={
 'original_sources':len(SOURCES),'listed_sources':len(SOURCES),'contacted_sources':sum(r['status']!='unavailable' for r in results),'reachable_sources':successes,'substantively_reviewed_sources':0,'automated_content_screened_sources':screened,'independently_verified_sources':0,'coverage_method':'GitHub repository metadata and automated README text screening; HTTP reachability only for other sources','unavailable_sources':sum(r['status']=='unavailable' for r in results),
 'last_error_count':sum(bool(r.get('error')) or bool(r.get('activity_error')) for r in results),
 'collector_scope':'GitHub repository metadata, recent public commits/releases/issues/PRs, and HTTP reachability for non-GitHub sources. Automated GitHub README screening only, not full website content review. No executable downloads or independent technical test reproduction. No Reddit comment-based data is collected.',
+'exe_watch':announcement_watch(old),
 'source_results':results,'events':events[:180],'changes':changes[:100], 'github_analytics':analytic,
 'gameplay_verification':'Not assessed by this automatic collector; preserve independent C4/C5 evidence requirements',
 'earlier_baseline_date':'2026-11-22','app_version':'2.9','collector_version':'2.9-audit-1','comparison_scope':'New or changed metadata in recent GitHub samples only; no source-content evidence diff, no verified blocker resolution or regression','validation':{'source_count_matches_expected':len(results)==len(SOURCES),'all_source_records_timestamped':all(r.get('checked_at_utc')==NOW for r in results),'all_events_have_source_urls':all(bool(e.get('url')) for e in events),'no_content_review_claimed':True,'screening_count_matches_records':screened==sum(r.get('content_screening',{}).get('status')=='screened' for r in results)}}
