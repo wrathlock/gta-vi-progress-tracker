@@ -435,4 +435,35 @@ return '<section class="platform-race"><h3>Road to playable GTA VI on PC</h3><p 
 render=function(){oldRender();if(current!=='Overview')return;const target=document.getElementById('content');if(!target)return;const old=target.querySelector('.platform-race');if(old)old.remove();const heading=target.querySelector('h2');const exe=target.querySelector('.exe-watch-home');if(exe)exe.insertAdjacentHTML('afterend',raceView());else if(heading)heading.insertAdjacentHTML('afterend',raceView());};
 render();
 })();
+</script>
+<style id="exe-status-visual-style">
+#stats .exe-release-stat{border:1px solid #825d31;background:linear-gradient(135deg,#30251d,#1b2836);box-shadow:inset 3px 0 0 #e3a65a}
+#stats .exe-release-stat .value{color:#ffd39b!important}
+#stats .exe-release-stat.exe-unverified{border-color:#8b4c50;background:linear-gradient(135deg,#352027,#192737);box-shadow:inset 3px 0 0 #e07178}
+#stats .exe-release-stat.exe-unverified .value{color:#ff9fa4!important}
+#stats .exe-release-stat.exe-verified{border-color:#337e61;background:linear-gradient(135deg,#163b31,#172a38);box-shadow:inset 3px 0 0 #55d5a2}
+#stats .exe-release-stat.exe-verified .value{color:#8ef1bf!important}
+#stats .exe-release-stat small:before{content:'●';margin-right:7px;color:#f2aa58}
+#stats .exe-release-stat.exe-unverified small:before{color:#f18b91}
+#stats .exe-release-stat.exe-verified small:before{color:#72e6ae}
+</style>
+<script id="exe-status-visual-script">
+(function(){
+const previousHeader=header;
+header=function(){
+ previousHeader();
+ const stats=document.getElementById('stats');if(!stats)return;
+ const cards=[...stats.querySelectorAll('.stat')];
+ const exe=cards.find(c=>/^\s*EXE released\s*$/i.test(c.querySelector('small')?.textContent||''));
+ if(!exe)return;
+ exe.classList.add('exe-release-stat');
+ const value=exe.querySelector('.value');if(!value)return;
+ const v=value.textContent.trim();
+ const verified=/^(yes|verified|released\s*—\s*verified)$/i.test(v);
+ exe.classList.add(verified?'exe-verified':'exe-unverified');
+ if(!verified){value.textContent='NO · NOT VERIFIED';value.title='No independently authenticated GTA VI executable is recorded. Rumors or links are not verification.';}
+ else value.title='Authenticated executable with independent supporting evidence';
+};
+header();
+})();
 </script></body></html>
