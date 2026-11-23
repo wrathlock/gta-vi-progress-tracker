@@ -134,7 +134,8 @@ report={
 'source_results':results,'events':events[:180],'changes':changes[:100], 'github_analytics':analytic,
 'gameplay_verification':'Not assessed by this automatic collector; preserve independent C4/C5 evidence requirements',
 'earlier_baseline_date':'2026-11-22','app_version':'2.9','collector_version':'2.9-audit-1','comparison_scope':'New or changed metadata in recent GitHub samples only; no source-content evidence diff, no verified blocker resolution or regression','validation':{'source_count_matches_expected':len(results)==len(SOURCES),'all_source_records_timestamped':all(r.get('checked_at_utc')==NOW for r in results),'all_events_have_source_urls':all(bool(e.get('url')) for e in events),'no_content_review_claimed':True}}
-DATA.mkdir(exist_ok=True)\n(DATA/'snapshots').mkdir(parents=True,exist_ok=True)
+DATA.mkdir(exist_ok=True)
+(DATA/'snapshots').mkdir(parents=True,exist_ok=True)
 (DATA/'previous.json').write_text(json.dumps(old,indent=2,ensure_ascii=False),encoding='utf-8')
 (DATA/'live.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
 history=read_json(DATA/'history.json',[])
