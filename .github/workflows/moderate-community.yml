@@ -1,0 +1,41 @@
+name: Moderate community discussion
+on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created, edited]
+permissions:
+  issues: write
+jobs:
+  moderate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check community content
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            if (!issue || !/^GTA VI Discussion \| /i.test(issue.title || '')) return;
+            const comment = context.payload.comment;
+            const actor = comment?.user?.login || issue.user?.login || '';
+            if (/\[bot\]$/.test(actor) || actor === 'github-actions') return;
+            const body = String(comment ? comment.body : issue.body || '');
+            const urls = body.match(/https?:\/\/[^\s<>]+/gi) || [];
+            const rules = [
+              {name: 'Executable or malware distribution link', match: /https?:\/\/[^\s<>]+\.(?:exe|scr|bat|cmd|ps1|msi|dll|apk)(?:[?#\s]|$)/i.test(body)},
+              {name: 'Repeated link spam', match: urls.length > 3},
+              {name: 'Obvious promotional spam', match: /(?:buy followers|guaranteed profit|crypto giveaway|free gift card|join my telegram|discord\.gg\/[^\s]+.*discord\.gg\/)/i.test(body)},
+              {name: 'Direct violent threat or targeted harassment', match: /\b(?:i will kill you|i'm going to kill you|kill yourself|kys|i will dox you|i'm going to dox you)\b/i.test(body)},
+              {name: 'Excessive repeated text', match: /(.)\1{35,}/.test(body) || body.length > 12000}
+            ];
+            const violations = rules.filter(x => x.match).map(x => x.name);
+            if (!violations.length) return;
+            core.info('Moderation match: ' + violations.join(', '));
+            if (comment) {
+              await github.rest.issues.deleteComment({owner: context.repo.owner, repo: context.repo.repo, comment_id: comment.id});
+            } else {
+              await github.rest.issues.update({owner: context.repo.owner, repo: context.repo.repo, issue_number: issue.number, state: 'closed', body: 'This discussion was automatically hidden for a potential community-rules violation. Contact the repository maintainers if this was a mistake.'});
+              await github.rest.issues.lock({owner: context.repo.owner, repo: context.repo.repo, issue_number: issue.number, lock_reason: 'spam'});
+            }
+            await core.summary.addHeading('Community moderation').addRaw('Issue #' + issue.number + ': ' + violations.join(', ')).write();
