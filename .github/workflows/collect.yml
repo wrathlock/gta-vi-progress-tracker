@@ -33,7 +33,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add GTA_VI_Tracker/data/
+          git add GTA_VI_Tracker/data/ GTA_VI_Tracker/feed.xml
           if ! git diff --cached --quiet; then
             git commit -m "Update GTA VI live research data"
             git push
