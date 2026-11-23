@@ -10,6 +10,7 @@ DATA=ROOT/'data'
 NOW=datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds').replace('+00:00','Z')
 SOURCES={
 'Cyberleek':'https://wayfinder.ar.io/?q=Cyberleek',
+'Cyberleek.cloud Incident Desk':'https://cyberleek.cloud/',
 'Leonida':'https://github.com/ItsNotRexed/Leonida',
 'Xbox2Windows':'https://github.com/R0Y00/Xbox2Windows',
 'XCL':'https://github.com/ivall/xcl',
