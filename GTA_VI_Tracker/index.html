@@ -396,17 +396,23 @@ function close(){document.body.classList.remove('nav-open');toggle.setAttribute(
 toggle.addEventListener('click',()=>{let open=document.body.classList.toggle('nav-open');toggle.setAttribute('aria-expanded',String(open))});
 overlay.addEventListener('click',close);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-// Delegation survives header() replacing the navigation buttons on every render.
-nav.addEventListener('click',e=>{
+// Navigate on pointerdown before reactive header redraws replace the clicked button.
+// A click fallback handles keyboard and assistive technology activation.
+let pointerNavigation=false;
+function navigateTab(e){
  const button=e.target.closest('button.nav-item[data-tab]');
  if(!button||!nav.contains(button))return;
  const tab=button.dataset.tab;
  if(!sections.includes(tab))return;
+ if(e.type==='click'&&pointerNavigation){pointerNavigation=false;e.preventDefault();return}
+ if(e.type==='pointerdown'&&e.button!==0)return;
+ if(e.type==='pointerdown')pointerNavigation=true;
  e.preventDefault();
- e.stopPropagation();
  go(tab);
  close();
-});
+}
+document.addEventListener('pointerdown',navigateTab,true);
+document.addEventListener('click',navigateTab,true);
 const oldHeader=header;
 header=function(){
 oldHeader();
