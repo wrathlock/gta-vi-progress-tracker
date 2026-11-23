@@ -1792,4 +1792,22 @@ body.leonida-theme .leonida-feature-art:nth-child(2){background-image:linear-gra
  };
 })();
 </script>
+<style id="developer-notes-style">
+.dev-notes-card{margin-top:14px}.dev-note-entry{padding:12px 0;border-top:1px solid var(--edge)}
+.dev-note-entry:first-of-type{border-top:0}.dev-note-meta{color:var(--muted);font-size:12px;margin:5px 0}
+.dev-note-entry p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55;margin:7px 0}
+</style>
+<script id="developer-notes-projects">
+(function(){
+const originalProfile=projectProfile;
+projectProfile=function(name){
+ const base=originalProfile(name);
+ const data=(typeof LIVE!=='undefined'&&LIVE?.developer_notes)||null;
+ const items=Array.isArray(data?.items)?data.items.filter(x=>x.project===name).slice(0,12):[];
+ const card='<section class="card dev-notes-card"><h3>Developer Notes · '+esc(name)+'</h3><p class="research-note">Public statements from repository-associated authors and published releases. These are developer claims, not independent proof of GTA VI compatibility. Quotes are short excerpts; open the original source for full context. Issue and PR dates may reflect edits, not the original posting date.</p>'+
+ (items.length?items.map(x=>'<article class="dev-note-entry"><strong>'+esc(x.title||'Developer update')+'</strong><div class="dev-note-meta">'+esc(x.author||'Project release')+' · '+esc((x.kind||'update').replaceAll('_',' '))+' · '+esc(x.date||'Date unavailable')+'</div><p>'+esc(x.note||'')+'</p>'+(String(x.url||'').startsWith('https://github.com/')?'<a href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">Read original developer statement</a>':'')+'</article>').join(''):'<p class="research-note">No eligible public developer statements recorded in the latest collection. This does not mean developers have made no updates.</p>')+'</section>';
+ return base+card;
+};
+})();
+</script>
 </body></html>
