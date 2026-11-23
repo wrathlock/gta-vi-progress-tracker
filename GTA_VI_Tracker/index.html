@@ -715,6 +715,14 @@ render();
 .playable-timeline-status{display:block;color:#aabbd0;font-size:.68rem;margin-top:5px}
 .playable-timeline-step.pt-verified .playable-timeline-node{border-color:#58d6a4;color:#58d6a4}
 .playable-timeline-step.pt-verified .playable-timeline-status{color:#58d6a4}
+.playable-timeline-step.pt-reported .playable-timeline-node{border-color:#efba63;background:#6a451b;color:#fff0cf;box-shadow:0 0 0 4px #efba6320,0 0 16px #efba6360}
+.playable-timeline-step.pt-reported .playable-timeline-name{color:#ffdfa5}
+.playable-timeline-step.pt-reported .playable-timeline-status{color:#efba63}
+.playable-timeline-legend{display:flex;flex-wrap:wrap;gap:12px;margin:9px 0 11px;font-size:.73rem;color:#b7c9d9}
+.playable-timeline-legend span:before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:#60758b}
+.playable-timeline-legend .reported:before{background:#efba63;box-shadow:0 0 8px #efba6377}
+.playable-timeline-legend .verified:before{background:#58d6a4}
+
 .playable-timeline-foot{border-top:1px solid #344759;padding-top:11px;font-size:.72rem;color:#aabbd0}
 </style>
 <script id="playability-timeline-script">
@@ -732,12 +740,14 @@ function verifiedRecord(key){
 }
 function timeline(){
  const verified=milestones.filter(([,key])=>verifiedRecord(key)).length;
+ const reportedFiles=!verifiedRecord('game_files');
  const last=(typeof LIVE!=='undefined'&&LIVE&&LIVE.last_attempt_utc)?trackerDate(LIVE.last_attempt_utc):'Not recorded';
  return '<section class="playable-timeline" aria-label="GTA VI PC playability milestone timeline">'+
  '<div class="playable-timeline-head"><h3>PLAYABILITY TIMELINE</h3><span class="pt-count">'+verified+' / 7 verified</span></div>'+
  '<p class="pt-sub">GTA VI-specific milestones · Independent evidence required</p>'+
+ '<div class="playable-timeline-legend"><span class="reported">Reported</span><span class="verified">Independently verified</span><span class="unverified">Not established</span></div>'+
  '<div class="playable-timeline-scroll" tabindex="0" aria-label="Scroll horizontally to view seven playability milestones"><div class="playable-timeline-track">'+
- milestones.map(([name,key],i)=>{const record=verifiedRecord(key);return '<div class="playable-timeline-step'+(record?' pt-verified':'')+'"><span class="playable-timeline-number">'+String(i+1).padStart(2,'0')+'</span><span class="playable-timeline-node" aria-hidden="true">'+(record?'✓':'○')+'</span><span class="playable-timeline-name">'+name+'</span><span class="playable-timeline-status">'+(record?'Verified · '+trackerDate(record.verified_at_utc):key==='game_files'?'Reported · not authenticated':'Unverified')+'</span></div>'}).join('')+
+ milestones.map(([name,key],i)=>{const record=verifiedRecord(key);const reported=key==='game_files'&&!record;return '<div class="playable-timeline-step'+(record?' pt-verified':reported?' pt-reported':'')+'"><span class="playable-timeline-number">'+String(i+1).padStart(2,'0')+'</span><span class="playable-timeline-node" aria-hidden="true">'+(record?'✓':reported?'●':'○')+'</span><span class="playable-timeline-name">'+name+'</span><span class="playable-timeline-status">'+(record?'Verified · '+trackerDate(record.verified_at_utc):reported?'Reported · not authenticated':'Not established')+'</span></div>'}).join('')+
  '</div></div><div class="playable-timeline-foot"><span>Last collector attempt: '+last+'</span><span>Source record dates are not verification dates</span></div></section>';
 }
 const previousRender=render;
