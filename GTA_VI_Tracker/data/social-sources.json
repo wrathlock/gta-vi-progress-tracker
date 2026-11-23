@@ -1,63 +1,81 @@
 {
   "schema_version": "1.0",
-  "purpose": "Curated X/Twitter source watchlist, not a claim that posts are being automatically collected",
+  "purpose": "GTA VI leak claims, Xbox Series emulation, static recompilation and reverse engineering research only; no official Rockstar or general GTA news accounts",
   "collection_status": "not_configured",
   "collection_method": "none",
-  "verification_policy": "Posts are discovery signals; only original evidence and independent reproducibility can verify GTA VI playability milestones",
+  "verification_policy": "Do not equate leak claims, social consensus or source-built test programs with authenticated GTA VI executable, boot, or gameplay. Do not assume project owners have X accounts without attribution.",
   "sources": [
     {
-      "handle": "RockstarGames",
-      "url": "https://x.com/RockstarGames",
-      "tier": "official",
-      "focus": "Official announcements"
+      "name": "Cyberleek",
+      "type": "leak_claimant",
+      "priority": "critical",
+      "primary_url": "https://wayfinder.ar.io/?q=Cyberleek",
+      "x_url": null,
+      "x_identity_status": "not_verified",
+      "focus": "Purported GTA VI build and executable claims; unverified"
     },
     {
-      "handle": "RockstarSupport",
-      "url": "https://x.com/RockstarSupport",
-      "tier": "official_support",
-      "focus": "Support notices; confirm account provenance before relying on a post"
+      "name": "ItsNotRexed / Leonida",
+      "type": "emulation_developer",
+      "priority": "critical",
+      "primary_url": "https://github.com/ItsNotRexed/Leonida",
+      "x_url": null,
+      "x_identity_status": "not_verified",
+      "focus": "Xbox Series to Windows compatibility and GTA VI boot research"
     },
     {
-      "handle": "RockstarINTEL",
-      "url": "https://x.com/RockstarINTEL",
-      "tier": "established_reporting",
-      "focus": "Rockstar news and reports"
+      "name": "R0Y00 / Xbox2Windows",
+      "type": "recompilation_developer",
+      "priority": "critical",
+      "primary_url": "https://github.com/R0Y00/Xbox2Windows",
+      "x_url": null,
+      "x_identity_status": "not_verified",
+      "focus": "Static recompilation, CPU and GPU testing"
     },
     {
-      "handle": "GTAonlineNews",
-      "url": "https://x.com/GTAonlineNews",
-      "tier": "established_reporting",
-      "focus": "RockstarINTEL-associated GTA news"
+      "name": "sammwy",
+      "type": "emulation_researcher",
+      "priority": "high",
+      "primary_url": "https://x.com/sammwy",
+      "x_url": "https://x.com/sammwy",
+      "x_identity_status": "public_post_attributed_by_reporting",
+      "focus": "Xbox Series emulator demonstration; not GTA VI gameplay proof"
     },
     {
-      "handle": "GTABase",
-      "url": "https://x.com/GTABase",
-      "tier": "established_reporting",
-      "focus": "GTA research and references"
+      "name": "ivall / XCL",
+      "type": "shader_translation_developer",
+      "priority": "high",
+      "primary_url": "https://github.com/ivall/xcl",
+      "x_url": null,
+      "x_identity_status": "not_verified",
+      "focus": "Xbox graphics translation"
     },
     {
-      "handle": "videotech",
-      "url": "https://x.com/videotech",
-      "tier": "community_research",
-      "focus": "Rockstar observations"
+      "name": "Freminet / ScarlettX",
+      "type": "emulation_developer",
+      "priority": "high",
+      "primary_url": "https://github.com/Freminet/ScarlettX",
+      "x_url": null,
+      "x_identity_status": "not_verified",
+      "focus": "Xbox Series compatibility"
     },
     {
-      "handle": "TexFunz2",
-      "url": "https://x.com/TexFunz2",
-      "tier": "technical_research",
-      "focus": "Datamining and technical reports"
+      "name": "LooperSalty / AnyXboxX",
+      "type": "emulation_developer",
+      "priority": "high",
+      "primary_url": "https://github.com/LooperSalty/AnyXboxX",
+      "x_url": null,
+      "x_identity_status": "not_verified",
+      "focus": "Xbox Series emulator and package analysis"
     },
     {
-      "handle": "_Tom_Henderson_",
-      "url": "https://x.com/_Tom_Henderson_",
-      "tier": "industry_reporting",
-      "focus": "Games-industry reporting"
-    },
-    {
-      "handle": "GTAVI_Countdown",
-      "url": "https://x.com/GTAVI_Countdown",
-      "tier": "unofficial_aggregator",
-      "focus": "Community discovery, rumors require source tracing"
+      "name": "drycheetah84 / TomBox",
+      "type": "emulation_developer",
+      "priority": "high",
+      "primary_url": "https://github.com/drycheetah84/TomBox",
+      "x_url": null,
+      "x_identity_status": "not_verified",
+      "focus": "Xbox emulator experiments"
     }
   ]
 }
