@@ -1364,6 +1364,7 @@ window.renderIndependentVerification=function(){return '<article class="card"><h
  const topics=['General','Game Files','Executable','PS5','Xbox','Development Activity','Evidence & Confidence'];
  const pages={'PS5':'PS5','Xbox':'Xbox','Development Activity':'Development Activity','Game Files':'Game Files','Executable':'Executable','Evidence & Confidence':'Evidence & Confidence','Sources':'General','Cyberleek Editorial':'General','Breakthroughs':'Development Activity'};
  let chosen='General',inlineOpen='';
+ let communityNavCollapsed=true;
  const originalTitle=document.title;
  const originalHeader=header;
  header=function(){
@@ -1371,8 +1372,14 @@ window.renderIndependentVerification=function(){return '<article class="card"><h
    const nav=document.getElementById('nav');
    if(!nav||nav.querySelector('[data-tab="Community Discussion"]'))return;
    const group=document.createElement('div');group.className='nav-group community-nav-group';
-   group.innerHTML='<div class="nav-group-title">Community <span class="nav-count">1</span></div><button class="nav-item'+(current==='Community Discussion'?' active':'')+'" type="button" data-tab="Community Discussion">Community Discussion</button>';
-   const btn=group.querySelector('button');btn.addEventListener('click',()=>{go('Community Discussion');document.body.classList.remove('nav-open')});
+   if(current==='Community Discussion')communityNavCollapsed=false;
+   group.classList.toggle('collapsed',communityNavCollapsed);
+   group.innerHTML='<div class="nav-group-title" role="button" tabindex="0" aria-expanded="'+String(!communityNavCollapsed)+'">Community <span class="nav-count">1</span></div><button class="nav-item'+(current==='Community Discussion'?' active':'')+'" type="button" data-tab="Community Discussion">Community Discussion</button>';
+   const heading=group.querySelector('.nav-group-title');
+   const toggle=()=>{communityNavCollapsed=!communityNavCollapsed;group.classList.toggle('collapsed',communityNavCollapsed);heading.setAttribute('aria-expanded',String(!communityNavCollapsed))};
+   heading.addEventListener('click',toggle);
+   heading.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
+   const btn=group.querySelector('button');btn.addEventListener('click',()=>{communityNavCollapsed=false;go('Community Discussion');document.body.classList.remove('nav-open')});
    nav.appendChild(group);
  };
  if(!sections.includes('Community Discussion'))sections.push('Community Discussion');
