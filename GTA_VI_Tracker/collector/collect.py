@@ -283,6 +283,44 @@ for name,url in SOURCES.items():
     }[health]
     results.append(record)
 
+# Format-neutral evidence assessment. Distinguish independent reporting from technical proof.
+# Evidence can arrive as articles, repository text, issue/PR discussions, or technical logs.
+def evaluate_public_evidence(exe_watch, usage):
+    records=[]
+    def add_record(subject,claim,level,origin,url,kind,excerpt,independent=False,technical=False):
+        if not url or not str(url).startswith('https://'):return
+        records.append({'subject':subject,'claim':claim,'evidence_level':level,'origin':origin,
+            'url':url,'kind':kind,'excerpt':str(excerpt or '')[:350],
+            'independent_source':independent,'technical_demonstration':technical,'observed_at_utc':NOW})
+    # Previously documented package reporting is a claim of a package, not its authenticity.
+    add_record('game_files','Xbox package reported','reported','Public reporting',
+       'https://videocardz.com/newz/gta-vi-xbox-executable-released-pc-recompilation-projects-can-now-begin-testing',
+       'reporting','Reported Xbox game-file package; contents not independently authenticated')
+    if exe_watch.get('release_announcement_detected'):
+        # Independent publishers corroborate the ANNOUNCEMENT, not the binary.
+        for name,url in [('VideoCardz','https://videocardz.com/newz/gta-vi-xbox-executable-released-pc-recompilation-projects-can-now-begin-testing'),
+                         ('DSOGaming','https://www.dsogaming.com/news/cyberleek-just-leaked-gta-6-xbox-series-x-build-executable/'),
+                         ('KeenGamer','https://www.keengamer.com/articles/news/gta-6-leaker-cyberleek-releases-xbox-executable-file-completing-alleged-leak/')]:
+            add_record('executable_release','Release announcement reported','reported',name,url,'editorial_reporting',
+                       'November 23 coverage of Cyberleek release announcement; authenticity unestablished',True)
+    for lead in usage.get('leads',[]):
+        level=lead.get('evidence_level','mention')
+        add_record('project_exe_usage','Project executable usage '+level,'evidence_emerging' if level=='integration_claim' else 'reported',
+                   lead.get('project'),lead.get('url'),lead.get('source_type'),lead.get('excerpt'))
+    assessments={}
+    for subject in ('game_files','executable_release','project_exe_usage','executable_authentication','execution','gameplay'):
+        items=[x for x in records if x['subject']==subject]
+        independent_origins={x['origin'] for x in items if x['independent_source']}
+        # Independent editorial coverage corroborates only what was reported.
+        status='corroborated' if subject=='executable_release' and len(independent_origins)>=2 else 'evidence_emerging' if any(x['evidence_level']=='evidence_emerging' for x in items) else 'reported' if items else 'not_established'
+        assessments[subject]={'status':status,'evidence_count':len(items),'independent_reporting_sources':len(independent_origins),
+          'technical_authentication':False,'independent_execution_reproduced':False,
+          'explanation':('Independent publications corroborate the release announcement, not executable authenticity' if subject=='executable_release' and status=='corroborated' else
+            'Public project activity suggests a potential integration lead; technical details not independently reviewed' if subject=='project_exe_usage' and status=='evidence_emerging' else
+            'Evidence does not establish authenticity or successful execution')}
+    return {'checked_at_utc':NOW,'method':'claim-specific evidence assessment across heterogeneous public sources; publisher counts never verify binaries',
+            'assessments':assessments,'records':records,'verification_policy':'Technical authentication or independent execution requires direct, reproducible technical evidence. A repeated claim alone cannot qualify.'}
+
 # Latest fetched metadata is NOT a general-source contents scan.
 latest={evidence_identity(e):e for e in events}
 previous={evidence_identity(e):e for e in old.get('events',[]) if isinstance(e,dict) and evidence_identity(e)}
@@ -313,6 +351,7 @@ report={
 'gameplay_verification':'Not assessed by this automatic collector; preserve independent C4/C5 evidence requirements',
 'earlier_baseline_date':'2026-11-22','app_version':'2.9','collector_version':'2.9-audit-1','comparison_scope':'New or changed metadata in recent GitHub samples only; no source-content evidence diff, no verified blocker resolution or regression','validation':{'source_count_matches_expected':len(results)==len(SOURCES),'all_source_records_timestamped':all(r.get('checked_at_utc')==NOW for r in results),'all_events_have_source_urls':all(bool(e.get('url')) for e in events),'no_content_review_claimed':True,'screening_count_matches_records':screened==sum(r.get('content_screening',{}).get('status')=='screened' for r in results)}}
 # Comment-derived community claims and account screening are not collected.
+report['evidence_assessment']=evaluate_public_evidence(report['exe_watch'],report['project_exe_usage'])
 DATA.mkdir(exist_ok=True)
 (DATA/'snapshots').mkdir(parents=True,exist_ok=True)
 (DATA/'previous.json').write_text(json.dumps(old,indent=2,ensure_ascii=False),encoding='utf-8')
