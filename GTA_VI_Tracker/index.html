@@ -140,4 +140,52 @@ section=function(){if(current==='Overview')return overviewPage();if(current==='X
 const priorHeader=header;header=function(){priorHeader();const b=document.querySelector('#nav .nav-item[data-tab="Projects"]');if(b)b.closest('.nav-group')?.removeAttribute('hidden')};
 header();render();
 })();
+</script>
+<style id="collapsible-nav-style">
+#nav .nav-group-title{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;border-radius:8px;user-select:none}
+#nav .nav-group-title:hover{background:#1d354c}
+#nav .nav-group-title:focus-visible{outline:2px solid var(--teal)}
+#nav .nav-group-title::before{content:'▾';font-size:12px;transition:transform .16s ease;color:var(--teal)}
+#nav .nav-group.collapsed .nav-group-title::before{transform:rotate(-90deg)}
+#nav .nav-group.collapsed .nav-item{display:none}
+#nav .nav-group.collapsed{margin-bottom:5px}
+#nav .nav-group-title .nav-count{margin-left:auto}
+</style>
+<script id="collapsible-nav-script">
+(function(){
+const nav=document.getElementById('nav');
+const states={};
+function prepare(){
+nav.querySelectorAll('.nav-group').forEach(g=>{
+const heading=g.querySelector('.nav-group-title');
+if(!heading)return;
+const name=heading.textContent.replace(/\s+\d+\s*$/,'').trim();
+if(!(name in states))states[name]=!g.querySelector('.nav-item.active');
+const q=nav.querySelector('#navSearch')?.value.trim()||'';
+g.classList.toggle('collapsed',!q&&states[name]);
+heading.setAttribute('role','button');heading.setAttribute('tabindex','0');heading.setAttribute('aria-expanded',String(!g.classList.contains('collapsed')));
+const toggle=()=>{
+states[name]=!states[name];
+g.classList.toggle('collapsed',states[name]);
+heading.setAttribute('aria-expanded',String(!states[name]));
+};
+heading.addEventListener('click',toggle);
+heading.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
+});
+const input=nav.querySelector('#navSearch');
+if(input)input.addEventListener('input',()=>{
+const q=input.value.trim();
+nav.querySelectorAll('.nav-group').forEach(g=>{
+const heading=g.querySelector('.nav-group-title');
+if(!heading)return;
+const name=heading.textContent.replace(/\s+\d+\s*$/,'').trim();
+g.classList.toggle('collapsed',!q&&!!states[name]);
+heading.setAttribute('aria-expanded',String(!g.classList.contains('collapsed')));
+});
+});
+}
+const original=header;
+header=function(){original();prepare()};
+prepare();
+})();
 </script></body></html>
