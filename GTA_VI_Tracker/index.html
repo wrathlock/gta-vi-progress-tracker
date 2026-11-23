@@ -491,6 +491,8 @@ document.getElementById('content').innerHTML='<h2>'+esc(current)+'</h2>'+(curren
 translate(document.getElementById('content'));
 translate(document.getElementById('stats'));
 };
+window.renderEvidenceRecords=evidenceDatabase;
+window.renderConfidenceAnalysis=confidenceDashboard;
 const oldHeader=header;
 header=function(){oldHeader();translate(document.getElementById('stats'))};
 header();render();
@@ -1077,7 +1079,7 @@ function viewMarkup(name){
   body=active==='performance'?card('<p class="desc">No independently verified GTA VI PC FPS, frame-time, resolution, or VRAM benchmark is established. No performance values are inferred.</p>','Verified performance'):card('<p class="desc">No tested GTA VI PC minimum or recommended CPU, GPU, RAM, VRAM or driver requirement is established by this tracker. Hardware information from unrelated games or emulator component tests is not a GTA VI requirement.</p>','Hardware requirements');
  }else if(name==='Evidence & Confidence'){
   description='Evidence records, confidence analysis, and third-party verification findings are organized in one section. Community claims do not establish technical verification.';
-  body=active==='records'?evidenceDatabase():active==='confidence'?confidenceDashboard():(window.renderIndependentVerification?window.renderIndependentVerification():card('<p class="desc">Independent verification findings are loading.</p>','Independent Verification'));
+  body=active==='records'?window.renderEvidenceRecords():active==='confidence'?window.renderConfidenceAnalysis():(window.renderIndependentVerification?window.renderIndependentVerification():card('<p class="desc">Independent verification findings are loading.</p>','Independent Verification'));
  }else if(name==='Archive'){
   description='Historical collector runs and imported snapshot comparisons are separate views; neither establishes verified gameplay.';
   body=active==='archive'?originalTab('Archive'):card(diff(),'Historical snapshot comparison');
