@@ -681,23 +681,59 @@ render=function(){
 };
 render();
 })();
-</script><script id="vice-city-toggle-script">
+</script><style id="leonida-theme-style">
+#themePicker{position:fixed;top:57px;right:18px;z-index:12;min-width:165px;padding:7px;background:#1b1731f5;border:1px solid #f39aca;border-radius:13px;box-shadow:0 12px 32px #090518cc;display:grid;gap:5px}
+#themePicker[hidden]{display:none!important}
+#themePicker button{width:100%;text-align:left;border:1px solid transparent;background:transparent;color:#fff2fc;border-radius:8px;padding:10px 12px}
+#themePicker button:hover,#themePicker button.active{background:#8c306e;border-color:#e89dc8}
+body.leonida-theme{--bg:#100c20;--panel:#23162e;--edge:#d268a4;--txt:#fff5fb;--muted:#e9c5d9;--teal:#75e8ec;--amber:#ffba75;background:#130d23!important;color:var(--txt)}
+body.leonida-theme::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,#160c29a6 0%,#170e29df 55%,#110b20 100%),url("assets/leonida-sunset.svg") center top/cover no-repeat}
+body.leonida-theme header{background:linear-gradient(90deg,#180c2ce8,#4b1846ca 55%,#2a143bd9),url("assets/leonida-sunset.svg") center 45%/cover no-repeat;border-bottom:2px solid #ff8cb6;box-shadow:0 7px 30px #1208209c;min-height:126px}
+body.leonida-theme header .gta-progress-brand{border-left:4px solid #ff9ab8;padding-left:15px;text-shadow:0 2px 9px #170c28}
+body.leonida-theme .gta-progress-eyebrow{color:#ffd2a8;letter-spacing:.12em}
+body.leonida-theme .gta-progress-vi{color:#ffb7a6;background:linear-gradient(135deg,#ffe5a2,#f785bc 60%,#ae73d6);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:1000}
+body.leonida-theme h1{font-weight:900;letter-spacing:.03em}
+body.leonida-theme #nav{background:linear-gradient(180deg,#25112feF,#160e27f5);border-right:1px solid #e277ad8a}
+body.leonida-theme #nav button.active{background:linear-gradient(90deg,#a32c75,#55245e);border-left-color:#ffacb9}
+body.leonida-theme .card,body.leonida-theme .stat{background:linear-gradient(125deg,#2b1839f2,#21172fef);border:1px solid #b95e9d;border-radius:13px;box-shadow:0 6px 24px #10091b72}
+body.leonida-theme .card h3,body.leonida-theme .heading{color:#ffe2ef}
+body.leonida-theme .desc,body.leonida-theme .muted{color:#e9c5d9}
+body.leonida-theme button:not(#themeSwitch):not(#themePicker button){background:#46234f;border-color:#c374a8;color:#fff5fb}
+body.leonida-theme button.active:not(#themeSwitch),body.leonida-theme button:hover:not(#themeSwitch){background:#9c377a;border-color:#ffadcb}
+body.leonida-theme input,body.leonida-theme select{background:#25172e;color:#fff5fb;border-color:#b777a3}
+body.leonida-theme .pill,body.leonida-theme .tag{background:#63335f;color:#ffe8f2}
+body.leonida-theme a{color:#8df0ef}
+body.leonida-theme .playable-timeline{background:linear-gradient(110deg,#281631f2,#4e1c4bd9),url("assets/leonida-sunset.svg") center/cover no-repeat;border-color:#ef7cb4}
+body.leonida-theme #themeSwitch{background:#672659;border-color:#ffb4c8;color:#fff}
+@media(max-width:900px){#themePicker{top:52px;right:10px}body.leonida-theme header .top{padding-right:145px}}
+@media(max-width:520px){#themePicker{top:auto;bottom:66px;right:15px}body.leonida-theme header .top{padding-right:0}body.leonida-theme header{min-height:110px}}
+@media(prefers-reduced-motion:reduce){body.leonida-theme *,#themePicker *{transition:none!important}}
+</style><script id="vice-city-toggle-script">
 (function(){
-  const storageKey='gta-vi-progress-theme';
-  const button=document.createElement('button');
-  button.type='button';button.id='themeSwitch';button.setAttribute('aria-label','Switch between Research and Vice City themes');
-  function setTheme(mode){
-    const cinematic=mode==='vice';
-    document.body.classList.toggle('vice-city-theme',cinematic);
-    button.textContent=cinematic?'☀ Research theme':'✦ Vice City theme';
-    button.setAttribute('aria-pressed',String(cinematic));
-    button.title=cinematic?'Return to the clean research dashboard':'Enable the cinematic Miami-inspired theme';
-    try{localStorage.setItem(storageKey,cinematic?'vice':'research')}catch(e){}
-  }
-  button.addEventListener('click',()=>setTheme(document.body.classList.contains('vice-city-theme')?'research':'vice'));
-  document.body.appendChild(button);
-  let saved='research';try{saved=localStorage.getItem(storageKey)||'research'}catch(e){}
-  setTheme(saved);
+ const storageKey='gta-vi-progress-theme';
+ const button=document.createElement('button');
+ button.type='button';button.id='themeSwitch';button.setAttribute('aria-label','Choose dashboard theme');
+ const themes=[['research','Research'],['vice','Vice City'],['leonida','GTA VI']];
+ const picker=document.createElement('div');picker.id='themePicker';picker.setAttribute('role','group');picker.setAttribute('aria-label','Dashboard themes');
+ function setTheme(mode){
+  if(!themes.some(t=>t[0]===mode))mode='research';
+  document.body.classList.toggle('vice-city-theme',mode==='vice');
+  document.body.classList.toggle('leonida-theme',mode==='leonida');
+  button.textContent='◈ Theme: '+themes.find(t=>t[0]===mode)[1]+' ▾';
+  button.setAttribute('aria-expanded','false');
+  picker.hidden=true;
+  for(const option of picker.querySelectorAll('button')){const active=option.dataset.theme===mode;option.classList.toggle('active',active);option.setAttribute('aria-pressed',String(active))}
+  try{localStorage.setItem(storageKey,mode)}catch(e){}
+ }
+ for(const [key,label] of themes){
+  const option=document.createElement('button');option.type='button';option.dataset.theme=key;option.textContent=label;option.addEventListener('click',()=>setTheme(key));picker.appendChild(option);
+ }
+ button.addEventListener('click',()=>{picker.hidden=!picker.hidden;button.setAttribute('aria-expanded',String(!picker.hidden))});
+ document.addEventListener('click',e=>{if(e.target!==button&&!picker.contains(e.target)){picker.hidden=true;button.setAttribute('aria-expanded','false')}});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){picker.hidden=true;button.setAttribute('aria-expanded','false')}});
+ picker.hidden=true;document.body.appendChild(button);document.body.appendChild(picker);
+ let saved='research';try{saved=localStorage.getItem(storageKey)||'research'}catch(e){}
+ setTheme(saved);
 })();
 </script><script src="independent.js" defer></script><script src="source-health.js" defer></script><style id="playability-timeline-style">
 .playable-timeline{margin:16px 0;padding:17px 18px;background:var(--panel,#142235);border:1px solid #345a67;border-radius:13px;color:var(--text,#edf4fb)}
