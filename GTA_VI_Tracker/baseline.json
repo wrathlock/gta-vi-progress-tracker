@@ -18,7 +18,10 @@
     "GTA VI Dump & PC-Port Tracker",
     "GTA VI Reverse Engineering Index",
     "GTA 6 PC Tracker",
-    "FollowTheLeek"
+    "FollowTheLeek",
+    "AnyPS5",
+    "KytyPS5",
+    "SharpEmu"
   ],
   "verification": {
     "gta_vi_pc_boot": "not independently verified",
