@@ -238,7 +238,7 @@ const groups=[
 ['Live status',['Overview','Live research status','Latest Changes','Development Activity','Alerts','Get Notifications']],
 ['Playability & progress',['Gameplay Proof & Reproducibility','Executable','Xbox','PS5','Performance & Hardware','Interactive milestone ladders','Project Comparison & Compatibility']],
 ['Evidence & verification',['Independent Verification','Evidence & Confidence','Cross-checks','Provenance','Scams']],
-['Technical research',['Breakthroughs','Technical Blockers & Dependencies','RAGE 9']],
+['Technical research',['Breakthroughs','Technical Blockers & Dependencies']],
 ['Sources & development',['Sources','Discovery','GitHub analytics','Trackers','Fork analysis']],
 ['History & archive',['Timeline','History','Archive','Preservation']]
 ];
@@ -749,11 +749,11 @@ render();
 <script id="technical-consolidation-script">
 (function(){
 const name='Technical Blockers & Dependencies';
-const aliases=['Blockers','Bottlenecks','Technical dependency map','Dependencies'];
+const aliases=['Blockers','Bottlenecks','Technical dependency map','Dependencies','RAGE 9'];
 for(const a of aliases){let i=sections.indexOf(a);if(i>=0)sections.splice(i,1)}
 if(!sections.includes(name)){const i=sections.indexOf('Breakthroughs');sections.splice(i>=0?i+1:sections.length,0,name)}
 let view='overview';
-const views=[['overview','Overview'],['blockers','Blockers'],['bottlenecks','Bottlenecks'],['map','Dependency Map'],['projects','Projects']];
+const views=[['overview','Overview'],['blockers','Blockers'],['bottlenecks','Bottlenecks'],['map','Dependency Map'],['projects','Projects'],['engine','Game Engine & Assets']];
 window.setTechView=function(next){if(views.some(v=>v[0]===next)){view=next;render()}};
 const previousSection=section;
 function techCard(title,body){return '<div class="tech-panel"><h4>'+esc(title)+'</h4>'+body+'</div>'}
@@ -786,7 +786,8 @@ function technical(){
    ['Blockers','Missing game-specific evidence','blockers'],
    ['Bottlenecks','Technical validation areas; not ranked by measured performance','bottlenecks'],
    ['Dependency Map','Prerequisite sequence and required next evidence','map'],
-   ['Projects','Source-specific historical research, where recorded','projects']
+   ['Projects','Source-specific historical research, where recorded','projects'],
+   ['Game Engine & Assets','RAGE 9 file-format and asset-tool research index','engine']
   ].map(([title,description,id])=>techCard(title,techText(description)+'<button onclick="setTechView(\''+id+'\')">View details</button>')).join('')+'</div>';
  }else if(view==='blockers'){
   content='<p class="tech-intro">Unresolved game-specific evidence requirements. These are not claims that a specific software defect has been diagnosed.</p><div class="tech-grid">'+blockers.map(([a,b])=>techCard(a,'<span class="warn">Unverified</span>'+techText(b))).join('')+'</div>';
@@ -794,6 +795,14 @@ function technical(){
   content='<p class="tech-intro">Potential technical constraints requiring game-specific testing. No measured GTA VI performance bottleneck or severity ranking is established.</p><div class="tech-grid">'+areas.map(([a,b])=>techCard(a,techText(b))).join('')+'</div>';
  }else if(view==='map'){
   content='<p class="tech-intro">Conceptual technical prerequisite order from the existing '+esc(platform)+' research chain; no verified completion is implied.</p><div class="tech-flow">'+prerequisites.map(([a,observed,required],i)=>techCard((i+1)+'. '+a,techText('Observed: '+observed)+techText('To advance: '+required))+(i<prerequisites.length-1?'<span class="tech-flow-arrow" aria-hidden="true">↓</span>':'')).join('')+'</div>';
+ }else if(view==='engine'){
+  const categories=[
+   ['RPF9 archives & exploration',['PercyStar','Percy6Stars','SixNG','rpf9-explorer']],
+   ['World & asset research',['6stars','RageForge','6to5m']],
+   ['Textures',['ttpf-studio','ttpf-viewer','bcpack-rs']],
+   ['Audio',['rpf9-audio','AWC_from_RPF9_Extractor']]
+  ];
+  content='<p class="tech-intro">Preserved RAGE 9 research index from the original dashboard. Tool names are historical references, not validated GTA VI compatibility, completed extraction, or independently verified breakthroughs.</p><div class="tech-grid">'+categories.map(([title,tools])=>techCard(title,techText(tools.join(' · ')))).join('')+'</div><p class="tech-intro">'+link('Original technical research index',urls['GTA VI Reverse Engineering Index'])+'</p>';
  }else{
   content='<p class="tech-intro">Historical project records and source links. Counts describe reported component tests, not GTA VI game readiness.</p><div class="tech-grid">'+projectRows.map(p=>{
    const rows=metrics.filter(m=>m.project===p);
