@@ -219,7 +219,7 @@ const urls={'Cyberleek':'https://wayfinder.ar.io/?q=Cyberleek','Cyberleek.cloud 
 const xbox=['Leonida','Xbox2Windows','XCL','ScarlettX','AnyXboxX','Xbox Emulator / TomBox'],ps5=['AnyPS5','KytyPS5','SharpEmu'];const metrics=db.reported_metrics;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const link=(name,url)=>`<a href="${esc(url||urls[name]||'#')}" target="_blank" rel="noopener noreferrer">${esc(name)} ↗</a>`;const card=(body,title='')=>`<article class="card">${title?`<h3>${esc(title)}</h3>`:''}${body}</article>`;const tag=(x)=>`<span class="tag">${esc(x)}</span>`;const none=msg=>`<div class="empty">${esc(msg)}</div>`;const btn=(label,action)=>`<button onclick="${action}">${esc(label)}</button>`;const state=s=>s==='unknown'||s==null?'Not collected':s;const fmt=v=>v===null||v===undefined?'Not collected':esc(v);
 function metric(n){let m=db.reported_metrics.find(m=>m.project===n);return m?`${m.value.toLocaleString()}${m.denominator?' / '+m.denominator.toLocaleString():''} ${m.metric.replaceAll('_',' ')}`:'No comparable component metric';}
-function header(){document.getElementById('stats').innerHTML=[['GTA VI PC gameplay','Not verified'],['EXE released','No — not verified'],['Listed sources',String((db.sources||[]).length)]].map(([k,v])=>`<div class="card stat"><small>${k}</small><div class="value ${v==='Not verified'?'warn':'good'}">${v}</div></div>`).join('');document.getElementById('nav').innerHTML=sections.map(s=>`<button class="${s===current?'active':''}" onclick="go('${s.replaceAll("'","\\'")}')">${esc(s)}</button>`).join('')}
+function header(){document.getElementById('stats').innerHTML=[['GTA VI PC playability','Prerequisites in Progress'],['Execution stage','Pre-Execution'],['Listed sources',String((db.sources||[]).length)]].map(([k,v])=>`<div class="card stat"><small>${k}</small><div class="value ${v==='Prerequisites in Progress'||v==='Pre-Execution'?'warn':'good'}">${v}</div></div>`).join('');document.getElementById('nav').innerHTML=sections.map(s=>`<button class="${s===current?'active':''}" onclick="go('${s.replaceAll("'","\\'")}')">${esc(s)}</button>`).join('')}
 function go(s){current=s;header();render();window.scrollTo({top:0,behavior:'instant'})}function setPlatform(s){platform=s;render()}function setEvidence(s){evidence=s;render()}function setSearch(s){search=s;render()}function setSourceSearch(s){sourceSearch=s;render()}
 function stages(){return platform==='Xbox'?[['Authenticated executable','No independently authenticated GTA VI executable','Verified game binary and provenance'],['CPU / OS runtime','Synthetic PE mapping and CPU research','Game-specific imports, memory and initialization'],['Shader and GPU integration','Reported shader translations and controlled tests','Correct resources, pipelines, synchronization and presentation'],['GTA VI first boot','Not independently reproduced','Repeatable game-specific startup with logs'],['Menu and gameplay','Not independently reproduced','Controllable game session and independent replication']]:[['Usable authenticated game image','No independently verified usable GTA VI image','Authentic image compatible with emulator'],['System services / loader','Generic function coverage reported','Game-specific imports, threading, memory and services'],['Graphics integration','Generic emulator graphics research','Game-specific graphics initialization and rendering'],['GTA VI first boot','No reproduced startup','Repeatable game-specific startup and logs'],['Menu and gameplay','Not independently reproduced','Independent menu and controllable gameplay reproduction']];}
 function stageHTML(){return stages().map(([name,obs,req],i)=>`<div class="step"><b>${i+1}. ${esc(name)}</b> ${tag(i<3?'Prerequisite / research':'Not verified')}<div class="desc">Observed: ${esc(obs)}<br>To advance: ${esc(req)}</div></div>`).join('')}
@@ -881,7 +881,7 @@ header();
 <script id="playability-timeline-script">
 (function(){
 const milestones=[
-['Game files','game_files'],['EXE','executable'],['Code execution','execution'],
+['Game files','game_files'],['Executable','executable'],['Code execution','execution'],
 ['Graphics','graphics'],['Main menu','main_menu'],['Gameplay','gameplay'],['Independent test','independent_reproduction']
 ];
 function verifiedRecord(key){
@@ -896,11 +896,11 @@ function timeline(){
  const reportedFiles=!verifiedRecord('game_files');
  const last=(typeof LIVE!=='undefined'&&LIVE&&LIVE.last_attempt_utc)?trackerDate(LIVE.last_attempt_utc):'Not recorded';
  return '<section class="playable-timeline" aria-label="GTA VI PC playability milestone timeline">'+
- '<div class="playable-timeline-head"><h3>PLAYABILITY TIMELINE</h3><span class="pt-count">'+verified+' / 7 verified</span></div>'+
- '<p class="pt-sub">GTA VI-specific milestones · Independent evidence required</p>'+
+ '<div class="playable-timeline-head"><h3>PATH TO PLAYABILITY</h3><span class="pt-count">Pre-Execution</span></div>'+
+ '<p class="pt-sub">Current focus: file and executable verification · Later stages are not yet reached</p>'+
  '<div class="playable-timeline-legend"><span class="reported">Reported</span><span class="verified">Independently verified</span><span class="unverified">Not established</span></div>'+
  '<div class="playable-timeline-scroll" tabindex="0" aria-label="Scroll horizontally to view seven playability milestones"><div class="playable-timeline-track">'+
- milestones.map(([name,key],i)=>{const record=verifiedRecord(key);const reported=key==='game_files'&&!record;return '<div class="playable-timeline-step'+(record?' pt-verified':reported?' pt-reported':'')+'"><span class="playable-timeline-number">'+String(i+1).padStart(2,'0')+'</span><span class="playable-timeline-node" aria-hidden="true">'+(record?'✓':reported?'●':'○')+'</span><span class="playable-timeline-name">'+name+'</span><span class="playable-timeline-status">'+(record?'Verified · '+trackerDate(record.verified_at_utc):reported?'Reported · not authenticated':'Not established')+'</span></div>'}).join('')+
+ milestones.map(([name,key],i)=>{const record=verifiedRecord(key);const reported=key==='game_files'&&!record;return '<div class="playable-timeline-step'+(record?' pt-verified':reported?' pt-reported':'')+'"><span class="playable-timeline-number">'+String(i+1).padStart(2,'0')+'</span><span class="playable-timeline-node" aria-hidden="true">'+(record?'✓':reported?'●':'○')+'</span><span class="playable-timeline-name">'+name+'</span><span class="playable-timeline-status">'+(record?'Verified · '+trackerDate(record.verified_at_utc):reported?'Reported · not authenticated':key==='executable'?'Unconfirmed':'Not reached')+'</span></div>'}).join('')+
  '</div></div><div class="playable-timeline-foot"><span>Last collector attempt: '+last+'</span><span>Source record dates are not verification dates</span></div></section>';
 }
 const previousRender=render;
@@ -1361,4 +1361,8 @@ body.leonida-theme header .pill{flex-shrink:0!important}
  body.leonida-theme header .gta-progress-subtitle{font-size:9px!important}
  body.leonida-theme header .pill{display:none!important}
 }
+</style><style id="preexecution-status-v1">
+#stats .stat:first-child .value{font-size:clamp(16px,1.6vw,24px)!important;line-height:1.2!important}
+#stats .stat:nth-child(2) .value{font-size:clamp(18px,1.8vw,26px)!important}
+.playable-timeline-head .pt-count{color:#f5c985!important;border:1px solid #cfa66c!important;background:#44312055!important}
 </style></body></html>
