@@ -376,10 +376,10 @@ section=function(){
 if(current==='Scams'||current==='Cross-checks'){
 const content=originalSection();
 const source='https://github.com/deepwoodssec/FollowTheLeek';
-const note='<div class="audit-flag"><strong>Investigation scope:</strong> One CyberLeek case family; the three topics are not three independently confirmed scams. <strong>Source:</strong> <a href="'+source+'" target="_blank" rel="noopener noreferrer">FollowTheLeek</a>. <strong>Source review:</strong> repository README inspected November 22, 2026; case-specific evidence is investigator-reported, not independently rechecked by this tracker. <strong>Tracker verification status:</strong> not independently reviewed. No identity attribution established.</div>';
+const note='<div class="audit-flag"><strong>Investigation scope:</strong> Case family CYBERLEEK-2026: three related investigation topics, not three independently confirmed scams. <strong>Source:</strong> <a href="'+source+'" target="_blank" rel="noopener noreferrer">FollowTheLeek</a>. <strong>Source review:</strong> repository README inspected November 22, 2026; case-specific evidence is investigator-reported, not independently rechecked by this tracker. <strong>Tracker verification status:</strong> not independently reviewed. No identity attribution established.</div>';
 return note+content;
 }
-if(current==='Overview')return originalSection()+'<div class="card"><h3>Research integrity</h3><p class="audit-flag">Repository activity, historical tracker scores, and developer-reported tests are not verified GTA VI compatibility. Source reachability is not a content scan. The current dataset contains no independently reproduced GTA VI PC gameplay.</p></div>';
+if(current==='Overview')return originalSection()+'<div class="card"><h3>Research integrity</h3><p class="audit-flag">Repository activity, historical tracker scores, and developer-reported tests are not verified GTA VI compatibility. Source reachability is not a content scan. The current dataset contains no independently reproduced GTA VI PC gameplay. Technical evidence changes cannot be inferred from GitHub commit messages or sampled metadata.</p></div>';
 return originalSection();
 };
 header();render();
