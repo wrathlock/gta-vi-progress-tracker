@@ -1,0 +1,40 @@
+
+name: GTA VI Hourly Live Data
+
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gta-vi-collector
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare snapshot directory
+        run: mkdir -p GTA_VI_Tracker/data/snapshots
+
+      - name: Collect source activity
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 GTA_VI_Tracker/collector/collect.py
+
+      - name: Save live data and history
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add GTA_VI_Tracker/data/
+          if ! git diff --cached --quiet; then
+            git commit -m "Update GTA VI live research data"
+            git push
+          fi
