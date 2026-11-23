@@ -3,7 +3,7 @@
 Only repo metadata and Github events are collected; non-GitHub sources are HEAD/GET reachability checked.
 No keyword match is classified as GTA VI game execution, and this script never sends alerts.
 """
-import json, os, urllib.request, urllib.error, pathlib, datetime, re, time, hashlib, base64
+import json, os, urllib.request, urllib.error, urllib.parse, pathlib, datetime, re, time, hashlib, base64
 from collections import Counter
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 DATA=ROOT/'data'
@@ -88,6 +88,48 @@ def announcement_watch(previous):
             'release_announcement_sources':[{'name':x['source'],'url':x['url'],'excerpt':x['announcement_excerpt']} for x in detections],
             'executable_independently_authenticated':False,'execution_independently_reproduced':False,
             'verification_note':'No automatic binary authentication or execution tests; source text changes are unverified leads, not proof.'}
+
+
+# Public RSS/Atom headlines only: no social-media API keys, authentication, scraping logins or binary downloads.
+# A rumor is a sourced community claim, never a verified technical milestone.
+def collect_rumors(previous):
+    import xml.etree.ElementTree as ET
+    from html import unescape
+    feeds=[
+      ('Reddit · GamingLeaksAndRumours','https://www.reddit.com/r/GamingLeaksAndRumours/search.rss?q=%22GTA%206%22%20OR%20%22GTA%20VI%22&restrict_sr=1&sort=new&t=week'),
+      ('Reddit · GTA6','https://www.reddit.com/r/GTA6/search.rss?q=PC%20OR%20leak%20OR%20executable&restrict_sr=1&sort=new&t=week'),
+      ('X-linked reports · news index','https://news.google.com/rss/search?q=%22GTA%206%22%20%28%22Twitter%22%20OR%20%22X%20post%22%29%20%28leak%20OR%20PC%20OR%20executable%29&hl=en-US&gl=US&ceid=US:en')
+    ]
+    prior=[x for x in (previous.get('rumors') or {}).get('items',[]) if isinstance(x,dict)]
+    items={x.get('url'):x for x in prior if x.get('url')}
+    checks=[]
+    relevant=re.compile(r'(?i)\b(?:gta\s*(?:6|vi)|grand theft auto\s*(?:6|vi)|cyberleek|leonida|xbox2windows|recompil(?:e|ation))\b')
+    for name,url in feeds:
+        status,raw,error=fetch(url)
+        count=0
+        if status==200 and raw:
+            try:
+                root=ET.fromstring(raw)
+                nodes=root.findall('.//{http://www.w3.org/2005/Atom}entry') or root.findall('.//item')
+                for node in nodes[:35]:
+                    def value(tag):
+                        elem=node.find(tag)
+                        return ''.join(elem.itertext()).strip() if elem is not None else ''
+                    title=unescape(value('{http://www.w3.org/2005/Atom}title') or value('title'))
+                    link=node.find('{http://www.w3.org/2005/Atom}link')
+                    href=(link.get('href') if link is not None else None) or value('link')
+                    published=value('{http://www.w3.org/2005/Atom}published') or value('pubDate')
+                    if not title or not href or not relevant.search(title):continue
+                    parsed=urllib.parse.urlsplit(href)
+                    if parsed.scheme!='https' or parsed.hostname not in ('www.reddit.com','reddit.com','news.google.com'):continue
+                    if href not in items:items[href]={'title':re.sub(r'\s+',' ',title)[:220],'url':href,'source':name,'published':published[:90],'first_seen_utc':NOW,'classification':'Unverified community discussion / third-party reporting','verification':'Not independently verified'}
+                    count+=1
+                checks.append({'source':name,'status':'screened','matching_items':count})
+            except Exception as exc:checks.append({'source':name,'status':'parse_failed','error':type(exc).__name__})
+        else:checks.append({'source':name,'status':'unavailable','error':error or 'HTTP '+str(status)})
+    # Preserve prior findings if an RSS source is blocked; do not imply it was freshly checked.
+    entries=sorted(items.values(),key=lambda x:x.get('first_seen_utc',''),reverse=True)[:100]
+    return {'checked_at_utc':NOW,'method':'Public Reddit Atom and indexed news RSS, no social APIs','sources':checks,'items':entries,'note':'Unverified headlines only. X entries are third-party indexed reports, not direct X verification. Feeds may be blocked, incomplete, delayed or unavailable.'}
 
 old=read_json(DATA/'live.json',{})
 results=[]; events=[]; analytic=[]; successes=0; screened=0
@@ -203,8 +245,8 @@ report={
 'last_complete_21_source_content_scan_utc':None,'last_substantive_content_scan_utc':None,
 'original_sources':len(SOURCES),'listed_sources':len(SOURCES),'contacted_sources':sum(r['status']!='unavailable' for r in results),'reachable_sources':successes,'substantively_reviewed_sources':0,'automated_content_screened_sources':screened,'independently_verified_sources':0,'coverage_method':'GitHub repository metadata and automated README text screening; HTTP reachability only for other sources','unavailable_sources':sum(r['status']=='unavailable' for r in results),
 'last_error_count':sum(bool(r.get('error')) or bool(r.get('activity_error')) for r in results),
-'collector_scope':'GitHub repository metadata, recent public commits/releases/issues/PRs, and HTTP reachability for non-GitHub sources. Automated GitHub README screening only, not full website content review. No executable downloads or independent technical test reproduction. No Reddit comment-based data is collected.',
-'exe_watch':announcement_watch(old),
+'collector_scope':'GitHub repository metadata, recent public commits/releases/issues/PRs, and HTTP reachability for non-GitHub sources. Automated GitHub README screening only, not full website content review. No executable downloads or independent technical test reproduction. Reddit RSS post headlines and indexed news headlines are collected as unverified rumors; no Reddit comments or direct X feed are collected.',
+'exe_watch':announcement_watch(old),'rumors':collect_rumors(old),
 'source_results':results,'events':events[:180],'changes':changes[:100], 'github_analytics':analytic,
 'gameplay_verification':'Not assessed by this automatic collector; preserve independent C4/C5 evidence requirements',
 'earlier_baseline_date':'2026-11-22','app_version':'2.9','collector_version':'2.9-audit-1','comparison_scope':'New or changed metadata in recent GitHub samples only; no source-content evidence diff, no verified blocker resolution or regression','validation':{'source_count_matches_expected':len(results)==len(SOURCES),'all_source_records_timestamped':all(r.get('checked_at_utc')==NOW for r in results),'all_events_have_source_urls':all(bool(e.get('url')) for e in events),'no_content_review_claimed':True,'screening_count_matches_records':screened==sum(r.get('content_screening',{}).get('status')=='screened' for r in results)}}
