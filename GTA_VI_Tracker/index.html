@@ -1799,11 +1799,13 @@ body.leonida-theme .leonida-feature-art:nth-child(2){background-image:linear-gra
  }
  async function load(){
   if(fetching)return;fetching=true;
-  try{const res=await fetch('data/live.json?rumors='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);const data=await res.json();cached=data.rumors||null}catch(e){cached=null}
+  try{const res=await fetch('data/live.json?rumors='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);const data=await res.json();cached=data.rumors||null}catch(e){console.error('Rumor feed load failed',e);if(!cached)cached={checked_at_utc:'Unavailable',sources:[],items:[]}}
   fetching=false;draw();
  }
- const observer=new MutationObserver(()=>{if(document.getElementById('rumors-feed-root')){draw();if(!cached&&!fetching)load()}});
+ const observer=new MutationObserver(()=>{if(document.getElementById('rumors-feed-root')){try{draw()}catch(e){console.error('Rumor render failed',e)}if(!cached&&!fetching)load()}});
  const content=document.getElementById('content');if(content)observer.observe(content,{childList:true});
+ const oldRender=render;
+ render=function(){oldRender();if(current==='Rumors'){if(!document.getElementById('rumors-feed-root')){const node=document.getElementById('content');if(node)node.insertAdjacentHTML('beforeend','<div id="rumors-feed-root"></div>')}draw();if(!cached&&!fetching)load()}};
  if(document.getElementById('rumors-feed-root'))load();
  setInterval(()=>{if(document.getElementById('rumors-feed-root'))load()},300000);
 })();
