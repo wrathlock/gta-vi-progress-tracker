@@ -33,7 +33,22 @@ function display(){
  (data.errors?.length?'<p class="desc">Some searches were unavailable ('+data.errors.length+' access or retrieval errors). Results are incomplete.</p>':''));
 }
 const priorSection=section;
-section=function(){return current==='Independent Verification'?display():priorSection()};
+function redditIntegration(){
+ if(!data)return box('Reddit claim intelligence','<p class="desc">'+(error?'Reddit data unavailable: '+escapeText(error):'Loading Reddit collector data…')+'</p>');
+ const findings=Array.isArray(data.findings)?data.findings:[];
+ const coverage='<p class="desc">Reddit last attempted: '+escapeText(data.collected_at_utc||'not recorded')+' · '+escapeText(data.status||'unknown')+' · '+escapeText(data.reddit_access||'access method unknown')+' · '+escapeText(data.errors?.length||0)+' retrieval errors. '+escapeText(data.access_note||'')+'</p>';
+ const preview=findings.slice(0,5).map(f=>{const a=f.community_assessment||{};return '<div class="item"><b>'+escapeText(f.title)+'</b> '+badge(a.status||'not_checked')+'<p class="desc">'+escapeText(f.source)+' · '+escapeText(f.published_at_utc||'undated')+' · '+escapeText(a.distinct_assessable_authors??'not checked')+' assessable authors · supporting '+escapeText(a.supporting??'—')+' / disputing '+escapeText(a.disputing??'—')+' / uncertain '+escapeText(a.uncertain??'—')+'</p><a href="'+escapeText(f.url)+'" target="_blank" rel="noopener noreferrer">Source discussion</a></div>'}).join('');
+ const intro='<p class="desc">Community reports are unverified. 20 distinct assessable authors are required for a provisional community assessment; popularity does not verify a GTA VI milestone.</p>';
+ const details=current==='Evidence & Confidence'?'<div class="item"><b>Executable authentication</b><p class="desc">Requires original provenance, build metadata, hashes, executable-format inspection, and independent reproducibility. A hash, comment consensus, or filename alone does not authenticate GTA VI.</p></div>':'';
+ return box('Reddit claim intelligence',intro+coverage+details+(preview||'<p class="desc">No assessable posts collected. Inaccessible Reddit data is not evidence that claims do not exist.</p>')+'<button type="button" class="btn" data-open-independent="1">Full comment assessments and screening</button>');
+}
+section=function(){
+ if(current==='Independent Verification')return display();
+ const existing=priorSection();
+ if(['Development Activity','Evidence & Confidence','Latest Changes','Sources','Breakthroughs'].includes(current))return existing+redditIntegration();
+ return existing;
+};
+document.addEventListener('click',e=>{if(e.target.closest('[data-open-independent]'))go('Independent Verification')});
 document.addEventListener('click',e=>{const b=e.target.closest('[data-independent-tab]');if(!b)return;view=b.getAttribute('data-independent-tab');if(current==='Independent Verification')render()});
 document.addEventListener('change',e=>{if(e.target.id==='independent-risk-filter'){filter=e.target.value;if(current==='Independent Verification')render()}});
 async function refresh(){
