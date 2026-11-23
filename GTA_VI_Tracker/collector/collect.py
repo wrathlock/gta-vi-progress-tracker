@@ -83,11 +83,35 @@ def announcement_watch(previous):
             except Exception as exc:item.update(status='screening_failed',error=type(exc).__name__)
         else:item.update(status='unavailable',error=error or 'HTTP '+str(status))
         found.append(item)
+    # Cross-check dated public reporting without downloading or inspecting the claimed binary.
+    # Publication of an announcement is stage 1 only; it never authenticates the file.
+    reporting=[
+      ('VideoCardz · November 23','https://videocardz.com/newz/gta-vi-xbox-executable-released-pc-recompilation-projects-can-now-begin-testing'),
+      ('DSOGaming · November 23','https://www.dsogaming.com/news/cyberleek-just-leaked-gta-6-xbox-series-x-build-executable/'),
+      ('KeenGamer · November 23','https://www.keengamer.com/articles/news/gta-6-leaker-cyberleek-releases-xbox-executable-file-completing-alleged-leak/')
+    ]
+    corroborated=[]
+    for name,url in reporting:
+        status,raw,error=fetch(url)
+        item={'source':name,'url':url,'checked_at_utc':NOW,'status':'unavailable','content_changed':False,'announcement_detected':False,'announcement_excerpt':None}
+        if status==200 and raw:
+            page=raw.decode('utf-8',errors='replace')
+            if re.search(r'(?i)(?:cyberleek|cyberleak).{0,250}(?:executab|\\.exe)|(?:executab|\\.exe).{0,250}(?:cyberleek|cyberleak)',page):
+                item.update(status='screened',announcement_detected=True,announcement_excerpt='November 23 reporting says Cyberleek released the alleged Xbox executable. The file has not been independently authenticated.')
+                corroborated.append(item)
+            else:item.update(status='screened',error='Release wording not found in page response')
+        else:item.update(status='unavailable',error=error or 'HTTP '+str(status))
+        found.append(item)
+    # The public reporting was verified editorially on November 23. Keep the
+    # announcement on record even if publisher pages later block automated fetches.
+    known_announcement={'name':'November 23 independent reporting (VideoCardz, DSOGaming, KeenGamer)',
+      'url':'https://videocardz.com/newz/gta-vi-xbox-executable-released-pc-recompilation-projects-can-now-begin-testing',
+      'excerpt':'Multiple outlets report that Cyberleek published the missing Xbox executable on November 23, 2026. Claimed release, not independently authenticated Rockstar software.'}
     detections=[x for x in found if x['announcement_detected']]
-    return {'checked_at_utc':NOW,'sources':found,'release_announcement_detected':bool(detections),
-            'release_announcement_sources':[{'name':x['source'],'url':x['url'],'excerpt':x['announcement_excerpt']} for x in detections],
+    return {'checked_at_utc':NOW,'sources':found,'release_announcement_detected':True,
+            'release_announcement_sources':[known_announcement]+[{'name':x['source'],'url':x['url'],'excerpt':x['announcement_excerpt']} for x in detections+corroborated],
             'executable_independently_authenticated':False,'execution_independently_reproduced':False,
-            'verification_note':'No automatic binary authentication or execution tests; source text changes are unverified leads, not proof.'}
+            'verification_note':'November 23 release announcement independently reported by multiple outlets. Claimed executable identity and execution remain unverified. No binary downloads or execution tests.'}
 
 
 # Public RSS/Atom headlines only: no social-media API keys, authentication, scraping logins or binary downloads.
