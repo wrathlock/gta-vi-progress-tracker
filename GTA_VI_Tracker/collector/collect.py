@@ -66,12 +66,12 @@ def announcement_watch(previous):
             try:
                 from html import unescape
                 body=unescape(raw.decode('utf-8',errors='replace'))
-                body=re.sub(r'(?is)<(script|style|svg|noscript)\\b[^>]*>.*?</\\1>',' ',body)
+                body=re.sub(r'(?is)<(script|style|svg|noscript)\b[^>]*>.*?</\1>',' ',body)
                 body=re.sub(r'(?s)<[^>]+>',' ',body)
-                body=re.sub(r'\\s+',' ',body).strip()
+                body=re.sub(r'\s+',' ',body).strip()
                 # Do not treat a search box, page title, or existing rumor as a newly published EXE.
-                lines=re.split(r'(?<=[.!?])\\s+|\\s{2,}',body)
-                pattern=re.compile(r'(?i)(?:gta\\s*(?:vi|6)|grand theft auto\\s*(?:vi|6)|cyberleek).{0,140}(?:\\bexe\\b|executable|binary|release|download|launcher)|(?:\\bexe\\b|executable|binary).{0,140}(?:gta\\s*(?:vi|6)|cyberleek)')
+                lines=re.split(r'(?<=[.!?])\s+|\s{2,}',body)
+                pattern=re.compile(r'(?i)(?:gta\s*(?:vi|6)|grand theft auto\s*(?:vi|6)|cyberleek).{0,140}(?:\bexe\b|executable|binary|release|download|launcher)|(?:\bexe\b|executable|binary).{0,140}(?:gta\s*(?:vi|6)|cyberleek)')
                 matches=[x[:300] for x in lines if pattern.search(x)][:15]
                 digest=hashlib.sha256(json.dumps(matches,ensure_ascii=False).encode()).hexdigest()
                 old_item=prior.get(name) or {}
