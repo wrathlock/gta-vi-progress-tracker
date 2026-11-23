@@ -1220,11 +1220,22 @@ window.renderIndependentVerification=function(){return '<article class="card"><h
   return card('<p class="desc">Public repository activity, not claims of GTA VI playability. Latest Changes is reserved for changes in tracker evidence and source status.</p><p class="desc">Last scan: '+clean(d?.last_attempt_utc||'Not recorded')+' · '+filtered.length+' matching records</p><div class="filters"><select onchange="setPlatform(this.value)">'+['All','Xbox','PS5'].map(x=>'<option '+(platform===x?'selected':'')+'>'+x+'</option>').join('')+'</select><input placeholder="Filter project, event or description" value="'+clean(search)+'" oninput="search=this.value;render()"></div>'+(rows||none('No matching repository activity in the collected feed.')),'Development Activity — source event feed');
  }
  function latestChangesView(){
-  const d=liveData(),raw=d?.changes||[];
-  const meaningful=raw.filter(c=>c.kind!=='new_public_record');
-  const prev=d?.last_successful_scan_utc||'Not recorded';
-  const body=meaningful.length?meaningful.slice(0,60).map(c=>'<div class="item"><b>'+clean(c.kind||'Change')+'</b><p class="desc">'+clean(c.note||c.description||'Source or evidence status changed')+'</p>'+(c.url?link('Source',c.url):'')+'</div>').join(''):none('No source-health, verification, or milestone status changes are recorded in the latest scan. Newly discovered commits, issues and pull requests are available under Development Activity.');
-  return card('<p class="desc">Only changes in tracked evidence, source status, or verified milestones appear here. A new GitHub record alone is not a technical breakthrough.</p><div class="item"><b>Last successful collection:</b> '+clean(prev)+'</div>'+body+'<div class="actions"><button onclick="go(\'Development Activity\')">View repository activity</button></div>','Latest Changes — evidence & status');
+  const d=liveData();
+  if(!d)return card('<p class="desc">The latest collected comparison is unavailable. Open Live research status to inspect the collection connection.</p><button onclick="go(\'Live research status\')">Collection health</button>','Latest Changes — awaiting collection');
+  const raw=d.changes||[];
+  const statusChanges=raw.filter(c=>c.kind!=='new_public_record');
+  const discovered=raw.filter(c=>c.kind==='new_public_record'&&c.event);
+  const grouped={};
+  for(const c of discovered){
+   const e=c.event,k=e.project||'Other';
+   if(!grouped[k])grouped[k]={total:0,types:{},items:[]};
+   grouped[k].total++;grouped[k].types[e.type||'record']=(grouped[k].types[e.type||'record']||0)+1;
+   grouped[k].items.push(e);
+  }
+  const groups=Object.entries(grouped).sort((a,b)=>b[1].total-a[1].total);
+  const summaries=groups.map(([name,g])=>'<div class="item"><div class="row"><b>'+clean(name)+'</b>'+tag(g.total+' newly observed')+'</div><p class="desc">'+Object.entries(g.types).map(([type,count])=>count+' '+clean(type)).join(' · ')+'</p>'+g.items.slice(0,2).map(e=>'<div class="desc">'+clean(e.title)+' '+(e.url?link('Source',e.url):'')+'</div>').join('')+'</div>').join('');
+  const status=statusChanges.map(c=>'<div class="item"><b>'+clean(c.kind||'Status update')+'</b><p class="desc">'+clean(c.note||c.description||'Collection status changed')+'</p>'+(c.url?link('Source',c.url):'')+'</div>').join('');
+  return card('<p class="desc">Changes detected between stored collector snapshots, summarized by project. New commits and discussions indicate public activity, not confirmed GTA VI progress. See Development Activity for the full records.</p><div class="item"><b>Latest scan:</b> '+clean(d.last_attempt_utc||'Not recorded')+' · <b>New public records:</b> '+discovered.length+' · <b>Other recorded changes:</b> '+statusChanges.length+'</div>'+(status||'')+(summaries||none('No newly observed records or status changes were captured in this comparison. This does not mean development stopped.'))+'<div class="actions"><button onclick="go(\'Development Activity\')">Browse all development activity</button><button onclick="go(\'Live research status\')">Collection health</button></div>','Latest Changes — since previous scan');
  }
  section=function(){if(current==='Development Activity')return developmentActivityView();if(current==='Latest Changes')return latestChangesView();return previousSection()};
  render();
