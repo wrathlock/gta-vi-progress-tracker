@@ -259,6 +259,37 @@ for name,url in SOURCES.items():
         for ev in events:
             if ev.get('project')!=name:continue
             usage_lead(name,ev.get('url'),ev.get('title'),ev.get('title'),'public_'+str(ev.get('type','activity')),ev.get('date'))
+    # CS.RIN.RU: direct forum access may block bots. Google News' public
+    # indexed search feed is a discovery fallback, NOT proof of forum uptime.
+    if name=='CS.RIN.RU':
+        import xml.etree.ElementTree as ET
+        from email.utils import parsedate_to_datetime
+        query='site:cs.rin.ru/forum/ ("GTA VI" OR "GTA 6" OR "Cyberleek" OR "GTA6") when:30d'
+        feed='https://news.google.com/rss/search?q='+urllib.parse.quote(query)+'&hl=en-US&gl=US&ceid=US:en'
+        fstatus,fraw,ferror=fetch(feed)
+        indexed=[]
+        if fstatus==200 and fraw:
+            try:
+                root=ET.fromstring(fraw)
+                for item in root.findall('.//channel/item')[:30]:
+                    title=(item.findtext('title') or '').strip()
+                    link=(item.findtext('link') or '').strip()
+                    pub=(item.findtext('pubDate') or '').strip()
+                    if not re.search(r'(?i)gta\\s*(?:vi|6)|gta6|cyberleek',title):continue
+                    indexed.append({'title':title[:220],'url':link,'published':pub,
+                                    'discovery_method':'Google News indexed search','verified':False})
+            except Exception as exc:ferror='RSS parsing: '+type(exc).__name__
+        record['indexed_discovery']={'provider':'Google News RSS indexed search',
+            'feed_url':feed,'checked_at_utc':NOW,
+            'status':'available' if fstatus==200 and fraw else 'unavailable',
+            'result_count':len(indexed),'items':indexed[:12],
+            'note':'Search index only; may be delayed, incomplete or empty. Does not establish forum availability or verify claims.',
+            'error':ferror if not (fstatus==200 and fraw) else None}
+        record['access_note']=('Direct forum check '+('succeeded' if record['status']=='reachable' else 'did not succeed')+
+            '; Google-indexed discovery is a separate fallback, not a direct forum check.')
+        record['method']='direct_reachability_plus_google_indexed_discovery'
+        if record['status']!='reachable' and indexed:
+            record['status']='indexed_only'
     # HTTP access and GitHub repository visibility are distinct from site uptime.
     code=record.get('http_status')
     error_text=str(record.get('error') or '')
@@ -272,9 +303,11 @@ for name,url in SOURCES.items():
     elif code in (404,410):health='not_found'
     elif code is not None and 500<=code<=599:health='server_error'
     else:health='unknown'
+    if record['status']=='indexed_only':health='indexed_only'
     record['site_health']=health
     record['health_note']={
         'online':'Responded successfully to the automated check',
+        'indexed_only':'Direct access unsuccessful; related results found in Google News indexed search (not proof the forum is online)',
         'restricted':'Automated access was denied or rate-limited; site may still be online',
         'missing_or_private':'GitHub repository not found or inaccessible; host availability not determined',
         'not_found':'Requested page returned not found; host may still be online',
