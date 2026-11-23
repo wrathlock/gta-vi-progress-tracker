@@ -167,9 +167,9 @@ def collect_rumors(previous):
 
 # Evidence leads only. Matching public text never authenticates a leaked binary.
 PROJECT_USAGE_NAMES=('Leonida','Xbox2Windows','XCL','ScarlettX','AnyXboxX','Xbox Emulator / TomBox','FollowTheLeek')
-PROJECT_USAGE_PATTERN=re.compile(r'(?i)(?:gta\\s*(?:vi|6)|gta6|cyberleek|leaked\\s+(?:xbox\\s+)?(?:build|game)).{0,160}(?:\\bexe\\b|executable|binary)|(?:\\bexe\\b|executable|binary).{0,160}(?:gta\\s*(?:vi|6)|gta6|cyberleek)')
-PROJECT_USAGE_ACTION=re.compile(r'(?i)\\b(?:tested?|testing|integrat(?:ed|ing|ion)|loaded?|loading|parsed?|parsing|executed?|executing|boot(?:ed|ing)?|launched?|launching|running|ran|mapped?|mapping|import(?:ed|ing)|analy[sz](?:ed|ing))\\b')
-PROJECT_USAGE_ACK=re.compile(r'(?i)\\b(?:received?|obtained?|available|released?|published|announced?|acknowledged?|examining|reviewing)\\b')
+PROJECT_USAGE_PATTERN=re.compile(r'(?i)(?:gta\s*(?:vi|6)|gta6|cyberleek|leaked\s+(?:xbox\s+)?(?:build|game)).{0,160}(?:\bexe\b|executable|binary)|(?:\bexe\b|executable|binary).{0,160}(?:gta\s*(?:vi|6)|gta6|cyberleek)')
+PROJECT_USAGE_ACTION=re.compile(r'(?i)\b(?:tested?|testing|integrat(?:ed|ing|ion)|loaded?|loading|parsed?|parsing|executed?|executing|boot(?:ed|ing)?|launched?|launching|running|ran|mapped?|mapping|import(?:ed|ing)|analy[sz](?:ed|ing))\b')
+PROJECT_USAGE_ACK=re.compile(r'(?i)\b(?:received?|obtained?|available|released?|published|announced?|acknowledged?|examining|reviewing)\b')
 project_usage_leads=[]
 def usage_lead(project,url,title,body,kind,when=None):
     if project not in PROJECT_USAGE_NAMES:return
