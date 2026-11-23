@@ -119,7 +119,7 @@ def collect_rumors(previous):
                     link=node.find('{http://www.w3.org/2005/Atom}link')
                     href=(link.get('href') if link is not None else None) or value('link')
                     published=value('{http://www.w3.org/2005/Atom}published') or value('pubDate')
-                    if not title or not href or not relevant.search(title):continue
+                    if not title or not href or (not relevant.search(title) and name!='Reddit · GTA6'):continue
                     parsed=urllib.parse.urlsplit(href)
                     if parsed.scheme!='https' or parsed.hostname not in ('www.reddit.com','reddit.com','news.google.com'):continue
                     if href not in items:items[href]={'title':re.sub(r'\s+',' ',title)[:220],'url':href,'source':name,'published':published[:90],'first_seen_utc':NOW,'classification':'Unverified community discussion / third-party reporting','verification':'Not independently verified'}
