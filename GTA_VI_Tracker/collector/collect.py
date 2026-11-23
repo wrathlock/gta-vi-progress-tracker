@@ -123,6 +123,28 @@ for name,url in SOURCES.items():
         if status is not None and 200<=status<400:
             record['status']='reachable';successes+=1
         else:record['error']=err or 'HTTP '+str(status)
+    # HTTP access and GitHub repository visibility are distinct from site uptime.
+    code=record.get('http_status')
+    error_text=str(record.get('error') or '')
+    if m:
+        if record['status']=='ok':health='online'
+        elif 'HTTP 404' in error_text or 'HTTP 410' in error_text:health='missing_or_private'
+        elif 'HTTP 401' in error_text or 'HTTP 403' in error_text or 'HTTP 429' in error_text:health='restricted'
+        else:health='unknown'
+    elif code is not None and 200<=code<400:health='online'
+    elif code in (401,403,407,429,451):health='restricted'
+    elif code in (404,410):health='not_found'
+    elif code is not None and 500<=code<=599:health='server_error'
+    else:health='unknown'
+    record['site_health']=health
+    record['health_note']={
+        'online':'Responded successfully to the automated check',
+        'restricted':'Automated access was denied or rate-limited; site may still be online',
+        'missing_or_private':'GitHub repository not found or inaccessible; host availability not determined',
+        'not_found':'Requested page returned not found; host may still be online',
+        'server_error':'Server returned an error during this check',
+        'unknown':'Availability could not be determined from this check'
+    }[health]
     results.append(record)
 
 # Latest fetched metadata is NOT a general-source contents scan.
