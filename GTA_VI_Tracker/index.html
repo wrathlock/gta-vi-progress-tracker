@@ -973,11 +973,11 @@ function timeline(){
  const reportedFiles=!verifiedRecord('game_files');
  const last=(typeof LIVE!=='undefined'&&LIVE&&LIVE.last_attempt_utc)?trackerDate(LIVE.last_attempt_utc):'Not recorded';
  return '<section class="playable-timeline" aria-label="GTA VI PC playability milestone timeline">'+
- '<div class="playable-timeline-head"><h3>PATH TO PLAYABILITY</h3><span class="pt-count">Pre-Execution</span></div>'+
+ '<div class="playable-timeline-head"><h3>PATH TO PLAYABILITY</h3><span class="pt-count">'+(verified?'Verified milestones: '+verified:'Pre-Execution')+'</span></div>'+
  '<p class="pt-sub">Current focus: file and executable verification · Later stages are not yet reached</p>'+
  '<div class="playable-timeline-legend"><span class="reported">Reported</span><span class="verified">Independently verified</span><span class="unverified">Not established</span></div>'+
  '<div class="playable-timeline-scroll" tabindex="0" aria-label="Scroll horizontally to view seven playability milestones"><div class="playable-timeline-track">'+
- milestones.map(([name,key],i)=>{const record=verifiedRecord(key);const reported=key==='game_files'&&!record;return '<div class="playable-timeline-step'+(record?' pt-verified':reported?' pt-reported':'')+'"><span class="playable-timeline-number">'+String(i+1).padStart(2,'0')+'</span><span class="playable-timeline-node" aria-hidden="true">'+(record?'✓':reported?'●':'○')+'</span><span class="playable-timeline-name">'+name+'</span><span class="playable-timeline-status">'+(record?'Verified · '+trackerDate(record.verified_at_utc):reported?'Reported · not authenticated':key==='executable'?'Unconfirmed':'Not reached')+'</span></div>'}).join('')+
+ milestones.map(([name,key],i)=>{const record=verifiedRecord(key);const reported=!record&&(key==='game_files'||(key==='executable'&&!!(typeof LIVE!=='undefined'&&LIVE?.exe_watch?.release_announcement_detected)));return '<div class="playable-timeline-step'+(record?' pt-verified':reported?' pt-reported':'')+'"><span class="playable-timeline-number">'+String(i+1).padStart(2,'0')+'</span><span class="playable-timeline-node" aria-hidden="true">'+(record?'✓':reported?'●':'○')+'</span><span class="playable-timeline-name">'+name+'</span><span class="playable-timeline-status">'+(record?'Verified · '+trackerDate(record.verified_at_utc):reported?(key==='executable'?'Release reported · not authenticated':'Reported · not authenticated'):'Not reached')+'</span></div>'}).join('')+
  '</div></div><div class="playable-timeline-foot"><span>Last collector attempt: '+last+'</span><span>Source record dates are not verification dates</span></div></section>';
 }
 const previousRender=render;
@@ -1001,7 +1001,9 @@ let mounting=false;
 function ensureTimeline(){
  if(mounting||current!=='Overview')return;
  const content=document.getElementById('content');
- if(!content||content.querySelector('.playable-timeline'))return;
+ if(!content)return;
+ const existing=content.querySelector('.playable-timeline');
+ if(existing){const updated=timeline();if(existing.outerHTML!==updated)existing.outerHTML=updated;return;}
  mounting=true;
  try{
   const html=timeline();
@@ -1021,6 +1023,7 @@ if(overviewRoot){
  observer.observe(overviewRoot,{childList:true,subtree:false});
  document.addEventListener('DOMContentLoaded',ensureTimeline,{once:true});
  window.addEventListener('load',ensureTimeline,{once:true});
+ setInterval(ensureTimeline,60000);
  ensureTimeline();
 }
 })();
