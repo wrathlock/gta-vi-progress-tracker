@@ -185,7 +185,7 @@ def usage_lead(project,url,title,body,kind,when=None):
         break
 
 old=read_json(DATA/'live.json',{})
-results=[]; events=[]; analytic=[]; successes=0; screened=0
+results=[]; events=[]; analytic=[]; developer_notes=[]; successes=0; screened=0
 # The collector does not review full source contents or independently test claims.
 PLATFORMS={'Leonida':'Xbox','Xbox2Windows':'Xbox','XCL':'Xbox','ScarlettX':'Xbox','AnyXboxX':'Xbox','Xbox Emulator / TomBox':'Xbox','AnyPS5':'PS5','KytyPS5':'PS5','SharpEmu':'PS5'}
 def project_platform(name):
@@ -227,6 +227,32 @@ for name,url in SOURCES.items():
             pulls,perr=api('repos/'+repo+'/pulls?state=closed&per_page=8&sort=updated&direction=desc')
             errors=[x for x in [cerr,rerr,ierr,perr] if x]
             if errors:record['activity_error']='; '.join(errors)
+            # Attributed public developer statements. Only repository-associated
+            # authors or published releases; other community comments are excluded.
+            def dev_note(kind,it,message,when):
+                author=it.get('user') or it.get('author') or {}
+                assoc=str(it.get('author_association') or '').upper()
+                if kind!='release' and assoc not in ('OWNER','MEMBER','COLLABORATOR'):
+                    return
+                body=str(message or '').strip()
+                if len(body)<18:return
+                developer_notes.append({'project':name,'kind':kind,
+                    'author':str(author.get('login') or ('Project release' if kind=='release' else 'Project contributor')),
+                    'author_association':assoc if kind!='release' else 'repository_release',
+                    'date':when,'title':str(it.get('title') or it.get('name') or it.get('tag_name') or 'Developer update')[:160],
+                    'note':body[:650],'url':it.get('html_url'),
+                    'attribution':'Public repository-associated author' if kind!='release' else 'Published repository release',
+                    'verification':'Developer statement, not independently verified technical result'})
+            if isinstance(releases,list):
+                for it in releases:
+                    dev_note('release',it,it.get('body'),it.get('published_at') or it.get('created_at'))
+            if isinstance(issues,list):
+                for it in issues:
+                    if not it.get('pull_request'):
+                        dev_note('issue',it,it.get('body'),it.get('updated_at'))
+            if isinstance(pulls,list):
+                for it in pulls:
+                    dev_note('pull_request',it,it.get('body'),it.get('updated_at'))
             if isinstance(commits,list):
                 for it in commits:
                     sha=it.get('sha','')
@@ -380,6 +406,7 @@ report={
  'monitored_projects':list(PROJECT_USAGE_NAMES),'leads':sorted({(x['project'],x['url'],x['excerpt']):x for x in project_usage_leads}.values(),key=lambda x:x.get('published_at_utc') or '',reverse=True)[:50],
  'independently_authenticated':False,'execution_independently_reproduced':False,
  'note':'Contextual matches are leads only. Source code diffs, logs, binary provenance and independent reproduction are not checked.'},
+'developer_notes':{'checked_at_utc':NOW,'scope':'Recent public repository releases and issue/PR descriptions by OWNER, MEMBER or COLLABORATOR; not all contributors or discussion replies','items':sorted(developer_notes,key=lambda x:x.get('date') or '',reverse=True)[:100]},
 'source_results':results,'events':events[:180],'changes':changes[:100], 'github_analytics':analytic,
 'gameplay_verification':'Not assessed by this automatic collector; preserve independent C4/C5 evidence requirements',
 'earlier_baseline_date':'2026-11-22','app_version':'2.9','collector_version':'2.9-audit-1','comparison_scope':'New or changed metadata in recent GitHub samples only; no source-content evidence diff, no verified blocker resolution or regression','validation':{'source_count_matches_expected':len(results)==len(SOURCES),'all_source_records_timestamped':all(r.get('checked_at_utc')==NOW for r in results),'all_events_have_source_urls':all(bool(e.get('url')) for e in events),'no_content_review_claimed':True,'screening_count_matches_records':screened==sum(r.get('content_screening',{}).get('status')=='screened' for r in results)}}
