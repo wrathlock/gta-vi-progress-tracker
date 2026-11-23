@@ -246,7 +246,7 @@ const groups=[
 ['Playability & progress',['Gameplay Proof & Reproducibility','Xbox','PS5','Performance & Hardware','Interactive milestone ladders','Project Comparison & Compatibility']],
 ['Evidence & verification',['Independent Verification','Evidence & Confidence','Cross-checks','Provenance','Scams']],
 ['Technical research',['Breakthroughs','Technical Blockers & Dependencies']],
-['Sources & development',['Sources','Discovery','GitHub analytics','Trackers','Fork analysis']],
+['Sources & development',['Sources','Cyberleek Editorial','Discovery','GitHub analytics','Trackers','Fork analysis']],
 ['History & archive',['Timeline','History','Archive','Preservation']]
 ];
 const nav=document.getElementById('nav'),toggle=document.getElementById('navToggle'),overlay=document.getElementById('navOverlay');
@@ -736,8 +736,6 @@ render();
 (function(){
 const sectionName='Cyberleek Editorial';
 if(!sections.includes(sectionName))sections.push(sectionName);
-const sourcesGroup=groups.find(g=>g[0]==='Sources & development');
-if(sourcesGroup&&!sourcesGroup[1].includes(sectionName))sourcesGroup[1].splice(1,0,sectionName);
 function editorialPage(){
  const source=typeof LIVE!=='undefined'&&LIVE&&Array.isArray(LIVE.source_results)?LIVE.source_results.find(r=>r.name==='Cyberleek.cloud Incident Desk'):null;
  const check=source&&source.checked_at_utc?trackerDate(source.checked_at_utc):'Not yet recorded';
