@@ -494,4 +494,36 @@ render=function(){
 };
 render();
 })();
+</script>
+<style id="public-notification-style">
+.public-alert-hub{display:grid;gap:14px}.public-alert-hub .hub-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.public-alert-hub .hub-sub{color:var(--muted);font-size:12px;line-height:1.55}.public-alert-hub .hub-controls{display:flex;gap:9px;flex-wrap:wrap}.public-alert-hub select{background:#1a3047;color:var(--txt);border:1px solid var(--edge);padding:8px 10px;border-radius:7px;max-width:100%}.public-alert-hub .hub-item{border-top:1px solid var(--edge);padding:13px 0}.public-alert-hub .hub-item:first-of-type{border-top:0}.public-alert-hub .hub-item-top{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.public-alert-hub .hub-item p{margin:7px 0;overflow-wrap:anywhere}.public-alert-hub .hub-pill{font-size:11px;border:1px solid #58718a;border-radius:20px;padding:3px 8px;color:#b8c9d9}.public-alert-hub .hub-pill.high{border-color:#b87b53;color:#f4bd8e}.public-alert-hub .hub-pill.reported{border-color:#927a47;color:#e3ce94}.public-alert-hub .hub-pill.verified{border-color:#4a9d77;color:#8ff0ba}.public-alert-hub .hub-empty{padding:20px 8px;color:var(--muted)}.public-alert-hub a{color:var(--teal)}.public-alert-hub .hub-link{display:inline-flex;gap:6px;align-items:center;text-decoration:none}.public-alert-hub .hub-link:hover{text-decoration:underline}
+</style>
+<script id="public-notification-script">
+(function(){
+let publicAlertPlatform='All',publicAlertCategory='All',publicAlertOrder='newest';
+function publicAlertHub(){
+const live=(typeof LIVE!=='undefined'&&LIVE&&Array.isArray(LIVE.source_results)&&LIVE.source_results.length===21)?LIVE:null;
+const events=live&&Array.isArray(live.events)?live.events:[];
+const changes=live&&Array.isArray(live.changes)?live.changes:[];
+const fmtDate=s=>{if(!s)return 'Date unavailable';const d=new Date(s);return Number.isNaN(d.getTime())?'Date unavailable':d.toLocaleString();};
+const source=e=>{const url=String(e.url||'');return /^https:\/\/(github\.com|api\.github\.com)\//i.test(url)?'<a class="hub-link" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">Original source ↗</a>':'Source URL not verified';};
+const category=e=>e.type==='release'?'Release':e.type==='commit'?'Code':e.type==='issue'?'Issue':e.type==='PR'?'Pull request':'Other';
+const isChange=e=>changes.some(c=>c.event?.id===e.id);
+const rows=events.filter(e=>(publicAlertPlatform==='All'||e.platform===publicAlertPlatform)&&(publicAlertCategory==='All'||category(e)===publicAlertCategory)).sort((a,b)=>publicAlertOrder==='oldest'?String(a.date||'').localeCompare(String(b.date||'')):String(b.date||'').localeCompare(String(a.date||''))).slice(0,80);
+const latest=live?.last_attempt_utc?fmtDate(live.last_attempt_utc):'Never published';
+const selector=(id,items,value)=>'<select id="'+id+'" aria-label="'+(id==='publicAlertPlatform'?'Platform':id==='publicAlertCategory'?'Activity type':'Sort order')+'" onchange="'+id+'=this.value;render()">'+items.map(x=>'<option value="'+esc(x)+'"'+(x===value?' selected':'')+'>'+esc(x)+'</option>').join('')+'</select>';
+return '<div class="public-alert-hub"><div class="card"><div class="hub-head"><h3>Public research alerts</h3><span class="hub-pill">Shared with all visitors</span></div><p class="hub-sub">Important changes require supporting evidence. Repository activity is a public record, not proof of GTA VI functionality. This page does not claim to authenticate executable releases automatically.</p><div class="item"><div class="hub-item-top"><b>GTA VI executable</b><span class="hub-pill high">Not independently verified</span></div><p class="hub-sub">No authenticated publicly released GTA VI executable has been established in this dashboard. Claims and download links alone are not verification.</p><a href="#" onclick="go('Executable');return false">Verification criteria ↗</a></div><div class="item"><div class="hub-item-top"><b>GTA VI PC boot and gameplay</b><span class="hub-pill">Not independently verified</span></div><p class="hub-sub">No reproducible GTA VI PC boot or playable gameplay has been verified by the dashboard.</p></div><div class="item"><div class="hub-item-top"><b>Untrusted executable downloads</b><span class="hub-pill high">Security advisory</span></div><p class="hub-sub">Avoid running purported leaked executables. Public posts, file hashes, and repository activity do not establish safety or authenticity.</p></div><p class="hub-sub">These are standing evidence-status notices, not new alerts generated from an unseen scan.</p></div><div class="card"><div class="hub-head"><h3>Public activity history</h3><span class="hub-pill">'+(live?'Metadata feed available':'Awaiting collector')+'</span></div><p class="hub-sub">Latest collector attempt: '+esc(latest)+'. GitHub activity is sampled and labeled developer/repository reported. Changes indicate newly observed or edited records, not verified technical breakthroughs.</p><div class="hub-controls">'+selector('publicAlertPlatform',['All','Xbox','PS5','Research','Unknown'],publicAlertPlatform)+selector('publicAlertCategory',['All','Release','Code','Issue','Pull request','Other'],publicAlertCategory)+selector('publicAlertOrder',['newest','oldest'],publicAlertOrder)+'</div>'+(rows.length?rows.map(e=>'<div class="hub-item"><div class="hub-item-top"><b>'+esc(e.project||'Project')+'</b><span class="hub-pill reported">'+(isChange(e)?'New / changed record · ':'')+esc(category(e))+' · Unverified technical significance</span></div><p>'+esc(e.title||'Untitled public record')+'</p><div class="hub-sub">'+esc(fmtDate(e.date))+' · '+esc(e.platform||'Unknown')+' · '+source(e)+'</div></div>').join(''):'<div class="hub-empty">'+(live?'No records match the selected filters.':'No validated public activity has been published by the collector yet. The historical research tabs remain available; no activity has been invented.')+'</div>')+'</div><div class="card"><h3>Follow public updates — no account or subscription storage</h3><p class="hub-sub">Use the public RSS feed in any RSS reader, or bookmark this page. RSS is a static public feed: the website does not collect email addresses, browser push tokens, or subscriber details.</p><div class="actions"><a class="hub-link" href="feed.xml" target="_blank" rel="noopener noreferrer">Open RSS feed ↗</a><a class="hub-link" href="feed.xml" download="gta-vi-feed.xml">Save feed XML ↗</a></div><p class="hub-sub">No browser push notifications or server-side subscription tracking. RSS content updates only when the GitHub collector successfully publishes it.</p></div></div>';
+}
+const oldSection=section;
+section=function(){if(current==='Notification center'||current==='Alerts'||current==='Alert tiers')return publicAlertHub();return oldSection();};
+const oldRender=render;
+render=function(){
+ oldRender();
+ if(current!=='Notification center'&&current!=='Alerts'&&current!=='Alert tiers')return;
+ const root=document.getElementById('content');
+ const duplicate=root?.querySelector('.monitor-alerts-info');
+ if(duplicate)duplicate.remove();
+};
+render();
+})();
 </script></body></html>
