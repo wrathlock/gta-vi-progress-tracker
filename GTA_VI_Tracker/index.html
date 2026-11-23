@@ -396,6 +396,17 @@ function close(){document.body.classList.remove('nav-open');toggle.setAttribute(
 toggle.addEventListener('click',()=>{let open=document.body.classList.toggle('nav-open');toggle.setAttribute('aria-expanded',String(open))});
 overlay.addEventListener('click',close);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+// Delegation survives header() replacing the navigation buttons on every render.
+nav.addEventListener('click',e=>{
+ const button=e.target.closest('button.nav-item[data-tab]');
+ if(!button||!nav.contains(button))return;
+ const tab=button.dataset.tab;
+ if(!sections.includes(tab))return;
+ e.preventDefault();
+ e.stopPropagation();
+ go(tab);
+ close();
+});
 const oldHeader=header;
 header=function(){
 oldHeader();
@@ -404,7 +415,7 @@ let markup='<div class="nav-brand">GTA VI · RESEARCH NAVIGATION</div><input cla
 for(const [group,items] of groups){const valid=items.filter(s=>all.has(s));valid.forEach(s=>used.add(s));if(!valid.length)continue;markup+='<div class="nav-group"><div class="nav-group-title">'+group+' <span class="nav-count">'+valid.length+'</span></div>'+valid.map(s=>'<button class="nav-item '+(s===current?'active':'')+'" data-tab="'+esc(s)+'" type="button">'+esc(s)+'</button>').join('')+'</div>'}
 // All supported tabs are explicitly assigned to named navigation groups.
 nav.innerHTML=markup;
-nav.querySelectorAll('.nav-item').forEach(b=>b.addEventListener('click',()=>{go(b.dataset.tab);close()}));
+// Navigation clicks are handled once by the persistent nav container.
 nav.querySelector('#navSearch').addEventListener('input',e=>{const q=e.target.value.toLowerCase().trim();nav.querySelectorAll('.nav-group').forEach(g=>{let visible=0;g.querySelectorAll('.nav-item').forEach(b=>{b.hidden=!b.textContent.toLowerCase().includes(q);if(!b.hidden)visible++});g.hidden=visible===0})});
 };
 header();
