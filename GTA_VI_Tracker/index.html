@@ -1585,6 +1585,10 @@ body.leonida-theme .leonida-feature-art:nth-child(2){background-image:linear-gra
 @media(max-width:700px) and (pointer:coarse){
  body{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
  body > header{background-position:center, var(--mobile-hero-position,60%) var(--mobile-hero-y,50%)!important;transition:none}
+ /* Keep the theme switch and its expanded choices above the quick-nav, never behind it. */
+ #themeSwitch{position:fixed!important;top:auto!important;bottom:calc(91px + env(safe-area-inset-bottom,0px))!important;right:14px!important;z-index:1302!important}
+ #themePicker{position:fixed!important;top:auto!important;bottom:calc(141px + env(safe-area-inset-bottom,0px))!important;right:14px!important;z-index:1303!important;max-height:min(50vh,310px);overflow-y:auto}
+ body.nav-open .mobile-bottom-nav{visibility:hidden;pointer-events:none}
  .mobile-bottom-nav{position:fixed;z-index:1200;bottom:calc(9px + env(safe-area-inset-bottom,0px));left:12px;right:12px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;padding:7px;border:1px solid rgba(255,133,200,.48);border-radius:21px;background:rgba(18,13,37,.91);box-shadow:0 10px 34px #050610b8,0 0 23px #ff60af22;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
  .mobile-bottom-nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:49px;padding:5px 1px;border:0;border-radius:13px;background:transparent;color:#d5c7e5;font:600 10px system-ui,sans-serif;letter-spacing:.1px}
  .mobile-bottom-nav button .mobile-nav-icon{font-size:20px;line-height:1.1}
@@ -1605,7 +1609,7 @@ body.leonida-theme .leonida-feature-art:nth-child(2){background-image:linear-gra
 (function(){
  const mobile=window.matchMedia('(max-width:700px) and (pointer:coarse)');
  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
- const tabs=[['Overview','⌂','Home'],['Alerts','◉','Alerts'],['Evidence & Confidence','◇','Evidence'],['Scams','⚠','Scams']];
+ const tabs=[['Overview','⌂','Home'],['Development Activity','▤','Activity'],['Alerts','◉','Alerts'],['Get Notifications','♧','Notify']];
  const bar=document.createElement('nav');bar.className='mobile-bottom-nav';bar.setAttribute('aria-label','Mobile quick navigation');
  for(const [tab,symbol,label] of tabs){const button=document.createElement('button');button.type='button';button.dataset.tab=tab;button.innerHTML='<span class="mobile-nav-icon" aria-hidden="true">'+symbol+'</span><span>'+label+'</span>';button.addEventListener('click',()=>{if(typeof go==='function')go(tab)});bar.appendChild(button)}
  const more=document.createElement('button');more.type='button';more.innerHTML='<span class="mobile-nav-icon" aria-hidden="true">☰</span><span>More</span>';more.setAttribute('aria-label','Open all dashboard sections');more.addEventListener('click',()=>{const toggle=document.getElementById('navToggle');if(toggle)toggle.click()});bar.appendChild(more);
