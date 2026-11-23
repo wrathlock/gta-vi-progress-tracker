@@ -188,4 +188,41 @@ const original=header;
 header=function(){original();prepare()};
 prepare();
 })();
+</script>
+<script id="plain-evidence-labels">
+(function(){
+const labels={'C0':'Rumor / Unverified','C1':'Public Record','C2':'Developer Tested','C3':'Independently Tested','C4':'GTA VI Boots','C5':'GTA VI Playable'};
+const descriptions=[
+['Rumor / Unverified','A claim exists, but reliable supporting evidence is missing.'],
+['Public Record','A public repository, tracker entry, or other source record exists. Its claims are not independently proven.'],
+['Developer Tested','The developer reports or demonstrates a technical component. Not necessarily tested by anyone else.'],
+['Independently Tested','A separate tester reproduces a technical component result. This does not mean GTA VI runs.'],
+['GTA VI Boots','Independent evidence reproduces GTA VI starting on the claimed PC method.'],
+['GTA VI Playable','Independent evidence reproduces controllable GTA VI gameplay on PC.']
+];
+function translate(root){
+if(!root)return;
+const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+let node;
+while(node=walker.nextNode()){
+const parent=node.parentElement;if(!parent||['SCRIPT','STYLE','TEXTAREA','OPTION'].includes(parent.tagName))continue;
+let v=node.nodeValue;
+v=v.replace(/\bC([0-5])\b/g,(m,i)=>labels[m]||m);
+v=v.replace(/No GTA VI Boots\s*\/\s*GTA VI Playable/g,'No verified GTA VI boot or gameplay');
+if(v!==node.nodeValue)node.nodeValue=v;
+}
+}
+const oldRender=render;
+render=function(){
+oldRender();
+if(current==='Evidence confidence'||current==='Evidence'){
+document.getElementById('content').innerHTML='<h2>Evidence explained</h2><article class="card"><p class="desc">These are descriptive evidence categories, not completion percentages. A public record or developer test does not prove GTA VI works on PC.</p>'+descriptions.map(([name,desc])=>'<div class="item"><strong>'+esc(name)+'</strong><p class="desc">'+esc(desc)+'</p></div>').join('')+'</article>';
+}
+translate(document.getElementById('content'));
+translate(document.getElementById('stats'));
+};
+const oldHeader=header;
+header=function(){oldHeader();translate(document.getElementById('stats'))};
+header();render();
+})();
 </script></body></html>
