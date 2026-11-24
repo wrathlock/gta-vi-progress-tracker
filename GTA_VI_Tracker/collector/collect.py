@@ -127,8 +127,8 @@ def collect_portwatch(previous):
         rows=[]
         for x in efforts:
             if not isinstance(x,dict) or not x.get('repo'):continue
-            rows.append({k:x[k] for k in ('name','repo','tier','approach','groundwork','gta','verification','assessedAt','stats') if k in x})
-        return {'status':'available','checked_at_utc':NOW,'updated':data.get('updated'),'source':'https://portwatch-vi.xyz/','efforts':rows,'note':'External editorial assessments, not independently verified gameplay.'}
+            rows.append({k:x[k] for k in ('id','name','repo','tier','approach','groundwork','gta','verification','assessedAt','stats','nuked') if k in x})
+        return {'status':'available','checked_at_utc':NOW,'updated':data.get('updated'),'source':'https://portwatch-vi.xyz/','efforts':rows,'history':[{k:h[k] for k in ('date','leader','leaderId','top3','furthest','tracked') if k in h} for h in data.get('history',[]) if isinstance(h,dict)],'note':'External editorial assessments, not independently verified gameplay.'}
     except Exception as exc:
         return {**(previous.get('portwatch') or {}),'status':'stale_or_unavailable','checked_at_utc':NOW,'error':str(exc)[:150]}
 
