@@ -504,6 +504,18 @@ report={
 'source_results':results,'events':events[:180],'changes':changes[:100], 'github_analytics':analytic,
 'gameplay_verification':'Not assessed by this automatic collector; preserve independent C4/C5 evidence requirements',
 'earlier_baseline_date':'2026-11-22','app_version':'2.9','collector_version':'2.9-audit-1','comparison_scope':'New or changed metadata in recent GitHub samples only; no source-content evidence diff, no verified blocker resolution or regression','validation':{'source_count_matches_expected':len(results)==len(SOURCES),'all_source_records_timestamped':all(r.get('checked_at_utc')==NOW for r in results),'all_events_have_source_urls':all(bool(e.get('url')) for e in events),'no_content_review_claimed':True,'screening_count_matches_records':screened==sum(r.get('content_screening',{}).get('status')=='screened' for r in results)}}
+# Exclude explicit previous-title references from published evidence, including mixed-title records.
+OTHER_GAME=re.compile(r'(?i)\b(?:gta[\s_-]*(?:5|v)|grand[\s_-]+theft[\s_-]+auto[\s_-]*(?:5|v))\b')
+def exclude_other_game(value):
+    if isinstance(value,list):
+        return [exclude_other_game(x) for x in value if not (isinstance(x,(dict,str)) and OTHER_GAME.search(json.dumps(x,ensure_ascii=False)))]
+    if isinstance(value,dict):
+        return {k:exclude_other_game(v) for k,v in value.items() if not (isinstance(v,str) and OTHER_GAME.search(v))}
+    return value
+events=exclude_other_game(events)
+changes=exclude_other_game(changes)
+report=exclude_other_game(report)
+
 # Comment-derived community claims and account screening are not collected.
 report['evidence_assessment']=evaluate_public_evidence(report['exe_watch'],report['project_exe_usage'])
 DATA.mkdir(exist_ok=True)
