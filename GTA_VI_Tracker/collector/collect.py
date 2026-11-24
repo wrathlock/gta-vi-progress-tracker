@@ -116,6 +116,22 @@ def announcement_watch(previous):
 
 # Public RSS/Atom headlines only: no social-media API keys, authentication, scraping logins or binary downloads.
 # A rumor is a sourced community claim, never a verified technical milestone.
+def collect_portwatch(previous):
+    source='https://raw.githubusercontent.com/4lwayz/portwatch-vi/main/data/tracker.json'
+    status,raw,error=fetch(source)
+    try:
+        if status!=200 or not raw:raise ValueError(error or str(status))
+        data=json.loads(raw)
+        efforts=data['efforts']
+        if not isinstance(efforts,list) or not efforts:raise ValueError('No effort records')
+        rows=[]
+        for x in efforts:
+            if not isinstance(x,dict) or not x.get('repo'):continue
+            rows.append({k:x[k] for k in ('name','repo','tier','approach','groundwork','gta','verification','assessedAt','stats') if k in x})
+        return {'status':'available','checked_at_utc':NOW,'updated':data.get('updated'),'source':'https://portwatch-vi.xyz/','efforts':rows,'note':'External editorial assessments, not independently verified gameplay.'}
+    except Exception as exc:
+        return {**(previous.get('portwatch') or {}),'status':'stale_or_unavailable','checked_at_utc':NOW,'error':str(exc)[:150]}
+
 def collect_rumors(previous):
     import xml.etree.ElementTree as ET
     from html import unescape
@@ -410,7 +426,7 @@ report={
 'original_sources':len(SOURCES),'listed_sources':len(SOURCES),'contacted_sources':sum(r['status']!='unavailable' for r in results),'reachable_sources':successes,'substantively_reviewed_sources':0,'automated_content_screened_sources':screened,'independently_verified_sources':0,'coverage_method':'GitHub repository metadata and automated README text screening; HTTP reachability only for other sources','unavailable_sources':sum(r['status']=='unavailable' for r in results),
 'last_error_count':sum(bool(r.get('error')) or bool(r.get('activity_error')) for r in results),
 'collector_scope':'GitHub repository metadata, recent public commits/releases/issues/PRs, and HTTP reachability for non-GitHub sources. Automated GitHub README screening only, not full website content review. No executable downloads or independent technical test reproduction. Reddit RSS post headlines and indexed news headlines are collected as unverified rumors; no Reddit comments or direct X feed are collected.',
-'exe_watch':announcement_watch(old),'rumors':collect_rumors(old),
+'exe_watch':announcement_watch(old),'rumors':collect_rumors(old),'portwatch':collect_portwatch(old),
 'project_exe_usage':{'checked_at_utc':NOW,'method':'automated contextual screening of public GitHub README and recent commit/release/issue/PR titles; no binary downloads or code execution',
  'monitored_projects':list(PROJECT_USAGE_NAMES),'leads':sorted({(x['project'],x['url'],x['excerpt']):x for x in project_usage_leads}.values(),key=lambda x:x.get('published_at_utc') or '',reverse=True)[:50],
  'independently_authenticated':False,'execution_independently_reproduced':False,
