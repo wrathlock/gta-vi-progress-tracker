@@ -1929,4 +1929,10 @@ function view(platform){
 section=function(){return prior()+(current==='Overview'?view('Xbox')+view('PS5'):['Xbox','PS5'].includes(current)?view(current):'');};
 render();
 })();
+</script><script id="research-bottom-order">
+(function(){
+const root=document.getElementById('content');
+function order(){if(current!=='Overview'||!root)return;const cards=[...root.children];const targets=['Research sources and collection','Research integrity'].map(title=>cards.find(n=>n.querySelector('h3')?.textContent.trim()===title)).filter(Boolean);if(!targets.length)return;const tail=[...root.children].slice(-targets.length);if(targets.every((n,i)=>n===tail[i]))return;targets.forEach(n=>root.appendChild(n));}
+const prior=render;render=function(){prior();order();};if(root)new MutationObserver(order).observe(root,{childList:true});order();
+})();
 </script></body></html>
