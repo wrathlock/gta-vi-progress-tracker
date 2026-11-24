@@ -158,7 +158,7 @@ def collect_portwatch(previous):
         if not isinstance(efforts,list) or not efforts:raise ValueError('No effort records')
         rows=[]
         for x in efforts:
-            if not isinstance(x,dict) or not x.get('repo'):continue
+            if not isinstance(x,dict) or not x.get('name'):continue
             rows.append({k:x[k] for k in ('id','name','repo','tier','approach','groundwork','gta','verification','assessedAt','stats','nuked') if k in x})
         return {'status':'available','checked_at_utc':NOW,'updated':data.get('updated'),'source':'https://portwatch-vi.xyz/','efforts':rows,'history':[{k:h[k] for k in ('date','leader','leaderId','top3','furthest','tracked') if k in h} for h in data.get('history',[]) if isinstance(h,dict)],'note':'External editorial assessments, not independently verified gameplay.'}
     except Exception as exc:
@@ -285,14 +285,14 @@ portwatch_snapshot=collect_portwatch(old)
 retired_repos=set(["itsnotrexed/leonida","realdody/americas-recomp","edupode/anyxboxseries","dark3581/anybox","zohaiblazuli/grandtheftxbox","projectleonida/leonida"])
 for item in portwatch_snapshot.get('efforts',[]):
     if item.get('nuked') or item.get('stats',{}).get('archived') or item.get('stats',{}).get('missingStatus') in (404,410,451):
-        retired_repos.add(item.get('repo','').lower())
+        retired_repos.add((item.get('repo') or '').lower())
 SOURCES={n:u for n,u in SOURCES.items() if u.lower().rstrip('/').removeprefix('https://github.com/') not in retired_repos}
-portwatch_snapshot['efforts']=[x for x in portwatch_snapshot.get('efforts',[]) if x.get('repo','').lower() not in retired_repos]
+portwatch_snapshot['efforts']=[x for x in portwatch_snapshot.get('efforts',[]) if (x.get('repo') or '').lower() not in retired_repos]
 known_urls={u.lower().rstrip('/') for u in SOURCES.values()}
 discovered=[]
 if portwatch_snapshot.get('status')=='available':
     for item in portwatch_snapshot.get('efforts',[]):
-        repo=item.get('repo','')
+        repo=item.get('repo') or ''
         if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+',repo):continue
         url='https://github.com/'+repo
         if url.lower() in known_urls:continue
