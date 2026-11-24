@@ -26,5 +26,26 @@ section=function(){
   if(current==='Overview')return originalSection()+`<div class="card"><div class="row"><b>Hosted source collector</b>${liveBadge(LIVE?LIVE.status:'Not connected')}</div><p class="desc">${LIVE?'Last real collection: '+localTime(LIVE.last_attempt_utc):'No validated live collection available. Historical research baseline remains intact.'}</p><div class="actions"><button onclick="go('Live research status')">Source health</button><button onclick="go('Development Activity')">Development activity</button></div></div>`;
   return originalSection();
 };
-async function loadLive(){try{const response=await fetch('data/live.json?cache='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('HTTP '+response.status);const obj=await response.json();if(!obj||!Array.isArray(obj.source_results))throw Error('Invalid collection payload');if(obj.status==='never_collected')throw Error('Collector has not published any successful run');if(!obj.last_attempt_utc||!Number.isFinite(Date.parse(obj.last_attempt_utc))||!Number.isInteger(obj.listed_sources)||obj.listed_sources<1||obj.source_results.length!==obj.listed_sources)throw Error('Collection timestamp or source count invalid');LIVE=obj;LIVE_ERROR=null;}catch(e){LIVE_ERROR=e.message;LIVE=null;}header();render();}
-loadLive();setInterval(loadLive,5*60*1000);
+let liveLoading=false;
+async function loadLive(){
+ if(liveLoading)return;liveLoading=true;
+ try{
+  const urls=['https://raw.githubusercontent.com/wrathlock/gta-vi-progress-tracker/main/GTA_VI_Tracker/data/live.json','data/live.json'];
+  const results=await Promise.allSettled(urls.map(async url=>{
+   const response=await fetch(url+'?cache='+Date.now(),{cache:'no-store'});
+   if(!response.ok)throw Error('HTTP '+response.status);
+   const obj=await response.json();
+   if(!obj||obj.status==='never_collected'||!Array.isArray(obj.source_results)||!Number.isFinite(Date.parse(obj.last_attempt_utc))||obj.source_results.length!==obj.listed_sources)throw Error('Invalid collection payload');
+   return obj;
+  }));
+  const candidates=results.filter(x=>x.status==='fulfilled').map(x=>x.value).sort((a,b)=>Date.parse(b.last_attempt_utc)-Date.parse(a.last_attempt_utc));
+  if(!candidates.length)throw Error('Both collection endpoints unavailable');
+  const next=candidates[0];
+  if(!LIVE||Date.parse(next.last_attempt_utc)>=Date.parse(LIVE.last_attempt_utc))LIVE=next;
+  LIVE_ERROR=null;
+ }catch(e){LIVE_ERROR=e.message;}
+ finally{liveLoading=false;header();render();}
+}
+loadLive();setInterval(loadLive,60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)loadLive();});
+window.addEventListener('online',loadLive);
