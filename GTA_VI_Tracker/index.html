@@ -1852,4 +1852,24 @@ projectProfile=function(name){
 })();
 </script>
 
+<script id="external-development-progress">
+(function(){
+let data=null,loading=false;
+const escLocal=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pct=v=>v==null?'Unknown':Math.round(Number(v)*100)+'%';
+const stage=x=>{const g=x.gta||{};return g.ingame>0?'Partial world-load / in-game claim':g.menu>0?'Menu evidence':g.boots>0?'Visible boot evidence':g.loads>0?'Execution evidence':'Groundwork only'};
+function draw(){
+if(current!=='Overview'&&current!=='Development Activity')return;
+const root=document.getElementById('content');if(!root)return;
+root.querySelectorAll('#external-development-card').forEach(n=>n.remove());
+const rows=Array.isArray(data?.efforts)?data.efforts.filter(x=>x.tier==='tracked'):[];
+const card=document.createElement('article');card.id='external-development-card';card.className='card';
+card.innerHTML='<h3>PROJECT DEVELOPMENT PROGRESS</h3><p class="desc">External assessment: <a href="https://portwatch-vi.xyz/" target="_blank" rel="noopener noreferrer">PortWatch VI</a>. Not independently verified gameplay or overall completion.</p><p class="desc">Updated: '+escLocal(data?.updated||'Awaiting collector')+' · '+escLocal(data?.status||'Loading')+'</p>'+rows.map(x=>'<details class="item"><summary><strong>'+escLocal(x.name)+'</strong> · '+escLocal(stage(x))+'</summary><p>'+escLocal(x.approach)+' · '+escLocal(x.verification||'Unverified')+'</p>'+Object.entries(x.groundwork||{}).map(([k,v])=>'<div class="row"><span>'+escLocal(({loader:'Loader and libraries',shaders:'Shader translation',graphics:'Graphics layer',proven:'Other game compatibility'})[k]||k)+'</span><strong>'+escLocal(pct(v))+'</strong></div>').join('')+'<p>GTA-specific external milestone scores: executable '+pct(x.gta?.loads)+' · boot '+pct(x.gta?.boots)+' · menus '+pct(x.gta?.menu)+' · in-game '+pct(x.gta?.ingame)+'</p><p class="desc">These are editorial milestone scores, not completion percentages.</p><a href="https://github.com/'+escLocal(x.repo)+'" target="_blank" rel="noopener noreferrer">Original repository</a></details>').join('');
+const timeline=root.querySelector('.playable-timeline');if(timeline)timeline.insertAdjacentElement('afterend',card);else root.appendChild(card);
+if(timeline&&rows.length&&data?.status==='available'){const rank=x=>{const g=x.gta||{};return (g.ingame||0)*1000+(g.menu||0)*100+(g.boots||0)*10+(g.loads||0)};const best=rows.reduce((a,b)=>rank(b)>rank(a)?b:a);const h=timeline.querySelector('.pt-count'),sub=timeline.querySelector('.pt-sub');if(h)h.textContent='Reported: '+stage(best);if(sub)sub.textContent=best.name+' · External reported development; independent verification remains separate.';}
+}
+async function load(){if(loading)return;loading=true;try{const r=await fetch('data/live.json?development='+Date.now(),{cache:'no-store'});if(r.ok)data=(await r.json()).portwatch||null}catch(e){console.error(e)}finally{loading=false;draw()}}
+const prior=render;render=function(){prior();draw();if(!data&&!loading)load()};load();setInterval(load,300000);
+})();
+</script>
 </body></html>
