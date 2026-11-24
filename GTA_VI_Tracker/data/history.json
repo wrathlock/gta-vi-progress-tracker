@@ -222,5 +222,13 @@
     "errors": 1,
     "github_event_records": 175,
     "repository_sample_count": 13
+  },
+  {
+    "collected_at_utc": "2026-11-24T00:59:23Z",
+    "successful_sources": 18,
+    "failed_sources": 2,
+    "errors": 2,
+    "github_event_records": 161,
+    "repository_sample_count": 12
   }
 ]
