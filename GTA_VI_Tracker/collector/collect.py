@@ -61,6 +61,7 @@ SOURCES.update({
 "Leonida organization":"https://github.com/ProjectLeonida/Leonida",
 "Leonida mirror":"https://git.notrexed.dev/notrexed/Leonida"
 })
+SOURCES.update({"AnyPS5 progress":"https://anyps5.blog/progress/","PS5 Emulation Tracker":"https://alan-r-henry.github.io/ps5-emu-tracker/","KytyPS5 Jetsku":"https://github.com/Jetsku/KytyPS5","KytyPlus":"https://github.com/Coder787-source/KytyPlus","PS5PCEM":"https://github.com/iStark/PS5PCEM","RPCSX":"https://github.com/RPCSX/rpcsx","SharpEmu Mac":"https://github.com/sharpemu/sharpemu-mac","Madeira":"https://github.com/buberlo/madeira-anyps5"})
 TOKEN=os.getenv('GITHUB_TOKEN','').strip()
 
 def fetch(url, api=False, head=False):
@@ -162,6 +163,26 @@ def collect_portwatch(previous):
         return {'status':'available','checked_at_utc':NOW,'updated':data.get('updated'),'source':'https://portwatch-vi.xyz/','efforts':rows,'history':[{k:h[k] for k in ('date','leader','leaderId','top3','furthest','tracked') if k in h} for h in data.get('history',[]) if isinstance(h,dict)],'note':'External editorial assessments, not independently verified gameplay.'}
     except Exception as exc:
         return {**(previous.get('portwatch') or {}),'status':'stale_or_unavailable','checked_at_utc':NOW,'error':str(exc)[:150]}
+
+def collect_ps5(previous):
+    from html import unescape
+    result={'checked_at_utc':NOW,'metrics':{},'sources':[]}
+    targets=[('official','https://anyps5.blog/progress/'),('community','https://alan-r-henry.github.io/gta6-pc-tracker/')]
+    patterns={'official':{'functions':r'System functions implemented\s+([\d.]+)%\s+([\d,]+) of ([\d,]+)','shaders':r'GPU shader instructions\s+([\d.]+)%\s+([\d,]+) of ([\d,]+)'},'community':{'kyty_ingame':r'KytyPS5\s+C\+\+ translation layer.{0,200}?(\d[\d,]*)\s+games reach in-game','sharp_playable':r'SharpEmu\s+Emulator written from scratch in C#.{0,200}?(\d[\d,]*)\s+games playable'}}
+    for key,url in targets:
+        status,raw,error=fetch(url)
+        body=unescape(re.sub(r'<[^>]+>',' ',raw.decode('utf-8',errors='replace'))) if status==200 and raw else ''
+        body=re.sub(r'\s+',' ',body)
+        count=0
+        for name,pattern in patterns[key].items():
+            match=re.search(pattern,body,re.I)
+            if match:
+                result['metrics'][name]={'values':[float(v.replace(',','')) for v in match.groups()],'source':url,'checked_at_utc':NOW}
+                count+=1
+        result['sources'].append({'url':url,'status':'parsed' if count else 'unavailable_or_unparsed'})
+    for name,value in (previous.get('ps5_progress') or {}).get('metrics',{}).items():
+        if name not in result['metrics']:result['metrics'][name]={**value,'stale':True}
+    return result
 
 def collect_rumors(previous):
     import xml.etree.ElementTree as ET
@@ -474,7 +495,7 @@ report={
 'original_sources':len(SOURCES),'listed_sources':len(SOURCES),'contacted_sources':sum(r['status']!='unavailable' for r in results),'reachable_sources':successes,'substantively_reviewed_sources':0,'automated_content_screened_sources':screened,'independently_verified_sources':0,'coverage_method':'GitHub repository metadata and automated README text screening; HTTP reachability only for other sources','unavailable_sources':sum(r['status']=='unavailable' for r in results),
 'last_error_count':sum(bool(r.get('error')) or bool(r.get('activity_error')) for r in results),
 'collector_scope':'GitHub repository metadata, recent public commits/releases/issues/PRs, and HTTP reachability for non-GitHub sources. Automated GitHub README screening only, not full website content review. No executable downloads or independent technical test reproduction. Reddit RSS post headlines and indexed news headlines are collected as unverified rumors; no Reddit comments or direct X feed are collected.',
-'exe_watch':announcement_watch(old),'rumors':collect_rumors(old),'portwatch':portwatch_snapshot,'project_discovery':{'checked_at_utc':NOW,'source':'PortWatch VI','new_candidates':discovered},
+'exe_watch':announcement_watch(old),'rumors':collect_rumors(old),'ps5_progress':collect_ps5(old),'portwatch':portwatch_snapshot,'project_discovery':{'checked_at_utc':NOW,'source':'PortWatch VI','new_candidates':discovered},
 'project_exe_usage':{'checked_at_utc':NOW,'method':'automated contextual screening of public GitHub README and recent commit/release/issue/PR titles; no binary downloads or code execution',
  'monitored_projects':list(PROJECT_USAGE_NAMES),'leads':sorted({(x['project'],x['url'],x['excerpt']):x for x in project_usage_leads}.values(),key=lambda x:x.get('published_at_utc') or '',reverse=True)[:50],
  'independently_authenticated':False,'execution_independently_reproduced':False,
