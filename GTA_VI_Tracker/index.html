@@ -697,8 +697,8 @@ const live=typeof LIVE!=='undefined'&&LIVE&&LIVE.last_attempt_utc;
 cards[2].querySelector('small').textContent='Original source directory';
 cards[2].querySelector('.value').textContent=live?String(LIVE.listed_sources??21)+' listed':'21 listed';
 cards[3].querySelector('small').textContent='GTA VI Monitoring Alerts';
-cards[3].querySelector('.value').textContent='2 configured';
-cards[3].title='EXE Release Watch (hourly, around :16) and PC Playability Watch (hourly, around :07). These are separately configured monitoring reminders, not website-delivered alerts. Their execution status is not verified by this website.';
+cards[3].querySelector('.value').textContent='1 listed';
+cards[3].title='PC Playability Watch (hourly, around :07). This is a separately configured monitoring reminder, not a website-delivered alert.';
 }
 };
 const originalSection=section;
@@ -715,46 +715,8 @@ return originalSection();
 header();render();
 })();
 </script>
-<style id="exe-watch-home-style">
-.exe-watch-milestones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:12px 0}.exe-watch-stage{border:1px solid var(--edge);border-radius:8px;padding:11px;display:flex;flex-direction:column;gap:7px}.exe-watch-stage span{font-size:.82rem}.exe-watch-leads{margin:12px 0;padding:10px;border:1px solid var(--edge);border-radius:8px}@media(max-width:650px){.exe-watch-milestones{grid-template-columns:1fr}}
 
-.exe-watch-home{border:1px solid #45677a;border-left:3px solid var(--teal);background:linear-gradient(110deg,#15283c,#112033);border-radius:11px;padding:15px 17px;margin-bottom:13px}.exe-watch-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.exe-watch-home h3{font-size:1.04rem;margin:0}.exe-watch-state{font-size:.8rem;color:var(--amber);background:#26364a;border-radius:16px;padding:5px 10px}.exe-watch-home p{color:var(--muted);margin:8px 0 12px;line-height:1.5}.exe-watch-steps{display:flex;gap:8px;flex-wrap:wrap}.exe-watch-steps span{border:1px solid var(--edge);border-radius:7px;padding:6px 9px;color:var(--muted);font-size:.79rem}.exe-watch-steps span:first-child{border-color:#496d6b;color:var(--teal)}.exe-watch-foot{display:flex;align-items:center;gap:15px;flex-wrap:wrap;margin-top:11px}.exe-watch-foot a{color:var(--teal);font-size:.86rem}.exe-watch-foot small{font-size:.78rem}@media(max-width:600px){.exe-watch-home{padding:12px}.exe-watch-steps span{font-size:.75rem}}
-</style>
-<script id="exe-watch-home-script">
-(function(){
-const originalRender=render;
-function exeWatchCard(){
-const live=(typeof LIVE!=='undefined'&&LIVE&&LIVE.status!=='never_collected')?LIVE:null;
-const w=live?.exe_watch;
-const scan=w?.checked_at_utc?'Last announcement check: '+String(w.checked_at_utc).replace('T',' ').slice(0,19)+' UTC':'Announcement screening not yet published';
-const sources=w?.sources||[];
-const checked=sources.filter(x=>x.status==='screened').length;
-const announcement=!!w?.release_announcement_detected;
-const releaseAssessment=live?.evidence_assessment?.assessments?.executable_release;
-const releaseLabel=releaseAssessment?.status==='corroborated'?'Release report corroborated':releaseAssessment?.status==='evidence_emerging'?'Release evidence emerging':announcement?'Release announcement reported':'No authenticated public EXE verified';
-const auth=!!w?.executable_independently_authenticated;
-const boot=!!w?.execution_independently_reproduced;
-const status=(v,yes,no)=>'<div class="exe-watch-stage"><strong>'+esc(yes)+'</strong><span class="'+(v?'good':'warn')+'">'+(v?'Detected / recorded':esc(no))+'</span></div>';
-const leads=([{name:'November 23 · release reported by multiple publications',excerpt:'Cyberleek reportedly published the missing Xbox executable. VideoCardz, DSOGaming and KeenGamer independently report the announcement; file identity and PC execution remain unverified.'},...(w?.release_announcement_sources||[])]).map(x=>'<div class="item"><strong>'+esc(x.name)+'</strong><p class="desc">'+esc(x.excerpt||'New matching text')+'</p><small>Unverified announcement lead; not a confirmed executable</small></div>').join('');
-const projectUsage=live?.project_exe_usage;
-const projectLeads=Array.isArray(projectUsage?.leads)?projectUsage.leads:[];
-const assessments=live?.evidence_assessment?.assessments||{};
-const evidenceSummary='<div class="exe-watch-leads"><h4>Evidence assessment · by claim</h4>'+['game_files','executable_release','project_exe_usage','executable_authentication','execution','gameplay'].map(k=>'<div class="item"><strong>'+esc(k.replaceAll('_',' '))+' · '+esc(assessments[k]?.status?.replaceAll('_',' ')||'Not yet assessed')+'</strong><p class="desc">'+esc(assessments[k]?.explanation||'Awaiting next collector assessment')+'</p></div>').join('')+'</div>';
-const usageHtml='<div class="exe-watch-leads"><h4>Project executable usage · public evidence leads</h4><p class="desc">Automatically screens monitored GitHub project READMEs and recent activity each collection. A mention or integration claim does not authenticate the executable or demonstrate a boot.</p>'+(projectLeads.length?projectLeads.slice(0,12).map(x=>'<div class="item"><strong>'+esc(x.project)+' · '+esc(x.evidence_level==='integration_claim'?'Integration/testing claim':x.evidence_level==='acknowledgment'?'Acknowledgment':'Mention')+'</strong><p class="desc">'+esc(x.excerpt||x.title||'')+'</p>'+(String(x.url||'').startsWith('https://github.com/')?'<a href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">View public source</a>':'')+'</div>').join(''):'<p class="desc">No matching public project evidence in the latest collection. This does not rule out private testing.</p>')+'</div>';
-return '<section class="exe-watch-home" aria-label="GTA VI executable release watch"><div class="exe-watch-top"><h3>GTA VI executable · release watch</h3><span class="exe-watch-state">'+(boot?'Execution independently reproduced':auth?'Executable independently authenticated':announcement?releaseLabel+' · file unverified':'No authenticated public EXE verified')+'</span></div><p>Three distinct milestones: a new source announcement, independent executable authentication, and independent boot reproduction. A source mention or download link alone does not prove the game is usable.</p><div class="exe-watch-milestones">'+status(announcement,'1 · Release announcement detected',w?'No new matching announcement':'Monitoring not yet active')+status(auth,'2 · Executable independently authenticated','Not independently verified')+status(boot,'3 · Execution independently reproduced','Not independently reproduced')+'</div>'+evidenceSummary+usageHtml+(leads?'<div class="exe-watch-leads"><h4>New source-text leads (unverified)</h4>'+leads+'</div>':'')+'<p class="desc">'+esc(scan)+' · '+checked+'/'+sources.length+' sources text-screened. HTML screening can miss dynamic archive listings; no executable files are downloaded or executed.</p><div class="exe-watch-foot"><a href="https://wayfinder.ar.io/?q=Cyberleek" target="_blank" rel="noopener noreferrer">Cyberleek archive search</a><a href="https://github.com/deepwoodssec/FollowTheLeek" target="_blank" rel="noopener noreferrer">Source cross-checks</a><a href="#" onclick="go(&quot;Executable&quot;);return false">Verification criteria</a></div></section>';
-}
-render=function(){
-originalRender();
-if(current!=='Overview')return;
-const target=document.getElementById('content');
-if(!target)return;
-const heading=target.querySelector('h2');
-if(heading)heading.insertAdjacentHTML('afterend',exeWatchCard());
-};
-render();
-setInterval(()=>{if(current==='Overview'){const node=document.querySelector('.exe-watch-home');if(node)node.outerHTML=exeWatchCard()}},60000);
-})();
-</script>
+
 <style id="platform-race-style">
 .platform-race{margin:14px 0 18px;border:1px solid #38546c;border-radius:13px;background:#122338;padding:18px}.platform-race h3{margin:0;font-size:1.16rem}.platform-race .sub{color:#9aafc2;font-size:.83rem;margin:6px 0 13px}.platform-race .race-summary{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}.platform-race .race-summary>div{padding:12px;background:#1b3045;border-radius:9px}.platform-race .race-summary strong{display:block;font-size:1.08rem}.platform-race .race-summary small{display:block;color:#a6b7c7;margin-top:5px;line-height:1.45}.platform-race .race-table{width:100%;border-collapse:collapse;font-size:.82rem}.platform-race .race-table th,.platform-race .race-table td{padding:10px 7px;text-align:left;border-bottom:1px solid #30465c;vertical-align:top}.platform-race .race-table th{color:#a6b7c7;font-size:.76rem}.platform-race .race-state{display:block;font-weight:650;margin-bottom:3px}.platform-race .race-desc{display:block;font-size:.76rem;color:#a9b9c8;line-height:1.45}.platform-race .race-reported{color:#e4c783}.platform-race .race-unverified{color:#a5b2bf}.platform-race .race-info{font-size:.8rem;color:#afc1d0;margin-top:12px;line-height:1.6}.platform-race details{margin-top:12px;border-top:1px solid #30465c;padding-top:10px}.platform-race summary{cursor:pointer;color:#8fd7d3}.platform-race a{color:#8fd7d3}@media(max-width:640px){.platform-race{padding:12px}.platform-race .race-summary{grid-template-columns:1fr}.platform-race .race-table th,.platform-race .race-table td{padding:9px 4px;font-size:.74rem}.platform-race .race-desc{font-size:.7rem}}
 </style>
@@ -828,7 +790,7 @@ const frontier=stable.length?'Stable gameplay':fps.length?'30 FPS gameplay':game
 const sourceLinks='<a href="https://www.notebookcheck.net/Can-Cyberleek-s-leaked-GTA-6-Xbox-build-become-a-PC-port-Three-GitHub-projects-are-trying-without-the-executable.1456848.0.html" target="_blank" rel="noopener noreferrer">Nov 22 reporting</a> · <a href="https://github.com/ItsNotRexed/Leonida" target="_blank" rel="noopener noreferrer">Leonida</a> · <a href="https://github.com/R0Y00/Xbox2Windows" target="_blank" rel="noopener noreferrer">Xbox2Windows</a> · <a href="https://github.com/Freminet/ScarlettX" target="_blank" rel="noopener noreferrer">ScarlettX</a> · <a href="https://github.com/alan-r-henry/gta6-pc-tracker" target="_blank" rel="noopener noreferrer">PS5 tracker</a>';
 return '<section class="platform-race"><h3>Road to playable GTA VI on PC</h3><p class="race-info"><strong>Reading this tracker:</strong> Every CPU, runtime, graphics and shader result is labeled by what was actually tested. Generic platform progress must not be read as GTA VI-specific functionality. Developer-reported milestones advance with source data; independent reproduction is tracked separately.</p><div class="sub">Xbox vs PS5 · collector last checked: '+esc(checked)+' · platform component tests are NOT GTA VI game tests</div><div class="race-summary"><div><strong>Xbox · GTA VI-targeted projects</strong><small>'+esc(frontier+stamp)+'</small></div><div><strong>PS5 · general emulator research</strong><small>Other-game and generic emulator work only; NOT verified GTA VI CPU execution, shaders, rendering, boot or gameplay.</small></div></div><table class="race-table"><thead><tr><th>Milestone</th><th>Xbox path</th><th>PS5 path</th></tr></thead><tbody>'+rows.map((r,i)=>'<tr><td data-label="Milestone"><b>'+String(i+1)+'. '+esc(r[0])+'</b></td><td data-label="Xbox path"><span class="race-state '+(/reported/i.test(r[1])?'race-reported':'race-unverified')+'">'+esc(r[1])+'</span><span class="race-desc">'+esc(r[2])+'</span></td><td data-label="PS5 path"><span class="race-state race-unverified">'+esc(r[3])+'</span><span class="race-desc">'+esc(r[4])+'</span></td></tr>').join('')+'</tbody></table><div class="race-info"><b>Furthest ahead:</b> '+esc('Xbox: '+frontier+stamp)+'. PS5: no GTA VI-specific milestone established in the current source feed. Reported progress is not independent reproduction. <a href="https://portwatch-vi.xyz/" target="_blank" rel="noopener noreferrer">External milestone data</a>.</div><details><summary>Technical evidence, denominators and sources</summary><p class="race-desc">Leonida: '+mtxt(leonida)+' developer-reported shader translations (not independently confirmed as GTA VI shaders). Xbox2Windows: '+mtxt(x2w)+' reported pixel shader tests (not verified GTA VI shader execution). ScarlettX: '+mtxt(scarlett)+' synthetic tests on other code; not GTA VI compatibility. Dates, build details, and independent test reproduction are not established for these stored metrics. PS5 historical readiness scores are third-party tracker scores, not GTA VI compatibility.</p><p class="race-desc">November 23 reporting says Cyberleek released the alleged Xbox EXE; reporting does not authenticate the binary. Downloaded files may be malicious. Evidence links: '+sourceLinks+'</p></details></section>';
 }
-render=function(){oldRender();if(current!=='Overview')return;const target=document.getElementById('content');if(!target)return;const old=target.querySelector('.platform-race');if(old)old.remove();const heading=target.querySelector('h2');const exe=target.querySelector('.exe-watch-home');if(exe)exe.insertAdjacentHTML('afterend',raceView());else if(heading)heading.insertAdjacentHTML('afterend',raceView());};
+render=function(){oldRender();if(current!=='Overview')return;const target=document.getElementById('content');if(!target)return;const old=target.querySelector('.platform-race');if(old)old.remove();const heading=target.querySelector('h2');if(heading)heading.insertAdjacentHTML('afterend',raceView());};
 render();
 let previousRaceState='';
 setInterval(()=>{
@@ -840,38 +802,8 @@ setInterval(()=>{
 },60000);
 })();
 </script>
-<style id="exe-status-visual-style">
-#stats .exe-release-stat{border:1px solid #825d31;background:linear-gradient(135deg,#30251d,#1b2836);box-shadow:inset 3px 0 0 #e3a65a}
-#stats .exe-release-stat .value{color:#ffd39b!important}
-#stats .exe-release-stat.exe-unverified{border-color:#8b4c50;background:linear-gradient(135deg,#352027,#192737);box-shadow:inset 3px 0 0 #e07178}
-#stats .exe-release-stat.exe-unverified .value{color:#ff9fa4!important}
-#stats .exe-release-stat.exe-verified{border-color:#337e61;background:linear-gradient(135deg,#163b31,#172a38);box-shadow:inset 3px 0 0 #55d5a2}
-#stats .exe-release-stat.exe-verified .value{color:#8ef1bf!important}
-#stats .exe-release-stat small:before{content:'●';margin-right:7px;color:#f2aa58}
-#stats .exe-release-stat.exe-unverified small:before{color:#f18b91}
-#stats .exe-release-stat.exe-verified small:before{color:#72e6ae}
-</style>
-<script id="exe-status-visual-script">
-(function(){
-const previousHeader=header;
-header=function(){
- previousHeader();
- const stats=document.getElementById('stats');if(!stats)return;
- const cards=[...stats.querySelectorAll('.stat')];
- const exe=cards.find(c=>/^\s*EXE released\s*$/i.test(c.querySelector('small')?.textContent||''));
- if(!exe)return;
- exe.classList.add('exe-release-stat');
- const value=exe.querySelector('.value');if(!value)return;
- const v=value.textContent.trim();
- const verified=/^(yes|verified|released\s*—\s*verified)$/i.test(v);
- exe.classList.add(verified?'exe-verified':'exe-unverified');
- if(!verified){value.textContent='NO · NOT VERIFIED';value.title='No independently authenticated GTA VI executable is recorded. Rumors or links are not verification.';}
- else value.title='Authenticated executable with independent supporting evidence';
-};
-header();
-setInterval(()=>{if(document.getElementById('stats'))header()},60000);
-})();
-</script>
+
+
 <style id="monitor-alerts-info-style">
 .monitor-alerts-info{margin:10px 0 16px;padding:14px 16px;border:1px solid var(--edge);border-radius:10px;background:var(--panel)}
 .monitor-alerts-info .monitor-alerts-title{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:10px}
@@ -888,10 +820,10 @@ render=function(){
  if(current!=='Overview'&&current!=='Alerts')return;
  const target=document.getElementById('content');if(!target)return;
  const existing=target.querySelector('.monitor-alerts-info');if(existing)existing.remove();
- const block='<section class="monitor-alerts-info" aria-label="GTA VI Monitoring Alerts"><div class="monitor-alerts-title"><strong>GTA VI Monitoring Alerts</strong><span class="pill">2 configured</span></div><div class="monitor-alert-row"><div><strong>EXE Release Watch</strong><small>Cyberleek announcements, executable authenticity and recompilation developments</small></div><small>Hourly · around :16</small></div><div class="monitor-alert-row"><div><strong>PC Playability Watch</strong><small>Working PC builds, emulator breakthroughs and independently verified gameplay</small></div><small>Hourly · around :07</small></div><p class="monitor-alert-note">The two listed monitoring reminders are separate from the website public RSS feed and GitHub collector. This dashboard cannot verify their execution or deliver their notifications to visitors. Configured does not mean a release or breakthrough has been verified.</p></section>';
+ const block='<section class="monitor-alerts-info" aria-label="GTA VI Monitoring Alerts"><div class="monitor-alerts-title"><strong>GTA VI Monitoring Alerts</strong><span class="pill">1 listed</span></div><div class="monitor-alert-row"><div><strong>PC Playability Watch</strong><small>Working PC builds, emulator breakthroughs and independently verified gameplay</small></div><small>Hourly · around :07</small></div><p class="monitor-alert-note">The listed monitoring reminder is separate from the website public RSS feed and GitHub collector. This dashboard cannot verify their execution or deliver their notifications to visitors. Configured does not mean a release or breakthrough has been verified.</p></section>';
  if(current==='Overview'){
  const stats=document.getElementById('stats');const card=[...(stats?.querySelectorAll('.stat')||[])].find(x=>x.querySelector('small')?.textContent==='GTA VI Monitoring Alerts');
- if(card){card.setAttribute('role','button');card.setAttribute('tabindex','0');card.title='Open the two monitoring alerts';card.onclick=()=>go('Alerts');card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go('Notification center');}};}
+ if(card){card.setAttribute('role','button');card.setAttribute('tabindex','0');card.title='Open the playability monitoring alert';card.onclick=()=>go('Alerts');card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go('Alerts');}};}
  return;
  }
  const heading=target.querySelector('h2');if(heading)heading.insertAdjacentHTML('afterend',block);
