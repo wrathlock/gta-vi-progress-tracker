@@ -1894,4 +1894,17 @@ async function load(){if(loading)return;loading=true;try{const r=await fetch('da
 const prior=render;render=function(){prior();draw();if(!data&&!loading)load()};load();setInterval(load,300000);
 })();
 </script>
-</body></html>
+<script id="ps5-readiness-dual">
+(function(){
+const prior=section;
+function view(){
+ const p=typeof LIVE!=='undefined'?LIVE?.ps5_progress:null;
+ const m=p?.metrics||{};
+ const fmt=n=>Number(n).toLocaleString('en-US');
+ const metric=(k,label,ratio)=>{const v=m[k];if(!v)return '<p>'+esc(label)+': Awaiting source measurement</p>';const a=v.values;return '<p><b>'+esc(label)+'</b> · '+esc(ratio?fmt(a[0])+'% ('+fmt(a[1])+' / '+fmt(a[2])+')':fmt(a[0]))+(v.stale?' · last recorded':'')+'</p>'+(ratio?'<div style="height:8px;background:#455466;border-radius:6px"><div style="height:8px;background:#62b9a9;border-radius:6px;width:'+Math.max(0,Math.min(100,a[0]))+'%"></div></div>':'')+'<p class="desc"><a href="'+esc(v.source)+'">Source</a> · '+esc(v.checked_at_utc)+'</p>';};
+ return '<div class="card"><h3>PS5 development · two independent progress tracks</h3><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px"><div><h4>Platform readiness</h4><p class="desc">Engineering coverage and other-game compatibility, not a GTA VI score.</p>'+metric('functions','AnyPS5 system functions',true)+metric('shaders','AnyPS5 shader instruction coverage',true)+metric('kyty_ingame','KytyPS5 games reaching in-game',false)+metric('sharp_playable','SharpEmu playable titles',false)+'</div><div><h4>GTA VI compatibility</h4><p class="desc">Only GTA VI-specific tests count here.</p>'+['Game package','Executable loading','First boot','Main menu','World loading','Controllable gameplay','Stable gameplay'].map(x=>'<p><b>'+x+'</b> · Not established in current PS5 evidence</p>').join('')+'</div></div><p class="desc">No combined score. Shader instruction coverage is not full graphics compatibility. <a href="https://alan-r-henry.github.io/gta6-pc-tracker/">Community compatibility source</a>.</p></div>';
+}
+section=function(){return prior()+(['Overview','PS5'].includes(current)?view():'');};
+render();
+})();
+</script></body></html>
