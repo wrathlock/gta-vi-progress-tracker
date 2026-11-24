@@ -282,6 +282,12 @@ def evidence_fingerprint(e):
 
 # Discover additional public repositories from the attributed project index.
 portwatch_snapshot=collect_portwatch(old)
+retired_repos=set(["itsnotrexed/leonida","realdody/americas-recomp","edupode/anyxboxseries","dark3581/anybox","zohaiblazuli/grandtheftxbox","projectleonida/leonida"])
+for item in portwatch_snapshot.get('efforts',[]):
+    if item.get('nuked') or item.get('stats',{}).get('archived') or item.get('stats',{}).get('missingStatus') in (404,410,451):
+        retired_repos.add(item.get('repo','').lower())
+SOURCES={n:u for n,u in SOURCES.items() if u.lower().rstrip('/').removeprefix('https://github.com/') not in retired_repos}
+portwatch_snapshot['efforts']=[x for x in portwatch_snapshot.get('efforts',[]) if x.get('repo','').lower() not in retired_repos]
 known_urls={u.lower().rstrip('/') for u in SOURCES.values()}
 discovered=[]
 if portwatch_snapshot.get('status')=='available':
