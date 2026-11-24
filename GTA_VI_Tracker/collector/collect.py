@@ -30,6 +30,37 @@ SOURCES={
 'KytyPS5':'https://github.com/KytyPS5/KytyPS5',
 'SharpEmu':'https://github.com/sharpemu/sharpemu'
 }
+SOURCES.update({
+"VIctory":"https://github.com/Marvisak/VIctory",
+"xbox-emulator":"https://github.com/omonkeyz/xbox-emulator",
+"TuxBox":"https://github.com/brcly/TuxBox",
+"americas-recomp":"https://github.com/realdody/americas-recomp",
+"OpenScarlett":"https://github.com/californiaAlmonds/OpenScarlett",
+"scarlett-layer":"https://github.com/jadeowaowa/scarlett-layer",
+"XValkyrie":"https://github.com/sammwyy/xvalkyrie",
+"GTAVI-Recomp":"https://github.com/JamesCicada/GTAVI-Recomp",
+"AnyXboxSeries":"https://github.com/edupode/anyxboxseries",
+"SCARAB":"https://github.com/p-portela/SCARAB",
+"AnyBox":"https://github.com/Dark3581/AnyBox",
+"PercyScarlett":"https://github.com/rpatty-dev/PercyScarlett",
+"GrandTheftXbox":"https://github.com/zohaiblazuli/GrandTheftXbox",
+"Scarlett Windows Compat":"https://github.com/ProhorovIlja/Scarlett-Windows-Compat",
+"DedSec":"https://github.com/Hylanderry/DedSec",
+"Xbgtasix":"https://github.com/ljm-233/Xbgtasix",
+"SeriesX Emulator":"https://github.com/anrq0/SeriesX-Emulator",
+"GTA6-COMPAT-LAYER (ScarlettCompat)":"https://github.com/SSTGxf/GTA6-COMPAT-LAYER",
+"XlaunchVI":"https://github.com/JPTuba9/xlaunch-vi",
+"OpenScarlett (Community Edition)":"https://github.com/OpenCommunityEdition/OpenScarlett",
+"Five Star Recomp":"https://github.com/ThatRecompDev/five-star-recomp",
+"G6Recomp":"https://github.com/Kajcsi/G6Recomp",
+"GTA6-BootTest":"https://github.com/OnlyMoisties/GTA6-BootTest",
+"Palmetto":"https://github.com/luizwidmer/palmetto",
+"PortWatch VI":"https://portwatch-vi.xyz/",
+"GTA VI PC Race":"https://vuyp.github.io/gta6-pc-race/",
+"Borecraft Findings":"https://findings.borecraft.app/",
+"Leonida organization":"https://github.com/ProjectLeonida/Leonida",
+"Leonida mirror":"https://git.notrexed.dev/notrexed/Leonida"
+})
 TOKEN=os.getenv('GITHUB_TOKEN','').strip()
 
 def fetch(url, api=False, head=False):
@@ -220,6 +251,23 @@ def evidence_identity(e):
 def evidence_fingerprint(e):
     return hashlib.sha256(json.dumps({'type':e.get('type'),'title':e.get('title'),'classification':e.get('classification'),'evidence':e.get('evidence'),'platform':e.get('platform')},sort_keys=True,ensure_ascii=False).encode()).hexdigest()
 
+# Discover additional public repositories from the attributed project index.
+portwatch_snapshot=collect_portwatch(old)
+known_urls={u.lower().rstrip('/') for u in SOURCES.values()}
+discovered=[]
+if portwatch_snapshot.get('status')=='available':
+    for item in portwatch_snapshot.get('efforts',[]):
+        repo=item.get('repo','')
+        if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+',repo):continue
+        url='https://github.com/'+repo
+        if url.lower() in known_urls:continue
+        name=str(item.get('name') or repo)[:100]
+        if name in SOURCES:name=name+' ('+repo+')'
+        SOURCES[name]=url
+        known_urls.add(url.lower())
+        discovered.append({'name':name,'repo':repo,'tier':item.get('tier'),'source':'PortWatch VI'})
+        if len(discovered)>=30:break
+PROJECT_USAGE_NAMES=tuple(dict.fromkeys((*PROJECT_USAGE_NAMES,*[n for n,u in SOURCES.items() if u.lower().startswith('https://github.com/')])))
 for name,url in SOURCES.items():
     m=re.fullmatch(r'https://github\.com/([^/]+)/([^/?#]+)/?',url)
     record={'name':name,'url':url,'checked_at_utc':NOW,'method':'github_api_repo_metadata_and_recent_activity' if m else 'reachability_only','substantive_content_review':False,'independent_verification':False,'status':'unavailable','last_public_activity_utc':None,'error':None}
@@ -426,7 +474,7 @@ report={
 'original_sources':len(SOURCES),'listed_sources':len(SOURCES),'contacted_sources':sum(r['status']!='unavailable' for r in results),'reachable_sources':successes,'substantively_reviewed_sources':0,'automated_content_screened_sources':screened,'independently_verified_sources':0,'coverage_method':'GitHub repository metadata and automated README text screening; HTTP reachability only for other sources','unavailable_sources':sum(r['status']=='unavailable' for r in results),
 'last_error_count':sum(bool(r.get('error')) or bool(r.get('activity_error')) for r in results),
 'collector_scope':'GitHub repository metadata, recent public commits/releases/issues/PRs, and HTTP reachability for non-GitHub sources. Automated GitHub README screening only, not full website content review. No executable downloads or independent technical test reproduction. Reddit RSS post headlines and indexed news headlines are collected as unverified rumors; no Reddit comments or direct X feed are collected.',
-'exe_watch':announcement_watch(old),'rumors':collect_rumors(old),'portwatch':collect_portwatch(old),
+'exe_watch':announcement_watch(old),'rumors':collect_rumors(old),'portwatch':portwatch_snapshot,'project_discovery':{'checked_at_utc':NOW,'source':'PortWatch VI','new_candidates':discovered},
 'project_exe_usage':{'checked_at_utc':NOW,'method':'automated contextual screening of public GitHub README and recent commit/release/issue/PR titles; no binary downloads or code execution',
  'monitored_projects':list(PROJECT_USAGE_NAMES),'leads':sorted({(x['project'],x['url'],x['excerpt']):x for x in project_usage_leads}.values(),key=lambda x:x.get('published_at_utc') or '',reverse=True)[:50],
  'independently_authenticated':False,'execution_independently_reproduced':False,
