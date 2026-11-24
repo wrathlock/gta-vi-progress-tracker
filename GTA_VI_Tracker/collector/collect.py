@@ -182,6 +182,14 @@ def collect_ps5(previous):
         result['sources'].append({'url':url,'status':'parsed' if count else 'unavailable_or_unparsed'})
     for name,value in (previous.get('ps5_progress') or {}).get('metrics',{}).items():
         if name not in result['metrics']:result['metrics'][name]={**value,'stale':True}
+    history=list((previous.get('ps5_progress') or {}).get('history',[]))
+    prior=(previous.get('ps5_progress') or {}).get('metrics',{}).get('functions')
+    if not history and prior and not prior.get('stale'):
+        history.append({'date':prior['checked_at_utc'],'functions':prior['values'][0]})
+    current=result['metrics'].get('functions')
+    if current and not current.get('stale') and (not history or history[-1]['functions']!=current['values'][0]):
+        history.append({'date':current['checked_at_utc'],'functions':current['values'][0]})
+    result['history']=history[-500:]
     return result
 
 def collect_rumors(previous):
