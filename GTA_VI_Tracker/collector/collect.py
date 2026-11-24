@@ -159,7 +159,12 @@ def collect_portwatch(previous):
         rows=[]
         for x in efforts:
             if not isinstance(x,dict) or not x.get('name'):continue
-            rows.append({k:x[k] for k in ('id','name','repo','tier','approach','groundwork','gta','verification','assessedAt','stats','nuked') if k in x})
+            row={k:x[k] for k in ('id','name','repo','tier','approach','groundwork','gta','verification','assessedAt','stats','nuked') if k in x}
+            # Preserve relevant attributed source observations; never turn generic shader counts into asset completion.
+            other_game=re.compile(r'(?i)\b(?:gta[\s_-]*(?:5|v)|grand[\s_-]+theft[\s_-]+auto[\s_-]*(?:5|v))\b')
+            asset_terms=re.compile(r'(?i)\b(?:render\w*|textures?|models?|characters?|geometry|lighting|shadows?|hair|terrain|assets?|stream\w*|unlit|black|shaders?)\b')
+            row['asset_observations']={k:[v[:450] for v in x.get(k,[]) if isinstance(v,str) and asset_terms.search(v) and not other_game.search(v)][:6] for k in ('highlights','blockers') if isinstance(x.get(k),list)}
+            rows.append(row)
         return {'status':'available','checked_at_utc':NOW,'updated':data.get('updated'),'source':'https://portwatch-vi.xyz/','efforts':rows,'history':[{k:h[k] for k in ('date','leader','leaderId','top3','furthest','tracked') if k in h} for h in data.get('history',[]) if isinstance(h,dict)],'note':'External editorial assessments, not independently verified gameplay.'}
     except Exception as exc:
         return {**(previous.get('portwatch') or {}),'status':'stale_or_unavailable','checked_at_utc':NOW,'error':str(exc)[:150]}
@@ -284,7 +289,7 @@ def evidence_fingerprint(e):
 portwatch_snapshot=collect_portwatch(old)
 retired_repos=set(["itsnotrexed/leonida","realdody/americas-recomp","edupode/anyxboxseries","dark3581/anybox","zohaiblazuli/grandtheftxbox","projectleonida/leonida"])
 for item in portwatch_snapshot.get('efforts',[]):
-    if item.get('nuked') or item.get('stats',{}).get('archived') or item.get('stats',{}).get('missingStatus') in (404,410,451):
+    if item.get('nuked') or item.get('stats',{}).get('archived') or (item.get('stats',{}).get('missing') and item.get('stats',{}).get('missingStatus') in (404,410,451)):
         retired_repos.add((item.get('repo') or '').lower())
 SOURCES={n:u for n,u in SOURCES.items() if u.lower().rstrip('/').removeprefix('https://github.com/') not in retired_repos}
 portwatch_snapshot['efforts']=[x for x in portwatch_snapshot.get('efforts',[]) if (x.get('repo') or '').lower() not in retired_repos]
@@ -321,6 +326,13 @@ for name,url in SOURCES.items():
                     body=base64.b64decode(readme['content']).decode('utf-8',errors='replace')
                     terms=('gta vi','gta 6','gta6','executable','emulat','shader','reverse engineer','pc port','xbox','playstation','ps5')
                     hits=[term for term in terms if term in body.lower()]
+                    # Only explicit game-world rows from identified GTA VI projects qualify as direct partial rendering reports.
+                    target=next((p for p in portwatch_snapshot.get('efforts',[]) if (p.get('repo') or '').lower()==repo.lower() and (p.get('gta') or {}).get('world',0)>0),None)
+                    if target:
+                        for line in body.splitlines():
+                            if re.match(r'^\|\s*(?:The world \(first mission.s intro\)|First gameplay scene \(the prologue\))\s*\|',line,re.I) and re.search(r'\b(?:drawn and shown|renders:)\b|renders:',line,re.I) and re.search(r'\b(?:characters|vehicles|textures|buildings)\b',line,re.I):
+                                target['asset_readme_report']={'source_url':readme.get('html_url') or url,'checked_at_utc':NOW,'last_repo_push':info.get('pushed_at'),'excerpt':line[:650],'scope':'Developer README: visible assets in the first scene, not full asset integrity'}
+                                break
                     record['content_screening']={'status':'screened','document':'README','url':readme.get('html_url') or url,'characters_examined':len(body),'topic_terms_found':hits,'scope':'automated README text screening only; not manual verification'}
                     record['content_reviewed_at_utc']=NOW
                     usage_lead(name,readme.get('html_url') or url,'Repository README',body,'README',info.get('pushed_at'))
