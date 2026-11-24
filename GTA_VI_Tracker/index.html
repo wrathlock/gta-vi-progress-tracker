@@ -382,7 +382,7 @@ window.trackerDate=function(value,mode='short'){
  return new Intl.DateTimeFormat('en-US',opts).format(valid);
 };
 window.trackerTimeZone=function(){return Intl.DateTimeFormat().resolvedOptions().timeZone||'Local time';};
-</script><script src="live.js?v=20261123-public-freshness-hidden-v4" defer></script><button id="navToggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button><div id="navOverlay"></div>
+</script><script src="live.js?v=20261124-shared-refresh-v5" defer></script><button id="navToggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button><div id="navOverlay"></div>
 <script id="nav-v28-script">
 (function(){
 const groups=[
@@ -1889,6 +1889,7 @@ const escLocal=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','
 const pct=v=>v==null?'Unknown':Math.round(Number(v)*100)+'%';
 const stage=x=>{const g=x.gta||{};return g.ingame>0?'Partial world-load / in-game claim':g.menu>0?'Menu evidence':g.boots>0?'Visible boot evidence':g.loads>0?'Execution evidence':'Groundwork only'};
 function draw(){
+if(typeof LIVE!=='undefined'&&LIVE?.portwatch)data=LIVE.portwatch;
 if(current!=='Overview'&&current!=='Development Activity')return;
 const root=document.getElementById('content');if(!root)return;
 root.querySelectorAll('#external-development-card').forEach(n=>n.remove());
@@ -1903,8 +1904,7 @@ if(all.length){const best=all[0],top=all.slice(0,3),avg=top.reduce((a,b)=>a+b.p,
 const timeline=root.querySelector('.playable-timeline');if(timeline)timeline.insertAdjacentElement('afterend',card);else root.appendChild(card);
 if(timeline&&rows.length&&data?.status==='available'){const rank=x=>{const g=x.gta||{};return (g.ingame||0)*1000+(g.menu||0)*100+(g.boots||0)*10+(g.loads||0)};const best=rows.reduce((a,b)=>rank(b)>rank(a)?b:a);const h=timeline.querySelector('.pt-count'),sub=timeline.querySelector('.pt-sub');if(h)h.textContent='Reported: '+stage(best);if(sub)sub.textContent=best.name+' · External reported development; independent verification remains separate.';}
 }
-async function load(){if(loading)return;loading=true;try{const r=await fetch('data/live.json?development='+Date.now(),{cache:'no-store'});if(r.ok)data=(await r.json()).portwatch||null}catch(e){console.error(e)}finally{loading=false;draw()}}
-const prior=render;render=function(){prior();draw();if(!data&&!loading)load()};load();setInterval(load,300000);
+const prior=render;render=function(){prior();draw()};draw();
 })();
 </script>
 <script id="ps5-readiness-dual">
