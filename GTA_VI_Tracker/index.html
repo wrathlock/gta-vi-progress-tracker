@@ -1908,8 +1908,8 @@ if(current!=='Overview'&&current!=='Development Activity')return;
 const root=document.getElementById('content');if(!root)return;
 const data=typeof LIVE!=='undefined'?LIVE?.portwatch:null;
 const rows=(data?.efforts||[]).filter(x=>!x.nuked&&!x.stats?.missing&&!x.stats?.archived).map(x=>{const g=x.gta||{};const assets=window.GTAAssetIntegrity.forProject(x);return {...x,assets,marks:[g.loads,g.boots,g.menu,g.world??g.ingame,g.playable,assets.mark,g.story,g.playable>=1&&g.fps>=30&&g.stability==='stable'?1:0]};});
-const rank=x=>x.marks.reduce((n,v,i)=>Number(v)>0?i+Number(v):n,0);
-rows.sort((a,b)=>rank(b)-rank(a)||(b.gta?.render||0)-(a.gta?.render||0)||(b.gta?.fps||0)-(a.gta?.fps||0));
+const rank=x=>x.marks.reduce((n,v,i)=>i!==5&&Number(v)>0?i+Number(v):n,0);
+rows.sort((a,b)=>rank(b)-rank(a)||(b.assets.mark||0)-(a.assets.mark||0)||(b.gta?.render||0)-(a.gta?.render||0)||(b.gta?.fps||0)-(a.gta?.fps||0));
 let card=root.querySelector('#external-development-card');if(!card){card=document.createElement('article');card.id='external-development-card';card.className='card';const timeline=root.querySelector('.playable-timeline');if(timeline)timeline.insertAdjacentElement('afterend',card);else root.appendChild(card);}
 const visible=rows.filter(x=>filter==='all'||filter==='public'&&x.repo||filter==='private'&&!x.repo||filter==='advanced'&&x.marks[3]>0);
 const cell=v=>{const n=Number(v);return '<td><span class="pm-cell '+(n>=1?'pm-full':n>0?'pm-part':'')+'" title="'+(v==null?'Not assessed':n>=1?'Reported milestone':n>0?'Partial report':'Not established')+'">'+(n>=1?'✓':n>0?'◐':'–')+'</span></td>'};
