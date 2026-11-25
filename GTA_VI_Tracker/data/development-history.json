@@ -90,6 +90,16 @@
     "first_seen_utc": "2026-11-25T02:15:31Z"
   },
   {
+    "id": "milestone:port-of-the-americas:boots",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "Port of the Americas · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T14:38:05Z"
+  },
+  {
     "id": "milestone:five-star-recomp:menu",
     "date": "2026-11-25",
     "category": "Development",
@@ -108,6 +118,86 @@
     "url": "https://portwatch-vi.xyz/",
     "status": "Reported milestone",
     "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:dexnom:world",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "DexNom · World loading",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T14:38:05Z"
+  },
+  {
+    "id": "milestone:dexnom:playable",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "DexNom · Player control",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T14:38:05Z"
+  },
+  {
+    "id": "milestone:dexnom:menu",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "DexNom · Menu",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T14:38:05Z"
+  },
+  {
+    "id": "milestone:dexnom:boots",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "DexNom · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T14:38:05Z"
+  },
+  {
+    "id": "milestone:belobug:world",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "Belobug · World loading",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T14:38:05Z"
+  },
+  {
+    "id": "milestone:belobug:playable",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "Belobug · Player control",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T14:38:05Z"
+  },
+  {
+    "id": "milestone:belobug:menu",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "Belobug · Menu",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T14:38:05Z"
+  },
+  {
+    "id": "milestone:belobug:boots",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "Belobug · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T14:38:05Z"
   },
   {
     "id": "headline:84f8ecf3c4c948c0750d3cdd2cc28171895841625bd36a0a92720724e0de5959",
