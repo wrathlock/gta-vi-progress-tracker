@@ -1897,4 +1897,33 @@ function livePage(tab){
 }
 section=function(){return tabs.includes(current)?livePage(current):previous()};render();
 })();
+</script><script id="technical-evidence-live-v1">
+(function(){
+const prior=section, groups=[
+['Shader translation','Correct shader execution and translation fidelity; verify missing or incorrect shaders against game scenes.',/shader|dxil|spir.v|vgpr|wave64|wave32|lane mask|masques de lanes/i],
+['Graphics pipeline','Correct lighting, geometry, textures and presentation; validate actual rendered scenes.',/graphics|render|lighting|éclairage|ray.tracing|bvh|d3d12|g.buffer|descriptor|texture|composition|gpu/i],
+['Asset streaming','Validate complete models, environments and textures across multiple areas, not merely initial scene visibility.',/asset|streaming|directstorage|decompress|geometry|géométrie|mip|texture|models/i],
+['Runtime performance','Measure frame time, resource use and stalls during actual gameplay.',/performance|fps|frame.time|pacing|stall|latency|optim|cache|overhead|memory|vram/i],
+['Game stability','Demonstrate sustained operation and repeatable progression without hangs or crashes.',/crash|hang|deadlock|stability|device.lost|gpu loss|fault|timeout|freeze/i],
+['Platform services','Validate audio, input, storage, saves and console system API behavior.',/audio|xaudio|gamepad|controller|input|save|profile|hle|kernel|system call|libkernel/i]];
+let filter='All',opened=new Set();
+const e=x=>esc(String(x??'')),url=x=>/^https?:\/\//i.test(x||'')?'<a href="'+e(x)+'" target="_blank" rel="noopener noreferrer">Original source</a>':'';
+function page(breakthrough){
+const live=typeof LIVE!=='undefined'?LIVE:null,feed=live?.portwatch;
+const active=(feed?.efforts||[]).filter(x=>!x.nuked&&!x.stats?.missing&&!x.stats?.archived);
+const notes=(live?.developer_notes?.items||[]).filter(x=>x.url&&x.title);
+const events=(live?.events||[]).filter(x=>x.url&&x.title&&['PR','issue','release'].includes(x.type));
+const verified=(Array.isArray(window.GTA_VI_VERIFIED_MILESTONES)?window.GTA_VI_VERIFIED_MILESTONES:[]).filter(x=>x.game==='GTA VI'&&x.status==='independently_verified'&&x.source_url&&x.verified_at_utc);
+const platform=x=>/ps5|kyty|sharpemu/i.test(x.project||x.name||'')?'PS5':/xbox|victory|xcl|tuxbox|scarlett/i.test(x.project||x.name||'')?'Xbox':'Unknown';
+const allowed=x=>filter==='All'||platform(x)===filter;
+const date=x=>x.date||x.assessedAt||'';
+const newest=a=>a.slice().sort((x,y)=>String(date(y)).localeCompare(String(date(x))));
+const cardRecord=(x,n)=>'<div class="item"><div class="row"><b>'+e(x.project||x.name)+'</b><small>'+e(date(x))+'</small></div><p>'+e(x.title)+'</p>'+(n?'<p class="desc" style="white-space:pre-wrap">'+e(x.note)+'</p>':'')+'<small>'+e(n?'Repository-associated developer statement · not independently verified':x.type==='PR'&&/merged/i.test(x.classification||'')?'Merged PR record · game impact unverified':'Public engineering record · outcome unverified')+'</small> · '+url(x.url)+'</div>';
+const header='<article class="card"><h3>'+(breakthrough?'Technical breakthroughs':'Technical blockers & dependencies')+'</h3><p class="desc">Live source evidence · '+e(live?.last_successful_scan_utc||'Awaiting collection')+' · '+(live&&Date.now()-Date.parse(live.last_successful_scan_utc)<10800000?'Recent collection':'Stale or unavailable')+'. Repository changes alone do not establish that a GTA VI blocker is resolved.</p><div class="actions">'+['All','Xbox','PS5'].map(x=>'<button data-tech-platform="'+x+'" aria-pressed="'+(filter===x)+'">'+x+'</button>').join('')+'</div></article>';
+if(breakthrough){const merged=newest(events.filter(x=>allowed(x)&&x.type==='PR'&&/merged/i.test(x.classification||'')&&groups.some(g=>g[2].test(x.title))));return header+'<article class="card"><h3>Independently verified milestones</h3>'+(verified.length?verified.filter(x=>filter==='All'||String(x.platform).toUpperCase()===filter.toUpperCase()).map(x=>'<p>'+e(x.milestone)+' · '+e(x.verified_at_utc)+' · '+url(x.source_url)+'</p>').join(''):'<p>No qualifying records in the verification register.</p>')+'</article><article class="card"><h3>Reported engineering changes awaiting impact validation</h3>'+merged.slice(0,20).map(x=>cardRecord(x,false)).join('')+'</article>';}
+return header+groups.map(([name,goal,re])=>{const ns=newest(notes.filter(x=>allowed(x)&&re.test(x.title+' '+x.note))),es=newest(events.filter(x=>allowed(x)&&re.test(x.title)&&!ns.some(n=>n.url===x.url))),obs=active.filter(allowed).flatMap(x=>[...(x.asset_observations?.blockers||[]).map(t=>({x,t,kind:'Reported blocker'})),...(x.asset_observations?.highlights||[]).map(t=>({x,t,kind:'Reported finding'})),...(x.asset_readme_report?.excerpt?[{x,t:x.asset_readme_report.excerpt,kind:'Developer README'}]:[])]).filter(v=>re.test(v.t));const projects=[...new Set([...ns,...es].map(x=>x.project).concat(obs.map(v=>v.x.name)))];return '<article class="card"><details data-tech-group="'+e(name)+'" '+(opened.has(name)?'open':'')+'><summary><b>'+e(name)+'</b> · '+(ns.length||es.length||obs.length?'Research evidence available':'Awaiting relevant evidence')+'</summary><p>'+e(goal)+'</p><p class="desc">Contributing projects: '+e(projects.join(', ')||'Not established')+'</p><h4>Current findings and blockers</h4>'+(obs.length?obs.slice(0,12).map(v=>'<div class="item"><b>'+e(v.x.name)+'</b> · '+e(v.kind)+'<p>'+e(v.t)+'</p>'+url(v.x.asset_readme_report?.source_url||'https://portwatch-vi.xyz/')+'</div>').join(''):'<p>No matching collected observations.</p>')+'<h4>Developer findings</h4>'+(ns.length?ns.slice(0,6).map(x=>cardRecord(x,true)).join(''):'<p>No matching developer statements in the current sample.</p>')+'<h4>Active solutions and engineering changes</h4>'+(es.length?es.slice(0,12).map(x=>cardRecord(x,false)).join(''):'<p>No matching public records in the current sample.</p>')+'<h4>Blocker resolution</h4><p class="desc">No automatic resolution claim. Requires a game-specific test demonstrating this dependency is working.</p></details></article>'}).join('');
+}
+section=function(){return current==='Technical Blockers & Dependencies'?page(false):current==='Breakthroughs'?page(true):prior()};
+const old=render;render=function(){old();if(!['Technical Blockers & Dependencies','Breakthroughs'].includes(current))return;document.querySelectorAll('[data-tech-platform]').forEach(b=>b.onclick=()=>{filter=b.dataset.techPlatform;render()});document.querySelectorAll('[data-tech-group]').forEach(d=>d.ontoggle=()=>{if(d.open)opened.add(d.dataset.techGroup);else opened.delete(d.dataset.techGroup)})};render();
+})();
 </script></body></html>
