@@ -1,0 +1,782 @@
+[
+  {
+    "id": "assessment:executable-release:corroborated",
+    "date": "2026-11-25T02:15:31Z",
+    "category": "Milestones",
+    "title": "Executable release announcement corroborated",
+    "note": "Multiple editorial sources corroborate the announcement only; binary authenticity and execution remain unverified.",
+    "url": "https://www.pcgamer.com/",
+    "status": "Corroborated announcement",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:zettrox:world",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "ZETTROX · World loading",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:zettrox:playable",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "ZETTROX · Player control",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:zettrox:menu",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "ZETTROX · Menu",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:zettrox:boots",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "ZETTROX · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:vitoriabr:world",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "Uilian · World loading",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:vitoriabr:playable",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "Uilian · Player control",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:vitoriabr:menu",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "Uilian · Menu",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:vitoriabr:boots",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "Uilian · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:five-star-recomp:menu",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "Five Star Recomp · Menu",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:five-star-recomp:boots",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "Five Star Recomp · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:8cf6b8c4fb62b5746963b5e49193bee3330c3d1c042246887bf9c55090a4984c",
+    "date": "2026-11-24T15:24:03+00:00",
+    "category": "Rumors",
+    "title": "Rockstar nukes 15-year-old’s GTA 6 recompilation project, Discord and GitHub servers taken down — Project Leonida had almost 180,000 Discord members, host account banned for two years - Tom's Hardware",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMizgJBVV95cUxQOVFGY3Jram5oakdmTnYyS2pyLWRnLUZpd2pMdG5IZWtvY2d2QXBaRk8tQ1ZPNXR0VHN6eDkzWnlEa1h2MVBoR1hjdVdjeTBQbmRJc01nanpQWVp0U2poeFljOTdtVFRWVTVlekJaV2puMU5pZnp1NXRYaGdmR3prRDNvTUh4RGpFNkVkN1FaNEhYZE1WNmFsYmhpTE13V2tSWFRvZDk1eXh0elhuMndJUjhUaGFoT1FSQjMyMUdEN2RSYjZZNGF3dnFkSHpuY2p1WGFReGFVclgyb0tFaTIwSk1lOTY3bkNIR0JFUEFvZXN1aC11cmJjRnhyUDhZcVdjYWt1dkRvR2hmN3BCNnJGY2ZvVmpCX0FoZTFZVjVjYi1iTVMzZE5oUUdIUnMxYnZLdGJ2UnVVeVQxbGxUTjhXYzFiVUtpc3V3aHpPNnlR?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:f988ba95bf2f7d465f5fea21811d6534291c6a0795239de0f47e525f7660382e",
+    "date": "2026-11-24T15:18:57+00:00",
+    "category": "Rumors",
+    "title": "CyberLeek Leaks GTA 6’s Executable File, and Modders Are Already Working on a Playable PC Version - LevelUp",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOR3NyY0pEVGt0VVhsZDVJOEJIMkZFalJrTHUzMWh6Ym9VeWFMMXJZS1B0UkRwN25SV1BaVElWUGlWbmEtQmV2eEFfV0FvakZYX2o0Z1NheEYwMVBxc2FOOFZMR0c1ZjFnNGxHX0ZXX2RIcnlIOHdCN1lDamhUZXlac2I2TXI0ZFc0U082UnRJUUdfRkVsSnIycFcyNVg2dURhU2xvUTlZbzROdnUxWm5ZNEhlZTRacEcxQkRXZDdhV0JoSXdLSnllUldn?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:508b3dd3ddd9d7990c4fb7b95a3943b2df51aa0d8053a2f0b87e600ef9de7ee7",
+    "date": "2026-11-24T14:04:45+00:00",
+    "category": "Rumors",
+    "title": "Rockstar Squashes \"Leonida,\" the Biggest GTA 6 PC Recompilation Effort - TechPowerUp",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPcC15dlNjZ2lBY3BKQWpKV2tfdVFvWVVBTWs5bDBLamczd0dqMFlhMnlfOFBEV3Vhdmw0c3N6U2ZjTEFqaXBMaTY2NUh0ZzJaSTJRRDdITVNUalgzZnAteWNBOWRYejVfbl9Ldm9qN3lHc01QeUxqeHY5SWowQWxSeWRmVE5YVVhLX0RjWWFxZFpQMkllN3pWdGRHMmZSWmZsTDBLN9IBqgFBVV95cUxNZldkUncySlN1SUlqRUkxM2IxRVN3ODN2ZnF2MVNTVVk5WV9QNlFraV9kRW5ZWnBfWkNMN00tX2M1cEpaZ19XdzA4NmdiVHgzUHVzN1MyWmZvWWdSLWZ6UkpKWDVUb3FkR2d1azMtaWV2MGpBTzZzZ2o2VUxuRUEwVVV3RGJSWDQtZ2dHZ3F6MV9EYmh5bFQ2aldoRlVEZUNWZm53QzJvMHZ6dw?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:75aeecf07f9216e15f27a651423c31e6287e47f72baf135de15e15ea1b22ece9",
+    "date": "2026-11-24T13:40:00+00:00",
+    "category": "Rumors",
+    "title": "Unofficial GTA 6 PC port effort suffers setback as Rockstar seemingly takes down Project Leonida, one of the internet's biggest recompilation projects - Eurogamer.net",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOaFJtY19mV2xyVUVRVlZJMldsMy11SGEyeHZfZ3pzdVpBbVZ4Z2l4eVpWZnc1ajR0c0ZyX3hBS25VMzRGS2Y3UWl5U2stVjVkbC1nbW1aVVRITEEyNmhaZmN1SXROaXZoNUNMS1BPMDhORlk5RnRGMHBPWHU4VFplYWxWOUV2bWJlc2c?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:7b6c5fcbabd6f11fb1e774c7d73fcfead5259238373a633c3cd7370ce1097a78",
+    "date": "2026-11-24T12:38:35+00:00",
+    "category": "Rumors",
+    "title": "Leaker Cyberleek Releases The Xbox Build Executable for GTA 6 - 80 Level",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOYVc1ZmdkX0JXSFVTUkZSa3VrSGl3QVFwaWhCVkozU2VMSE90ejBJQUlRUmpMaFlzVjlqdU1LVHJKUVJrcThtNExWR2ltZV93SzdOeVdlSE5jc055MWswT1NucUhSRDViLWFDRmRocVM4N0pZeFkyck5kWXpuNnRscTlKZzZjT2RjU0lhQg?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:d7d8318a4634f36f7f5d3139c2b0aa7ece3df4a0988d299d70f9ccf3ab6b9fc9",
+    "date": "2026-11-24T09:09:20+00:00",
+    "category": "Rumors",
+    "title": "Modders already have GTA 6 running on PC, after CyberLeek released a full Xbox build of the game - Eurogamer.net",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE52XzJoTkkwRzBURWtXN2JFcU81bGtFbVplOTN3ejF6ZEJaUzRJQmlfd2Zla2dlZVpxN1pPaGtnZ0U2VmdhX2l6MmpwU0gtOGZWbHpTUUo4dFNVWFEyQ1BFenl3d0F1LXJuNXlYQ1ZPU2dqZm05QlMwVQ?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:xcl:menu",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "XCL · Menu",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:xcl:boots",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "XCL · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:xbox2windows:boots",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "Xbox2Windows · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:victory-gta6:world",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "hyphennn · World loading",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:victory-gta6:playable",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "hyphennn · Player control",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:victory-gta6:menu",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "hyphennn · Menu",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:victory-gta6:boots",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "hyphennn · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:tuxbox:boots",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "TuxBox · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:suri:world",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "suri · World loading",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:suri:playable",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "suri · Player control",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:suri:menu",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "suri · Menu",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:suri:boots",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "suri · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:omonkey:world",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "omonkey · World loading",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:omonkey:playable",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "omonkey · Player control",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:omonkey:menu",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "omonkey · Menu",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:omonkey:boots",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "omonkey · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:marvis:world",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "VIctory · World loading",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:marvis:menu",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "VIctory · Menu",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:marvis:boots",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "VIctory · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:cgbj:world",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "CGBJ · World loading",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:cgbj:playable",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "CGBJ · Player control",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:cgbj:menu",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "CGBJ · Menu",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "milestone:cgbj:boots",
+    "date": "2026-11-24",
+    "category": "Development",
+    "title": "CGBJ · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:5e6fbbc15eac3bc73df037b101163c270a8a31e6ba98b98d3f0f222f6034c9f9",
+    "date": "2026-11-23T23:38:41+00:00",
+    "category": "Rumors",
+    "title": "GTA 6 Xbox Executable Leaks Online as “Early Christmas Gift” from Cyberleek - Comic Book Resources",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5HSGZnbjcwSFJEd0hrdVN2SVkzQ3UwSHR5dWtKbWJRUGVZUnZiazZ2VGNVUFIzZk45aHByVE45eU9wNWcxUkRDUjJza1h5ajhwdWI4UEtrRnZLMGhsSW5tMnZvUGIwU2ZGV2c?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:efdb67f08cce1fc64311f0970cc1e0d0050bcea38c34f66be1037fa77a208452",
+    "date": "2026-11-23T18:30:37+00:00",
+    "category": "Rumors",
+    "title": "The Race Is On To Unofficially Port GTA 6 To PC After Cyberleek Drops .Exe File - Kotaku",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPenl3UldBWS1ZaUhtRFpOcVpfTi10d0ZsS0NGVUJ3NXVybHUxb3BnLXJ5OXM4QXBrNS13ZE5LaWNQRFZLTHhUdVJ5TFlsdXM2d3ZnUm1jVXZROTBkcFZzUWVVay1MZzBsVlQtMnN2WHJBWXdudk1rMTN2eVo3Vm5ObWU0UXo2a2tQNFE5RG04Vko3RExaZ3Q0QnJ1azNwSEZHaGlWSTZ5OWV5TlgyZzBZQ1BMQ0hTZEI2aTI3NjRwM2JEVy1v?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:881c0d4f0dfc8095f552bee7c5227f896861dfbd071e7422cfdbc7971932a8dd",
+    "date": "2026-11-23T17:54:30+00:00",
+    "category": "Rumors",
+    "title": "Cyberleek releases executable for GTA 6 Xbox build leaked last week: 'The torch passes to the open source recomp and emulation projects' - PC Gamer",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOSmdTNHgzY1FTT2Zja2swNDVOWEpHbVpVOUVLTkl2ZEg3c2pxUzFxbVN6YTRLOFUyYVlqTE1oZU4xbHNwMXk1aFlYRkhIbDdXdXFnUm51YXRKUkZsbFVWbFY0MkdEb0FjNW1GQUtXTExiT1lzTkFOeW9wWUxQdTdDbVg0Uzd0dmtUUzlmOXZxd3NNTTNvMDlTMUlxOE5Ha3AzV2dqNUM5Y2JuYmZ4b0ltRzRfZEFEWFhsWXE0R28temN4N29ISTJTMkYta21ybnRGRkpNZmZtc09IbHp1dlh5Q3ZmclpvXzZheUpKeE5yTzg4Q1VPOGNqMkM3U29yVWlKWDVxc090MmFKVVpBUXc?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:f6a430f2341737cbe95678dd6b361ff0c84f1de19fa90b0d547954789ecd0e1f",
+    "date": "2026-11-23T17:10:58+00:00",
+    "category": "Rumors",
+    "title": "GTA 6 Leaker Cyberleek Reportedly Releases .exe File for Xbox Build, Sparking Concern an Unofficial PC Port Could Be Around the Corner - IGN Nordic",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNTFRKTl9oZXlMbmVvR19QNlBsMTN2OE9yM3ZuZVZPTXcxNG1CTW5jZXFMY2pWRjlZMmZGZDdUcGc3bUJ2c09RZlB5dHRwZzMzbnBoNXNtdWgwSmllOTVKWXk3UUJFNVNzMmlvclI1NzIybWVXdlB3akYxM0FWVTk3U3k5QlI3WkRoUkY1V0hyeVJsbkxCSkRNcjN5Wk00MDNRWElnMUN0bmNaNUVxX3daaDNFSDVmSWRTSHF6QXAteEVNbEx6MEl5dXk1b1p6WmJsWVpMbTdaSXN2SXdGM1NLYkt4T3U?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:25f293d5ba2b6958f892a0e08636b63ff6962ff1a94cfc3a6925946d9f5a9e02",
+    "date": "2026-11-23T17:08:00+00:00",
+    "category": "Rumors",
+    "title": "Cyberleek releases GTA 6 Xbox build .exe, boosting playable PC port chances - Notebookcheck",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNR09zeWt4bG8wNmtXRlpHVTJzUmNTZXJrY3FiU2t1Q2hoczRkTjhubmwzeTVrWEpJcW1NeVFOMm5sZkxsSVNZX2ZCZzFha0l0RkZJbDdCMm9SWmItNVgxQXkwNzJDcTMwclBCR3RTbkZxX3hybW5BeTZ5ajFKdThkdkx1RzhJaVRLdW53Q2V5bWFUaVhuTldZN2FNTUpDUF9YbWIzRjJMOG4yckN5ZFA4YlB4U181NDVHYXc?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:ca5ebcf5aa5dd6184cb26fe2aba29271f4beb15f5df21cc99f112b756b21af07",
+    "date": "2026-11-23T16:59:54+00:00",
+    "category": "Rumors",
+    "title": "Cyberleek Reportedly Releases .exe File for Xbox Build - IGN",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxOVzdFQWF2UjZrOWpDQVpzd3ZTcTQzTGk2N2NTNHpIZ3JMMGpDaTE4UDduWk9ERjZZYllXRjJmMm5EdTRJeUhTQjNLZ2UxMmUzbmdodENzWEtjbDduWTVSNWJBTml1QnVQeUZtNE9rMDB3V3NsU0l5b2U4b3AtZzZGVnkxR0thUm5hYUJRN3d5dkNUS2tGaVpLcHNVLWxjX2VGclFmOURmWmF0NVkybEFUeGtIREtiaVNGRXNjSG1HZlBhd2d5cVpmanNTdHB3RjZFUDVjcnVaN0ZLQWY2SThWdGNxVENYY3lDNDEzc1BfeWhOcGM?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:80171f0dfcdbfedc13cc1a87d1030922ba29e959cf12dcd67972aa256c87dc97",
+    "date": "2026-11-23T16:39:01+00:00",
+    "category": "Rumors",
+    "title": "GTA 6 PC version is close, modders say after Cyberleek releases executable: \"The game almost boots\" - GamesRadar+",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPUXVYLTdmZzQtYkcyTVExZXRhMlNfbjBDdk9SeWpzUFpMYzlsQ1Y4cmJGenItTzFuS2RTSG9MUjFmd2pYQXZaN0J0NlpZZHJubDdUS3ZLME5jRnV4X3hIbktjR3h3QUFzT05hbkxKWjd4RzNRSWJuWWdFdTI4OTVEZzNjZ0tnZklHMk84bTRBbE9lWWJrelRSeGtPdmJubW9Dc3ZPaDd5bWExTGg4Yzk0YzBNYVcyUEl1SFVGNWxLNEF6MW5pVk42cnpTYkczRWdxbFJ2cTBLaVoyblk3OHhR?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:79b051756709d4e011210e9a370c464cc91b3e0fd32fd69df3cf838541c05cfb",
+    "date": "2026-11-23T15:50:00+00:00",
+    "category": "Rumors",
+    "title": "Grand Theft Auto VI Leaker CYBERLEEK Posts the Xbox Build’s Executable, Calling It a Fight Against Subscriptions and $20 “Ultimate Editions” - Wccftech",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNdFZqMlYtRlhEc1Bxbk55VzRfUnR5WElGRlk1X29hcUhUajl2QXV2TFNnYURXZk8weUlpZG11dV9kam1GTDE1YVN3YVlhbjRzQWJPc2ZLVk5VZXBENTNRTjRUcldaNGVNVnF5Nk1IUUd5V1VlSUZhZ05yaVM0NjRldVk3T3hlV1XSAYwBQVVfeXFMT2IwZmQySDZ5X3Q2am5ZYjJ6RHJIX2E3NENxQW0xa2NBZl9EbWVGajlMY2dsOW83QllYaTlZdDk1ZHJ3aXNUeVZkSkFXemdQZ3RlalVKZjIyd2gzQ0xTaF9wekZaUnkzRHVOcGxmTDhHbTlDdkVmOFFyQ1J0LWZHd0w1ajlkUy01aVp1SUk?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:6f5b3b21e9cd89a8014f1b830f19fccec62b949edf3e9855028429b6c636386c",
+    "date": "2026-11-23T15:48:42+00:00",
+    "category": "Rumors",
+    "title": "CyberLeek Just Leaked GTA 6 Xbox Series X Build Executable - DSOGaming",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQd1lDU1FxVS05ZEllYmFFSGhXQnZUVEU4enYtckxCby1sMmVtQWJBdXRTaWxacU1HSk5UM3lpSERUb2VlN2lVbm9JSjNMRkR4a0VFTVR0VGZxODVwY0lHSGNlZ2E4bUZfRU1wbDUwa1N5UThISFdYRGJRQUd2QlJCWU5BcXFHeVZ3LTVxTmNqNFg5a2JZ?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:b4e36662c778de13a500423f5ef7365730a0927f2b791db0fd6371fe8b7ecea5",
+    "date": "2026-11-23T15:06:00+00:00",
+    "category": "Rumors",
+    "title": "GTA 6 Leak: CyberLeek Claims 209 GB Xbox Build Is Out - Wolf's Gaming Blog",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQR2N2a3BGZEM3bTdFUU96SHltSF9mQnFzOFhObFVuZV8xdE1nLXRrZ08wLWdSTFhKQ0dwSGJlaDVvYW9xdEdraG0yVkRxNEJkaTVuZjRyelFWMkw0S0Q1d0JSdW5XbVJvV0ZSbEVGa0JtZGlWcDc3WGNBSEVVRUFjWERBdzlaWUtnak9MZy1URnE3czAxMUlmLXFjQWhZY0F6VFA2YlNxU0NMbHFtSmp4WW1xcnhjeDJGaklBSERxOA?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:f8eec10708ed02eeebb195355e69964f56d457ecc84641573c56a5a04a245bfe",
+    "date": "2026-11-23T15:03:40+00:00",
+    "category": "Rumors",
+    "title": "CyberLeek has released the GTA 6 executable file for Xbox version 1.0.2.1 three hours ahead of schedule. - GameGPU",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQbmY1ZWtPVUdUSEFoN1RWMjFqX0N2bzJiSFlVWkxUdDdjVVYxVG82a0c4LVc0NWM4UXMwZ0Jyc1p6bTlnRGxMUlBKZkdyajVtVzIwME1fY2N1dzVKT0FWZTdRcW5fb19qYS1lc1BRQ2ZFRlVKeHRWekFfMkpKMDkzODZlZXlNXzhfZzZkb09LejZRZzlaOVpTM2FqbC1TZklFR201SmsyY1NZNFhkeEVVWm9KbjhaaWZkcjVidi1TUlU4X2lQb2xGaw?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:f2f033acffdf4ed1d11fd99f7f8fe5ed6f0e7735d2f50809324e651f4d884168",
+    "date": "2026-11-23T14:54:55+00:00",
+    "category": "Rumors",
+    "title": "Cyberleeks ZIP Archive 'README.txt' file message. - Reddit",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOVGxxc1VLT0MtVlRSTE42bDhpVDAwa196VTJfaVpoMG9wWGlmX2tNU0ZZVENMQXJrQzdzeDFaclN4SW03YlJ2S05fdzFzdU5DWFhxX1ZLQnV3cFRDaFVQZkVWVWlYSzB2RjFZWnR6WXd2UkJOemZYSjU1SGMtQTJ0NkZyZjdleWlTWnpYRzBhdjRLUEpjaWJ3TUFacFdhS1dWNXQyczRsZDNNeDZ4Q084?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:2b533c22cbf0b2eab37a5426facf0efd0fbad97059cc1e17640f21d3d2b370b3",
+    "date": "2026-11-23T14:41:17+00:00",
+    "category": "Rumors",
+    "title": "Cyberleek posted the GTA 6 Xbox build executable - Reddit",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQVUlyNW9ib0ZrTjR0M2toeTFNLVM2Vm0zUnV0YVNXQjFtRTlrVnJaNWxpTE9BR1h0NjNFSDFycEx4YTg2bG9QNGR1ME1kQXZyMVRBek5FcTFmYkJaUzZnNEFQazRkYjNMWnQyV2U3WWZTWVE1TzhobTNzLVpHXzVjX0lQeDVmamwxM0pVY1VIWjNqeWN0YkF2dFRHdDctZzBqOTVvbnNpQUx2NlByOUM5TFNObw?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:e68e3414332092de2c7663b8043b3c62f0c83450ea8125b963523d551ad62041",
+    "date": "2026-11-23T13:15:13+00:00",
+    "category": "Rumors",
+    "title": "Cyberleek says final file from GTA 6 leak is due today - Mezha.net",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQTURNdm5ZVGt2VmJ1NlZkc1hPZ29QSWJfQlJmWmdnTXF2d2dYako5djcxZXJ3LTNvbDlkblhnd0F3TUNZVWpGUjZrd2ppYWRYeFo3U1hqaUg5QVp3LXN2b05Lc1VYdXRIVXRWRFdrRGs4VnFSUDZ0YkZnY2RTWXc3YzFtMzk4Zw?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:6ee7cdd678d121f30d7c8e846b273b2336c2e58b78f4cb145f4eed2608d2852a",
+    "date": "2026-11-23T13:07:36+00:00",
+    "category": "Rumors",
+    "title": "'This community will have it emulated inside a week': Cyberleek is set to release the final piece of their GTA 6 leak today — here's what that means for the PC version - TechRadar",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNeG5ZQS1nLTkzVlBBTjl1bVVqaUtxNHdZUlNYMFNveUtSRHlrMDhVdVM4d05XamV6Y0ktVktjTnFva2Y0Z1h5SnhFNHF3a2tFOGlPUlBBbnZQR0l5YWJCd0toVFRuZ1RrQXEyS1QtVlJIMVlpRFo1TE9EUVVhLVpuVUhmc2lFOU9ONXhFazdDeDZQZ1JkalBvN3Q0SGVUVDQycE42TnI5MEhDaURDcW1tUVhFdmt0OHVjVDlERWNhTHRwTTMwWWlRa3pHTEFnRDVHa2taWGZWazZVS3g0dnVDRE1UbHVNRHF2?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:29992edd56bd55eef5c3516f716e01b7975f14e0abb3eaf6c00299afaefa7077",
+    "date": "2026-11-22T21:02:36+00:00",
+    "category": "Rumors",
+    "title": "Can Cyberleek’s leaked GTA 6 Xbox build become a PC port? Three projects are trying without the executable - Mezha.net",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNMm9HeFZEdV95NlZENXRkaXl4U0lnNVJVeV9aSXNqQTVIUE9obzl5akliU0ZGZGJwVTdWMWtaWTRzRU40RUZRRWZhaVdaSlN4bDlNMEw4SW1iSE4xT0hoaVVzMEhpUlVlU01oUHVGU2NMTlZIRWxUNnR1aldSOENUazR2UDVDQnlE?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:fbe9d251fa36cdf58b4b17dfac078f4e8f9d6729c770ca729aa0b5ed14e7e93b",
+    "date": "2026-11-22T20:58:00+00:00",
+    "category": "Rumors",
+    "title": "Can Cyberleek's leaked GTA 6 Xbox build become a PC port? Three GitHub projects are trying, without the executable - Notebookcheck",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQbWdWUVg3WTkwb2lLVTY2YkZnclN4Wkh4Nmx3QklfTEpCNTZjVTBURmRTZDQ0MGQ0NXo1NG5KX256a3FORVhVaFhycVRIbDkwTXJhOWJrQlZhaGc3YnFjajFhWk92R3htbWpyZzFBVlRLOXJISU1VQ3E4Mkl4dHhYQmFpamRJTmFaWnFKQnlXSy1DcGtucV9WcmVvUnpBbC1hMmFXYi1FT1FJSUZ5VmFET3JyX2tJcEZQWDhlUzFUaEU0WEJTSVlrUTVSd3k3YnFLMGtpZGIwb3UtdXd6YWVNS0EtdDNUbDliS0ZMdzBB?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:fb3a70e26c42dba2cc6e866e7b0ada2be2b1bfaf500dc0d3afb2786eac101a1d",
+    "date": "2026-11-22T16:10:02+00:00",
+    "category": "Rumors",
+    "title": "Cyberleek claims modders could get GTA 6 running on PC within a week after reported Xbox build leak - TweakTown",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNOTBSZGdpTDFwZEhrNVAxNkxMWS1Ta1Z0TDhlTFpqNi11RHdfdjRHcGZXUGdGVEZBOWNXMWtpMXhUYU92Yzk1ckNVb2dFYV9mUU1fVEp6TEZoMXNkNFNWRjk5Vl9xS0JIanRIcFZmMUZELVhwcnhkZHdsZy1xdFRBWUhCYlE0SnJsVkY0bFlOMHBBU1NMb3pDeVIwLS1tc0RFRFA0eWlPVzJnN3ZMTUNoUmlFMVRZRW9wTVVxN2NCM0laVEVFRkYxc2RlTlVlN0JXV2duUkxOTkZzV2VrdWM3bExR?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:21edd625415e8ee29dd60e5dec48a65ae31a54d03ae8ada12fd8da5195004a97",
+    "date": "2026-11-22T08:00:00+00:00",
+    "category": "Rumors",
+    "title": "Rockstar Games finally addresses ‘Cyberleek’ GTA 6 leaks - Dot Esports",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5VanpVbmNUTFVMVElUaVBLTlRpLUZ4Nm5mNE03b08zbFZaRFVkMVpZYXVMZ3BYZ09BMjRkaU9pXzNlRkFqZWJaMFoya19yRDRvWnhVV0R5Mmc2N1V3QzVSb3hBb2lZSUU5RVh3WHVyWTJuRHRNcHhR?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:d649234d6c061031415d7afaf2517efc633bfc948cefa4ebaa41265687fde55b",
+    "date": "2026-11-21T19:17:49+00:00",
+    "category": "Rumors",
+    "title": "The anonymous hacker Cyberleek releases an Xbox build of 'GTA VI' - Mashable",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1EdnlPdjFWY1IzUko2anpqMHV3V1ZZQnZMLVM1WlNteWxSVThrd3BPWm0xdnZld1NtemRHS2hUZ21iTHNkY25YTFNibllBVTcwQkJGQ29HZDA2M08tWVlHTktUUjZnWXBPUi12eGdRMGN0cVZhU0JSVloyZw?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:73ab78d0441eb0920089ce349926120ddb0264d1b72f9768e9828a2305dbf2d4",
+    "date": "2026-11-21T17:47:53+00:00",
+    "category": "Rumors",
+    "title": "GTA VI Leak by CyberLeek: 5 Claims, 1 Missing File - shattered.io",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPdS1QOTZjY0thVTlDUndYUTJPc3ZiUlFHUlV6R2R4Mm5TY05hcV9sWm9mUXUzRXZSdm9wcWd5OHVoR1ozQ1UzbXR2WG5GTGRCNElUUV9hMVdIVXo4bHplZ0MzUjJvV0xvOEFZVmlzWUhWOTJQQjZ0RzhyVnRydHdmdDB2bm4?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:004c10a9a57472f17041a78a21f932c1baf35600458de4206c9d4a6b2e5a0826",
+    "date": "2026-11-20T15:46:23+00:00",
+    "category": "Rumors",
+    "title": "CyberLeek Returns and Has Reportedly Released a Complete Version of Grand Theft Auto 6 via Torrent, Potentially Facilitating Piracy and Emulation - LevelUp",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxQY19lNUhPZnJEWE43UzJlSHRYaHRCQ1dKNHNoTWN2VGtyRTlTdmo4R3VNejY5MC1mRWk1blBERFRaZFQ4N09zdmRDamJINnlkS1l1NUdqMWZiZEdZVHI3VDdua2RJenFSWURweUxYblVWd3ZiSVBMbEltdkVnUFFuc1ZQU2xWYmJPMFJQQ2RuYXpqb3R4OFJVempjak9sT3JHQjlGU1NKM1plaE1JMnBFNlI2WFI4QzhsVVhBem8zbGxBRm9CalFYUU1MX29PS210a0hOa0YxSHBCbHI4aGVvQUNub0FKYVBiSkdHWXE3Ry1VVk9HZnZ1WjJfdUsySkozOTY5N3lseWo?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:5b5fc7ab2060670d3851fc37b247d71ba51af52101dfd8f794dd80ad7d8d61f3",
+    "date": "2026-11-20T12:23:49+00:00",
+    "category": "Rumors",
+    "title": "GTA 6 Leaker ‘Cyberleek’ Reportedly Threatens to Release the XBOX Build - Insider Gaming",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPZngzUTg4RjN5X09TLXJSMGFqRGNyaVhSZUt3VjVDNU14c1lDTGhQOUJhMl9paHN0SFd3Uk1YX2VLMXZTV0trY0JDZ2JiOW4tNl9DZzMtZTVlYk9rWU9ha2MwcUVxUDZmMmRIclJzYTJoV3hOSWF6X0dyQk12SlIyZlIyRFRDaGpXUTRQWlJGb2g2ZGE4MWVLUEd2SnlFZw?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:6828b7ed5c0ed04a9a4ef5a19475c7abcee97b189ebd5af4f7f69b28f59afaa7",
+    "date": "2026-11-20T12:05:00+00:00",
+    "category": "Rumors",
+    "title": "Cyberleek returns and threatens to release free pirate version of GTA 6 - Metro.co.uk",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQTHU1WFQyWnMxU3FQNmJBcTlyLWMwVFlWQVdiR0pXcVBOempwNTFrNWllMnk3QmU2MWNCSWdxZkNiQm1QSVZkaHdPQjFzVlB3TmZnUGVubDlPY0hTX0kwc3VQaFpJYzctMFdSWXNaMXBZX0U0VE1TM1oyb3NaRVFRbzVmNWpIeU8zX2tkdnJPQ0ltTHJsS0o2UWk2bkVvNzlQV2dfVtIBqgFBVV95cUxOckFxUGhlTHhfQk1WRjlHRDFWTnp5Y3pXYXlYMmlKZkdxaVVvbktWUmVVMTJFU3czME1ITllJVms0R3Q3WXJjc3JVc2NneGtwT3VKV0w1Vk5LTVpWcTU3YUpvQWw2cGkyMzhrS2tGYjlUU3o4aXl0VnMycFl2TWdIN2ZYQTR2cUtSRWpwSXpHZU1xSWt0cE1XS25QT1ZSMk10WG9Tb1hFYlB6UQ?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:f97ed7686ddbdbb173315cf371604e2b28bc0fc39943d24978a8fdf4894bf855",
+    "date": "2026-11-20T10:52:10+00:00",
+    "category": "Rumors",
+    "title": "Cyberleek Is Leaking GTA 6’s XBOX Build – To Raise His Crypto To 15 Million - Gameranx",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQbmRINWZvOVB4UF9wRVdoVTdJM0xiOE5Ud1NfaWtWMnQ3ajlpOEhOamFPVmJFczFmWkFJaUFSZlYtbnNCOHdydUZUNWFzbGlNV1o4SllyQ2RqVm1HZDBSN2N1N080alFkZlhLanZwZDlqa2R3ZHJSM0dmT21RN3FTV0MzMFphelZoRW9kMGRKcWZsUldfRVZGS181VlZiTm5IS3FTWW5MNzNIT1JkakRFY1NyQ2dyaFY1ZGNtaw?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:89ad83518f821b0c69bdca70452491d48dd4fcf1cf2ec013c58aa4cdc2bd3c7a",
+    "date": "2026-11-20T06:43:22+00:00",
+    "category": "Rumors",
+    "title": "GTA 6 209GB Xbox Build Files Released by CyberLeek Could Run the Game Above 30fps on PC - PCQuest",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNTTZBM0hsNEc3aXhUc2NDakpTMTkwcDVuY3liazJtWjJMSjczLXF2VUpjWl85MksyZzE5eHdCLTRxOWJlbHQ1YU91WXR3aHV4cGpYWGZfZUdidkVadDJEWV9KR2x1Zy0ya05SZUdHdnRIaEhwOF9wazdKbnEtRkVNaGVJZ1Z3NzV1MXdmZ3RSOWVsRkNmWVE3d05UV3BVMVNQY3lxTVNFdGVEQVFnUkxyZlFWenhEaGdDQl9XVTJ5X2hpQjZKcVHSAcsBQVVfeXFMTldNRnlQWVRyNF9JOEVIZmlGSmd0MUtaaVVueUZrSkFlQmk2c2VLanpxSWFqQ2NhMmZnWWtDUktkMWg4bHNIVDl1OHROdTFvZzZYdFRpQy1QcEZtaW1FaWZ0ZmtDZW1GenZTUjczZ0VTR2diSHRyRjNuSEJrTjNDNVhjZ2dsWVZnNkV6QVJRUkg1U082T3UwVUphdm1HdExjSGVqbThoRTY3UXZ2Y0NmWFl0SDU2WHhDWjlKQzRzMFA2WDFyZXNBcnRyUUk?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:3c64a873dadf2cc8be121a34d3b13173299770d23611f481952fba6c42d53981",
+    "date": "2026-11-20T03:44:08+00:00",
+    "category": "Rumors",
+    "title": "The hacker group CyberLeek has released a torrent build of GTA 6 for Xbox. - GameGPU",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPZ254VnE0eTlCM0hJcFRNTDREcEVIdG0yTTVWRFhDSlNuV3dZbWVjcjhtYUxDNEFLUVltSjN1ekRVS0RWVmpHZHVlMmVIbUUydXd4eUNjeG02ZURZendyNDhwUG5tdF9nVVVmVTdhWjJIT0lLS2llNE94cEFROEY2NVhxY2daTHZIQnpxTjAzQlVId0xROUVtSUExSzN5NVdtRF9aLUF1M2FQYWxQSy00?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:c48ae86852085c37f30b5e272bb2a3732fff9028b66a7c37a697c52a2b6633ba",
+    "date": "2026-11-20T03:01:42+00:00",
+    "category": "Rumors",
+    "title": "Cyberleek Posts Alleged 209 GB GTA 6 Xbox Build - shattered.io",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPNjc1MWVCd1AtNlA0SElYOGl5dm9VSUVQWnM3M1I5TDVBNFVTVDViOTAwSHhxVVpXSFh3aXJnYUx2cGpFWnh4LXk2ZTRJWnJOUVFSeTk3aXhITlNjT0xSbjVpazlKakNfTnN6T0dReXhZRkI1QXRfSGVLdy1oWlVfOUxGSQ?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:12675b1e7349dd5b8199d2df6599ad6b330e0b89a615b95823699cc8e591dcc7",
+    "date": "2026-11-20T02:30:00+00:00",
+    "category": "Rumors",
+    "title": "Did Cyberleek leak GTA 6? Its 209GB Xbox build reportedly holds real game files, but it can't run - Nacionale",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNZU84SzdmNUlncTJrVUZqamduZVFlcnUtTko3QUU1UklwZkM5eTk3cklGai1VSjZiNEdnTm9vSjJFX0p5SmI2UFRWaGd3TzhrMlE5VlRMaTVzWEptYVB4VXZQMjhWWm9XN3BRNjlNeFZwb0FHMnZjcU14dzVzaE1Qd09ubWNkd25DYm9LQndwcmZORlNQdXpoOFFqNGp1WnlJRjdTdUNwWQ?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:06b4ce7e0a31a053e790b8b72dfd15140c94d91caf6fdb3b9c47807dfa0d7bd9",
+    "date": "2026-11-19T23:17:00+00:00",
+    "category": "Rumors",
+    "title": "Cyberleek drops what they claim is a near-complete GTA 6 Xbox build online - PC Gamer",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPYnNvSnlaVXowajBDU0lvc1VUMGVKa2xmV0taVFR2UlVyVHFyekJBMWR2dkRCY1JycG55SDdUYUh6V2RRdEYyVGpkREJ2aUJPNEdsZDA3NHFHenVYX0FPbzRIWW5wSXpNZ0o1VnFFYm40OW5TcnMyVW5nTFQ4UlZWQlBLTGV3eDdNRmxBR0JzLXB6VzMwRVhFcnpUaHVXYWw0MFVXLTFkVS1SbEVDa2c5WEJ3dURzWTVpalVNLVRCNA?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:fe730c844e66f4a8ae2d1f0384f6e7af0c62f75c7c67edf8694454a4130fc332",
+    "date": "2026-11-19T21:40:00+00:00",
+    "category": "Rumors",
+    "title": "Cyberleek releases GTA 6 Xbox build, making playable PC port more realistic - Notebookcheck",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPWkhMaW5IY1dPMGJhb01LM0I2TndOTVZUeDFjSDBFdEZiQ3Q3clloalR5VmpKOVRoRVdsZy1uTnN5cWJPMzVERWF3YUhIck82d3BvVERuS2k0TFdfVHZiTzV5clFiZ282QTVwWFRhS1lka0ZoRWNqY3RJX3RXRHZGOXdfckxpN1VnRHVKTXZ5Q3FsN2dKS2pwdlMwX013TGg2R2hRZ2tfcVBqOGZNVjdXUnpiUzgwOXhaVVJv?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:d34433580674fe794174ee39c7db1ef3ba600e9fdf56289a383ed204405916b4",
+    "date": "2026-11-19T21:17:01+00:00",
+    "category": "Rumors",
+    "title": "CyberLeek claims to have released a full GTA 6 development build - Mezha.net",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQa0VTQmE1WjhIeTNOSFBsM3B1OGVaVkt3LTdQaEFyN0pfN3FWZlIySk5VYUpMMTRkZ00wdW51UV9rdTRpcGZmWDJlVjFNbzZtUFJfV3VSR1BtZE9ZWGhkb1lqWVVBblJBTU9zSUk0OGpFSTZhS0thMWIyYmxwVXEwZVlmV1I?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:e95efd883d94dfcc3dafdc41f9d61413ee9c2d19e904afbc01658ad604b2e611",
+    "date": "2026-11-19T21:08:50+00:00",
+    "category": "Rumors",
+    "title": "Infamous GTA 6 leaker CyberLeek is back, and this time the group claims to have leaked a full development build of the game - Eurogamer.net",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE01M1VfaUxoZVA3bXVHRkxnMExKUDhQaFl2Z2FmZkV6elVFQ3ZXVG9HT0syR3gxX0tXVGMyX2gtTEVIQ20zRlk2MnBrcXhTY1FCS0d5ZmFpSjZvNG5PRm1vcw?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:d808884ed6cf03d8bdee2a4f38e2a9a1e74f4aa3ac65e72ea8d5e788541fa346",
+    "date": "2026-11-19T21:05:13+00:00",
+    "category": "Rumors",
+    "title": "Cyberleek Is Threatening To Unleash Chaos Again After Allegedly Tossing An Xbox Build Of GTA 6 Onto The Internet - Kotaku",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOeHY0eUFlbERJbzgzNnVNejFnVlZjUDlGaVk5VWl1NUd6VzZ1Q1VrSW9SOGhzOWU3cVdueGhsQ3pmNjlRNVBuQWRIZHdTY2tVMndEN29RZ21PZjMwTV9tVHJnaWZuZ0dEeGU1STdCNnlPNVktR0NFTmlZazRWYXUwMkdtR3ZvYUpGTDkwU1pJTTNjZ3liaHd2YzF1WS1CRy0zR3JIV2NsT21yN3BTOF9oSnhOOURvNmNIbW45R0ZEWG9hZEt4dDViejRGRXJydnIzRUN5Y0Rscw?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:78ec52fcdd0f81e2b403a255200936c042c20fcb75b00be943fff9266c5c89d7",
+    "date": "2026-11-19T20:41:44+00:00",
+    "category": "Rumors",
+    "title": "CyberLeek Claims to Have Released a 209 GB GTA 6 Xbox Build, Minus One Crucial File - Wolf's Gaming Blog",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQdmNIYTRMRkJfdHhEMlVjeFdjdTc0elV1TGpJNGZPUVpoZjJNcVlOVWhHNGJwRUs2YjJYbHJVUWlwSWQ2RDZnM2F2VEppczRXQ2U2dkp5a1VjQ0tCZGxjenJ3MWt0ckNTeDBvVlBBQ3Jmb3pPbHhpM3g2cE05b2pobGRBZ1VfSDQ4eDlOT3NnRzktRDlXb0tRdFFic3hNaVpFdlppWjNzdTVZcURFaTNyTkxBeGdTRlBnaGZkek9Gaw?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:d63327f6f80712a0ae4d704eafd6cf297411efb11224bbab0f7a0e4b9263b407",
+    "date": "2026-11-19T20:27:49+00:00",
+    "category": "Rumors",
+    "title": "Cyberleek claims to release development build of GTA 6 - Video Games Chronicle",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxObDc1UUhvWldjTk5tM2N5UVFocHR3X3hwN3c1RDdFRnEwMkF6bG91b1dlNzZNWHdMYUJYZkFnZzJWSDhoU2U0RzRWZGExMVBueWgyaXRTbHBabW0tYkY3YU9JZUFrZVBEOWpNckZscFB6cVBEWThwcEQ0TWd3SlBGc2ZHMDNzeTJHb0FfbkRLcE9rZ190UVJVREtxSzY?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:132b33dd0739fac2b30f7a8158ea264b8ba0fec972ab049fcaf32d00a5d73bce",
+    "date": "2026-11-19T20:10:53+00:00",
+    "category": "Rumors",
+    "title": "GTA VI Xbox build allegedly leaked by Cyberleek - VideoCardz.com",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNaFRKbnN0UjQ4LWdscDY0MDA0NVYzOUN6dmxIdU9sTVA1UEVQb3VCZHlwTm1sUm9WUGFSUWROSzlmNEJ3YTdZalFXT3dRRkJHb0dTYXQzdlJCMkw3OTZzbE5FR0pQSUxKUDhXcjBDMG9GeEFnMEp4WGpheWRabHc3Ug?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:8580080449f2156b9987da4be4173a277e12f4fdd33a5b12da8f8da0ee91e661",
+    "date": "2026-11-19T19:26:47+00:00",
+    "category": "Rumors",
+    "title": "Cyberleek build got out for GTA 6 - Reddit",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOWEdGLW1CcW1uSzF2dkRXNHlIQy02Wk84WEhsbXY0TXZDV1RLOEIwY0ptLUN6M2x1bWlLQUJuQkxJZzNYdEUtX0gxWVpSVEtjVXdFallHRHNaTXhGOWdoRFFBVHd2aDNwMTA1aEpVWkRuUEZFZWFFcmdxZC1yTFh0cGYzVWFFYmxpbWRZZ1JIeGUtTUVBTEJURGhpempMWjg?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-25T02:15:31Z"
+  }
+]
