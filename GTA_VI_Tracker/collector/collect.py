@@ -545,6 +545,41 @@ report=exclude_other_game(report)
 # Comment-derived community claims and account screening are not collected.
 report['evidence_assessment']=evaluate_public_evidence(report['exe_watch'],report['project_exe_usage'])
 DATA.mkdir(exist_ok=True)
+
+# Persistent historical timeline: retain observations even when upstream samples rotate.
+def update_development_history(report):
+    from hashlib import sha256
+    from email.utils import parsedate_to_datetime
+    archive_path=DATA/'development-history.json'
+    archive=read_json(archive_path,[])
+    records={x['id']:x for x in archive if isinstance(x,dict) and x.get('id')}
+    def add(key,date,category,title,note,url,status):
+        if not url or not url.startswith(('https://','http://')): return
+        if key in records: return
+        records[key]={'id':key,'date':date,'category':category,'title':title,'note':note,'url':url,'status':status,'first_seen_utc':NOW}
+    for item in (report.get('rumors') or {}).get('items',[]):
+        title=item.get('title','')
+        if not re.search(r'(?i)leonida|cyberleek|recompil|emulat|pc port|playable|gameplay|takedown|dmca',title): continue
+        normalized=re.sub(r'[^a-z0-9]+',' ',title.lower()).strip()
+        key='headline:'+sha256(normalized.encode()).hexdigest()
+        try: date=parsedate_to_datetime(item.get('published','')).isoformat()
+        except (ValueError,TypeError,OverflowError): date=item.get('first_seen_utc') or NOW
+        add(key,date,'Rumors',title,'Indexed headline; article and underlying claim not independently reviewed.',item.get('url',''),'Unverified reporting')
+    feed=report.get('portwatch') or {}
+    if feed.get('status')=='available':
+        for effort in feed.get('efforts',[]):
+            if effort.get('nuked') or (effort.get('stats') or {}).get('missing'): continue
+            for field,label in [('boots','First visible frame'),('menu','Menu'),('world','World loading'),('playable','Player control'),('story','Story progression')]:
+                if (effort.get('gta') or {}).get(field)!=1: continue
+                key='milestone:'+str(effort.get('id'))+':'+field
+                add(key,effort.get('assessedAt') or NOW,'Development',str(effort.get('name'))+' · '+label,'External assessment; not independently reproduced. Historical observation, not current status.',feed.get('source') or 'https://portwatch-vi.xyz/','Reported milestone')
+    # Corroboration is limited to the exact release announcement, not technical authenticity.
+    assessment=(report.get('evidence_assessment') or {}).get('assessments',{}).get('executable_release',{})
+    if assessment.get('status')=='corroborated':
+        add('assessment:executable-release:corroborated',NOW,'Milestones','Executable release announcement corroborated','Multiple editorial sources corroborate the announcement only; binary authenticity and execution remain unverified.','https://www.pcgamer.com/','Corroborated announcement')
+    archive_path.write_text(json.dumps(sorted(records.values(),key=lambda x:(x['date'],x['id']),reverse=True),indent=2,ensure_ascii=False),encoding='utf-8')
+update_development_history(report)
+
 (DATA/'snapshots').mkdir(parents=True,exist_ok=True)
 (DATA/'previous.json').write_text(json.dumps(old,indent=2,ensure_ascii=False),encoding='utf-8')
 (DATA/'live.json').write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
