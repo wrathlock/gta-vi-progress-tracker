@@ -100,6 +100,26 @@
     "first_seen_utc": "2026-11-25T14:38:05Z"
   },
   {
+    "id": "milestone:keylime:menu",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "keylime · Menu",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T23:40:43Z"
+  },
+  {
+    "id": "milestone:keylime:boots",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "keylime · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T23:40:43Z"
+  },
+  {
     "id": "milestone:five-star-recomp:menu",
     "date": "2026-11-25",
     "category": "Development",
@@ -198,6 +218,46 @@
     "url": "https://portwatch-vi.xyz/",
     "status": "Reported milestone",
     "first_seen_utc": "2026-11-25T14:38:05Z"
+  },
+  {
+    "id": "milestone:avatarmanz:world",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "AvatarManz · World loading",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T23:40:43Z"
+  },
+  {
+    "id": "milestone:avatarmanz:playable",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "AvatarManz · Player control",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T23:40:43Z"
+  },
+  {
+    "id": "milestone:avatarmanz:menu",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "AvatarManz · Menu",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T23:40:43Z"
+  },
+  {
+    "id": "milestone:avatarmanz:boots",
+    "date": "2026-11-25",
+    "category": "Development",
+    "title": "AvatarManz · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-25T23:40:43Z"
   },
   {
     "id": "headline:84f8ecf3c4c948c0750d3cdd2cc28171895841625bd36a0a92720724e0de5959",
