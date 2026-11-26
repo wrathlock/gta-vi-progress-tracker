@@ -1,5 +1,15 @@
 [
   {
+    "id": "headline:25f2653486f49130c9014d033117d81272264e2d92b4abaf526de4be6a60cae4",
+    "date": "2026-11-26T04:23:24+00:00",
+    "category": "Rumors",
+    "title": "Cyberleek released the missing executable for its leaked 209GB GTA 6 Xbox build, and an open source project says the game now boots on Windows but runs at about 1 frame per second in the world, not playable - Make Tech E",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE4ydmpITXZtb2hsYjMxZ3lha0s0WlJ3YUhkc1JmeG1wSC0ySzJLSmZnVTR0b2xvM3NOUmYxdFM1S3M1aVdyWVdBUmtKTnBIMS1OU3JRQlFBdEJyNkRRdllrWC0yaXpOWGFKVGtjc3I4dXhORjZOMDRN?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-26T19:06:49Z"
+  },
+  {
     "id": "milestone:marvis:playable",
     "date": "2026-11-26",
     "category": "Development",
@@ -8,6 +18,46 @@
     "url": "https://portwatch-vi.xyz/",
     "status": "Reported milestone",
     "first_seen_utc": "2026-11-26T08:32:19Z"
+  },
+  {
+    "id": "milestone:kelvaroq:world",
+    "date": "2026-11-26",
+    "category": "Development",
+    "title": "Kelvaroq · World loading",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-26T19:06:49Z"
+  },
+  {
+    "id": "milestone:kelvaroq:playable",
+    "date": "2026-11-26",
+    "category": "Development",
+    "title": "Kelvaroq · Player control",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-26T19:06:49Z"
+  },
+  {
+    "id": "milestone:kelvaroq:menu",
+    "date": "2026-11-26",
+    "category": "Development",
+    "title": "Kelvaroq · Menu",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-26T19:06:49Z"
+  },
+  {
+    "id": "milestone:kelvaroq:boots",
+    "date": "2026-11-26",
+    "category": "Development",
+    "title": "Kelvaroq · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-26T19:06:49Z"
   },
   {
     "id": "assessment:executable-release:corroborated",
