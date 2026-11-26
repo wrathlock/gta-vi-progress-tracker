@@ -1,5 +1,15 @@
 [
   {
+    "id": "milestone:marvis:playable",
+    "date": "2026-11-26",
+    "category": "Development",
+    "title": "VIctory · Player control",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-26T08:32:19Z"
+  },
+  {
     "id": "assessment:executable-release:corroborated",
     "date": "2026-11-25T02:15:31Z",
     "category": "Milestones",
