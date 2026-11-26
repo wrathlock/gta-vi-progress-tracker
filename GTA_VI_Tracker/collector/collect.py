@@ -172,19 +172,52 @@ def collect_portwatch(previous):
 def collect_ps5(previous):
     from html import unescape
     result={'checked_at_utc':NOW,'metrics':{},'sources':[]}
-    targets=[('official','https://anyps5.blog/progress/'),('community','https://alan-r-henry.github.io/gta6-pc-tracker/')]
-    patterns={'official':{'functions':r'System functions implemented\s+([\d.]+)%\s+([\d,]+) of ([\d,]+)','shaders':r'GPU shader instructions\s+([\d.]+)%\s+([\d,]+) of ([\d,]+)'},'community':{'kyty_ingame':r'KytyPS5\s+C\+\+ translation layer.{0,200}?(\d[\d,]*)\s+games reach in-game','sharp_playable':r'SharpEmu\s+Emulator written from scratch in C#.{0,200}?(\d[\d,]*)\s+games playable'}}
-    for key,url in targets:
+    official='https://boykopovar.github.io/AnyPS5/progress.html'
+    mirror='https://anyps5.blog/progress/'
+    community='https://alan-r-henry.github.io/gta6-pc-tracker/'
+    def read_text(url):
         status,raw,error=fetch(url)
         body=unescape(re.sub(r'<[^>]+>',' ',raw.decode('utf-8',errors='replace'))) if status==200 and raw else ''
-        body=re.sub(r'\s+',' ',body)
-        count=0
-        for name,pattern in patterns[key].items():
-            match=re.search(pattern,body,re.I)
-            if match:
-                result['metrics'][name]={'values':[float(v.replace(',','')) for v in match.groups()],'source':url,'checked_at_utc':NOW}
+        return re.sub(r'\s+',' ',body)
+    def put(name,values,url):
+        result['metrics'][name]={'values':values,'source':url,'checked_at_utc':NOW}
+    def nums(match):
+        return [int(v.replace(',','')) for v in match.groups()]
+    def ratio(name,done,total,url):
+        if total>0 and 0<=done<=total:
+            put(name,[round(100*done/total,2),done,total],url)
+    body=read_text(official)
+    total=re.search(r'\bTotal\s+([\d,]+)\s+([\d,]+)\s+([\d.]+)%',body,re.I)
+    if total:
+        ratio('functions',int(total[1].replace(',','')),int(total[2].replace(',','')),official)
+    for name,heading in [('gfx1013','gfx1013 reference shader coverage'),('rdna2','RDNA2 reference: counted from the code')]:
+        segment=re.search(re.escape(heading)+r'.{0,600}?Instruction forms with a translator case\s+([\d,]+)\s+([\d,]+)',body,re.I)
+        if segment:ratio(name,*nums(segment),official)
+    unsupported=re.search(r'Unsupported-throw sites in the recompiler\s+([\d,]+)',body,re.I)
+    if unsupported:put('unsupported',nums(unsupported),official)
+    for key,label in [('sampled_formats','Sampled'),('typed_formats','Typed buffer'),('vulkan_formats','Vulkan host format')]:
+        match=re.search(r'\b'+re.escape(label)+r'\s+([\d,]+)\s*/\s*([\d,]+)',body,re.I)
+        if match:ratio(key,*nums(match),official)
+    result['sources'].append({'url':official,'status':'parsed' if result['metrics'] else 'unavailable_or_unparsed'})
+    body=read_text(mirror)
+    count=0
+    for key,pattern in [('functions',r'System functions implemented\s+([\d.]+)%\s+([\d,]+) of ([\d,]+)'),('shaders',r'GPU shader instructions\s+([\d.]+)%\s+([\d,]+) of ([\d,]+)')]:
+        match=re.search(pattern,body,re.I)
+        if match:
+            count+=1
+            if key not in result['metrics']:
+                ratio(key,int(match[2].replace(',','')),int(match[3].replace(',','')),mirror)
+    result['sources'].append({'url':mirror,'status':'parsed' if count else 'unavailable_or_unparsed'})
+    body=read_text(community)
+    count=0
+    for key,pattern in [('kyty_ingame',r'KytyPS5:\s*([\d,]+)\s+PS5 games reach in-game out of\s+([\d,]+)\s+tested'),('sharp_playable',r'SharpEmu:\s*([\d,]+)\s+PS5 games playable out of\s+([\d,]+)\s+tested')]:
+        match=re.search(pattern,body,re.I)
+        if match:
+            a,b=nums(match)
+            if 0<=a<=b and b>0:
+                put(key,[a,b],community)
                 count+=1
-        result['sources'].append({'url':url,'status':'parsed' if count else 'unavailable_or_unparsed'})
+    result['sources'].append({'url':community,'status':'parsed' if count else 'unavailable_or_unparsed'})
     for name,value in (previous.get('ps5_progress') or {}).get('metrics',{}).items():
         if name not in result['metrics']:result['metrics'][name]={**value,'stale':True}
     history=list((previous.get('ps5_progress') or {}).get('history',[]))
