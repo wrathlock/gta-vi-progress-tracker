@@ -1,5 +1,45 @@
 [
   {
+    "id": "milestone:victory-nvidia:world",
+    "date": "2026-11-27",
+    "category": "Development",
+    "title": "VIctory-NVIDIA · World loading",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-27T20:00:53Z"
+  },
+  {
+    "id": "milestone:victory-nvidia:playable",
+    "date": "2026-11-27",
+    "category": "Development",
+    "title": "VIctory-NVIDIA · Player control",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-27T20:00:53Z"
+  },
+  {
+    "id": "milestone:victory-nvidia:menu",
+    "date": "2026-11-27",
+    "category": "Development",
+    "title": "VIctory-NVIDIA · Menu",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-27T20:00:53Z"
+  },
+  {
+    "id": "milestone:victory-nvidia:boots",
+    "date": "2026-11-27",
+    "category": "Development",
+    "title": "VIctory-NVIDIA · First visible frame",
+    "note": "External assessment; not independently reproduced. Historical observation, not current status.",
+    "url": "https://portwatch-vi.xyz/",
+    "status": "Reported milestone",
+    "first_seen_utc": "2026-11-27T20:00:53Z"
+  },
+  {
     "id": "headline:25f2653486f49130c9014d033117d81272264e2d92b4abaf526de4be6a60cae4",
     "date": "2026-11-26T04:23:24+00:00",
     "category": "Rumors",
@@ -648,6 +688,16 @@
     "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPenl3UldBWS1ZaUhtRFpOcVpfTi10d0ZsS0NGVUJ3NXVybHUxb3BnLXJ5OXM4QXBrNS13ZE5LaWNQRFZLTHhUdVJ5TFlsdXM2d3ZnUm1jVXZROTBkcFZzUWVVay1MZzBsVlQtMnN2WHJBWXdudk1rMTN2eVo3Vm5ObWU0UXo2a2tQNFE5RG04Vko3RExaZ3Q0QnJ1azNwSEZHaGlWSTZ5OWV5TlgyZzBZQ1BMQ0hTZEI2aTI3NjRwM2JEVy1v?oc=5",
     "status": "Unverified reporting",
     "first_seen_utc": "2026-11-25T02:15:31Z"
+  },
+  {
+    "id": "headline:cac78681454b619c81aee45a9fea7ff4177d4bdcbf3de609b7af3043929902e9",
+    "date": "2026-11-23T18:27:02+00:00",
+    "category": "Rumors",
+    "title": "Jason thinks Leonida is a simulation? - Reddit",
+    "note": "Indexed headline; article and underlying claim not independently reviewed.",
+    "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPeDU2SFlyZGp0ZmNvOTh1dUdyMmpGbEpmOW9qVW40X1YwT2VJOXZwR0tkY1ZKOEUwdnpmVkJlRGViUFltM2JtbHI2ZjZEVnd5dzRXX1J2NXZLUWpyWmtYNGduVURmUVlqOW9ZU2QyT2VnOHhQWmROQmZKOTFvZm1wTllXNkV0cVpRWmlPdA?oc=5",
+    "status": "Unverified reporting",
+    "first_seen_utc": "2026-11-27T20:00:53Z"
   },
   {
     "id": "headline:881c0d4f0dfc8095f552bee7c5227f896861dfbd071e7422cfdbc7971932a8dd",
